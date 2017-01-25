@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>Looprac</name>
+    <description>
+        Looprac is a carsharing application allowing users to be both drivers and passengers.
+    </description>
+    <author email="c00130965@itcarlow.ie">
+        PhoneGap Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <icon density="ldpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
+    <icon density="mdpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
+    <icon density="hdpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
+    <icon density="xhdpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
+    <icon density="xxhdpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
+    <icon density="xxxhdpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
+    <splash density="land-ldpi" src="www/res/screen/android/Looprac_logo.png" />
+    <splash density="land-mdpi" src="www/res/screen/android/Looprac_logo.png" />
+    <splash density="land-hdpi" src="www/res/screen/android/Looprac_logo.png" />
+    <splash density="land-xhdpi" src="www/res/screen/android/Looprac_logo.png" />
+    <splash density="land-xxhdpi" src="www/res/screen/android/Looprac_logo.png" />
+    <splash density="land-xxxhdpi" src="www/res/screen/android/Looprac_logo.png" />
+    <splash density="port-ldpi" src="www/res/screen/android/Looprac_logo.png" />
+    <splash density="port-mdpi" src="www/res/screen/android/Looprac_logo.png" />
+    <splash density="port-hdpi" src="www/res/screen/android/Looprac_logo.png" />
+    <splash density="port-xhdpi" src="www/res/screen/android/Looprac_logo.png" />
+    <splash density="port-xxhdpi" src="www/res/screen/android/Looprac_logo.png" />
+    <splash density="port-xxxhdpi" src="www/res/screen/android/Looprac_logo.png" />
+    <allow-intent href="market:*" />
+    <preference name="loglevel" value="DEBUG" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="android-minSdkVersion" value="14" />
+</widget>

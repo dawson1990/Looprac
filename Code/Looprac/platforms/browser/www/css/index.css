@@ -1,0 +1,462 @@
+index.css
+
+/*GENERAL CSS*/
+
+@font-face {
+    font-family: 'Roboto-Light';
+    font-style: normal;
+    font-weight: 300;
+    src:
+            local('Roboto Light'),
+            local('Roboto-Light'),
+            local('sans-serif-light'),
+            url('fonts/Roboto-Light.woff2') format('woff2');
+    /*unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;*/
+}
+
+body{
+    background: #241023!important;
+}
+
+.customInputs{
+    margin: 0 0 10px 0;
+    width: 100%!important;
+    height: 130%;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.customInputs:focus{
+    box-shadow: #ff8800 2px 1px 20px 3px;
+    outline: none;
+}
+
+.customLbls{
+    color: #eae8ff;
+    font-family: 'Roboto-Light', sans-serif!important;
+    position: relative;
+    font-size: 160%;
+    padding:0;
+}
+
+/*INDEX(LOGIN) CSS */
+#logo {
+    /*top: 56px;*/
+    /*right: 8px;*/
+    /*position: relative;*/
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 70px;
+    align-items: flex-end;
+}
+
+#loopracLogoDiv{
+    display: flex;
+    justify-content: center;
+    height: 135px;
+    align-items: flex-end;
+}
+
+.loginDiv{
+    margin: 5px 0 10px 0;
+    width: 256px;
+    height: 35px;
+    position: relative;
+    top: 82px;
+}
+
+.loginBtnDiv{
+    position: relative;
+    top: 50px;
+}
+
+#loginBtn{
+    border-radius: 5px;
+    border-color: #ff8800;
+    color: #ff8800;
+    background-color:transparent;
+    padding: 5px 10px 5px 10px;
+    margin-left: 6%;
+}
+.loginBtns {
+    position: relative;
+    top: 60px;
+    width: 47%!important;
+    height: 100%;
+    font-size: 114% !important;
+}
+
+#registerBtn{
+    border-radius: 5px;
+    border-color: #eae8ff;
+    color: #eae8ff;
+    background-color:transparent;
+    padding: 5px 10px 5px 10px;
+}
+
+
+#remMeLbl{
+    color: #CCfbfe;
+    font-family: 'Roboto-Light', sans-serif!important;
+    position: relative;
+    top: 5px;
+}
+
+/*!*toggle code*!*/
+/*.onoffswitch {*/
+/*display: flex;*/
+/*justify-content: center;*/
+/*height: 104%;*/
+/*align-items: center;*/
+/*!*position: relative; width: 90px;*!*/
+/*!*-webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;*!*/
+/*}*/
+/*.onoffswitch-checkbox {*/
+/*display: none;*/
+/*}*/
+/*.onoffswitch-label {*/
+/*display: block; overflow: hidden; cursor: pointer;*/
+/*border: 2px solid #999999; border-radius: 20px;*/
+/*}*/
+/*.onoffswitch-inner {*/
+/*display: block; width: 200%; margin-left: -100%;*/
+/*transition: margin 0.3s ease-in 0s;*/
+/*}*/
+/*.onoffswitch-inner:before, .onoffswitch-inner:after {*/
+/*display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;*/
+/*font-size: 14px; color: white; font-family: 'Roboto-Light', sans-serif!important;*/
+/*font-weight: bold;*/
+/*box-sizing: border-box;*/
+/*}*/
+/*.onoffswitch-inner:before {*/
+/*content: "Yes";*/
+/*padding-left: 10px;*/
+/*background-color: #CCFBFE; color: #231024;*/
+/*}*/
+/*.onoffswitch-inner:after {*/
+/*content: "No";*/
+/*padding-right: 10px;*/
+/*background-color: #EEEEEE; color: #999999;*/
+/*text-align: right;*/
+/*}*/
+/*.onoffswitch-switch {*/
+
+/*display: block;*/
+/*width: 25px;*/
+/*height: 25px;*/
+/*margin: 2px;*/
+/*background: #241023;*/
+/*position: absolute;*/
+/*top: 0px;*/
+/*bottom: 0;*/
+
+/*border: 2px solid #ff8800;*/
+/*border-radius: 20px;*/
+/*transition: all 0.3s ease-in 0s;*/
+/*}*/
+/*.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {*/
+/*margin-left: 0;*/
+/*}*/
+/*.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {*/
+/*right: 0px;*/
+/*}*/
+
+/*REGISTER CSS*/
+#registerHeaderDiv{
+    display: flex;
+    justify-content: center;
+    height: 104%;
+    align-items: center;
+}
+.registerH1{
+    color: #ff8800;
+    font-size: 500%;
+    font-family: 'Roboto-Light', sans-serif!important;
+}
+
+#registerDiv{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: 104%;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.registerBtnsDiv{
+    display: flex;
+    justify-content: space-between;
+    height: 33px;
+    align-items: center;
+}
+
+#cancelBtn{
+    border-radius: 5px;
+    border-color: #eae8ff;
+    color: #eae8ff;
+    background-color:transparent;
+    padding: 5px 10px 5px 10px;
+}
+
+#registrationBtn{
+    border-radius: 5px;
+    border-color: #ff8800;
+    color: #ff8800;
+    background-color:transparent;
+    padding: 5px 10px 5px 10px;
+    margin-left: 6%;
+}
+
+.registerBtns{
+    position: relative;
+    width: 44%!important;
+    height: 100%;
+    font-size:114%;
+}
+
+
+.hiddenDiv{
+    display: none;
+}
+
+#carDetailsLbl{
+    color: #eae8ff;
+}
+/* OFFER LIFT PAGE */
+#offerLiftDiv{
+    display: flex;
+    justify-content: center;
+    height: 30px;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 93%;
+    font-family: 'Roboto-Light', sans-serif;
+}
+
+#liftTypeInput{
+    position: relative;
+    left: 0;
+    width: 37%;
+    height: 35px;
+    border-radius: 7px;
+    outline:none;
+}
+
+#liftTypeLbl{
+    position:relative;
+    right:17px;
+}
+
+#seatsLbl{
+    position: relative;
+    right:17px;
+}
+#seatsInput{
+    position: relative;
+
+}
+
+.departInputs{
+    position: relative;
+    width: 49% !important;
+    height: 40px !important;
+    margin: auto;
+    padding: 0px 0px 0px 0px;
+    text-align: center;
+    border-radius: 6px;
+    outline: none;
+}
+
+.departInputs:focus{
+    box-shadow: #ff8800 2px 1px 20px 3px;
+    outline: none;
+}
+
+.dropdownInputs{
+    position: relative;
+    width: 49% !important;
+    height: 40px !important;
+    margin: auto;
+    padding: 0px 0px 0px 0px;
+    text-align: center;
+    border-radius: 6px;
+    outline: none;
+}
+
+.dropdownInputs:focus{
+    box-shadow: #ff8800 2px 1px 20px 3px;
+    outline: none;
+}
+
+.offerLiftBtns{
+    position: relative;
+    top: 60px;
+    width: 43%!important;
+    height: 100%;
+    font-size: 114% !important;
+}
+
+#offerLiftBtn{
+    border-radius: 5px;
+    border-color: #ff8800;
+    color: #ff8800;
+    background-color:transparent;
+    padding: 5px 10px 5px 10px;
+    margin-left: 6%;
+}
+
+.mapLinks{
+    color: #ccfbfe;
+    text-align: right;
+}
+
+.mapLinks:focus{
+    opacity: .9;
+    text-decoration: none;
+}
+
+#departDateLbl {
+    position: relative;
+    right: 14px;
+}
+
+#departTimeLbl {
+    position: relative;
+    right: 17px;
+}
+
+#loopLogoDiv{
+    display: flex;
+    justify-content: center;
+    height: 90px;
+    align-items: center;
+}
+
+#infinityLoopLogo{
+    width:100px;
+}
+
+/****************************
+    AVAILABLE LIFTS PAGE
+ */
+
+#listDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#availableLiftsTbl {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    color: #ff8800;
+}
+
+/******************************
+    RATINGS_PAGE_DRIVER
+ */
+
+.backarrow{
+    color: #ff8800;
+}
+
+.backarrow:active{
+    opacity: .2;
+}
+
+._h1{
+    color: #ff8800;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#ratingHeaderDiv{
+    font-family: 'Roboto-Light', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#profilePicDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#profilePic {
+    width: 35%;
+}
+
+#ratingDiv{
+    font-family: 'Roboto-Light', sans-serif;
+    display: list-item;
+    justify-content: center;
+    align-items: center;
+    wrap-option: wrap;
+}
+
+.ratingH1{
+    font-family: 'Roboto-Light', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+}
+
+.ratingH2{
+    font-family: 'Roboto-Light', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #eae8ff;
+}
+
+/****************************
+    REQUEST LIFT PAGE
+ */
+
+#liftDetailsDiv{
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.detailDiv{
+    border-top:1px solid #ffffff;
+}
+
+.dbInfoDiv{
+    border-top:1px solid #ffffff;
+}
+
+#requestLiftBtnDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#requestLiftBtn{
+    border-radius: 5px;
+    border-color: #ff8800;
+    color: #ff8800;
+    background-color:transparent;
+    padding: 5px 10px 5px 10px;
+}
+
+#cancelRequestBtn{
+    border-radius: 5px;
+    border-color: #ffffff;
+    color: #ffffff;
+    background-color:transparent;
+    padding: 5px 10px 5px 10px;
+}
+
+#requestPageInfinityLoopLogo{
+    width:120px;
+}
+

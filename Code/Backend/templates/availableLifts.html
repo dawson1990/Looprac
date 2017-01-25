@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block thebody %}
+    <h1> {{ title }}</h1>
+
+     {% for line in data %}
+         <tr>
+             <td>{{line}}</td>
+         </tr>
+    {% endfor %}
+
+ {% endblock %}

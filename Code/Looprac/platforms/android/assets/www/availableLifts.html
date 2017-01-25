@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html onload="availableLifts()" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-toggle.min.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <!--<script src="js/dbCalls.js"></script>-->
+    <script>
+        function go_back() {
+            window.location="index.html";
+        }
+
+    </script>
+
+    <link rel="stylesheet" type="text/css"  href="css/index.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
+    <title>Available Lifts</title>
+</head>
+<body class="container" >
+<div id="listDiv" class="col-xs-12"  >
+    <table id="availableLiftsTbl" class="hidden table table-inverse">
+        <tr >
+            <th>UserID</th>
+            <th>Start</th>
+            <th>Destination</th>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
