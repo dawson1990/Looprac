@@ -28,6 +28,7 @@ def list_available_lifts():
 
 
 def register(fName, lName, emailAddr, phoneN, passw):
+    print('register function')
     jsObj = {'firstName': fName, 'lastName': lName, 'email': emailAddr, 'phoneNum': phoneN, 'password': passw}
     firstName = jsObj['firstName']
     lastName = jsObj['lastName']
@@ -44,32 +45,32 @@ def register(fName, lName, emailAddr, phoneN, passw):
     register_passenger(primary_key)
 
 
-def register_with_car(fName, lName, emailAddr, phoneN, passw, carMake, carModel, carRegistration):
-    # jsObj = {'firstName': fName, 'lastName': lName, 'email': emailAddr, 'phoneNum': phoneN, 'password': passw,
-    #          'carMake': carMake, 'carModel': carModel, 'regNum': carRegistration}
-    # firstName = jsObj['firstName']
-    # lastName = jsObj['lastName']
-    # email = jsObj['email']
-    # phonenum = jsObj['phoneNum']
-    # passwd = jsObj['password']
-    # carmake = jsObj['carMake']
-    # carmodel = jsObj['carModel']
-    # carregistration = jsObj['regNum']
-    _User_Register_SQL = """INSERT INTO User
-                     (First_Name, Last_Name, Email, Phone_Number, Password, Date_Created)
-                     VALUES
-                     (%s, %s, %s, %s, %s, CURRENT_DATE )"""
-    with DBcm.UseDatabase(config) as cursor:
-        cursor.execute(_User_Register_SQL, (fName, lName, emailAddr, phoneN, passw))
-        primary_key = cursor.lastrowid
-        _CarDetails_Registration_SQL = """INSERT INTO CarDetails
-                           (Car_Make, Car_Model, Car_Reg, UserID)
-                           VALUES
-                           (%s, %s, %s, %s)"""
-    with DBcm.UseDatabase(config) as cursor:
-        cursor.execute(_CarDetails_Registration_SQL, (carMake, carModel, carRegistration, primary_key))
-    register_driver(primary_key)
-    register_passenger(primary_key)
+# def register_with_car(fName, lName, emailAddr, phoneN, passw, carMake, carModel, carRegistration):
+#     # jsObj = {'firstName': fName, 'lastName': lName, 'email': emailAddr, 'phoneNum': phoneN, 'password': passw,
+#     #          'carMake': carMake, 'carModel': carModel, 'regNum': carRegistration}
+#     # firstName = jsObj['firstName']
+#     # lastName = jsObj['lastName']
+#     # email = jsObj['email']
+#     # phonenum = jsObj['phoneNum']
+#     # passwd = jsObj['password']
+#     # carmake = jsObj['carMake']
+#     # carmodel = jsObj['carModel']
+#     # carregistration = jsObj['regNum']
+#     _User_Register_SQL = """INSERT INTO User
+#                      (First_Name, Last_Name, Email, Phone_Number, Password, Date_Created)
+#                      VALUES
+#                      (%s, %s, %s, %s, %s, CURRENT_DATE )"""
+#     with DBcm.UseDatabase(config) as cursor:
+#         cursor.execute(_User_Register_SQL, (fName, lName, emailAddr, phoneN, passw))
+#         primary_key = cursor.lastrowid
+#         _CarDetails_Registration_SQL = """INSERT INTO CarDetails
+#                            (Car_Make, Car_Model, Car_Reg, UserID)
+#                            VALUES
+#                            (%s, %s, %s, %s)"""
+#     with DBcm.UseDatabase(config) as cursor:
+#         cursor.execute(_CarDetails_Registration_SQL, (carMake, carModel, carRegistration, primary_key))
+#     register_driver(primary_key)
+#     register_passenger(primary_key)
 
 
 def register_driver(userid):

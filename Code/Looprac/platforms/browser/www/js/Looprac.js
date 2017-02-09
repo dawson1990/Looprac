@@ -1,8 +1,3 @@
-/**
- * Created by Kevin on 29/12/2016.
-
- */
-
 function carDetailsVisibility(){
     var target = $('#carDetails');
     if(target.hasClass("hiddenDiv")){
@@ -39,8 +34,9 @@ function login(){
 }
 
 function SubForm(){
-    console.log("there");
+
     event.preventDefault(); // prevents form submitting normally
+    console.log("sub form");
     $.ajax({
         url:'http://looprac.pythonanywhere.com/registeruser',
         type:'post',
@@ -50,5 +46,26 @@ function SubForm(){
             alert("You are now a registered Looper :)");
             window.location.replace("login.html");
         });
+    console.log("after subform ajax")
 }
-
+//
+// function validateRegister(){
+//     // var fName = document.getElementById("firstNameInput");
+//     // var lName = document.getElementById("lastNameInput");
+//     // var email = document.getElementById("emailInput");
+//     // var phone = document.getElementById("phoneInput");
+//     // var password = document.getElementById("passwordInput");
+//     // var nameReg = /\d/;
+//     // if (nameReg.test(fName) == true)
+//     // {
+//     //     alert("First Name cannot include numbers");
+//     // }
+//     // if (nameReg.test(LName) == true)
+//     // {
+//     //     alert("Last Name cannot include numbers");
+//     // }
+//
+//
+//
+//
+// }

@@ -1,10 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGfQTTdYNKRHoSMHHc8D8_vulGmbNuN1Y&callback=initMap" type="text/javascript">
+    </script>
+    <script src="js/jquery-3.1.1.min.js"></script>
     <meta charset="UTF-8">
     <title>Title</title>
-</head>
-<body>
+    <script src="js/Looprac.js"></script>
+    <style>
+        #map-canvas{
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left:0;
+            position: absolute;
+        }
+    </style>
+    <script>
+        navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 5000 , enableHighAccuracy: true});
+        function onSuccess(position) {
+            var lat = position.coords.latitude;
+            var lang = position.coords.longitude;
+            var accuracy = position.coords.accuracy;
+            alert("accuracy: " + accuracy);
 
+            //Google Maps
+            var myLatlng = new google.maps.LatLng(lat,lang);
+            var mapOptions = {zoom: 20,center: myLatlng};
+            var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+            var marker = new google.maps.Marker({position: myLatlng,map: map});
+        }
+        function onError (error) {
+            switch (error.code) {
+                case error.TIMEOUT:
+                    refresh();
+                    break;
+                case error.PERMISSION_DENIED:
+                    if(error.message.indexOf("Only secure origins are allowed") == 0) {
+                        tryAPIGeolocation();
+
+                    }
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Please ensure your GPS is turned on !\n\nPosition unavailable.");
+                    break;
+            }
+        }
+        var tryAPIGeolocation = function() {
+            jQuery.post( "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyD-LRYkvSD3-o1LpVkz39o0SIsrI4oknXQ", function(success) {
+                apiGeolocationSuccess(
+                    {
+                        coords:
+                            {
+                                latitude: success.location.lat,
+                                longitude: success.location.lng
+                            }
+                    });
+            })
+                .fail(function(err) {
+                    alert("API Geolocation error! \n\n"+err);
+                });
+        };
+        var apiGeolocationSuccess = function(position) {
+            var lat = position.coords.latitude;
+            var long = position.coords.longitude;
+            var accuracy = position.coords.accuracy;
+            alert("API geolocation success!\n\nlat = " + lat + "\nlng = " + long + '\nacc = ' + accuracy);
+
+            var myLatlng = new google.maps.LatLng(lat,long);
+            var mapOptions = {zoom: 20,center: myLatlng};
+            var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+            var marker = new google.maps.Marker({position: myLatlng,map: map});
+        };
+        google.maps.event.addDomListener(window, 'load', onSuccess);
+
+        //       if gps timesout prompts user to turn on GPS and it will refresh and try again
+        function refresh(){
+            if(confirm("Timed out\nPlease turn your GPS is turned on\n\nClick OK to try agian") == true){
+                location.reload();
+            }
+        }
+    </script>
+</head>
+<body class="container">
+
+<div id="map-canvas"  class="col-xs-12"></div>
 </body>
 </html>

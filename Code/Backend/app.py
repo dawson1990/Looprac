@@ -32,14 +32,16 @@ def availableLifts():
 # try without put
 @app.route('/registeruser', methods=['PUT', 'POST'])
 def registeruser():
+    print('regiser user app route')
     if request.method == 'POST':
-        if request.form['carMake'] != "" and request.form['carModel'] != "" and request.form['regNum'] != "":
-            db.register_with_car(request.form['firstName'], request.form['lastName'], request.form['email'],
-                        request.form['phoneNum'], request.form['password'], request.form['carMake'],
-                        request.form['carModel'], request.form['regNum'])
-        else:
-            db.register(request.form['firstName'], request.form['lastName'], request.form['email'],
-                        request.form['phoneNum'], request.form['password'])
+        print('request == POST')
+        # if request.form['carMake'] != "" and request.form['carModel'] != "" and request.form['regNum'] != "":
+        #     db.register_with_car(request.form['firstName'], request.form['lastName'], request.form['email'],
+        #                 request.form['phoneNum'], request.form['password'], request.form['carMake'],
+        #                 request.form['carModel'], request.form['regNum'])
+        # else:
+        db.register(request.form['firstName'], request.form['lastName'], request.form['email'],
+                    request.form['phoneNum'], request.form['password'])
     return 'User registered'
 
 
