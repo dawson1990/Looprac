@@ -2,67 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c4c97c69-b657-476e-a9be-c6671d2a22bd" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/ios/icon-40.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/ios/icon-40@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/ios/icon-50.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/ios/icon-50@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/ios/icon-60.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/ios/icon-60@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/ios/icon-60@3x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/ios/icon-72.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/ios/icon-72@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/ios/icon-76.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/ios/icon-76@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/ios/icon-small.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/ios/icon-small@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/ios/icon-small@3x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/ios/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/ios/icon@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/windows/Square150x150Logo.scale-100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/windows/Square150x150Logo.scale-240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/windows/Square30x30Logo.scale-100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/windows/Square310x310Logo.scale-100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/windows/Square44x44Logo.scale-100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/windows/Square44x44Logo.scale-240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/windows/Square70x70Logo.scale-100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/windows/Square71x71Logo.scale-100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/windows/Square71x71Logo.scale-240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/windows/StoreLogo.scale-100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/windows/StoreLogo.scale-240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/windows/Wide310x150Logo.scale-100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/windows/Wide310x150Logo.scale-240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/wp8/ApplicationIcon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/icon/wp8/Background.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/screen/ios/Default-568h@2x~iphone.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/screen/ios/Default-667h.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/screen/ios/Default-736h.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/screen/ios/Default-Landscape-736h.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/screen/ios/Default-Landscape@2x~ipad.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/screen/ios/Default-Landscape~ipad.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/screen/ios/Default-Portrait@2x~ipad.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/screen/ios/Default-Portrait~ipad.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/screen/ios/Default@2x~iphone.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/screen/ios/Default~iphone.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/screen/windows/SplashScreen.scale-100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/screen/windows/SplashScreenPhone.scale-240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/res/screen/wp8/screen-portrait.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/browser/www/js/Looprac.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Looprac/platforms/browser/www/main_page.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.py" afterPath="$PROJECT_DIR$/app.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.py" afterPath="$PROJECT_DIR$/db.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Looprac/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/AndroidManifest.xml" afterPath="$PROJECT_DIR$/../Looprac/platforms/android/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/android.json" afterPath="$PROJECT_DIR$/../Looprac/platforms/android/android.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/js/Looprac.js" afterPath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/js/Looprac.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/register.html" afterPath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/register.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/res/values/strings.xml" afterPath="$PROJECT_DIR$/../Looprac/platforms/android/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/res/xml/config.xml" afterPath="$PROJECT_DIR$/../Looprac/platforms/android/res/xml/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/platforms/browser/browser.json" afterPath="$PROJECT_DIR$/../Looprac/platforms/browser/browser.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/platforms/browser/config.xml" afterPath="$PROJECT_DIR$/../Looprac/platforms/browser/config.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/platforms/browser/www/js/Looprac.js" afterPath="$PROJECT_DIR$/../Looprac/platforms/browser/www/js/Looprac.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/platforms/browser/www/register.html" afterPath="$PROJECT_DIR$/../Looprac/platforms/browser/www/register.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/www/js/Looprac.js" afterPath="$PROJECT_DIR$/../Looprac/www/js/Looprac.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/www/main_page.html" afterPath="$PROJECT_DIR$/../Looprac/www/main_page.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/www/register.html" afterPath="$PROJECT_DIR$/../Looprac/www/register.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -81,9 +29,11 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="107">
-              <caret line="40" column="20" lean-forward="false" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
-              <folding />
+            <state relative-caret-position="311">
+              <caret line="49" column="83" lean-forward="true" selection-start-line="49" selection-start-column="83" selection-end-line="49" selection-end-column="83" />
+              <folding>
+                <element signature="e#0#64#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -91,18 +41,18 @@
       <file leaf-file-name="db.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
-              <caret line="73" column="0" lean-forward="true" selection-start-line="47" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+            <state relative-caret-position="260">
+              <caret line="95" column="40" lean-forward="false" selection-start-line="95" selection-start-column="40" selection-end-line="95" selection-end-column="40" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
-                <marker date="1486641010757" expanded="true" signature="659:724" ph="SELECT LiftI... Lift" />
-                <marker date="1486641010757" expanded="true" signature="1174:1362" ph="INSERT INTO User... " />
-                <marker date="1486641010757" expanded="true" signature="2204:2401" ph="INSERT INTO User... " />
-                <marker date="1486641010757" expanded="true" signature="2624:2796" ph="INSERT INTO CarDetails... " />
-                <marker date="1486641010757" expanded="true" signature="3091:3193" ph="INSERT INTO Driver... " />
-                <marker date="1486641010757" expanded="true" signature="3373:3478" ph="INSERT INTO Passenger... " />
-                <marker date="1486641010757" expanded="true" signature="3697:3735" ph="SELECT Email... User" />
-                <marker date="1486641010757" expanded="true" signature="3966:4010" ph="SELECT Passw... User" />
+                <marker date="1486646250401" expanded="true" signature="659:724" ph="SELECT LiftI... Lift" />
+                <marker date="1486646250401" expanded="true" signature="1013:1196" ph="INSERT INTO User... " />
+                <marker date="1486646250401" expanded="true" signature="2042:2239" ph="INSERT INTO User... " />
+                <marker date="1486646250401" expanded="true" signature="2462:2634" ph="INSERT INTO CarDetails... " />
+                <marker date="1486646250401" expanded="true" signature="2929:3031" ph="INSERT INTO Driver... " />
+                <marker date="1486646250401" expanded="true" signature="3211:3316" ph="INSERT INTO Passenger... " />
+                <marker date="1486646250401" expanded="true" signature="3535:3573" ph="SELECT Email... User" />
+                <marker date="1486646250401" expanded="true" signature="3759:3803" ph="SELECT Passw... User" />
               </folding>
             </state>
           </provider>
@@ -474,7 +424,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="697">
           <caret line="41" column="18" lean-forward="false" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="18" />
-          <folding />
+          <folding>
+            <element signature="e#0#64#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -484,14 +436,14 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <marker date="1486641010757" expanded="true" signature="659:724" ph="SELECT LiftI... Lift" />
-            <marker date="1486641010757" expanded="true" signature="1174:1362" ph="INSERT INTO User... " />
-            <marker date="1486641010757" expanded="true" signature="2204:2401" ph="INSERT INTO User... " />
-            <marker date="1486641010757" expanded="true" signature="2624:2796" ph="INSERT INTO CarDetails... " />
-            <marker date="1486641010757" expanded="true" signature="3091:3193" ph="INSERT INTO Driver... " />
-            <marker date="1486641010757" expanded="true" signature="3373:3478" ph="INSERT INTO Passenger... " />
-            <marker date="1486641010757" expanded="true" signature="3697:3735" ph="SELECT Email... User" />
-            <marker date="1486641010757" expanded="true" signature="3966:4010" ph="SELECT Passw... User" />
+            <marker date="1486646250401" expanded="true" signature="659:724" ph="SELECT LiftI... Lift" />
+            <marker date="1486646250401" expanded="true" signature="1013:1196" ph="INSERT INTO User... " />
+            <marker date="1486646250401" expanded="true" signature="2042:2239" ph="INSERT INTO User... " />
+            <marker date="1486646250401" expanded="true" signature="2462:2634" ph="INSERT INTO CarDetails... " />
+            <marker date="1486646250401" expanded="true" signature="2929:3031" ph="INSERT INTO Driver... " />
+            <marker date="1486646250401" expanded="true" signature="3211:3316" ph="INSERT INTO Passenger... " />
+            <marker date="1486646250401" expanded="true" signature="3535:3573" ph="SELECT Email... User" />
+            <marker date="1486646250401" expanded="true" signature="3759:3803" ph="SELECT Passw... User" />
           </folding>
         </state>
       </provider>
@@ -500,7 +452,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1054">
           <caret line="62" column="0" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#64#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -510,40 +464,42 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <marker date="1486641010757" expanded="true" signature="659:724" ph="SELECT LiftI... Lift" />
-            <marker date="1486641010757" expanded="true" signature="1174:1362" ph="INSERT INTO User... " />
-            <marker date="1486641010757" expanded="true" signature="2204:2401" ph="INSERT INTO User... " />
-            <marker date="1486641010757" expanded="true" signature="2624:2796" ph="INSERT INTO CarDetails... " />
-            <marker date="1486641010757" expanded="true" signature="3091:3193" ph="INSERT INTO Driver... " />
-            <marker date="1486641010757" expanded="true" signature="3373:3478" ph="INSERT INTO Passenger... " />
-            <marker date="1486641010757" expanded="true" signature="3697:3735" ph="SELECT Email... User" />
-            <marker date="1486641010757" expanded="true" signature="3966:4010" ph="SELECT Passw... User" />
+            <marker date="1486646250401" expanded="true" signature="659:724" ph="SELECT LiftI... Lift" />
+            <marker date="1486646250401" expanded="true" signature="1013:1196" ph="INSERT INTO User... " />
+            <marker date="1486646250401" expanded="true" signature="2042:2239" ph="INSERT INTO User... " />
+            <marker date="1486646250401" expanded="true" signature="2462:2634" ph="INSERT INTO CarDetails... " />
+            <marker date="1486646250401" expanded="true" signature="2929:3031" ph="INSERT INTO Driver... " />
+            <marker date="1486646250401" expanded="true" signature="3211:3316" ph="INSERT INTO Passenger... " />
+            <marker date="1486646250401" expanded="true" signature="3535:3573" ph="SELECT Email... User" />
+            <marker date="1486646250401" expanded="true" signature="3759:3803" ph="SELECT Passw... User" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="40" column="20" lean-forward="false" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
-          <folding />
+        <state relative-caret-position="311">
+          <caret line="49" column="83" lean-forward="true" selection-start-line="49" selection-start-column="83" selection-end-line="49" selection-end-column="83" />
+          <folding>
+            <element signature="e#0#64#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/db.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="73" column="0" lean-forward="true" selection-start-line="47" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+        <state relative-caret-position="260">
+          <caret line="95" column="40" lean-forward="false" selection-start-line="95" selection-start-column="40" selection-end-line="95" selection-end-column="40" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <marker date="1486641010757" expanded="true" signature="659:724" ph="SELECT LiftI... Lift" />
-            <marker date="1486641010757" expanded="true" signature="1174:1362" ph="INSERT INTO User... " />
-            <marker date="1486641010757" expanded="true" signature="2204:2401" ph="INSERT INTO User... " />
-            <marker date="1486641010757" expanded="true" signature="2624:2796" ph="INSERT INTO CarDetails... " />
-            <marker date="1486641010757" expanded="true" signature="3091:3193" ph="INSERT INTO Driver... " />
-            <marker date="1486641010757" expanded="true" signature="3373:3478" ph="INSERT INTO Passenger... " />
-            <marker date="1486641010757" expanded="true" signature="3697:3735" ph="SELECT Email... User" />
-            <marker date="1486641010757" expanded="true" signature="3966:4010" ph="SELECT Passw... User" />
+            <marker date="1486646250401" expanded="true" signature="659:724" ph="SELECT LiftI... Lift" />
+            <marker date="1486646250401" expanded="true" signature="1013:1196" ph="INSERT INTO User... " />
+            <marker date="1486646250401" expanded="true" signature="2042:2239" ph="INSERT INTO User... " />
+            <marker date="1486646250401" expanded="true" signature="2462:2634" ph="INSERT INTO CarDetails... " />
+            <marker date="1486646250401" expanded="true" signature="2929:3031" ph="INSERT INTO Driver... " />
+            <marker date="1486646250401" expanded="true" signature="3211:3316" ph="INSERT INTO Passenger... " />
+            <marker date="1486646250401" expanded="true" signature="3535:3573" ph="SELECT Email... User" />
+            <marker date="1486646250401" expanded="true" signature="3759:3803" ph="SELECT Passw... User" />
           </folding>
         </state>
       </provider>

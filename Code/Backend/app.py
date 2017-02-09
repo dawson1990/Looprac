@@ -34,15 +34,26 @@ def availableLifts():
 def registeruser():
     print('regiser user app route')
     if request.method == 'POST':
+        # jsObj = {}
+        fname = request.form['firstName']
+        lname = request.form['lastName']
+        email = request.form['email']
+        phonenum = request.form['phoneNum']
+        password = request.form['password']
         print('request == POST')
         # if request.form['carMake'] != "" and request.form['carModel'] != "" and request.form['regNum'] != "":
         #     db.register_with_car(request.form['firstName'], request.form['lastName'], request.form['email'],
         #                 request.form['phoneNum'], request.form['password'], request.form['carMake'],
         #                 request.form['carModel'], request.form['regNum'])
         # else:
-        db.register(request.form['firstName'], request.form['lastName'], request.form['email'],
-                    request.form['phoneNum'], request.form['password'])
-    return 'User registered'
+        if fname is '' or lname is '' or email is '' or phonenum is 0 or password is '':
+            jsObj = json.dumps({"status": "Not all required elements are entered"})
+            return jsObj
+        else:
+            db.register(fname, lname, email, phonenum, password)
+            return json.dumps({"status": "Register Complete"})
+    else:
+        return 'POST did not work'
 
 
 @app.route('/loginuser', methods=['PUT', 'POST'])
@@ -54,8 +65,6 @@ def check_email():
         # print(type(json_str))
         # parsed_json= json.loads(json_str)
         # print('login funct' + json_str)
-        print(str(data))
-        print(type(data))
         return data
 
 

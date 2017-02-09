@@ -27,20 +27,17 @@ def list_available_lifts():
     return json_output
 
 
-def register(fName, lName, emailAddr, phoneN, passw):
+def register(fName: str, lName:str, emailAddr:str, phoneN, passw):
     print('register function')
-    jsObj = {'firstName': fName, 'lastName': lName, 'email': emailAddr, 'phoneNum': phoneN, 'password': passw}
-    firstName = jsObj['firstName']
-    lastName = jsObj['lastName']
-    email = jsObj['email']
-    phonenum = jsObj['phoneNum']
-    passwd = jsObj['password']
+    firstName = fName.lower()
+    lastName = lName.lower()
+    emailAddress = emailAddr.lower()
     _User_Register_SQL = """INSERT INTO User
-                    (First_Name, Last_Name, Email, Phone_Number, Password, Date_Created)
+                    (fName, Last_Name, Email, Phone_Number, Password, Date_Created)
                     VALUES
                     (%s, %s, %s, %s, %s, CURRENT_DATE )"""
     with DBcm.UseDatabase(config) as cursor:
-        cursor.execute(_User_Register_SQL, (firstName, lastName, email, phonenum, passwd))
+        cursor.execute(_User_Register_SQL, (firstName, lastName, emailAddress, phoneN, passw))
         primary_key = cursor.lastrowid
     register_passenger(primary_key)
 
@@ -97,15 +94,11 @@ def check_if_registered(email, password):
         cursor.execute(_SQL, (email,))
         data = list(cursor.fetchall())
         emaildata = [i[0] for i in data]
-        print(data)
-        print(emaildata)
     with DBcm.UseDatabase(config) as cursor:
         _SQL = """SELECT Password FROM User WHERE Password= %s"""
         cursor.execute(_SQL, (password,))
         data = list(cursor.fetchall())
         passworddata = [i[0] for i in data]
-        print(data)
-        print(passworddata)
     if emaildata == [] or passworddata == []:
         jsObj = json.dumps({"status": "wrongemail/password"})
     elif email == emaildata[0] and password == passworddata[0]:

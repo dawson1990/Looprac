@@ -8,6 +8,7 @@ function carDetailsVisibility(){
     }
 }
 
+
 function login(){
     console.log("LOGIN FUNCTION");
     event.preventDefault(); // prevents form submitting normally
@@ -33,8 +34,8 @@ function login(){
     console.log("LOGIN FUNCTION: after ajax");
 }
 
-function SubForm(){
 
+function SubForm(){
     event.preventDefault(); // prevents form submitting normally
     console.log("sub form");
     $.ajax({
@@ -42,12 +43,23 @@ function SubForm(){
         type:'post',
         async: false,
         data: $("#form").serialize()})
-        .done(function(){
-            alert("You are now a registered Looper :)");
-            window.location.replace("login.html");
+        .done(function(data){
+            var result = JSON.parse(data);
+            if (result["status"] == "Register Complete")
+            {
+                alert("You are now a registered Looper :)");
+                window.location.replace("login.html");
+            }
+            else if (result["status"] == "Not all required elements are entered")
+            {
+                alert("ERROR: not all fields were filled in");
+            }
+
         });
     console.log("after subform ajax")
 }
+
+
 //
 // function validateRegister(){
 //     // var fName = document.getElementById("firstNameInput");
