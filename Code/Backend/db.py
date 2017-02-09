@@ -32,14 +32,21 @@ def register(fName: str, lName:str, emailAddr:str, phoneN, passw):
     firstName = fName.lower()
     lastName = lName.lower()
     emailAddress = emailAddr.lower()
-    _User_Register_SQL = """INSERT INTO User
-                    (fName, Last_Name, Email, Phone_Number, Password, Date_Created)
-                    VALUES
-                    (%s, %s, %s, %s, %s, CURRENT_DATE )"""
-    with DBcm.UseDatabase(config) as cursor:
-        cursor.execute(_User_Register_SQL, (firstName, lastName, emailAddress, phoneN, passw))
-        primary_key = cursor.lastrowid
-    register_passenger(primary_key)
+    emailExists = check_if_exists(emailAddress)
+    if emailExists is True:
+        jsObj = json.dumps({"status": "email exists"})
+        return jsObj
+    else:
+        _User_Register_SQL = """INSERT INTO User
+                        (fName, Last_Name, Email, Phone_Number, Password, Date_Created)
+                        VALUES
+                        (%s, %s, %s, %s, %s, CURRENT_DATE )"""
+        with DBcm.UseDatabase(config) as cursor:
+            cursor.execute(_User_Register_SQL, (firstName, lastName, emailAddress, phoneN, passw))
+            primary_key = cursor.lastrowid
+        register_passenger(primary_key)
+        jsObj = json.dumps({"status": "registered"})
+        return jsObj
 
 
 # def register_with_car(fName, lName, emailAddr, phoneN, passw, carMake, carModel, carRegistration):
@@ -106,3 +113,21 @@ def check_if_registered(email, password):
     else:
         jsObj = json.dumps({"status": "nomatch"})
     return jsObj
+
+
+def check_if_exists(email: str):
+    print('if exists function')
+    exists = False
+    with DBcm.UseDatabase(config) as cursor:
+        _SQL = """SELECT Email FROM User WHERE Email= %s"""
+        cursor.execute(_SQL, (email,))
+        data = list(cursor.fetchall())
+        emaildata = [i[0] for i in data]
+    print('email data', emaildata)
+    if emaildata == []:
+        print('doesnt exist')
+        return exists
+    else:
+        exists = True
+        print('exists',exists)
+        return exists

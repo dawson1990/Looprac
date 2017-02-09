@@ -45,7 +45,7 @@ function SubForm(){
         data: $("#form").serialize()})
         .done(function(data){
             var result = JSON.parse(data);
-            if (result["status"] == "Register Complete")
+            if (result["status"] == "registered")
             {
                 alert("You are now a registered Looper :)");
                 window.location.replace("login.html");
@@ -54,30 +54,17 @@ function SubForm(){
             {
                 alert("ERROR: not all fields were filled in");
             }
+            else if (result["status"] == "email exists")
+            {
+                document.getElementById("emailError").innerHTML = "This email address already exists";
+                setTimeout(function () {
+                    window.location = document.URL;
+                },5000);
+            }
 
         });
     console.log("after subform ajax")
 }
 
 
-//
-// function validateRegister(){
-//     // var fName = document.getElementById("firstNameInput");
-//     // var lName = document.getElementById("lastNameInput");
-//     // var email = document.getElementById("emailInput");
-//     // var phone = document.getElementById("phoneInput");
-//     // var password = document.getElementById("passwordInput");
-//     // var nameReg = /\d/;
-//     // if (nameReg.test(fName) == true)
-//     // {
-//     //     alert("First Name cannot include numbers");
-//     // }
-//     // if (nameReg.test(LName) == true)
-//     // {
-//     //     alert("Last Name cannot include numbers");
-//     // }
-//
-//
-//
-//
-// }
+

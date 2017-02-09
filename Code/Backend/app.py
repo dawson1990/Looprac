@@ -50,8 +50,8 @@ def registeruser():
             jsObj = json.dumps({"status": "Not all required elements are entered"})
             return jsObj
         else:
-            db.register(fname, lname, email, phonenum, password)
-            return json.dumps({"status": "Register Complete"})
+            jsObj = db.register(fname, lname, email, phonenum, password)
+            return jsObj
     else:
         return 'POST did not work'
 
@@ -66,6 +66,16 @@ def check_email():
         # parsed_json= json.loads(json_str)
         # print('login funct' + json_str)
         return data
+
+
+@app.route('/checkifemailexists', methods=['POST'])
+def check_if_email_exists():
+    print('start of if email exists')
+    if request.method == 'POST':
+        email = request.get_data('data1')
+        print('email', email)
+        return db.check_if_exists(email)
+
 
 
 

@@ -21,15 +21,6 @@
             window.location.replace("index.html");
         }
 
-        //REGISTER FORM VALIDATION
-       function validation(){
-
-//            $('input').blur(function(e){
-//                e.target.checkValidity();
-//            }).bind('invalid',function(e){
-//                document.getElementById('error').innerHTML = "wrong format";
-//            });
-       }
     </script>
     <title>Register</title>
 </head>
@@ -41,13 +32,11 @@
     <div id="registerDiv" class="col-xs-12">
         <label id="firstNameLbl" class="customLbls col-xs-12" for="firstNameInput">First Name</label>
         <input type="text" id="firstNameInput" name="firstName" class="customInputs col-xs-12" placeholder="John" pattern="^[a-z A-Z]+$" title="Letters only" required="required" />
-        <div class="col-xs-12">
-            <p id="error" style="color: #ffffff;"></p>
-        </div>
         <label id="lastNameLbl" class="customLbls col-xs-12" for="lastNameInput">Last Name</label>
         <input type="text" id="lastNameInput" name="lastName" class="customInputs col-xs-12" placeholder="Sample" pattern="^[a-z A-Z]+$" required="required" />
         <label id="emailLbl" class="customLbls col-xs-12" for="emailInput">Email</label>
-        <input type="email" id="emailInput" name="email" class="customInputs col-xs-12"  placeholder="sample@email.com" required="required" />
+        <input type="email" id="emailInput" name="email" class="customInputs col-xs-12"  placeholder="sample@email.com" required="required" onblur=checkIfEmailExists(); />
+        <div><p id="emailError" style="color: #ffffff; font-weight: bold;"></p> </div>
         <label id="phoneNumLbl" class="customLbls col-xs-12" for="phoneInput">Phone No.</label>
         <input type="number" id="phoneInput" name="phoneNum" class="customInputs col-xs-12"  placeholder="0851234567" required="required" />
         <label id="passwordLbl" class="customLbls col-xs-12" for="passwordInput">Password</label>
