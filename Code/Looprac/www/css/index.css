@@ -460,3 +460,36 @@ body{
     width:120px;
 }
 
+
+/*******************************
+    MAIN PAGE
+ ******************************/
+
+#choiceDiv{
+    position: absolute;
+    display: flex;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: #ff8800;
+    font-size: 35px;
+    text-align: center;
+}
+
+#mainPageOfferLiftBtn{
+    border-radius: 5px;
+    border-color: #ff8800;
+    color: #ff8800;
+    background-color: transparent;
+    padding: 5px 10px 5px 10px;
+    margin: 0px 3px 0px 0;
+}
+
+#searchLiftBtn{
+    border-radius: 5px;
+    border-color: #231024;
+    color: #231024;
+    background-color: #ff8800;
+    padding: 5px 10px 5px 10px;
+    margin: 0px 3px 0px 0;
+}

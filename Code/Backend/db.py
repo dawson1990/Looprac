@@ -1,5 +1,6 @@
 import DBcm
 import json
+from flask import session
 
 
 
@@ -37,8 +38,9 @@ def register(fName: str, lName:str, emailAddr:str, phoneN, passw):
         jsObj = json.dumps({"status": "email exists"})
         return jsObj
     else:
+        print('registering')
         _User_Register_SQL = """INSERT INTO User
-                        (fName, Last_Name, Email, Phone_Number, Password, Date_Created)
+                        (First_Name, Last_Name, Email, Phone_Number, Password, Date_Created)
                         VALUES
                         (%s, %s, %s, %s, %s, CURRENT_DATE )"""
         with DBcm.UseDatabase(config) as cursor:
@@ -95,7 +97,8 @@ def register_passenger(userid):
         cursor.execute(_Passenger_Registration_SQL, (userid,))
 
 
-def check_if_registered(email, password):
+def process_login(email, password):
+    print('login function')
     with DBcm.UseDatabase(config) as cursor:
         _SQL = """SELECT Email FROM User WHERE Email= %s"""
         cursor.execute(_SQL, (email,))
@@ -109,7 +112,21 @@ def check_if_registered(email, password):
     if emaildata == [] or passworddata == []:
         jsObj = json.dumps({"status": "wrongemail/password"})
     elif email == emaildata[0] and password == passworddata[0]:
-        jsObj = json.dumps({"status": "match"})
+        with DBcm.UseDatabase(config) as cursor:
+            _SQL = """SELECT UserID, First_Name, Last_Name FROM User WHERE Email= %s"""
+            cursor.execute(_SQL, (email,))
+            data = list(cursor.fetchall())
+        uID = data[0][0]
+        uName = data[0][1]
+        uLName = data[0][2]
+        print('before update')
+        with DBcm.UseDatabase(config) as cursor:
+            _Update_LoggedIn = """UPDATE User SET Logged_In=1 WHERE UserID=%s"""
+            cursor.execute(_Update_LoggedIn, (uID,))
+        print('after update')
+        session['logged_in'] = True
+        jsObj = json.dumps({"status": "match", "email": email, "user_id": uID, "first_name": uName, "last_name": uLName,
+                            "logged_in": session['logged_in']})
     else:
         jsObj = json.dumps({"status": "nomatch"})
     return jsObj
@@ -129,5 +146,40 @@ def check_if_exists(email: str):
         return exists
     else:
         exists = True
-        print('exists',exists)
+        print('exists', exists)
         return exists
+
+
+def register_offer_lift(start, destination, date, time, journey_type, seats):
+    print('register function')
+    start_lower = start.lower()
+    destination_lower = destination.lower()
+
+    _User_Register_SQL = """INSERT INTO Lift
+                       (Start_Location, Destination, Depart_Date, Depart_Time, Available_Spaces, Return_Single, Created_At)
+                       VALUES
+                       (%s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP )"""
+    with DBcm.UseDatabase(config) as cursor:
+        cursor.execute(_User_Register_SQL, (start_lower, destination_lower, date, time, journey_type, seats))
+    jsObj = json.dumps({"status": "registered"})
+    return jsObj
+
+
+# CHECK IF USER HAS A CAR REGISTERED BEFORE OFFERING A LIFT
+def is_car_registered(userID):
+    if checkIfCarExists(userID):
+        jsObj = json.dumps({"status": "car registered"})
+    else:
+        jsObj = json.dumps({"status": "car not registered"})
+    return jsObj
+
+def checkIfCarExists(userID):
+    with DBcm.UseDatabase(config) as cursor:
+        _SQL = """SELECT * FROM CarDetails WHERE UserID= %s"""
+        cursor.execute(_SQL, (userID,))
+        data = list(cursor.fetchall())
+        if data == []:
+            exists = False
+        else:
+            exists = True
+    return exists

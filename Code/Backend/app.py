@@ -1,11 +1,13 @@
-from flask import Flask, render_template, make_response, request
+from flask import Flask, render_template, make_response, request, session
 import db
 import json
-import datetime
 
+
+UPLOAD_FOLDER = '/home/looprac/LoopracAPI/Uploads/'
 
 app = Flask(__name__)
 app.secret_key = 'fhdgsd;ohfnvervneroigerrenverbner32hrjegb/kjbvr/o'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
 @app.after_request
@@ -29,27 +31,23 @@ def availableLifts():
     return parsed_json
 
 
-# try without put
 @app.route('/registeruser', methods=['PUT', 'POST'])
 def registeruser():
-    print('regiser user app route')
+
     if request.method == 'POST':
+        print('method == POST')
         # jsObj = {}
         fname = request.form['firstName']
         lname = request.form['lastName']
         email = request.form['email']
         phonenum = request.form['phoneNum']
         password = request.form['password']
-        print('request == POST')
-        # if request.form['carMake'] != "" and request.form['carModel'] != "" and request.form['regNum'] != "":
-        #     db.register_with_car(request.form['firstName'], request.form['lastName'], request.form['email'],
-        #                 request.form['phoneNum'], request.form['password'], request.form['carMake'],
-        #                 request.form['carModel'], request.form['regNum'])
-        # else:
+
         if fname is '' or lname is '' or email is '' or phonenum is 0 or password is '':
             jsObj = json.dumps({"status": "Not all required elements are entered"})
             return jsObj
         else:
+            print('app going to register function')
             jsObj = db.register(fname, lname, email, phonenum, password)
             return jsObj
     else:
@@ -57,14 +55,14 @@ def registeruser():
 
 
 @app.route('/loginuser', methods=['PUT', 'POST'])
-def check_email():
+def login():
     print('start of check_email')
     if request.method == 'POST':
-        data = db.check_if_registered(request.form['email_login'], request.form['password_login'])
-        # json_str = json.dumps(data,default=myconverter) #optional parameter if it comes across an object it cannot serialize
-        # print(type(json_str))
-        # parsed_json= json.loads(json_str)
-        # print('login funct' + json_str)
+        print('method = post')
+        email = request.form['email_login']
+        password = request.form['password_login']
+        data = db.process_login(email, password)
+        print('after process login', data )
         return data
 
 
@@ -77,7 +75,33 @@ def check_if_email_exists():
         return db.check_if_exists(email)
 
 
+@app.route('/offerLift', methods=['POST'])
+def sub_offer_lift():
+    if request.method == 'POST':
+        start = request.form['start']
+        destination = request.form['destination']
+        date = request.form['departDate']
+        time = request.form['departTime']
+        journey_type = request.form['liftType']
+        seats = request.form['seats']
+        if start is '' or destination is '' or date is '' or time is '':
+            jsObj = json.dumps({"status": "Not all required elements are entered"})
+            return jsObj
+        else:
+            jsObj = db.register_offer_lift(start, destination, date, time,  journey_type, seats)
+            return jsObj
 
+
+@app.route('/checkcarregistered', methods=['PUT','POST'])
+def check_user_registered_car():
+    print('check car reg function, before')
+    if request.method == 'POST':
+        print('before request')
+        data = request.get_json()
+        userID = data['userID']
+        print('checking for car', userID)
+        db.is_car_registered(userID)
+    return 'done'
 
 if __name__ == '__main__':
     app.run(debug=True)

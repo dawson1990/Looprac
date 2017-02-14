@@ -12,8 +12,8 @@
     <script src="js/Looprac.js"></script>
     <style>
         #map-canvas{
-            top: 0;
-            bottom: 0;
+            top: 60px;
+            bottom: 36px;
             right: 0;
             left:0;
             position: absolute;
@@ -25,7 +25,7 @@
             var lat = position.coords.latitude;
             var lang = position.coords.longitude;
             var accuracy = position.coords.accuracy;
-            alert("accuracy: " + accuracy);
+//            alert("accuracy: " + accuracy);
 
             //Google Maps
             var myLatlng = new google.maps.LatLng(lat,lang);
@@ -68,7 +68,7 @@
             var lat = position.coords.latitude;
             var long = position.coords.longitude;
             var accuracy = position.coords.accuracy;
-            alert("API geolocation success!\n\nlat = " + lat + "\nlng = " + long + '\nacc = ' + accuracy);
+//            alert("API geolocation success!\n\nlat = " + lat + "\nlng = " + long + '\nacc = ' + accuracy);
 
             var myLatlng = new google.maps.LatLng(lat,long);
             var mapOptions = {zoom: 20,center: myLatlng};
@@ -83,10 +83,23 @@
                 location.reload();
             }
         }
+
+        window.onload = function sessionupdate() {
+          var sessionP = document.getElementById("sessionP");
+          sessionP.innerHTML = "Welcome " + sessionStorage.getItem('firstName');
+          document.getElementById('userID').value = sessionStorage.getItem('userID');
+        }
     </script>
 </head>
 <body class="container">
-
+<div id="sessionDiv" class="col-xs-12"><p id="sessionP" style="color: #ff8800; font-size: 35px; text-align: center;"></p></div>
 <div id="map-canvas"  class="col-xs-12"></div>
+<div id="mainPageFormDiv">
+    <input type="number" class="hidden" readonly id="userID" />
+</div>
+<div id="choiceDiv" class="col-xs-12">
+    <input type="submit" id="mainPageOfferLiftBtn" class="btn btn-primary col-xs-6" value="Offer Lift" onclick="checkHasCarRegistered()" />
+    <input type="button" id="searchLiftBtn" class="btn btn-primary col-xs-6" value="Search for Lift" />
+</div>
 </body>
 </html>

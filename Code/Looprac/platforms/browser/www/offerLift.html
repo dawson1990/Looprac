@@ -5,6 +5,7 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <script type="text/javascript" src="cordova.js"></script>
     <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/Looprac.js"></script>
 
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-toggle.min.js"></script>
@@ -21,36 +22,39 @@
 <body >
 <div class="container">
     <div id="loopLogoDiv" class="col-xs-12">
-        <img class="col-xs-12" id="infinityLoopLogo" src="css/Infinity Loop Logo.png" />
+        <img class="col-xs-12" id="infinityLoopLogo" src="img/Infinity_Loop_Logo.png" />
     </div>
-    <div id="offerLiftDiv" class="col-xs-12">
-        <label id="locationLbl" class="customLbls col-xs-12" for="locationInput">Location</label>
-        <input type="text" id="locationInput" name="location" class="customInputs col-xs-12" placeholder="Carlow"/>
-        <a id="locationMapLink" class="mapLinks col-xs-12" href="#">Show Map</a>
-        <label id="destinationlLbl" class="customLbls col-xs-12" for="destinationInput">Destination</label>
-        <input type="text" id="destinationInput" name="destination" class="customInputs col-xs-12"  placeholder="Dublin"/>
-        <a id="destinationMapLink" class="mapLinks col-xs-12" href="#">Show Map</a>
-        <label id="departDateLbl" class="customLbls col-xs-6" for="departDateInput">Depart Date</label>
-        <label id="departTimeLbl" class="customLbls col-xs-6" for="departTimeInput">Depart Time</label>
-        <input type="date" id="departDateInput" name="departDate" class="departInputs col-xs-6" placeholder="dd/mm/yyyy" />
-        <input type="time" id="departTimeInput" name="departTime" class="departInputs col-xs-6" placeholder="--:--"/>
-        <label id="liftTypeLbl" class="customLbls col-xs-6" for="liftTypeInput">Return/Single</label>
-        <label id="seatsLbl" class="customLbls col-xs-6" for="seatsInput">Spaces</label>
-        <select id="liftTypeInput" class="dropdownInputs col-sx-6">
-            <option value="single">Single</option>
-            <option value="return">Return</option>
-        </select>
-        <select id="seatsInput" class="dropdownInputs col-sx-6">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-        </select>
-        <input  type="submit" value="Cancel" id="cancelBtn" class="offerLiftBtns btn btn-primary col-xs-6" onclick="go_back()"/>
-        <input  type="submit" value="Offer Lift" id="offerLiftBtn" class="offerLiftBtns btn btn-primary col-xs-6" />
-    </div>
+    <form id="offerLiftForm" class="col-xs-12">
+        <div id="offerLiftDiv" class="col-xs-12">
+            <label id="locationLbl" class="customLbls col-xs-12" for="locationInput">Location</label>
+            <input type="text" id="locationInput" name="start" class="customInputs col-xs-12" placeholder="Carlow"/>
+            <a id="locationMapLink" class="mapLinks col-xs-12" href="#">Show Map</a>
+            <label id="destinationlLbl" class="customLbls col-xs-12" for="destinationInput">Destination</label>
+            <input type="text" id="destinationInput" name="destination" class="customInputs col-xs-12"  placeholder="Dublin"/>
+            <a id="destinationMapLink" class="mapLinks col-xs-12" href="#">Show Map</a>
+            <label id="departDateLbl" class="customLbls col-xs-6" for="departDateInput">Depart Date</label>
+            <label id="departTimeLbl" class="customLbls col-xs-6" for="departTimeInput">Depart Time</label>
+            <input type="date" id="departDateInput" name="departDate" class="departInputs col-xs-6" placeholder="dd/mm/yyyy" />
+            <input type="time" id="departTimeInput" name="departTime" class="departInputs col-xs-6" placeholder="--:--"/>
+            <label id="liftTypeLbl" class="customLbls col-xs-6" for="liftTypeInput">Return/Single</label>
+            <label id="seatsLbl" class="customLbls col-xs-6" for="seatsInput">Spaces</label>
+            <select id="liftTypeInput" class="dropdownInputs col-sx-6" name="liftType">
+                <option value="single">Single</option>
+                <option value="return">Return</option>
+            </select>
+            <select id="seatsInput" class="dropdownInputs col-sx-6" name="seats">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+            <input  type="submit" value="Cancel" id="cancelBtn" class="offerLiftBtns btn btn-primary col-xs-6" onclick="go_back()"/>
+            <input  type="submit" value="Offer Lift" id="offerLiftBtn" class="offerLiftBtns btn btn-primary col-xs-6" onclick="subOfferLift()"/>
+        </div>
+    </form>
+
 </div>
 
 </body>

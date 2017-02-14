@@ -10,6 +10,7 @@ function carDetailsVisibility(){
 
 
 function login(){
+
     console.log("LOGIN FUNCTION");
     event.preventDefault(); // prevents form submitting normally
     $.ajax({
@@ -21,10 +22,16 @@ function login(){
             var result = JSON.parse(data);
             if (result["status"] == "match")
             {
+                console.log("match logged in ");
+                window.sessionStorage.setItem('userID', result['user_id']);
+                window.sessionStorage.setItem('firstName', result['first_name']);
+                window.sessionStorage.setItem('lastName', result['last_name']);
+                window.sessionStorage.setItem('loggedIn', result['logged_in']);
                 window.location.replace("main_page.html");
             }
             else if (result["status"] == "wrongemail/password")
             {
+
                 alert("Wrong email or password entered");
             }
             else if(result["status"] == "noMatch") {
@@ -37,12 +44,11 @@ function login(){
 
 function SubForm(){
     event.preventDefault(); // prevents form submitting normally
-    console.log("sub form");
     $.ajax({
         url:'http://looprac.pythonanywhere.com/registeruser',
         type:'post',
         async: false,
-        data: $("#form").serialize()})
+        data:  $("#form").serialize()})
         .done(function(data){
             var result = JSON.parse(data);
             if (result["status"] == "registered")
@@ -66,5 +72,54 @@ function SubForm(){
     console.log("after subform ajax")
 }
 
+function subOfferLift(){
+    event.preventDefault(); // prevents form submitting normally
+    $.ajax({
+        url:'http://looprac.pythonanywhere.com/offerLift',
+        type:'post',
+        async: false,
+        data:  $("#form").serialize()})
+        .done(function(data){
+            var result = JSON.parse(data);
+            if (result["status"] == "registered")
+            {
+                alert("Your lift offer has been submitted");
+                window.location.replace("main_page.html");
+            }
+            else if (result["status"] == "Not all required elements are entered")
+            {
+                alert("ERROR: not all fields were filled in");
+            }
+
+        });
+}
 
 
+/***********************************
+ CHECK IF USER HAS REGISTERED CAR BEFORE OFFERING A LIFT
+ /**********************************/
+
+function checkHasCarRegistered() {
+    event.preventDefault(); // prevents form submitting normally
+    var user_id = sessionStorage.getItem('userID');
+    var j = JSON.stringify({'userid': user_id});
+    $.ajax({
+        url:'http://looprac.pythonanywhere.com/checkcarregistered',
+        type:'post',
+        async: false,
+        contentType: 'application/json',
+        dataType: 'json',
+        data:  j})
+        .done(function(data){
+            var result = JSON.parse(data);
+            if (result["status"] == "car registered"){
+                window.location.replace("offerLift.html");
+            }
+            else if (result["status" == "car not registered"]){
+                alert("Please register your car before you offer a lift");
+                window.location.replace("carDetails.html");
+            }
+
+        });
+
+}

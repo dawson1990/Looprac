@@ -25,7 +25,7 @@
     <title>Register</title>
 </head>
 <body class="container">
-<form id="form"  method="post" >
+<form id="form" method="post" action="http://looprac.pythonanywhere.com/registeruser" enctype="multipart/form-data">
     <div id="registerHeaderDiv" class="col-xs-12">
         <h1 class="registerH1">Register</h1>
     </div>
@@ -35,23 +35,14 @@
         <label id="lastNameLbl" class="customLbls col-xs-12" for="lastNameInput">Last Name</label>
         <input type="text" id="lastNameInput" name="lastName" class="customInputs col-xs-12" placeholder="Sample" pattern="^[a-z A-Z]+$" required="required" />
         <label id="emailLbl" class="customLbls col-xs-12" for="emailInput">Email</label>
-        <input type="email" id="emailInput" name="email" class="customInputs col-xs-12"  placeholder="sample@email.com" required="required" onblur=checkIfEmailExists(); />
+        <input type="email" id="emailInput" name="email" class="customInputs col-xs-12"  placeholder="sample@email.com" required="required" />
         <div><p id="emailError" style="color: #ffffff; font-weight: bold;"></p> </div>
         <label id="phoneNumLbl" class="customLbls col-xs-12" for="phoneInput">Phone No.</label>
         <input type="number" id="phoneInput" name="phoneNum" class="customInputs col-xs-12"  placeholder="0851234567" required="required" />
         <label id="passwordLbl" class="customLbls col-xs-12" for="passwordInput">Password</label>
         <input type="password" id="passwordInput" name="password" class="customInputs col-xs-12" pattern=".{6,}" placeholder="Must be at least 6 characters" required="required"/>
-        <!--<label class="col-xs-7" id="carDetailsLbl">-->
-        <!--<input type="checkbox"  class="col-xs-5" id="carDetailsCheckBox" onclick="carDetailsVisibility()">Have a Car?-->
-        <!--</label>-->
-        <!--<div id="carDetails" class="hiddenDiv col-xs-12">-->
-        <!--<label id="carMakeLbl" class="customLbls col-xs-12" for="carMakeInput">Car Make</label>-->
-        <!--<input type="text" id="carMakeInput" name="carMake" class="customInputs col-xs-12" placeholder="Ford" />-->
-        <!--<label id="carModelLbl" class="customLbls col-xs-12" for="carModelInput">Car Model</label>-->
-        <!--<input type="text" id="carModelInput" name="carModel" class="customInputs col-xs-12"  placeholder="Focus" />-->
-        <!--<label id="regNumLbl" class="customLbls col-xs-12" for="regNumInput">Registration Number</label>-->
-        <!--<input type="text" id="regNumInput" name="regNum" class="customInputs col-xs-12" placeholder="01-D-XXXXX" />-->
-        <!--</div>-->
+        <!--<label id="photoLbl" class="customLbls col-xs-12" for="photoInput">Photo</label>-->
+        <!--<input id="photoInput" name="picture" type="file" required />-->
         <div class="registerBtnsDiv col-xs-12">
             <input  type="button" value="Cancel" id="cancelBtn" class="registerBtns btn btn-primary col-xs-6" onclick="go_back()"/>
             <input  type="submit" value="Register" id="registrationBtn" class="registerBtns btn btn-primary col-xs-6" onclick=SubForm(); />
