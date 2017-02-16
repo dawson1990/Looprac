@@ -6,18 +6,14 @@
     <script type="text/javascript" src="cordova.js"></script>
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/Looprac.js"></script>
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGfQTTdYNKRHoSMHHc8D8_vulGmbNuN1Y&callback=initMap" type="text/javascript"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-toggle.min.js"></script>
-    <script>
-        function go_back() {
-            window.location="index.html";
-        }
-    </script>
     <link rel="stylesheet" type="text/css"  href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
     <title>Offer Lift</title>
+
 </head>
 <body >
 <div class="container">
@@ -28,7 +24,7 @@
         <div id="offerLiftDiv" class="col-xs-12">
             <label id="locationLbl" class="customLbls col-xs-12" for="locationInput">Location</label>
             <input type="text" id="locationInput" name="start" class="customInputs col-xs-12" placeholder="Carlow"/>
-            <a id="locationMapLink" class="mapLinks col-xs-12" href="#">Show Map</a>
+            <input type="button" id="locationMapLink" class="mapLinks col-xs-12" style="color: #000000;" onclick="window.location = 'map.html'" value="Show Map" />
             <label id="destinationlLbl" class="customLbls col-xs-12" for="destinationInput">Destination</label>
             <input type="text" id="destinationInput" name="destination" class="customInputs col-xs-12"  placeholder="Dublin"/>
             <a id="destinationMapLink" class="mapLinks col-xs-12" href="#">Show Map</a>
@@ -58,5 +54,4 @@
 </div>
 
 </body>
-
 </html>

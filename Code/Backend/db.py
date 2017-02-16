@@ -51,34 +51,6 @@ def register(fName: str, lName:str, emailAddr:str, phoneN, passw):
         return jsObj
 
 
-# def register_with_car(fName, lName, emailAddr, phoneN, passw, carMake, carModel, carRegistration):
-#     # jsObj = {'firstName': fName, 'lastName': lName, 'email': emailAddr, 'phoneNum': phoneN, 'password': passw,
-#     #          'carMake': carMake, 'carModel': carModel, 'regNum': carRegistration}
-#     # firstName = jsObj['firstName']
-#     # lastName = jsObj['lastName']
-#     # email = jsObj['email']
-#     # phonenum = jsObj['phoneNum']
-#     # passwd = jsObj['password']
-#     # carmake = jsObj['carMake']
-#     # carmodel = jsObj['carModel']
-#     # carregistration = jsObj['regNum']
-#     _User_Register_SQL = """INSERT INTO User
-#                      (First_Name, Last_Name, Email, Phone_Number, Password, Date_Created)
-#                      VALUES
-#                      (%s, %s, %s, %s, %s, CURRENT_DATE )"""
-#     with DBcm.UseDatabase(config) as cursor:
-#         cursor.execute(_User_Register_SQL, (fName, lName, emailAddr, phoneN, passw))
-#         primary_key = cursor.lastrowid
-#         _CarDetails_Registration_SQL = """INSERT INTO CarDetails
-#                            (Car_Make, Car_Model, Car_Reg, UserID)
-#                            VALUES
-#                            (%s, %s, %s, %s)"""
-#     with DBcm.UseDatabase(config) as cursor:
-#         cursor.execute(_CarDetails_Registration_SQL, (carMake, carModel, carRegistration, primary_key))
-#     register_driver(primary_key)
-#     register_passenger(primary_key)
-
-
 def register_driver(userid):
     _Driver_Registration_SQL = """INSERT INTO Driver
                      (UserID)
@@ -167,19 +139,42 @@ def register_offer_lift(start, destination, date, time, journey_type, seats):
 
 # CHECK IF USER HAS A CAR REGISTERED BEFORE OFFERING A LIFT
 def is_car_registered(userID):
+    print('is car registered func')
     if checkIfCarExists(userID):
+        print('car exists')
         jsObj = json.dumps({"status": "car registered"})
     else:
+        print('car doesnt exist')
         jsObj = json.dumps({"status": "car not registered"})
     return jsObj
+
 
 def checkIfCarExists(userID):
     with DBcm.UseDatabase(config) as cursor:
         _SQL = """SELECT * FROM CarDetails WHERE UserID= %s"""
         cursor.execute(_SQL, (userID,))
         data = list(cursor.fetchall())
-        if data == []:
-            exists = False
-        else:
-            exists = True
-    return exists
+    print('data from db for car details', data)
+    if data == []:
+        exists = False
+        print('car doesnt exist')
+        jsObj = json.dumps({"status": "car not registered"})
+    else:
+        exists = True
+        print('car exists')
+        jsObj = json.dumps({"status": "car registered"})
+    return jsObj
+
+
+def registerCar(userID, carMake, carModel, regNum):
+    carmake_lower = carMake.lower()
+    carmodel_lower = carModel.lower()
+    reg_lower = regNum.lower()
+    _SQL = """INSERT INTO CarDetails
+                       (Car_Make, Car_Model, Car_Reg, UserID)
+                       VALUES
+                       (%s, %s, %s, %s)"""
+    with DBcm.UseDatabase(config) as cursor:
+        cursor.execute(_SQL, (carmake_lower, carmodel_lower, reg_lower, userID))
+    jsObj = json.dumps({"status": "registered"})
+    return jsObj

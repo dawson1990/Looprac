@@ -214,14 +214,6 @@ body{
     font-size:114%;
 }
 
-
-.hiddenDiv{
-    display: none;
-}
-
-#carDetailsLbl{
-    color: #eae8ff;
-}
 /* OFFER LIFT PAGE */
 #offerLiftDiv{
     display: flex;
@@ -492,4 +484,12 @@ body{
     background-color: #ff8800;
     padding: 5px 10px 5px 10px;
     margin: 0px 3px 0px 0;
+}
+
+#map-canvas{
+    top: 60px;
+    bottom: 36px;
+    right: 0;
+    left:0;
+    position: absolute;
 }

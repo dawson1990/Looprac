@@ -1,21 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-toggle.min.js"></script>
+    <script src="js/Looprac.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
+    <script>
+        function go_back() {
+            console.log("go back");
+            window.location.replace("index.html");
+        }
+        window.onload = function userID() {
+            document.getElementById('userID').value = sessionStorage.getItem('userID');
+        }
+    </script>
+    <title>Car Register</title>
 </head>
-<body>
-
-<!--<label class="col-xs-7" id="carDetailsLbl">-->
-<!--<input type="checkbox"  class="col-xs-5" id="carDetailsCheckBox" onclick="carDetailsVisibility()">Have a Car?-->
-<!--</label>-->
-<!--<div id="carDetails" class="hiddenDiv col-xs-12">-->
-<!--<label id="carMakeLbl" class="customLbls col-xs-12" for="carMakeInput">Car Make</label>-->
-<!--<input type="text" id="carMakeInput" name="carMake" class="customInputs col-xs-12" placeholder="Ford" />-->
-<!--<label id="carModelLbl" class="customLbls col-xs-12" for="carModelInput">Car Model</label>-->
-<!--<input type="text" id="carModelInput" name="carModel" class="customInputs col-xs-12"  placeholder="Focus" />-->
-<!--<label id="regNumLbl" class="customLbls col-xs-12" for="regNumInput">Registration Number</label>-->
-<!--<input type="text" id="regNumInput" name="regNum" class="customInputs col-xs-12" placeholder="01-D-XXXXX" />-->
-<!--</div>-->
+<body class="container">
+<div id="loopLogoDiv" class="col-xs-12">
+    <img class="col-xs-12" id="infinityLoopLogo" src="img/Infinity_Loop_Logo.png" />
+</div>
+    <form id="carRegForm" class="col-xs-12">
+        <div id="carDetails" class="col-xs-12">
+            <label id="carMakeLbl" class="customLbls col-xs-12" for="carMakeInput">Car Make</label>
+            <input type="text" id="carMakeInput" name="carMake" class="customInputs col-xs-12" placeholder="Ford" />
+            <label id="carModelLbl" class="customLbls col-xs-12" for="carModelInput">Car Model</label>
+            <input type="text" id="carModelInput" name="carModel" class="customInputs col-xs-12"  placeholder="Focus" />
+            <label id="regNumLbl" class="customLbls col-xs-12" for="regNumInput">Registration Number</label>
+            <input type="text" id="regNumInput" name="regNum" class="customInputs col-xs-12" placeholder="01-D-XXXXX" />
+            <input type="number" id="userID" name="userID" class="hidden" readonly />
+        </div>
+        <div class="carRegisterBtnsDiv col-xs-12">
+            <input  type="button" value="Cancel" id="cancelBtn" class="registerBtns btn btn-primary col-xs-6" onclick="go_back()"/>
+            <input  type="submit" value="Register" id="registrationBtn" class="registerBtns btn btn-primary col-xs-6" onclick=registerCar(); />
+        </div>
+    </form>
 </body>
 </html>

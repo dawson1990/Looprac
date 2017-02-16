@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>map</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc&callback=initMap" type="text/javascript"></script>
+
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/Looprac.js"></script>
+    <script>
+        window.onload = initMap();
+//        window.onload = choseLocation();
+
+    </script>
+</head>
+<body>
+<div id="map-canvas"  class="col-xs-12"></div>
+<input type="hidden" id="chosen_lat" name="chosen_lat" placeholder="latitude" />
+<input type="hidden" id="chosen_long" name="chosen_long" placeholder="longitude" />
+<input type="text" id="location" name="location" placeholder="location" style="width: 100%;" />
+<input type="button" id="choiceSubBtn" class="btn btn-primary" value="Submit" onclick="locationChoice()"/>
+</body>
+</html>

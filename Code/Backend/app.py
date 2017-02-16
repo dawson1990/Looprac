@@ -33,7 +33,6 @@ def availableLifts():
 
 @app.route('/registeruser', methods=['PUT', 'POST'])
 def registeruser():
-
     if request.method == 'POST':
         print('method == POST')
         # jsObj = {}
@@ -52,6 +51,21 @@ def registeruser():
             return jsObj
     else:
         return 'POST did not work'
+
+
+@app.route('/registercar', methods=['PUT','POST'])
+def registerCar():
+    if request.method == 'POST':
+        userID = request.form['userID']
+        carMake = request.form['carMake']
+        carModel = request.form['carModel']
+        regNum = request.form['regNum']
+        if carMake is '' or carModel is '' or regNum is '':
+            jsObj = json.dumps({"status": "Not all required elements are entered"})
+            return jsObj
+        else:
+            jsObj = db.registerCar(userID, carMake, carModel, regNum)
+            return jsObj
 
 
 @app.route('/loginuser', methods=['PUT', 'POST'])
@@ -98,10 +112,11 @@ def check_user_registered_car():
     if request.method == 'POST':
         print('before request')
         data = request.get_json()
-        userID = data['userID']
+        print('data', data)
+        userID = data['userid']
         print('checking for car', userID)
-        db.is_car_registered(userID)
-    return 'done'
+        jsObj = db.checkIfCarExists(userID)
+        return jsObj
 
 if __name__ == '__main__':
     app.run(debug=True)
