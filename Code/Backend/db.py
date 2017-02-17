@@ -122,17 +122,16 @@ def check_if_exists(email: str):
         return exists
 
 
-def register_offer_lift(start, destination, date, time, journey_type, seats):
+def register_offer_lift(userID,startLat, startLong, destinationLat, destinationLong, date, time, journey_type, seats):
     print('register function')
-    start_lower = start.lower()
-    destination_lower = destination.lower()
-
     _User_Register_SQL = """INSERT INTO Lift
-                       (Start_Location, Destination, Depart_Date, Depart_Time, Available_Spaces, Return_Single, Created_At)
+                       (UserID, Start_Lat, Start_Long, Destination_Lat, Destination_Long, Depart_Date, Depart_Time,
+                       Available_Spaces, Return_Single, Created_At)
                        VALUES
-                       (%s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP )"""
+                       (%s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP )"""
     with DBcm.UseDatabase(config) as cursor:
-        cursor.execute(_User_Register_SQL, (start_lower, destination_lower, date, time, journey_type, seats))
+        cursor.execute(_User_Register_SQL, (userID, startLat, startLong, destinationLat, destinationLong, date, time,
+                                            seats, journey_type))
     jsObj = json.dumps({"status": "registered"})
     return jsObj
 

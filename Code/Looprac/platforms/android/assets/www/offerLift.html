@@ -6,14 +6,33 @@
     <script type="text/javascript" src="cordova.js"></script>
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/Looprac.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGfQTTdYNKRHoSMHHc8D8_vulGmbNuN1Y&callback=initMap" type="text/javascript"></script>
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc&callback=initMap" type="text/javascript"></script>-->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-toggle.min.js"></script>
     <link rel="stylesheet" type="text/css"  href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
     <title>Offer Lift</title>
+    <script>
+        window.onload = function fillLocationCoords() {
+            document.getElementById('userID').value = sessionStorage.getItem('userID');
 
+            if (sessionStorage.getItem('start_local')){
+                console.log('in if statement ');
+                document.getElementById('locationInput').value = sessionStorage.getItem('start_local');
+                document.getElementById('lat').value = sessionStorage.getItem('start_local_lat');
+                document.getElementById('lng').value = sessionStorage.getItem('start_local_lng');
+            }
+            if (sessionStorage.getItem('destination_local')){
+                console.log('in if  destination statement ');
+                document.getElementById('destinationInput').value = sessionStorage.getItem('destination_local');
+                document.getElementById('destinationLat').value = sessionStorage.getItem('destination_local_lat');
+                document.getElementById('destinationLng').value = sessionStorage.getItem('destination_local_lng');
+            }
+        };
+
+
+    </script>
 </head>
 <body >
 <div class="container">
@@ -22,12 +41,20 @@
     </div>
     <form id="offerLiftForm" class="col-xs-12">
         <div id="offerLiftDiv" class="col-xs-12">
+            <input type="number" class="hidden" readonly id="userID" name="userID"/>
             <label id="locationLbl" class="customLbls col-xs-12" for="locationInput">Location</label>
             <input type="text" id="locationInput" name="start" class="customInputs col-xs-12" placeholder="Carlow"/>
-            <input type="button" id="locationMapLink" class="mapLinks col-xs-12" style="color: #000000;" onclick="window.location = 'map.html'" value="Show Map" />
+
+            <input type="hidden" id="lat" name="latitude" class="customInputs col-xs-12" placeholder="latitude"/>
+            <input type="hidden" id="lng" name="longitude" class="customInputs col-xs-12" placeholder="longitude"/>
+            <a id="locationMapLink" class="mapLinks col-xs-12" href="startLocalMap.html">Show Map</a>
+
             <label id="destinationlLbl" class="customLbls col-xs-12" for="destinationInput">Destination</label>
+
             <input type="text" id="destinationInput" name="destination" class="customInputs col-xs-12"  placeholder="Dublin"/>
-            <a id="destinationMapLink" class="mapLinks col-xs-12" href="#">Show Map</a>
+            <input type="hidden" id="destinationLat" name="destinationLatitude" class="customInputs col-xs-12" placeholder="latitude"/>
+            <input type="hidden" id="destinationLng" name="destinationLongitude" class="customInputs col-xs-12" placeholder="longitude"/>
+            <a id="destinationMapLink" class="mapLinks col-xs-12" href="destinationLocalMap.html">Show Map</a>
             <label id="departDateLbl" class="customLbls col-xs-6" for="departDateInput">Depart Date</label>
             <label id="departTimeLbl" class="customLbls col-xs-6" for="departTimeInput">Depart Time</label>
             <input type="date" id="departDateInput" name="departDate" class="departInputs col-xs-6" placeholder="dd/mm/yyyy" />

@@ -78,7 +78,7 @@ function subOfferLift(){
         url:'http://looprac.pythonanywhere.com/offerLift',
         type:'post',
         async: false,
-        data:  $("#form").serialize()})
+        data:  $("#offerLiftForm").serialize()})
         .done(function(data){
             var result = JSON.parse(data);
             if (result["status"] == "registered")
@@ -93,7 +93,6 @@ function subOfferLift(){
 
         });
 }
-
 
 /***********************************
  CHECK IF USER HAS REGISTERED CAR BEFORE OFFERING A LIFT
@@ -151,18 +150,6 @@ function registerCar() {
 /*********************************************
   GOOGLE API PLACES FOR OFFER LIFT FORM
  */
-
-function showMap() {
-   var targetDiv = document.getElementById('location-map-canvas');
-   $(targetDiv).is(':visible');
-   // if (targetDiv.hasAttribute('hidden')){
-   //     targetDiv.removeAttribute('hidden');
-   // }
-   // else{
-   //     targetDiv.setAttribute('class','hidden');
-   // }
-}
-
 
 function initMap(){
     navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 5000 , enableHighAccuracy: true});
@@ -234,11 +221,7 @@ function initMap(){
     }
 }
 
-function sessionupdate() {
-    var sessionP = document.getElementById("sessionP");
-    sessionP.innerHTML = "Welcome " + sessionStorage.getItem('firstName');
-    document.getElementById('userID').value = sessionStorage.getItem('userID');
-}
+
 
 function choseLocation(marker, map){
     // document.getElementById('pickup_location').innerHTML = x.latLng.lat()+' , '+x.latLng.lng();
@@ -275,7 +258,129 @@ function choseLocation(marker, map){
 
 function locationChoice() {
     var startLocation = document.getElementById('location').value;
+    var lat = document.getElementById('chosen_lat').value;
+    var lng = document.getElementById('chosen_long').value;
+
     window.sessionStorage.setItem('start_local', startLocation);
+    window.sessionStorage.setItem('start_local_lat', lat );
+    window.sessionStorage.setItem('start_local_lng', lng);
+
     window.history.back();
 }
 
+
+
+function initDestinationMap(){
+    navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 5000 , enableHighAccuracy: true});
+    function onSuccess(position) {
+        var lat = position.coords.latitude;
+        var lang = position.coords.longitude;
+        var accuracy = position.coords.accuracy;
+//            alert("coords: " + lat + '\n' + lang);
+
+        //Google Maps
+        var myLatlng = new google.maps.LatLng(lat,lang);
+        var mapOptions = {zoom: 10,center: myLatlng};
+        var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        var marker = new google.maps.Marker({position: myLatlng,map: map, draggable: true});
+        chooseDestination(marker, map);
+    }
+    function onError (error) {
+        switch (error.code) {
+            case error.TIMEOUT:
+                refresh();
+                break;
+            case error.PERMISSION_DENIED:
+                if(error.message.indexOf("Only secure origins are allowed") == 0) {
+                    tryAPIGeolocation();
+
+                }
+                break;
+            case error.POSITION_UNAVAILABLE:
+                alert("Please ensure your GPS is turned on !\n\nPosition unavailable.");
+                break;
+        }
+    }
+    var tryAPIGeolocation = function() {
+        jQuery.post( "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc", function(success) {
+            apiGeolocationSuccess(
+                {
+                    coords:
+                        {
+                            latitude: success.location.lat,
+                            longitude: success.location.lng
+                        }
+                });
+        })
+            .fail(function(err) {
+                alert("API Geolocation error! \n\n"+err);
+            });
+    };
+    var apiGeolocationSuccess = function(position) {
+        var lat = position.coords.latitude;
+
+        var long = position.coords.longitude;
+        var accuracy = position.coords.accuracy;
+//            alert("API geolocation success!\n\nlat = " + lat + "\nlng = " + long + '\nacc = ' + accuracy);
+
+        var myLatlng = new google.maps.LatLng(lat,long);
+        var mapOptions = {zoom: 20,center: myLatlng};
+        var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        var marker = new google.maps.Marker({position: myLatlng,map: map, draggable: true});
+        chooseDestination(marker, map);
+
+    };
+    google.maps.event.addDomListener(window, 'load', onSuccess);
+
+    //       if gps timesout prompts user to turn on GPS and it will refresh and try again
+    function refresh(){
+        if(confirm("Timed out\nPlease turn your GPS is turned on\n\nClick OK to try agian") == true){
+            location.reload();
+        }
+    }
+}
+
+function chooseDestination(marker, map){
+    // document.getElementById('pickup_location').innerHTML = x.latLng.lat()+' , '+x.latLng.lng();
+    var geocoder = new google.maps.Geocoder;
+    var infowindow = new google.maps.InfoWindow;
+    // var long = position.coords.longitude;
+    // var myLatlng = new google.maps.LatLng(lat,long);
+    // var mapOptions = {zoom: 20,center: myLatlng};
+    // var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    // var marker = new google.maps.Marker({position: myLatlng,map: map, draggable: true});
+    google.maps.event.addListener(marker, 'dragend', function (event)
+    {
+        var lat = this.getPosition().lat();
+        var lng =this.getPosition().lng();
+        var latLng = new google.maps.LatLng(lat,lng);
+        document.getElementById('chosen_lat').value = lat;
+        document.getElementById('chosen_long').value = lng;
+        geocoder.geocode({'latLng': latLng}, function (results, status) {
+            if(status == google.maps.GeocoderStatus.OK){
+                if(results[0]){
+                    var address = "";
+                    // document.getElementById('location').value = results[0].formatted_address;
+                    for(var i in results[0].address_components){
+                        address += results[0].address_components[i].short_name;
+                    }
+                    document.getElementById('destination').value = results[0].formatted_address;
+                    infowindow.setContent(address);
+                    infowindow.open(map, marker);
+                }
+            }
+        });
+    });
+}
+
+function destinationChoice() {
+    var destinationLocation = document.getElementById('destination').value;
+    var lat = document.getElementById('chosen_lat').value;
+    var lng = document.getElementById('chosen_long').value;
+
+    window.sessionStorage.setItem('destination_local', destinationLocation);
+    window.sessionStorage.setItem('destination_local_lat', lat );
+    window.sessionStorage.setItem('destination_local_lng', lng);
+
+    window.history.back();
+}

@@ -92,17 +92,20 @@ def check_if_email_exists():
 @app.route('/offerLift', methods=['POST'])
 def sub_offer_lift():
     if request.method == 'POST':
-        start = request.form['start']
-        destination = request.form['destination']
+        userID = request.form['userID']
+        startLat = request.form['latitude']
+        startLong = request.form['longitude']
+        destinationLat = request.form['destinationLatitude']
+        destinationLong = request.form['destinationLongitude']
         date = request.form['departDate']
         time = request.form['departTime']
         journey_type = request.form['liftType']
         seats = request.form['seats']
-        if start is '' or destination is '' or date is '' or time is '':
+        if startLat is '' or destinationLat is '' or date is '' or time is '':
             jsObj = json.dumps({"status": "Not all required elements are entered"})
             return jsObj
         else:
-            jsObj = db.register_offer_lift(start, destination, date, time,  journey_type, seats)
+            jsObj = db.register_offer_lift(userID,startLat,startLong, destinationLat, destinationLong, date, time,  journey_type, seats)
             return jsObj
 
 
