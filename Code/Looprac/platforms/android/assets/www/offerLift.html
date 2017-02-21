@@ -22,12 +22,14 @@
                 document.getElementById('locationInput').value = sessionStorage.getItem('start_local');
                 document.getElementById('lat').value = sessionStorage.getItem('start_local_lat');
                 document.getElementById('lng').value = sessionStorage.getItem('start_local_lng');
+                document.getElementById('start_county').value = sessionStorage.getItem('start_county');
             }
             if (sessionStorage.getItem('destination_local')){
                 console.log('in if  destination statement ');
                 document.getElementById('destinationInput').value = sessionStorage.getItem('destination_local');
                 document.getElementById('destinationLat').value = sessionStorage.getItem('destination_local_lat');
                 document.getElementById('destinationLng').value = sessionStorage.getItem('destination_local_lng');
+                document.getElementById('destination_county').value = sessionStorage.getItem('destination_county');
             }
         };
 
@@ -45,15 +47,18 @@
             <label id="locationLbl" class="customLbls col-xs-12" for="locationInput">Location</label>
             <input type="text" id="locationInput" name="start" class="customInputs col-xs-12" placeholder="Carlow"/>
 
-            <input type="hidden" id="lat" name="latitude" class="customInputs col-xs-12" placeholder="latitude"/>
-            <input type="hidden" id="lng" name="longitude" class="customInputs col-xs-12" placeholder="longitude"/>
+            <input type="number" id="lat" name="latitude" class="hidden customInputs col-xs-12" placeholder="latitude"/>
+            <input type="number" id="lng" name="longitude" class="hidden customInputs col-xs-12" placeholder="longitude"/>
+            <input type="text" id="start_county" name="start_county" class="hidden customInputs col-xs-12" placeholder="county" />
             <a id="locationMapLink" class="mapLinks col-xs-12" href="startLocalMap.html">Show Map</a>
 
             <label id="destinationlLbl" class="customLbls col-xs-12" for="destinationInput">Destination</label>
 
             <input type="text" id="destinationInput" name="destination" class="customInputs col-xs-12"  placeholder="Dublin"/>
-            <input type="hidden" id="destinationLat" name="destinationLatitude" class="customInputs col-xs-12" placeholder="latitude"/>
-            <input type="hidden" id="destinationLng" name="destinationLongitude" class="customInputs col-xs-12" placeholder="longitude"/>
+            <input type="number" id="destinationLat" name="destinationLatitude" class="hidden customInputs col-xs-12" placeholder="latitude"/>
+            <input type="number" id="destinationLng" name="destinationLongitude" class="hidden customInputs col-xs-12" placeholder="longitude"/>
+            <input type="text" id="destination_county" name="start_county" class="hidden customInputs col-xs-12" placeholder="county" />
+
             <a id="destinationMapLink" class="mapLinks col-xs-12" href="destinationLocalMap.html">Show Map</a>
             <label id="departDateLbl" class="customLbls col-xs-6" for="departDateInput">Depart Date</label>
             <label id="departTimeLbl" class="customLbls col-xs-6" for="departTimeInput">Depart Time</label>

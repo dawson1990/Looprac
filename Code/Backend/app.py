@@ -13,6 +13,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 @app.after_request
 def apply_caching(response):
     response.headers['Access-Control-Allow-Origin'] = '*'
+    # response.addHeader("Access-Control-Allow-Origin", "*")
     return response
 
 
@@ -21,14 +22,33 @@ def home():
     return 'API home screen'
 
 
-@app.route('/availableLifts')
-def availableLifts():
+# @app.route('/availableLifts', methods=['PUT', 'POST'])
+# def availableLifts():
+#     r = make_response(render_template('base.html'))
+#     r.headers['Access-Control-Allow-Origin'] = '*'
+#     print('available lifts start')
+#     if request.method == 'POST':
+#         jsObj = db.list_available_lifts()
+#         print('after function')
+#         return jsObj
+#     else:
+#         'post did not work'
+#
+
+
+@app.route('/availableLifts', methods=['PUT', 'POST', 'GET'])
+def available_lifts():
     r = make_response(render_template('base.html'))
     r.headers['Access-Control-Allow-Origin'] = '*'
-    availableLiftsList = db.list_available_lifts()
-    json_str = json.dumps(availableLiftsList)
-    parsed_json = json.loads(json_str)
-    return parsed_json
+    if request.method == 'GET':
+        print('method == POST')
+        jsObj = db.list_available_lifts()
+        print('after function')
+        return jsObj
+
+
+
+
 
 
 @app.route('/registeruser', methods=['PUT', 'POST'])
@@ -92,20 +112,37 @@ def check_if_email_exists():
 @app.route('/offerLift', methods=['POST'])
 def sub_offer_lift():
     if request.method == 'POST':
-        userID = request.form['userID']
-        startLat = request.form['latitude']
-        startLong = request.form['longitude']
-        destinationLat = request.form['destinationLatitude']
-        destinationLong = request.form['destinationLongitude']
-        date = request.form['departDate']
-        time = request.form['departTime']
-        journey_type = request.form['liftType']
-        seats = request.form['seats']
+        # userID = request.form['userID']
+        # startLat = request.form['latitude']
+        # startLong = request.form['longitude']
+        # destinationLat = request.form['destinationLatitude']
+        # destinationLong = request.form['destinationLongitude']
+        # date = request.form['departDate']
+        # print(date)
+        # time = request.form['departTime']
+        # print(time)
+        # journey_type = request.form['liftType']
+        # seats = request.form['seats']
+        data = request.get_json()
+        userID = data['userID']
+        startLat = data['start_lat']
+        startLong = data['start_long']
+        startCounty = data['start_county']
+        destinationLat = data['destination_lat']
+        destinationLong = data['destination_long']
+        destinationCounty = data['destination_county']
+        date = data['depart_date']
+        time = data['depart_time']
+        journey_type = data['type']
+        seats = data['seats']
+        print('recieved: ', userID, startLat, startLong, startCounty, destinationLat, destinationLong,
+              destinationCounty, date, time, journey_type, seats)
         if startLat is '' or destinationLat is '' or date is '' or time is '':
             jsObj = json.dumps({"status": "Not all required elements are entered"})
             return jsObj
         else:
-            jsObj = db.register_offer_lift(userID,startLat,startLong, destinationLat, destinationLong, date, time,  journey_type, seats)
+            jsObj = db.register_offer_lift(userID,startLat,startLong, startCounty, destinationLat, destinationLong,
+                                           startCounty, date, time,  journey_type, seats)
             return jsObj
 
 

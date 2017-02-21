@@ -1,17 +1,25 @@
 <!DOCTYPE html>
-<html onload="availableLifts()" lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <script type="text/javascript" src="cordova.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-toggle.min.js"></script>
+    <script src="js/Looprac.js"></script>
     <script src="js/jquery-3.1.1.min.js"></script>
-    <!--<script src="js/dbCalls.js"></script>-->
+    <!--<script src="https://code.jquery.com/jquery-3.0.0.js"></script>-->
+    <!--<script src="https://code.jquery.com/jquery-migrate-3.0.0.js"></script>-->
+    <link rel="stylesheet" type="text/css"  href="css/index.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
+
+
     <script>
         function go_back() {
             window.location="index.html";
         }
+        window.onload = updateAvailableLifts();
 
     </script>
 
@@ -22,11 +30,14 @@
 </head>
 <body class="container" >
 <div id="listDiv" class="col-xs-12"  >
-    <table id="availableLiftsTbl" class="hidden table table-inverse">
+    <table id="availableLiftsTbl" class="table table-inverse">
         <tr >
-            <th>UserID</th>
             <th>Start</th>
             <th>Destination</th>
+            <th>Time</th>
+            <th>Date</th>
+            <th>Created On</th>
+
         </tr>
     </table>
 </div>

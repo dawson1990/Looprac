@@ -1,7 +1,7 @@
 import DBcm
 import json
 from flask import session
-
+import datetime
 
 
 config = {
@@ -12,23 +12,38 @@ config = {
 }
 
 
-# MAIN QUERY FUNCTION EXECUTOR
-def database_query(query, args=(), one=False):
-    with DBcm.UseDatabase(config) as cursor:
-        _SQL = query
-        cursor.execute(_SQL, args)
-        r = [dict((cursor.description[i][0], value) for i, value in enumerate(row)) for row in cursor.fetchall()]
-    return (r[0] if r else None) if one else r
-
-
 #QUERY TO DISPLAY AVAILABLE LIFTS, CALLS 'DATABASE_QUERY' TO EXECUTE IT
 def list_available_lifts():
-    my_query = database_query("SELECT LiftID, UserID, Start_County, Destination_County FROM Lift")
-    json_output = json.dumps(my_query)
-    return json_output
+    _SQL = """SELECT * FROM Lift order by Created_At"""
+    with DBcm.UseDatabase(config) as cursor:
+        cursor.execute(_SQL)
+        data = cursor.fetchall()
+    print('data', type(data))
+    d = []
+    for item in data:
+        d.append({
+                'liftID': item[0],
+                'userID': item[1],
+                'startLat': item[2],
+                'startLng': item[3],
+                'destinationLat': item[4],
+                'destinationLng': item[5],
+                'departDate': item[6],
+                'departTime': item[7],
+                'seats': item[8],
+                'type': item[9],
+                'created': item[10]
+        })
+    jsObj = json.dumps(d, default=converter)
+    print('js obj', type(jsObj), '\n', jsObj)
+    return jsObj
 
 
-def register(fName: str, lName:str, emailAddr:str, phoneN, passw):
+def converter(obj):
+    return str(obj)
+
+
+def register(fName, lName, emailAddr, phoneN, passw):
     print('register function')
     firstName = fName.lower()
     lastName = lName.lower()
@@ -122,16 +137,17 @@ def check_if_exists(email: str):
         return exists
 
 
-def register_offer_lift(userID,startLat, startLong, destinationLat, destinationLong, date, time, journey_type, seats):
+def register_offer_lift(userID,startLat, startLong, startCounty, destinationLat, destinationLong, destinationCounty,
+                        date, time, journey_type, seats):
     print('register function')
     _User_Register_SQL = """INSERT INTO Lift
-                       (UserID, Start_Lat, Start_Long, Destination_Lat, Destination_Long, Depart_Date, Depart_Time,
+                       (UserID, Start_Lat, Start_Long, Start_County, Destination_Lat, Destination_Long, Destination_County, Depart_Date, Depart_Time,
                        Available_Spaces, Return_Single, Created_At)
                        VALUES
-                       (%s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP )"""
+                       (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_DATE )"""
     with DBcm.UseDatabase(config) as cursor:
-        cursor.execute(_User_Register_SQL, (userID, startLat, startLong, destinationLat, destinationLong, date, time,
-                                            seats, journey_type))
+        cursor.execute(_User_Register_SQL, (userID, startLat, startLong, startCounty, destinationLat, destinationLong,
+                                            destinationCounty, date, time, seats, journey_type))
     jsObj = json.dumps({"status": "registered"})
     return jsObj
 
