@@ -14,7 +14,7 @@ config = {
 
 #QUERY TO DISPLAY AVAILABLE LIFTS, CALLS 'DATABASE_QUERY' TO EXECUTE IT
 def list_available_lifts():
-    _SQL = """SELECT * FROM Lift order by Created_At"""
+    _SQL = """SELECT LiftID, UserID,Start_County, Destination_County, Created_At FROM Lift order by Created_At"""
     with DBcm.UseDatabase(config) as cursor:
         cursor.execute(_SQL)
         data = cursor.fetchall()
@@ -24,15 +24,9 @@ def list_available_lifts():
         d.append({
                 'liftID': item[0],
                 'userID': item[1],
-                'startLat': item[2],
-                'startLng': item[3],
-                'destinationLat': item[4],
-                'destinationLng': item[5],
-                'departDate': item[6],
-                'departTime': item[7],
-                'seats': item[8],
-                'type': item[9],
-                'created': item[10]
+                'startCounty': item[2],
+                'destinationCounty': item[3],
+                'created': item[4]
         })
     jsObj = json.dumps(d, default=converter)
     print('js obj', type(jsObj), '\n', jsObj)
@@ -139,7 +133,8 @@ def check_if_exists(email: str):
 
 def register_offer_lift(userID,startLat, startLong, startCounty, destinationLat, destinationLong, destinationCounty,
                         date, time, journey_type, seats):
-    print('register function')
+    print('register function', userID, startLat, startLong, startCounty,destinationLat, destinationLong, destinationCounty,
+          date, time, journey_type, seats)
     _User_Register_SQL = """INSERT INTO Lift
                        (UserID, Start_Lat, Start_Long, Start_County, Destination_Lat, Destination_Long, Destination_County, Depart_Date, Depart_Time,
                        Available_Spaces, Return_Single, Created_At)

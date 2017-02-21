@@ -115,8 +115,10 @@ def sub_offer_lift():
         # userID = request.form['userID']
         # startLat = request.form['latitude']
         # startLong = request.form['longitude']
+        # startCounty = request.form['start_county']
         # destinationLat = request.form['destinationLatitude']
         # destinationLong = request.form['destinationLongitude']
+        # destinationCounty = request.form['destinationCounty']
         # date = request.form['departDate']
         # print(date)
         # time = request.form['departTime']
@@ -142,7 +144,7 @@ def sub_offer_lift():
             return jsObj
         else:
             jsObj = db.register_offer_lift(userID,startLat,startLong, startCounty, destinationLat, destinationLong,
-                                           startCounty, date, time,  journey_type, seats)
+                                           destinationCounty, date, time,  journey_type, seats)
             return jsObj
 
 

@@ -79,19 +79,19 @@ function subOfferLift(){
         'type' : document.getElementById('liftTypeInput').value,
         'seats' : document.getElementById('seatsInput').value
     });
-
+    console.log(d);
     $.ajax({
         url:'http://looprac.pythonanywhere.com/offerLift',
         type:'post',
         async: false,
         contentType: 'application/json',
         dataType: 'json',
-        data:  d})
+        data: d })
         .done(function(data){
             // var result = JSON.parse(data);
             if (data["status"] == "registered")
             {
-                alert("Your lift offer has been submitted");
+                alert("Your lift offer has been submitted" );
                 window.location.replace("main_page.html");
             }
             else if (data["status"] == "Not all required elements are entered")
@@ -166,12 +166,41 @@ function registerCar() {
 
 function updateAvailableLifts(){
     console.log('inside func before ajax');
-    $.get('http://looprac.pythonanywhere.com/availableLifts',function (data, status){
-        var result = JSON.parse(data);
-        for (var i = 0; i <= data.length; i ++ ){
-            // console.log(result[i]['liftID']);
-            // console.log(result[i]['userID']);
-            // console.log(result[i]['startLat']);
+
+    $.ajax({
+        url:'http://looprac.pythonanywhere.com/availableLifts',
+        type:'get'})
+        .done(function(data){
+            var result = JSON.parse(data);
+            var table = $('#availableLiftsTbl');
+            var tr = '';
+            var liftID =0;
+            var userID = 0;
+            var sCounty = '';
+            var dCounty = '';
+            var created = '';
+
+            for (var i = 0; i <= result.length ; i ++ ) {
+                liftID = result[i]['liftID'];
+                userID = result[i]['userID'];
+                sCounty =  result[i]['startCounty'];
+                dCounty = result[i]['destinationCounty'];
+                created = result[i]['created'];
+                tr = '<tr><td>' + liftID + '</td><td>' + userID + '</td><td>' + sCounty + '</td><td>' + dCounty
+                    + '</td><td>' +  created + '</td></tr>';
+                table.append(tr);
+
+            }
+
+        });
+
+
+    // $.get('http://looprac.pythonanywhere.com/availableLifts',function (data, status){
+    //     var result = JSON.parse(data);
+    //     for (var i = 0; i <= data.length; i ++ ){
+    //         // console.log(result[i]['liftID']);
+    //         // console.log(result[i]['userID']);
+    //         // console.log(result[i]['startLat']);
             // console.log(result[i]['startLng']);
             // console.log(result[i]['destinationLat']);
             // console.log(result[i]['destinationLng']);
@@ -181,15 +210,15 @@ function updateAvailableLifts(){
             // console.log(result[i]['type']);
             // console.log(result[i]['created']);
             // console.log('\n');
-            var tr = '';
+            // var tr = '';
             //     console.log(typeof data);
             //
             //     $.each(data, function (i, item){
             //
             //         tr += '<tr><td>' + item + '</td><td>' + item + '</td><td>' + item + '</td></tr>';
             //     });
-        }
-    });
+        // }
+    // });
     // var d = JSON.stringify({'status':'get available lifts'});
     // $.ajax({
     //     url: 'http://looprac.pythonanywhere.com/availableLifts',
