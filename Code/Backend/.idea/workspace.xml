@@ -7,20 +7,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.py" afterPath="$PROJECT_DIR$/db.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Looprac/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/availableLifts.html" afterPath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/availableLifts.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/destinationLocalMap.html" afterPath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/destinationLocalMap.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/js/Looprac.js" afterPath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/js/Looprac.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/offerLift.html" afterPath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/offerLift.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/startLocalMap.html" afterPath="$PROJECT_DIR$/../Looprac/platforms/android/assets/www/startLocalMap.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/platforms/browser/www/availableLifts.html" afterPath="$PROJECT_DIR$/../Looprac/platforms/browser/www/availableLifts.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/platforms/browser/www/destinationLocalMap.html" afterPath="$PROJECT_DIR$/../Looprac/platforms/browser/www/destinationLocalMap.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/platforms/browser/www/js/Looprac.js" afterPath="$PROJECT_DIR$/../Looprac/platforms/browser/www/js/Looprac.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/platforms/browser/www/offerLift.html" afterPath="$PROJECT_DIR$/../Looprac/platforms/browser/www/offerLift.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/platforms/browser/www/startLocalMap.html" afterPath="$PROJECT_DIR$/../Looprac/platforms/browser/www/startLocalMap.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/www/availableLifts.html" afterPath="$PROJECT_DIR$/../Looprac/www/availableLifts.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/www/destinationLocalMap.html" afterPath="$PROJECT_DIR$/../Looprac/www/destinationLocalMap.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/www/js/Looprac.js" afterPath="$PROJECT_DIR$/../Looprac/www/js/Looprac.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/www/offerLift.html" afterPath="$PROJECT_DIR$/../Looprac/www/offerLift.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Looprac/www/startLocalMap.html" afterPath="$PROJECT_DIR$/../Looprac/www/startLocalMap.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,11 +23,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="142" column="71" lean-forward="false" selection-start-line="142" selection-start-column="71" selection-end-line="142" selection-end-column="71" />
+            <state relative-caret-position="1654">
+              <caret line="113" column="32" lean-forward="false" selection-start-line="113" selection-start-column="32" selection-end-line="113" selection-end-column="32" />
               <folding>
                 <element signature="e#0#73#0" expanded="true" />
               </folding>
@@ -47,26 +35,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="db.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="db.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="136" column="41" lean-forward="false" selection-start-line="136" selection-start-column="41" selection-end-line="136" selection-end-column="41" />
+            <state relative-caret-position="56">
+              <caret line="20" column="29" lean-forward="true" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
-                <marker date="1487682465583" expanded="true" signature="341:417" ph="SELECT LiftI... Lift" />
-                <marker date="1487682465583" expanded="true" signature="341:437" ph="SELECT * FRO... Lift" />
-                <marker date="1487682465583" expanded="true" signature="1388:1588" ph="INSERT INTO User... " />
-                <marker date="1487682465583" expanded="true" signature="1962:2064" ph="INSERT INTO Driver... " />
-                <marker date="1487682465583" expanded="true" signature="2244:2349" ph="INSERT INTO Passenger... " />
-                <marker date="1487682465583" expanded="true" signature="2590:2628" ph="SELECT Email... User" />
-                <marker date="1487682465583" expanded="true" signature="2814:2858" ph="SELECT Passw... User" />
-                <marker date="1487682465583" expanded="true" signature="3230:3292" ph="SELECT UserI... User" />
-                <marker date="1487682465583" expanded="true" signature="3576:3619" ph="UPDATE User " />
-                <marker date="1487682465583" expanded="true" signature="4153:4191" ph="SELECT Email... User" />
-                <marker date="1487682465583" expanded="true" signature="4883:5230" ph="INSERT INTO Lift... " />
-                <marker date="1487682465583" expanded="true" signature="6025:6066" ph="SELECT * FRO... CarDetails" />
-                <marker date="1487682465583" expanded="true" signature="6641:6795" ph="INSERT INTO CarDetails... " />
+                <marker date="1487695548615" expanded="true" signature="303:379" ph="SELECT LiftI... Lift" />
+                <marker date="1487695548615" expanded="true" signature="303:399" ph="SELECT * FRO... Lift" />
+                <marker date="1487695548615" expanded="true" signature="1350:1550" ph="INSERT INTO User... " />
+                <marker date="1487695548615" expanded="true" signature="1924:2026" ph="INSERT INTO Driver... " />
+                <marker date="1487695548615" expanded="true" signature="2206:2311" ph="INSERT INTO Passenger... " />
+                <marker date="1487695548615" expanded="true" signature="2552:2590" ph="SELECT Email... User" />
+                <marker date="1487695548615" expanded="true" signature="2776:2820" ph="SELECT Passw... User" />
+                <marker date="1487695548615" expanded="true" signature="3192:3254" ph="SELECT UserI... User" />
+                <marker date="1487695548615" expanded="true" signature="3538:3581" ph="UPDATE User " />
+                <marker date="1487695548615" expanded="true" signature="4115:4153" ph="SELECT Email... User" />
+                <marker date="1487695548615" expanded="true" signature="4845:5197" ph="INSERT INTO Lift... " />
+                <marker date="1487695548615" expanded="true" signature="5992:6033" ph="SELECT * FRO... CarDetails" />
+                <marker date="1487695548615" expanded="true" signature="6608:6762" ph="INSERT INTO CarDetails... " />
               </folding>
             </state>
           </provider>
@@ -94,8 +82,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Backend.py" />
-        <option value="$PROJECT_DIR$/db.py" />
         <option value="$PROJECT_DIR$/app.py" />
+        <option value="$PROJECT_DIR$/db.py" />
       </list>
     </option>
   </component>
@@ -388,7 +376,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25642964" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -440,19 +428,19 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <marker date="1487682465583" expanded="true" signature="341:417" ph="SELECT LiftI... Lift" />
-            <marker date="1487682465583" expanded="true" signature="341:437" ph="SELECT * FRO... Lift" />
-            <marker date="1487682465583" expanded="true" signature="1388:1588" ph="INSERT INTO User... " />
-            <marker date="1487682465583" expanded="true" signature="1962:2064" ph="INSERT INTO Driver... " />
-            <marker date="1487682465583" expanded="true" signature="2244:2349" ph="INSERT INTO Passenger... " />
-            <marker date="1487682465583" expanded="true" signature="2590:2628" ph="SELECT Email... User" />
-            <marker date="1487682465583" expanded="true" signature="2814:2858" ph="SELECT Passw... User" />
-            <marker date="1487682465583" expanded="true" signature="3230:3292" ph="SELECT UserI... User" />
-            <marker date="1487682465583" expanded="true" signature="3576:3619" ph="UPDATE User " />
-            <marker date="1487682465583" expanded="true" signature="4153:4191" ph="SELECT Email... User" />
-            <marker date="1487682465583" expanded="true" signature="4883:5230" ph="INSERT INTO Lift... " />
-            <marker date="1487682465583" expanded="true" signature="6025:6066" ph="SELECT * FRO... CarDetails" />
-            <marker date="1487682465583" expanded="true" signature="6641:6795" ph="INSERT INTO CarDetails... " />
+            <marker date="1487695548615" expanded="true" signature="303:379" ph="SELECT LiftI... Lift" />
+            <marker date="1487695548615" expanded="true" signature="303:399" ph="SELECT * FRO... Lift" />
+            <marker date="1487695548615" expanded="true" signature="1350:1550" ph="INSERT INTO User... " />
+            <marker date="1487695548615" expanded="true" signature="1924:2026" ph="INSERT INTO Driver... " />
+            <marker date="1487695548615" expanded="true" signature="2206:2311" ph="INSERT INTO Passenger... " />
+            <marker date="1487695548615" expanded="true" signature="2552:2590" ph="SELECT Email... User" />
+            <marker date="1487695548615" expanded="true" signature="2776:2820" ph="SELECT Passw... User" />
+            <marker date="1487695548615" expanded="true" signature="3192:3254" ph="SELECT UserI... User" />
+            <marker date="1487695548615" expanded="true" signature="3538:3581" ph="UPDATE User " />
+            <marker date="1487695548615" expanded="true" signature="4115:4153" ph="SELECT Email... User" />
+            <marker date="1487695548615" expanded="true" signature="4845:5197" ph="INSERT INTO Lift... " />
+            <marker date="1487695548615" expanded="true" signature="5992:6033" ph="SELECT * FRO... CarDetails" />
+            <marker date="1487695548615" expanded="true" signature="6608:6762" ph="INSERT INTO CarDetails... " />
           </folding>
         </state>
       </provider>
@@ -473,19 +461,19 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <marker date="1487682465583" expanded="true" signature="341:417" ph="SELECT LiftI... Lift" />
-            <marker date="1487682465583" expanded="true" signature="341:437" ph="SELECT * FRO... Lift" />
-            <marker date="1487682465583" expanded="true" signature="1388:1588" ph="INSERT INTO User... " />
-            <marker date="1487682465583" expanded="true" signature="1962:2064" ph="INSERT INTO Driver... " />
-            <marker date="1487682465583" expanded="true" signature="2244:2349" ph="INSERT INTO Passenger... " />
-            <marker date="1487682465583" expanded="true" signature="2590:2628" ph="SELECT Email... User" />
-            <marker date="1487682465583" expanded="true" signature="2814:2858" ph="SELECT Passw... User" />
-            <marker date="1487682465583" expanded="true" signature="3230:3292" ph="SELECT UserI... User" />
-            <marker date="1487682465583" expanded="true" signature="3576:3619" ph="UPDATE User " />
-            <marker date="1487682465583" expanded="true" signature="4153:4191" ph="SELECT Email... User" />
-            <marker date="1487682465583" expanded="true" signature="4883:5230" ph="INSERT INTO Lift... " />
-            <marker date="1487682465583" expanded="true" signature="6025:6066" ph="SELECT * FRO... CarDetails" />
-            <marker date="1487682465583" expanded="true" signature="6641:6795" ph="INSERT INTO CarDetails... " />
+            <marker date="1487695548615" expanded="true" signature="303:379" ph="SELECT LiftI... Lift" />
+            <marker date="1487695548615" expanded="true" signature="303:399" ph="SELECT * FRO... Lift" />
+            <marker date="1487695548615" expanded="true" signature="1350:1550" ph="INSERT INTO User... " />
+            <marker date="1487695548615" expanded="true" signature="1924:2026" ph="INSERT INTO Driver... " />
+            <marker date="1487695548615" expanded="true" signature="2206:2311" ph="INSERT INTO Passenger... " />
+            <marker date="1487695548615" expanded="true" signature="2552:2590" ph="SELECT Email... User" />
+            <marker date="1487695548615" expanded="true" signature="2776:2820" ph="SELECT Passw... User" />
+            <marker date="1487695548615" expanded="true" signature="3192:3254" ph="SELECT UserI... User" />
+            <marker date="1487695548615" expanded="true" signature="3538:3581" ph="UPDATE User " />
+            <marker date="1487695548615" expanded="true" signature="4115:4153" ph="SELECT Email... User" />
+            <marker date="1487695548615" expanded="true" signature="4845:5197" ph="INSERT INTO Lift... " />
+            <marker date="1487695548615" expanded="true" signature="5992:6033" ph="SELECT * FRO... CarDetails" />
+            <marker date="1487695548615" expanded="true" signature="6608:6762" ph="INSERT INTO CarDetails... " />
           </folding>
         </state>
       </provider>
@@ -506,19 +494,19 @@
           <caret line="164" column="47" lean-forward="false" selection-start-line="164" selection-start-column="47" selection-end-line="164" selection-end-column="47" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <marker date="1487682465583" expanded="true" signature="341:417" ph="SELECT LiftI... Lift" />
-            <marker date="1487682465583" expanded="true" signature="341:437" ph="SELECT * FRO... Lift" />
-            <marker date="1487682465583" expanded="true" signature="1388:1588" ph="INSERT INTO User... " />
-            <marker date="1487682465583" expanded="true" signature="1962:2064" ph="INSERT INTO Driver... " />
-            <marker date="1487682465583" expanded="true" signature="2244:2349" ph="INSERT INTO Passenger... " />
-            <marker date="1487682465583" expanded="true" signature="2590:2628" ph="SELECT Email... User" />
-            <marker date="1487682465583" expanded="true" signature="2814:2858" ph="SELECT Passw... User" />
-            <marker date="1487682465583" expanded="true" signature="3230:3292" ph="SELECT UserI... User" />
-            <marker date="1487682465583" expanded="true" signature="3576:3619" ph="UPDATE User " />
-            <marker date="1487682465583" expanded="true" signature="4153:4191" ph="SELECT Email... User" />
-            <marker date="1487682465583" expanded="true" signature="4883:5230" ph="INSERT INTO Lift... " />
-            <marker date="1487682465583" expanded="true" signature="6025:6066" ph="SELECT * FRO... CarDetails" />
-            <marker date="1487682465583" expanded="true" signature="6641:6795" ph="INSERT INTO CarDetails... " />
+            <marker date="1487695548615" expanded="true" signature="303:379" ph="SELECT LiftI... Lift" />
+            <marker date="1487695548615" expanded="true" signature="303:399" ph="SELECT * FRO... Lift" />
+            <marker date="1487695548615" expanded="true" signature="1350:1550" ph="INSERT INTO User... " />
+            <marker date="1487695548615" expanded="true" signature="1924:2026" ph="INSERT INTO Driver... " />
+            <marker date="1487695548615" expanded="true" signature="2206:2311" ph="INSERT INTO Passenger... " />
+            <marker date="1487695548615" expanded="true" signature="2552:2590" ph="SELECT Email... User" />
+            <marker date="1487695548615" expanded="true" signature="2776:2820" ph="SELECT Passw... User" />
+            <marker date="1487695548615" expanded="true" signature="3192:3254" ph="SELECT UserI... User" />
+            <marker date="1487695548615" expanded="true" signature="3538:3581" ph="UPDATE User " />
+            <marker date="1487695548615" expanded="true" signature="4115:4153" ph="SELECT Email... User" />
+            <marker date="1487695548615" expanded="true" signature="4845:5197" ph="INSERT INTO Lift... " />
+            <marker date="1487695548615" expanded="true" signature="5992:6033" ph="SELECT * FRO... CarDetails" />
+            <marker date="1487695548615" expanded="true" signature="6608:6762" ph="INSERT INTO CarDetails... " />
           </folding>
         </state>
       </provider>
@@ -539,19 +527,19 @@
           <caret line="164" column="47" lean-forward="true" selection-start-line="164" selection-start-column="47" selection-end-line="164" selection-end-column="47" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <marker date="1487682465583" expanded="true" signature="341:417" ph="SELECT LiftI... Lift" />
-            <marker date="1487682465583" expanded="true" signature="341:437" ph="SELECT * FRO... Lift" />
-            <marker date="1487682465583" expanded="true" signature="1388:1588" ph="INSERT INTO User... " />
-            <marker date="1487682465583" expanded="true" signature="1962:2064" ph="INSERT INTO Driver... " />
-            <marker date="1487682465583" expanded="true" signature="2244:2349" ph="INSERT INTO Passenger... " />
-            <marker date="1487682465583" expanded="true" signature="2590:2628" ph="SELECT Email... User" />
-            <marker date="1487682465583" expanded="true" signature="2814:2858" ph="SELECT Passw... User" />
-            <marker date="1487682465583" expanded="true" signature="3230:3292" ph="SELECT UserI... User" />
-            <marker date="1487682465583" expanded="true" signature="3576:3619" ph="UPDATE User " />
-            <marker date="1487682465583" expanded="true" signature="4153:4191" ph="SELECT Email... User" />
-            <marker date="1487682465583" expanded="true" signature="4883:5230" ph="INSERT INTO Lift... " />
-            <marker date="1487682465583" expanded="true" signature="6025:6066" ph="SELECT * FRO... CarDetails" />
-            <marker date="1487682465583" expanded="true" signature="6641:6795" ph="INSERT INTO CarDetails... " />
+            <marker date="1487695548615" expanded="true" signature="303:379" ph="SELECT LiftI... Lift" />
+            <marker date="1487695548615" expanded="true" signature="303:399" ph="SELECT * FRO... Lift" />
+            <marker date="1487695548615" expanded="true" signature="1350:1550" ph="INSERT INTO User... " />
+            <marker date="1487695548615" expanded="true" signature="1924:2026" ph="INSERT INTO Driver... " />
+            <marker date="1487695548615" expanded="true" signature="2206:2311" ph="INSERT INTO Passenger... " />
+            <marker date="1487695548615" expanded="true" signature="2552:2590" ph="SELECT Email... User" />
+            <marker date="1487695548615" expanded="true" signature="2776:2820" ph="SELECT Passw... User" />
+            <marker date="1487695548615" expanded="true" signature="3192:3254" ph="SELECT UserI... User" />
+            <marker date="1487695548615" expanded="true" signature="3538:3581" ph="UPDATE User " />
+            <marker date="1487695548615" expanded="true" signature="4115:4153" ph="SELECT Email... User" />
+            <marker date="1487695548615" expanded="true" signature="4845:5197" ph="INSERT INTO Lift... " />
+            <marker date="1487695548615" expanded="true" signature="5992:6033" ph="SELECT * FRO... CarDetails" />
+            <marker date="1487695548615" expanded="true" signature="6608:6762" ph="INSERT INTO CarDetails... " />
           </folding>
         </state>
       </provider>
@@ -572,19 +560,19 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <marker date="1487682465583" expanded="true" signature="341:417" ph="SELECT LiftI... Lift" />
-            <marker date="1487682465583" expanded="true" signature="341:437" ph="SELECT * FRO... Lift" />
-            <marker date="1487682465583" expanded="true" signature="1388:1588" ph="INSERT INTO User... " />
-            <marker date="1487682465583" expanded="true" signature="1962:2064" ph="INSERT INTO Driver... " />
-            <marker date="1487682465583" expanded="true" signature="2244:2349" ph="INSERT INTO Passenger... " />
-            <marker date="1487682465583" expanded="true" signature="2590:2628" ph="SELECT Email... User" />
-            <marker date="1487682465583" expanded="true" signature="2814:2858" ph="SELECT Passw... User" />
-            <marker date="1487682465583" expanded="true" signature="3230:3292" ph="SELECT UserI... User" />
-            <marker date="1487682465583" expanded="true" signature="3576:3619" ph="UPDATE User " />
-            <marker date="1487682465583" expanded="true" signature="4153:4191" ph="SELECT Email... User" />
-            <marker date="1487682465583" expanded="true" signature="4883:5230" ph="INSERT INTO Lift... " />
-            <marker date="1487682465583" expanded="true" signature="6025:6066" ph="SELECT * FRO... CarDetails" />
-            <marker date="1487682465583" expanded="true" signature="6641:6795" ph="INSERT INTO CarDetails... " />
+            <marker date="1487695548615" expanded="true" signature="303:379" ph="SELECT LiftI... Lift" />
+            <marker date="1487695548615" expanded="true" signature="303:399" ph="SELECT * FRO... Lift" />
+            <marker date="1487695548615" expanded="true" signature="1350:1550" ph="INSERT INTO User... " />
+            <marker date="1487695548615" expanded="true" signature="1924:2026" ph="INSERT INTO Driver... " />
+            <marker date="1487695548615" expanded="true" signature="2206:2311" ph="INSERT INTO Passenger... " />
+            <marker date="1487695548615" expanded="true" signature="2552:2590" ph="SELECT Email... User" />
+            <marker date="1487695548615" expanded="true" signature="2776:2820" ph="SELECT Passw... User" />
+            <marker date="1487695548615" expanded="true" signature="3192:3254" ph="SELECT UserI... User" />
+            <marker date="1487695548615" expanded="true" signature="3538:3581" ph="UPDATE User " />
+            <marker date="1487695548615" expanded="true" signature="4115:4153" ph="SELECT Email... User" />
+            <marker date="1487695548615" expanded="true" signature="4845:5197" ph="INSERT INTO Lift... " />
+            <marker date="1487695548615" expanded="true" signature="5992:6033" ph="SELECT * FRO... CarDetails" />
+            <marker date="1487695548615" expanded="true" signature="6608:6762" ph="INSERT INTO CarDetails... " />
           </folding>
         </state>
       </provider>
@@ -605,19 +593,19 @@
           <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <marker date="1487682465583" expanded="true" signature="341:417" ph="SELECT LiftI... Lift" />
-            <marker date="1487682465583" expanded="true" signature="341:437" ph="SELECT * FRO... Lift" />
-            <marker date="1487682465583" expanded="true" signature="1388:1588" ph="INSERT INTO User... " />
-            <marker date="1487682465583" expanded="true" signature="1962:2064" ph="INSERT INTO Driver... " />
-            <marker date="1487682465583" expanded="true" signature="2244:2349" ph="INSERT INTO Passenger... " />
-            <marker date="1487682465583" expanded="true" signature="2590:2628" ph="SELECT Email... User" />
-            <marker date="1487682465583" expanded="true" signature="2814:2858" ph="SELECT Passw... User" />
-            <marker date="1487682465583" expanded="true" signature="3230:3292" ph="SELECT UserI... User" />
-            <marker date="1487682465583" expanded="true" signature="3576:3619" ph="UPDATE User " />
-            <marker date="1487682465583" expanded="true" signature="4153:4191" ph="SELECT Email... User" />
-            <marker date="1487682465583" expanded="true" signature="4883:5230" ph="INSERT INTO Lift... " />
-            <marker date="1487682465583" expanded="true" signature="6025:6066" ph="SELECT * FRO... CarDetails" />
-            <marker date="1487682465583" expanded="true" signature="6641:6795" ph="INSERT INTO CarDetails... " />
+            <marker date="1487695548615" expanded="true" signature="303:379" ph="SELECT LiftI... Lift" />
+            <marker date="1487695548615" expanded="true" signature="303:399" ph="SELECT * FRO... Lift" />
+            <marker date="1487695548615" expanded="true" signature="1350:1550" ph="INSERT INTO User... " />
+            <marker date="1487695548615" expanded="true" signature="1924:2026" ph="INSERT INTO Driver... " />
+            <marker date="1487695548615" expanded="true" signature="2206:2311" ph="INSERT INTO Passenger... " />
+            <marker date="1487695548615" expanded="true" signature="2552:2590" ph="SELECT Email... User" />
+            <marker date="1487695548615" expanded="true" signature="2776:2820" ph="SELECT Passw... User" />
+            <marker date="1487695548615" expanded="true" signature="3192:3254" ph="SELECT UserI... User" />
+            <marker date="1487695548615" expanded="true" signature="3538:3581" ph="UPDATE User " />
+            <marker date="1487695548615" expanded="true" signature="4115:4153" ph="SELECT Email... User" />
+            <marker date="1487695548615" expanded="true" signature="4845:5197" ph="INSERT INTO Lift... " />
+            <marker date="1487695548615" expanded="true" signature="5992:6033" ph="SELECT * FRO... CarDetails" />
+            <marker date="1487695548615" expanded="true" signature="6608:6762" ph="INSERT INTO CarDetails... " />
           </folding>
         </state>
       </provider>
@@ -638,19 +626,19 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <marker date="1487682465583" expanded="true" signature="341:417" ph="SELECT LiftI... Lift" />
-            <marker date="1487682465583" expanded="true" signature="341:437" ph="SELECT * FRO... Lift" />
-            <marker date="1487682465583" expanded="true" signature="1388:1588" ph="INSERT INTO User... " />
-            <marker date="1487682465583" expanded="true" signature="1962:2064" ph="INSERT INTO Driver... " />
-            <marker date="1487682465583" expanded="true" signature="2244:2349" ph="INSERT INTO Passenger... " />
-            <marker date="1487682465583" expanded="true" signature="2590:2628" ph="SELECT Email... User" />
-            <marker date="1487682465583" expanded="true" signature="2814:2858" ph="SELECT Passw... User" />
-            <marker date="1487682465583" expanded="true" signature="3230:3292" ph="SELECT UserI... User" />
-            <marker date="1487682465583" expanded="true" signature="3576:3619" ph="UPDATE User " />
-            <marker date="1487682465583" expanded="true" signature="4153:4191" ph="SELECT Email... User" />
-            <marker date="1487682465583" expanded="true" signature="4883:5230" ph="INSERT INTO Lift... " />
-            <marker date="1487682465583" expanded="true" signature="6025:6066" ph="SELECT * FRO... CarDetails" />
-            <marker date="1487682465583" expanded="true" signature="6641:6795" ph="INSERT INTO CarDetails... " />
+            <marker date="1487695548615" expanded="true" signature="303:379" ph="SELECT LiftI... Lift" />
+            <marker date="1487695548615" expanded="true" signature="303:399" ph="SELECT * FRO... Lift" />
+            <marker date="1487695548615" expanded="true" signature="1350:1550" ph="INSERT INTO User... " />
+            <marker date="1487695548615" expanded="true" signature="1924:2026" ph="INSERT INTO Driver... " />
+            <marker date="1487695548615" expanded="true" signature="2206:2311" ph="INSERT INTO Passenger... " />
+            <marker date="1487695548615" expanded="true" signature="2552:2590" ph="SELECT Email... User" />
+            <marker date="1487695548615" expanded="true" signature="2776:2820" ph="SELECT Passw... User" />
+            <marker date="1487695548615" expanded="true" signature="3192:3254" ph="SELECT UserI... User" />
+            <marker date="1487695548615" expanded="true" signature="3538:3581" ph="UPDATE User " />
+            <marker date="1487695548615" expanded="true" signature="4115:4153" ph="SELECT Email... User" />
+            <marker date="1487695548615" expanded="true" signature="4845:5197" ph="INSERT INTO Lift... " />
+            <marker date="1487695548615" expanded="true" signature="5992:6033" ph="SELECT * FRO... CarDetails" />
+            <marker date="1487695548615" expanded="true" signature="6608:6762" ph="INSERT INTO CarDetails... " />
           </folding>
         </state>
       </provider>
@@ -671,19 +659,19 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <marker date="1487682465583" expanded="true" signature="341:417" ph="SELECT LiftI... Lift" />
-            <marker date="1487682465583" expanded="true" signature="341:437" ph="SELECT * FRO... Lift" />
-            <marker date="1487682465583" expanded="true" signature="1388:1588" ph="INSERT INTO User... " />
-            <marker date="1487682465583" expanded="true" signature="1962:2064" ph="INSERT INTO Driver... " />
-            <marker date="1487682465583" expanded="true" signature="2244:2349" ph="INSERT INTO Passenger... " />
-            <marker date="1487682465583" expanded="true" signature="2590:2628" ph="SELECT Email... User" />
-            <marker date="1487682465583" expanded="true" signature="2814:2858" ph="SELECT Passw... User" />
-            <marker date="1487682465583" expanded="true" signature="3230:3292" ph="SELECT UserI... User" />
-            <marker date="1487682465583" expanded="true" signature="3576:3619" ph="UPDATE User " />
-            <marker date="1487682465583" expanded="true" signature="4153:4191" ph="SELECT Email... User" />
-            <marker date="1487682465583" expanded="true" signature="4883:5230" ph="INSERT INTO Lift... " />
-            <marker date="1487682465583" expanded="true" signature="6025:6066" ph="SELECT * FRO... CarDetails" />
-            <marker date="1487682465583" expanded="true" signature="6641:6795" ph="INSERT INTO CarDetails... " />
+            <marker date="1487695548615" expanded="true" signature="303:379" ph="SELECT LiftI... Lift" />
+            <marker date="1487695548615" expanded="true" signature="303:399" ph="SELECT * FRO... Lift" />
+            <marker date="1487695548615" expanded="true" signature="1350:1550" ph="INSERT INTO User... " />
+            <marker date="1487695548615" expanded="true" signature="1924:2026" ph="INSERT INTO Driver... " />
+            <marker date="1487695548615" expanded="true" signature="2206:2311" ph="INSERT INTO Passenger... " />
+            <marker date="1487695548615" expanded="true" signature="2552:2590" ph="SELECT Email... User" />
+            <marker date="1487695548615" expanded="true" signature="2776:2820" ph="SELECT Passw... User" />
+            <marker date="1487695548615" expanded="true" signature="3192:3254" ph="SELECT UserI... User" />
+            <marker date="1487695548615" expanded="true" signature="3538:3581" ph="UPDATE User " />
+            <marker date="1487695548615" expanded="true" signature="4115:4153" ph="SELECT Email... User" />
+            <marker date="1487695548615" expanded="true" signature="4845:5197" ph="INSERT INTO Lift... " />
+            <marker date="1487695548615" expanded="true" signature="5992:6033" ph="SELECT * FRO... CarDetails" />
+            <marker date="1487695548615" expanded="true" signature="6608:6762" ph="INSERT INTO CarDetails... " />
           </folding>
         </state>
       </provider>
@@ -704,52 +692,52 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <marker date="1487682465583" expanded="true" signature="341:417" ph="SELECT LiftI... Lift" />
-            <marker date="1487682465583" expanded="true" signature="341:437" ph="SELECT * FRO... Lift" />
-            <marker date="1487682465583" expanded="true" signature="1388:1588" ph="INSERT INTO User... " />
-            <marker date="1487682465583" expanded="true" signature="1962:2064" ph="INSERT INTO Driver... " />
-            <marker date="1487682465583" expanded="true" signature="2244:2349" ph="INSERT INTO Passenger... " />
-            <marker date="1487682465583" expanded="true" signature="2590:2628" ph="SELECT Email... User" />
-            <marker date="1487682465583" expanded="true" signature="2814:2858" ph="SELECT Passw... User" />
-            <marker date="1487682465583" expanded="true" signature="3230:3292" ph="SELECT UserI... User" />
-            <marker date="1487682465583" expanded="true" signature="3576:3619" ph="UPDATE User " />
-            <marker date="1487682465583" expanded="true" signature="4153:4191" ph="SELECT Email... User" />
-            <marker date="1487682465583" expanded="true" signature="4883:5230" ph="INSERT INTO Lift... " />
-            <marker date="1487682465583" expanded="true" signature="6025:6066" ph="SELECT * FRO... CarDetails" />
-            <marker date="1487682465583" expanded="true" signature="6641:6795" ph="INSERT INTO CarDetails... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="136" column="41" lean-forward="false" selection-start-line="136" selection-start-column="41" selection-end-line="136" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <marker date="1487682465583" expanded="true" signature="341:417" ph="SELECT LiftI... Lift" />
-            <marker date="1487682465583" expanded="true" signature="341:437" ph="SELECT * FRO... Lift" />
-            <marker date="1487682465583" expanded="true" signature="1388:1588" ph="INSERT INTO User... " />
-            <marker date="1487682465583" expanded="true" signature="1962:2064" ph="INSERT INTO Driver... " />
-            <marker date="1487682465583" expanded="true" signature="2244:2349" ph="INSERT INTO Passenger... " />
-            <marker date="1487682465583" expanded="true" signature="2590:2628" ph="SELECT Email... User" />
-            <marker date="1487682465583" expanded="true" signature="2814:2858" ph="SELECT Passw... User" />
-            <marker date="1487682465583" expanded="true" signature="3230:3292" ph="SELECT UserI... User" />
-            <marker date="1487682465583" expanded="true" signature="3576:3619" ph="UPDATE User " />
-            <marker date="1487682465583" expanded="true" signature="4153:4191" ph="SELECT Email... User" />
-            <marker date="1487682465583" expanded="true" signature="4883:5230" ph="INSERT INTO Lift... " />
-            <marker date="1487682465583" expanded="true" signature="6025:6066" ph="SELECT * FRO... CarDetails" />
-            <marker date="1487682465583" expanded="true" signature="6641:6795" ph="INSERT INTO CarDetails... " />
+            <marker date="1487695548615" expanded="true" signature="303:379" ph="SELECT LiftI... Lift" />
+            <marker date="1487695548615" expanded="true" signature="303:399" ph="SELECT * FRO... Lift" />
+            <marker date="1487695548615" expanded="true" signature="1350:1550" ph="INSERT INTO User... " />
+            <marker date="1487695548615" expanded="true" signature="1924:2026" ph="INSERT INTO Driver... " />
+            <marker date="1487695548615" expanded="true" signature="2206:2311" ph="INSERT INTO Passenger... " />
+            <marker date="1487695548615" expanded="true" signature="2552:2590" ph="SELECT Email... User" />
+            <marker date="1487695548615" expanded="true" signature="2776:2820" ph="SELECT Passw... User" />
+            <marker date="1487695548615" expanded="true" signature="3192:3254" ph="SELECT UserI... User" />
+            <marker date="1487695548615" expanded="true" signature="3538:3581" ph="UPDATE User " />
+            <marker date="1487695548615" expanded="true" signature="4115:4153" ph="SELECT Email... User" />
+            <marker date="1487695548615" expanded="true" signature="4845:5197" ph="INSERT INTO Lift... " />
+            <marker date="1487695548615" expanded="true" signature="5992:6033" ph="SELECT * FRO... CarDetails" />
+            <marker date="1487695548615" expanded="true" signature="6608:6762" ph="INSERT INTO CarDetails... " />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="142" column="71" lean-forward="false" selection-start-line="142" selection-start-column="71" selection-end-line="142" selection-end-column="71" />
+        <state relative-caret-position="1654">
+          <caret line="113" column="32" lean-forward="false" selection-start-line="113" selection-start-column="32" selection-end-line="113" selection-end-column="32" />
           <folding>
             <element signature="e#0#73#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="20" column="29" lean-forward="true" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <marker date="1487695548615" expanded="true" signature="303:379" ph="SELECT LiftI... Lift" />
+            <marker date="1487695548615" expanded="true" signature="303:399" ph="SELECT * FRO... Lift" />
+            <marker date="1487695548615" expanded="true" signature="1350:1550" ph="INSERT INTO User... " />
+            <marker date="1487695548615" expanded="true" signature="1924:2026" ph="INSERT INTO Driver... " />
+            <marker date="1487695548615" expanded="true" signature="2206:2311" ph="INSERT INTO Passenger... " />
+            <marker date="1487695548615" expanded="true" signature="2552:2590" ph="SELECT Email... User" />
+            <marker date="1487695548615" expanded="true" signature="2776:2820" ph="SELECT Passw... User" />
+            <marker date="1487695548615" expanded="true" signature="3192:3254" ph="SELECT UserI... User" />
+            <marker date="1487695548615" expanded="true" signature="3538:3581" ph="UPDATE User " />
+            <marker date="1487695548615" expanded="true" signature="4115:4153" ph="SELECT Email... User" />
+            <marker date="1487695548615" expanded="true" signature="4845:5197" ph="INSERT INTO Lift... " />
+            <marker date="1487695548615" expanded="true" signature="5992:6033" ph="SELECT * FRO... CarDetails" />
+            <marker date="1487695548615" expanded="true" signature="6608:6762" ph="INSERT INTO CarDetails... " />
           </folding>
         </state>
       </provider>

@@ -12,7 +12,7 @@ config = {
 }
 
 
-#QUERY TO DISPLAY AVAILABLE LIFTS, CALLS 'DATABASE_QUERY' TO EXECUTE IT
+#QUERY TO DISPLAY AVAILABLE LIFTS
 def list_available_lifts():
     _SQL = """SELECT LiftID, UserID,Start_County, Destination_County, Created_At FROM Lift order by Created_At"""
     with DBcm.UseDatabase(config) as cursor:
@@ -139,7 +139,7 @@ def register_offer_lift(userID,startLat, startLong, startCounty, destinationLat,
                        (UserID, Start_Lat, Start_Long, Start_County, Destination_Lat, Destination_Long, Destination_County, Depart_Date, Depart_Time,
                        Available_Spaces, Return_Single, Created_At)
                        VALUES
-                       (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_DATE )"""
+                       (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP )"""
     with DBcm.UseDatabase(config) as cursor:
         cursor.execute(_User_Register_SQL, (userID, startLat, startLong, startCounty, destinationLat, destinationLong,
                                             destinationCounty, date, time, seats, journey_type))

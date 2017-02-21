@@ -186,7 +186,7 @@ function updateAvailableLifts(){
                 sCounty =  result[i]['startCounty'];
                 dCounty = result[i]['destinationCounty'];
                 created = result[i]['created'];
-                tr = '<tr><td>' + liftID + '</td><td>' + userID + '</td><td>' + sCounty + '</td><td>' + dCounty
+                tr = '<tr><td class="hidden">' + liftID + '</td><td class="hidden">' + userID + '</td><td>' + sCounty + '</td><td>' + dCounty
                     + '</td><td>' +  created + '</td></tr>';
                 table.append(tr);
 

@@ -493,3 +493,59 @@ body{
     left:0;
     position: absolute;
 }
+
+
+/*
+    OFFER LIFTS MAPS
+ */
+
+.locationBtns{
+    bottom: 0;
+    background-color: #ff8800;
+    color: #231024;
+    border-color: #ff8800;
+}
+
+.locationBtns:hover{
+    opacity: .8;
+    background-color: #ff8800;
+    color: #231024;
+    border-color: #ff8800;
+}
+
+.locationBtns:focus{
+    opacity: .8;
+    background-color: #ff8800;
+    color: #231024;
+    border-color: #ff8800;
+}
+
+.cancelLocationBtns{
+    background-color: transparent;
+    color: #ff8800;
+    border-color: #ff8800;
+}
+
+.cancelLocationBtns:hover{
+    opacity: .8;
+    background-color: transparent;
+    color: #ff8800;
+    border-color: #ff8800;
+}
+
+.cancelLocationBtns:focus{
+    opacity: .8;
+    background-color: transparent;
+    color: #ff8800;
+    border-color: #ff8800;
+}
+
+.locationDivs{
+    position: absolute;
+    /* display: flex; */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* font-size: 35px; */
+    text-align: center;
+}

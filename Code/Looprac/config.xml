@@ -31,24 +31,26 @@
     <plugin name="cordova-plugin-vibration" source="npm" spec="~2.1.0" />
     <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
     <platform name="android">
-        <icon density="ldpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
-        <icon density="mdpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
-        <icon density="hdpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
-        <icon density="xhdpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
-        <icon density="xxhdpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
-        <icon density="xxxhdpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
-        <splash density="land-ldpi" src="www/res/screen/android/Looprac_logo.png" />
-        <splash density="land-mdpi" src="www/res/screen/android/Looprac_logo.png" />
-        <splash density="land-hdpi" src="www/res/screen/android/Looprac_logo.png" />
-        <splash density="land-xhdpi" src="www/res/screen/android/Looprac_logo.png" />
-        <splash density="land-xxhdpi" src="www/res/screen/android/Looprac_logo.png" />
-        <splash density="land-xxxhdpi" src="www/res/screen/android/Looprac_logo.png" />
-        <splash density="port-ldpi" src="www/res/screen/android/Looprac_logo.png" />
-        <splash density="port-mdpi" src="www/res/screen/android/Looprac_logo.png" />
-        <splash density="port-hdpi" src="www/res/screen/android/Looprac_logo.png" />
-        <splash density="port-xhdpi" src="www/res/screen/android/Looprac_logo.png" />
-        <splash density="port-xxhdpi" src="www/res/screen/android/Looprac_logo.png" />
-        <splash density="port-xxxhdpi" src="www/res/screen/android/Looprac_logo.png" />
+        <!--qualifier was density-->
+        <splash src="splash.png" />
+        <icon qualifier="ldpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
+        <icon qualifier="mdpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
+        <icon qualifier="hdpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
+        <icon qualifier="xhdpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
+        <icon qualifier="xxhdpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
+        <icon qualifier="xxxhdpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
+        <splash qualifier="land-ldpi" src="www/splash.png" />
+        <splash qualifier="land-mdpi" src="www/splash.png" />
+        <splash qualifier="land-hdpi" src="www/splash.png" />
+        <splash qualifier="land-xhdpi" src="www/splash.png" />
+        <splash qualifier="land-xxhdpi" src="www/splash.png" />
+        <splash qualifier="land-xxxhdpi" src="www/splash.png" />
+        <splash qualifier="port-ldpi" src="www/splash.png" />
+        <splash qualifier="port-mdpi" src="www/splash.png" />
+        <splash qualifier="port-hdpi" src="www/splash.png" />
+        <splash qualifier="port-xhdpi" src="www/splash.png" />
+        <splash qualifier="port-xxhdpi" src="www/splash.png" />
+        <splash qualifier="port-xxxhdpi" src="www/splash.png" />
     </platform>
     <platform name="ios">
         <icon height="57" platform="ios" src="www/res/icon/ios/Infinity_Loop_Logo.png" width="57" />

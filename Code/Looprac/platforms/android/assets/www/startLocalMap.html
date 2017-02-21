@@ -13,16 +13,18 @@
     <script src="js/Looprac.js"></script>
     <script>
         window.onload = initMap();
-//        window.onload = choseLocation();
-
     </script>
 </head>
-<body>
+<body class="container">
 <div id="map-canvas"  class="col-xs-12"></div>
-<input type="number" id="chosen_lat" class="hidden" name="chosen_lat" placeholder="latitude" />
-<input type="number" id="chosen_long" class="hidden" name="chosen_long" placeholder="longitude" />
-<input type="text" id="chosen_county" class="hidden" name="county" placeholder="county" />
-<input type="text" id="location" name="location" placeholder="location" style="width: 100%;" />
-<input type="button" id="choiceSubBtn" class="btn btn-primary" value="Submit" onclick="locationChoice()"/>
+<div class="locationDivs" >
+    <input type="number" id="chosen_lat" class="hidden" name="chosen_lat" placeholder="latitude" />
+    <input type="number" id="chosen_long" class="hidden" name="chosen_long" placeholder="longitude" />
+    <input type="text" id="chosen_county" class="hidden" name="county" placeholder="county" />
+    <input type="text" id="location" name="location" placeholder="location"  class="col-xs-12" />
+    <input type="button"  class="btn btn-primary cancelLocationBtns col-xs-6" value="Cancel" onclick="window.history.back()"/>
+    <input type="button" id="startLocationBtn" class="btn btn-primary locationBtns col-xs-6" value="Submit" onclick="locationChoice()"/>
+
+</div>
 </body>
 </html>

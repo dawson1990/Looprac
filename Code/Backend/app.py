@@ -112,19 +112,6 @@ def check_if_email_exists():
 @app.route('/offerLift', methods=['POST'])
 def sub_offer_lift():
     if request.method == 'POST':
-        # userID = request.form['userID']
-        # startLat = request.form['latitude']
-        # startLong = request.form['longitude']
-        # startCounty = request.form['start_county']
-        # destinationLat = request.form['destinationLatitude']
-        # destinationLong = request.form['destinationLongitude']
-        # destinationCounty = request.form['destinationCounty']
-        # date = request.form['departDate']
-        # print(date)
-        # time = request.form['departTime']
-        # print(time)
-        # journey_type = request.form['liftType']
-        # seats = request.form['seats']
         data = request.get_json()
         userID = data['userID']
         startLat = data['start_lat']

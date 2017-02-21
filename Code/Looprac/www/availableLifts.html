@@ -30,18 +30,16 @@
 </head>
 <body class="container" >
 <div id="listDiv" class="col-xs-12"  >
-    <table id="availableLiftsTbl" class="table table-hover">
+    <table id="availableLiftsTbl" class="table table-inverse table-hover">
         <tr >
-            <th>LiftID</th>
-            <th>UserID</th>
+            <th class="hidden">LiftID</th>
+            <th class="hidden">UserID</th>
             <th>Start</th>
             <th>Destination</th>
             <th>Created On</th>
-
         </tr>
     </table>
 </div>
-<input type="button" value="Go Back" class="btn btn-primary" onclick="window.history.back()" />
-
+<input type="button" id="cancelBtn" value="Go Back" class="btn btn-primary cancelLocationBtns col-xs-12" onclick="window.history.back()" />
 </body>
 </html>
