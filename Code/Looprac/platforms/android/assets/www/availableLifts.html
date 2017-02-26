@@ -4,23 +4,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <script type="text/javascript" src="cordova.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
+
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-toggle.min.js"></script>
     <script src="js/Looprac.js"></script>
-    <script src="js/jquery-3.1.1.min.js"></script>
     <!--<script src="https://code.jquery.com/jquery-3.0.0.js"></script>-->
     <!--<script src="https://code.jquery.com/jquery-migrate-3.0.0.js"></script>-->
     <link rel="stylesheet" type="text/css"  href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
-
-
     <script>
-        function go_back() {
-            window.location="index.html";
-        }
         window.onload = updateAvailableLifts();
-
     </script>
 
     <link rel="stylesheet" type="text/css"  href="css/index.css">
@@ -31,15 +26,15 @@
 <body class="container" >
 <div id="listDiv" class="col-xs-12"  >
     <table id="availableLiftsTbl" class="table table-inverse table-hover">
-        <tr >
+        <tr style="color: #ffffff;" >
             <th class="hidden">LiftID</th>
-            <th class="hidden">UserID</th>
+            <th class="hidden">DriverID</th>
             <th>Start</th>
             <th>Destination</th>
             <th>Created On</th>
         </tr>
     </table>
 </div>
-<input type="button" id="cancelBtn" value="Go Back" class="btn btn-primary cancelLocationBtns col-xs-12" onclick="window.history.back()" />
+<input type="button" id="cancelBtn" value="Go Back" class="btn btn-primary cancelLocationBtns col-xs-12" onclick="window.location ='main_page.html'" />
 </body>
 </html>

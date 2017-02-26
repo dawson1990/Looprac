@@ -41,14 +41,27 @@ def available_lifts():
     r = make_response(render_template('base.html'))
     r.headers['Access-Control-Allow-Origin'] = '*'
     if request.method == 'GET':
-        print('method == POST')
         jsObj = db.list_available_lifts()
         print('after function')
         return jsObj
 
 
-
-
+@app.route('/liftDetails', methods=['PUT','POST'])
+def liftDetails():
+    print('lift details func')
+    r = make_response(render_template('base.html'))
+    r.headers['Access-Control-Allow-Origin'] = '*'
+    if request.method == 'POST':
+        data = request.get_data()
+        print(type(data))
+        print(data)
+        j = json.loads(data.decode('UTF-8'))
+        print('j', j, 'type', type(j))
+        liftID = j['liftID']
+        driverID = j['driverID']
+        print('lift and driver id ', liftID, driverID)
+        jsObj = db.getLiftDetails(liftID, driverID)
+        return jsObj
 
 
 @app.route('/registeruser', methods=['PUT', 'POST'])
@@ -84,7 +97,7 @@ def registerCar():
             jsObj = json.dumps({"status": "Not all required elements are entered"})
             return jsObj
         else:
-            jsObj = db.registerCar(userID, carMake, carModel, regNum)
+            jsObj = db.registerCarAndDriver(userID, carMake, carModel, regNum)
             return jsObj
 
 
@@ -100,13 +113,13 @@ def login():
         return data
 
 
-@app.route('/checkifemailexists', methods=['POST'])
-def check_if_email_exists():
-    print('start of if email exists')
-    if request.method == 'POST':
-        email = request.get_data('data1')
-        print('email', email)
-        return db.check_if_exists(email)
+# @app.route('/checkifemailexists', methods=['POST'])
+# def check_if_email_exists():
+#     print('start of if email exists')
+#     if request.method == 'POST':
+#         email = request.get_data('data1')
+#         print('email', email)
+#         return db.check_if_exists(email)
 
 
 @app.route('/offerLift', methods=['POST'])

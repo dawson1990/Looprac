@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-toggle.min.js"></script>
+    <script src="js/Looprac.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc" type="text/javascript"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.0.0.js"></script>-->
+    <!--<script src="https://code.jquery.com/jquery-migrate-3.0.0.js"></script>-->
+    <link rel="stylesheet" type="text/css"  href="css/index.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
+    <script>
+        window.onload = getLiftDetails();
+    </script>
+    <style>
+
+    </style>
+    <link rel="stylesheet" type="text/css"  href="css/index.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
+    <title>Lift Details</title>
+</head>
+<body class="container-fluid" >
+<!--<div class="col-xs-12">-->
+        <div id="lift-map-canvas" class="col-xs-12"></div>
+<!--<div class="col-xs-12"></div>-->
+    <form id="detailsDiv" class="col-xs-12 "  >
+        <label class="col-xs-12 liftDetailsLabels" for="driverRdOnly">Driver: </label>
+        <input type="text" id="driverRdOnly" class="liftDetailsInput col-xs-12" readonly />
+        <label class="col-xs-12 liftDetailsLabels" for="startRdOnly">Start: </label>
+        <input type="text" id="startRdOnly" class="col-xs-12 liftDetailsInput" readonly />
+        <label class="col-xs-12 liftDetailsLabels" for="destinationRdOnly">Destination: </label>
+        <input type="text" id="destinationRdOnly" class="liftDetailsInput col-xs-12" readonly />
+        <label class="col-xs-12 liftDetailsLabels" for="departTimeRdOnly">Time: </label>
+        <input type="text" id="departTimeRdOnly" class="col-xs-12 liftDetailsInput" readonly />
+        <label class="col-xs-12 liftDetailsLabels" for="departDateRdOnly">Date: </label>
+        <input type="text" id="departDateRdOnly" class="col-xs-12 liftDetailsInput" readonly />
+        <label class="col-xs-12 liftDetailsLabels" for="seatsRdOnly">Seats Available: </label>
+        <input type="text" id="seatsRdOnly" class="col-xs-12 liftDetailsInput" readonly />
+        <label class="col-xs-12 liftDetailsLabels" for="typeRdOnly">Type: </label>
+        <input type="text" id="typeRdOnly" class="col-xs-12 liftDetailsInput" readonly />
+        <input type="button" id="cancelBtn" value="Go Back" class="btn btn-primary cancelLocationBtns col-xs-6" onclick="window.location ='availableLifts.html'" />
+        <input type="submit" id="subLiftReqBtn" value="Request Lift" class="btn btn-primary locationBtns col-xs-6"  />
+
+    </form>
+<!--</div>-->
+
+</body>
+</html>

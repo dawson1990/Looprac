@@ -549,3 +549,44 @@ body{
     /* font-size: 35px; */
     text-align: center;
 }
+
+#detailsDiv{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    bottom: 0;
+    right: 0;
+    color: #ff8800;
+}
+
+#lift-map-canvas{
+    top: 0;
+    bottom: 393px;
+    right: 0;
+    left:0;
+    position: absolute;
+}
+
+.liftDetailsInput{
+    font-size: 12px;
+    background-color: transparent;
+    border: none;
+    color: #ffffff;
+    text-align: left;
+}
+
+.liftDetailsLabels{
+    text-align: left;
+}
+
+#subLiftReqBtn{
+    background-color: #ff8800;
+    border-color: #ff8800;
+    color: #231024;
+}
+
+#subLiftReqBtn:focus{
+    background-color: #ff8800;
+    border-color: #ff8800;
+}

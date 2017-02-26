@@ -164,87 +164,190 @@ function registerCar() {
 }
 
 
+
 function updateAvailableLifts(){
     console.log('inside func before ajax');
 
     $.ajax({
         url:'http://looprac.pythonanywhere.com/availableLifts',
-        type:'get'})
+        type:'get',
+        // contentType: 'application/json',
+        dataType: 'json'})
         .done(function(data){
-            var result = JSON.parse(data);
+            // var result = JSON.parse(data);
+            // console.log(result);
             var table = $('#availableLiftsTbl');
             var tr = '';
             var liftID =0;
-            var userID = 0;
+            var driverID = 0;
             var sCounty = '';
             var dCounty = '';
             var created = '';
+            var trID = '';
+            var tdID = '';
+            var btnID = '';
 
-            for (var i = 0; i <= result.length ; i ++ ) {
-                liftID = result[i]['liftID'];
-                userID = result[i]['userID'];
-                sCounty =  result[i]['startCounty'];
-                dCounty = result[i]['destinationCounty'];
-                created = result[i]['created'];
-                tr = '<tr><td class="hidden">' + liftID + '</td><td class="hidden">' + userID + '</td><td>' + sCounty + '</td><td>' + dCounty
+            for (var i = 0; i <= data.length ; i ++ ) {
+                liftID = data[i]["liftID"];
+                driverID = data[i]['driverID'];
+                sCounty =  data[i]['startCounty'];
+                dCounty = data[i]['destinationCounty'];
+                created = data[i]['created'];
+                trID = 'trID' + i.toString();
+                tdID = 'tdID' + i.toString();
+                btnID = 'btnID' + i.toString();
+                console.log(trID);
+                console.log(tdID);
+                tr = '<tr onclick="expandLift('+liftID +','+ driverID +')" id=' +trID + ' ><td class="hidden" id=' + tdID + '>' + liftID + '</td><td class="hidden">' + driverID + '</td><td>' + sCounty + '</td><td>' + dCounty
                     + '</td><td>' +  created + '</td></tr>';
+                    // '<td><input type="button" id="'+ btnID +' " value=">" class="btn btn-primary" onclick="expandLift('+i+')" /></td></tr>';
                 table.append(tr);
-
             }
+        });
+}
+
+function expandLift(liftID, driverID){
+    console.log(liftID);
+    window.sessionStorage.setItem('expandLiftID', liftID);
+    window.sessionStorage.setItem('driverID', driverID);
+    window.location.replace('LiftDetails.html');
+}
+
+function getLiftDetails(){
+    console.log('get lift details func');
+    var liftID = sessionStorage.getItem('expandLiftID');
+    var driverID = sessionStorage.getItem('driverID');
+    console.log('lift and driver id ' + liftID + ' ' + driverID);
+    var j = JSON.stringify({'liftID': liftID, 'driverID': driverID});
+    console.log(typeof j);
+    $.ajax({
+        url:'http://looprac.pythonanywhere.com/liftDetails',
+        type:'post',
+        // async: false,
+        // contentType: 'application/json',
+        // dataType: 'json',
+        data:j})
+        .done(function (data) {
+            var result = JSON.parse(data);
+            console.log('result: ' + result[0]);
+            var startLat = result[0]['startLat'];
+            var startLng = result[0]['startLng'];
+            var destLat = result[0]['destinationLat'];
+            var destLng = result[0]['destinationLng'];
+            var driver = result[0]['DriverFName'] + ' ' + result[0]['DriverLName'];
+            var departDate = result[0]['departDate'];
+            var departTime = result[0]['departTime'];
+            var seats = result[0]['seats'];
+            var liftType = result[0]['liftType'];
+
+            showLift(startLat, startLng, destLat, destLng);
+            geocodeCoords(startLat, startLng, 'startRdOnly');
+            geocodeCoords(destLat, destLng, 'destinationRdOnly');
+            document.getElementById('driverRdOnly').value = driver;
+            document.getElementById('departTimeRdOnly').value = departTime;
+            document.getElementById('departDateRdOnly').value = departDate;
+            document.getElementById('seatsRdOnly').value = seats;
+            document.getElementById('typeRdOnly').value = liftType;
+
 
         });
-
-
-    // $.get('http://looprac.pythonanywhere.com/availableLifts',function (data, status){
-    //     var result = JSON.parse(data);
-    //     for (var i = 0; i <= data.length; i ++ ){
-    //         // console.log(result[i]['liftID']);
-    //         // console.log(result[i]['userID']);
-    //         // console.log(result[i]['startLat']);
-            // console.log(result[i]['startLng']);
-            // console.log(result[i]['destinationLat']);
-            // console.log(result[i]['destinationLng']);
-            // console.log(result[i]['departDate']);
-            // console.log(result[i]['departTime']);
-            // console.log(result[i]['seats']);
-            // console.log(result[i]['type']);
-            // console.log(result[i]['created']);
-            // console.log('\n');
-            // var tr = '';
-            //     console.log(typeof data);
-            //
-            //     $.each(data, function (i, item){
-            //
-            //         tr += '<tr><td>' + item + '</td><td>' + item + '</td><td>' + item + '</td></tr>';
-            //     });
-        // }
-    // });
-    // var d = JSON.stringify({'status':'get available lifts'});
-    // $.ajax({
-    //     url: 'http://looprac.pythonanywhere.com/availableLifts',
-    //     async: false,
-    //     // contentType: 'application/json',
-    //     type: 'post',
-    //     dataType: 'json',
-    //     data: d
-    // })
-    // .done(function (data) {
-    //     // // var result = JSON.parse(data);
-    //     console.log(data[0]);
-    //     // var d = $.parseJSON( data ).d;
-    //     var tr = '';
-    //     console.log(typeof data);
-    //
-    //     $.each(data, function (i, item){
-    //
-    //         tr += '<tr><td>' + item + '</td><td>' + item + '</td><td>' + item + '</td></tr>';
-    //     });
-    // })
+    console.log('after ajax request');
 }
 
 /*********************************************
-  GOOGLE API PLACES FOR OFFER LIFT FORM
+  GOOGLE API FOR OFFER LIFT FORM
  */
+
+
+
+function showLift(startLat, startLng, destinationLat, destinationLng){
+    navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 5000 , enableHighAccuracy: true});
+    function onSuccess(position) {
+        //Google Maps
+        var startLatlng = new google.maps.LatLng(startLat,startLng);
+        var destLatLng = new google.maps.LatLng(destinationLat, destinationLng);
+        var mapOptions = {zoom: 7,center: startLatlng};
+        var map = new google.maps.Map(document.getElementById('lift-map-canvas'), mapOptions);
+        var markers = [startLatlng, destLatLng];
+        for (var i = 0; i <= markers.length; i ++)
+        {
+            var marker = new google.maps.Marker({position: markers[i],map: map});
+        }
+
+    }
+    function onError (error) {
+        switch (error.code) {
+            case error.TIMEOUT:
+                refresh();
+                break;
+            case error.PERMISSION_DENIED:
+                if(error.message.indexOf("Only secure origins are allowed") == 0) {
+                    tryAPIGeolocation();
+
+                }
+                break;
+            case error.POSITION_UNAVAILABLE:
+                alert("Please ensure your GPS is turned on !\n\nPosition unavailable.");
+                break;
+        }
+    }
+    var tryAPIGeolocation = function() {
+        jQuery.post( "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc", function(success) {
+            apiGeolocationSuccess(
+                {
+                    coords:
+                        {
+                            latitude: success.location.lat,
+                            longitude: success.location.lng
+                        }
+                });
+        })
+            .fail(function(err) {
+                alert("API Geolocation error! \n\n"+err);
+            });
+    };
+    var apiGeolocationSuccess = function(position) {
+        var startLatlng = new google.maps.LatLng(startLat,startLng);
+        var destLatLng = new google.maps.LatLng(destinationLat, destinationLng);
+        var mapOptions = {zoom: 7,center: startLatlng};
+        var map = new google.maps.Map(document.getElementById('lift-map-canvas'), mapOptions);
+        var markers = [startLatlng, destLatLng];
+        for (var i = 0; i <= markers.length; i ++)
+        {
+            var marker = new google.maps.Marker({position: markers[i],map: map});
+
+        }
+    };
+    google.maps.event.addDomListener(window, 'load', onSuccess);
+}
+
+
+
+
+
+function geocodeCoords(lat, lng, elementID){
+    var geocoder = new google.maps.Geocoder;
+    var latLng = new google.maps.LatLng(lat, lng);
+    var address = "";
+   geocoder.geocode({'latLng': latLng}, function check(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            console.log('IN IF STATEMENT');
+            if (results[0]) {
+                var address = "";
+                address = results[0].formatted_address;
+
+                // console.log('IN SECOND IF STATEMENT ' +  dfd.state());
+
+            }
+        }
+       console.log('address: ' + address);
+
+       document.getElementById(elementID).value = address;
+
+   });
+
+}
+
 
 function initMap(){
     navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 5000 , enableHighAccuracy: true});
@@ -319,14 +422,8 @@ function initMap(){
 
 
 function choseLocation(marker, map){
-    // document.getElementById('pickup_location').innerHTML = x.latLng.lat()+' , '+x.latLng.lng();
     var geocoder = new google.maps.Geocoder;
     var infowindow = new google.maps.InfoWindow;
-    // var long = position.coords.longitude;
-    // var myLatlng = new google.maps.LatLng(lat,long);
-    // var mapOptions = {zoom: 20,center: myLatlng};
-    // var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-    // var marker = new google.maps.Marker({position: myLatlng,map: map, draggable: true});
     google.maps.event.addListener(marker, 'dragend', function (event)
     {
         var lat = this.getPosition().lat();
@@ -346,7 +443,7 @@ function choseLocation(marker, map){
                             county = results[0].address_components[i].short_name;
                             console.log('county ' + county);
                         }
-                        address += results[0].address_components[i].short_name;
+                        address += results[0].address_components[i].long_name;
                     }
                     document.getElementById('location').value = results[0].formatted_address;
                     document.getElementById('chosen_county').value = county;

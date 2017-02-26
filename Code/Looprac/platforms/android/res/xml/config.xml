@@ -7,7 +7,7 @@
     <author email="c00130965@itcarlow.ie">
         PhoneGap Team
     </author>
-    <content src="index.html" />
+    <content src="login.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -15,24 +15,25 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <splash src="splash.png" />
     <icon density="ldpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
     <icon density="mdpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
     <icon density="hdpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
     <icon density="xhdpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
     <icon density="xxhdpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
     <icon density="xxxhdpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
-    <splash density="land-ldpi" src="www/res/screen/android/Looprac_logo.png" />
-    <splash density="land-mdpi" src="www/res/screen/android/Looprac_logo.png" />
-    <splash density="land-hdpi" src="www/res/screen/android/Looprac_logo.png" />
-    <splash density="land-xhdpi" src="www/res/screen/android/Looprac_logo.png" />
-    <splash density="land-xxhdpi" src="www/res/screen/android/Looprac_logo.png" />
-    <splash density="land-xxxhdpi" src="www/res/screen/android/Looprac_logo.png" />
-    <splash density="port-ldpi" src="www/res/screen/android/Looprac_logo.png" />
-    <splash density="port-mdpi" src="www/res/screen/android/Looprac_logo.png" />
-    <splash density="port-hdpi" src="www/res/screen/android/Looprac_logo.png" />
-    <splash density="port-xhdpi" src="www/res/screen/android/Looprac_logo.png" />
-    <splash density="port-xxhdpi" src="www/res/screen/android/Looprac_logo.png" />
-    <splash density="port-xxxhdpi" src="www/res/screen/android/Looprac_logo.png" />
+    <splash density="land-ldpi" src="www/splash.png" />
+    <splash density="land-mdpi" src="www/splash.png" />
+    <splash density="land-hdpi" src="www/splash.png" />
+    <splash density="land-xhdpi" src="www/splash.png" />
+    <splash density="land-xxhdpi" src="www/splash.png" />
+    <splash density="land-xxxhdpi" src="www/splash.png" />
+    <splash density="port-ldpi" src="www/splash.png" />
+    <splash density="port-mdpi" src="www/splash.png" />
+    <splash density="port-hdpi" src="www/splash.png" />
+    <splash density="port-xhdpi" src="www/splash.png" />
+    <splash density="port-xxhdpi" src="www/splash.png" />
+    <splash density="port-xxxhdpi" src="www/splash.png" />
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="DisallowOverscroll" value="true" />

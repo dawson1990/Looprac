@@ -14,7 +14,7 @@ config = {
 
 #QUERY TO DISPLAY AVAILABLE LIFTS
 def list_available_lifts():
-    _SQL = """SELECT LiftID, UserID,Start_County, Destination_County, Created_At FROM Lift order by Created_At"""
+    _SQL = """SELECT LiftID, DriverID,Start_County, Destination_County, Created_At FROM Lift order by Created_At"""
     with DBcm.UseDatabase(config) as cursor:
         cursor.execute(_SQL)
         data = cursor.fetchall()
@@ -23,7 +23,7 @@ def list_available_lifts():
     for item in data:
         d.append({
                 'liftID': item[0],
-                'userID': item[1],
+                'driverID': item[1],
                 'startCounty': item[2],
                 'destinationCounty': item[3],
                 'created': item[4]
@@ -35,6 +35,60 @@ def list_available_lifts():
 
 def converter(obj):
     return str(obj)
+
+
+def getLiftDetails(liftID, driverID):
+    print('before query')
+    _SELECT = """ SELECT Driver.UserID, User.First_Name, User.Last_Name
+                  FROM User, Driver
+                  WHERE Driver.DriverID= %s"""
+    _SQL = """SELECT * FROM Lift WHERE LiftID= %s order by Created_At"""
+    # _GETDRIVER_SQL = """ SELECT UserID FROM Driver WHERE DriverID= %s """
+    # _GETUSER_SQL = """SELECT First_Name, Last_Name FROM User WHERE UserID= %s"""
+    with DBcm.UseDatabase(config) as cursor:
+        cursor.execute(_SQL, (liftID,))
+        data = cursor.fetchall()
+    print('data', data)
+    print('after lift query')
+    with DBcm.UseDatabase(config) as cursor:
+        cursor.execute(_SELECT, (driverID,))
+        userDetails = cursor.fetchall()
+    print('user', userDetails)
+    print('after user query')
+    # with DBcm.UseDatabase(config) as cursor:
+    #     cursor.execute(_GETDRIVER_SQL, (driverID,))
+    #     driverData = cursor.fetchall()
+    #     print('data', driverData)
+    #     userID = driverData[0][0]
+    #     print('driver id', userID)
+    # with DBcm.UseDatabase(config) as cursor:
+    #     cursor.execute(_GETUSER_SQL, (userID,))
+    #     userData = cursor.fetchall()
+    d = []
+    for item in data:
+        for i in userDetails:
+            d.append({
+                'DriverFName': i[1],
+                'DriverLName': i[2],
+                'liftID': item[0],
+                'driverID': item[1],
+                'startLat': item[3],
+                'startLng': item[4],
+                'startCounty': item[5],
+                'destinationLat': item[6],
+                'destinationLng': item[7],
+                'destinationCounty': item[8],
+                'departDate': item[9],
+                'departTime': item[10],
+                'seats': item[11],
+                'liftType': item[12],
+                'created': item[13]
+            })
+    print('after d append')
+    print('d', d)
+    jsObj = json.dumps(d, default=converter)
+    return jsObj
+
 
 
 def register(fName, lName, emailAddr, phoneN, passw):
@@ -59,14 +113,14 @@ def register(fName, lName, emailAddr, phoneN, passw):
         jsObj = json.dumps({"status": "registered"})
         return jsObj
 
-
-def register_driver(userid):
-    _Driver_Registration_SQL = """INSERT INTO Driver
-                     (UserID)
-                     VALUES
-                     (%s)"""
-    with DBcm.UseDatabase(config) as cursor:
-        cursor.execute(_Driver_Registration_SQL, (userid,))
+#
+# def register_driver(userid):
+#     _Driver_Registration_SQL = """INSERT INTO Driver
+#                      (UserID)
+#                      VALUES
+#                      (%s)"""
+#     with DBcm.UseDatabase(config) as cursor:
+#         cursor.execute(_Driver_Registration_SQL, (userid,))
 
 
 def register_passenger(userid):
@@ -135,13 +189,19 @@ def register_offer_lift(userID,startLat, startLong, startCounty, destinationLat,
                         date, time, journey_type, seats):
     print('register function', userID, startLat, startLong, startCounty,destinationLat, destinationLong, destinationCounty,
           date, time, journey_type, seats)
+    _GETDRIVER_SQL = """SELECT DriverID FROM Driver WHERE UserID= %s """
     _User_Register_SQL = """INSERT INTO Lift
-                       (UserID, Start_Lat, Start_Long, Start_County, Destination_Lat, Destination_Long, Destination_County, Depart_Date, Depart_Time,
+                       (DriverID, Start_Lat, Start_Long, Start_County, Destination_Lat, Destination_Long, Destination_County, Depart_Date, Depart_Time,
                        Available_Spaces, Return_Single, Created_At)
                        VALUES
                        (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP )"""
     with DBcm.UseDatabase(config) as cursor:
-        cursor.execute(_User_Register_SQL, (userID, startLat, startLong, startCounty, destinationLat, destinationLong,
+        cursor.execute(_GETDRIVER_SQL, (userID,))
+        data = cursor.fetchall()
+        print('data', data)
+        driverID = data[0][0]
+        print('driver id', driverID)
+        cursor.execute(_User_Register_SQL, (driverID, startLat, startLong, startCounty, destinationLat, destinationLong,
                                             destinationCounty, date, time, seats, journey_type))
     jsObj = json.dumps({"status": "registered"})
     return jsObj
@@ -176,15 +236,21 @@ def checkIfCarExists(userID):
     return jsObj
 
 
-def registerCar(userID, carMake, carModel, regNum):
+def registerCarAndDriver(userID, carMake, carModel, regNum):
     carmake_lower = carMake.lower()
     carmodel_lower = carModel.lower()
     reg_lower = regNum.lower()
-    _SQL = """INSERT INTO CarDetails
+    _CAR_SQL = """INSERT INTO CarDetails
                        (Car_Make, Car_Model, Car_Reg, UserID)
                        VALUES
                        (%s, %s, %s, %s)"""
+    _DRIVER_SQL = """INSERT INTO Driver
+                        (UserID, CarID)
+                        VALUES
+                        (%s, %s)"""
     with DBcm.UseDatabase(config) as cursor:
-        cursor.execute(_SQL, (carmake_lower, carmodel_lower, reg_lower, userID))
+        cursor.execute(_CAR_SQL, (carmake_lower, carmodel_lower, reg_lower, userID))
+        carID = cursor.lastrowid
+        cursor.execute(_DRIVER_SQL, (userID, carID))
     jsObj = json.dumps({"status": "registered"})
     return jsObj

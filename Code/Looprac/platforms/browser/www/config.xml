@@ -13,7 +13,7 @@
     <author email="c00130965@itcarlow.ie">
         PhoneGap Team
     </author>
-    <content src="index.html" />
+    <content src="login.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
