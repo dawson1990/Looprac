@@ -182,24 +182,28 @@ function updateAvailableLifts(){
             var driverID = 0;
             var sCounty = '';
             var dCounty = '';
-            var created = '';
+            var departDate = '';
+            var departTime = '';
             var trID = '';
             var tdID = '';
             var btnID = '';
+            var displayingDateTime = '';
 
             for (var i = 0; i <= data.length ; i ++ ) {
                 liftID = data[i]["liftID"];
                 driverID = data[i]['driverID'];
                 sCounty =  data[i]['startCounty'];
                 dCounty = data[i]['destinationCounty'];
-                created = data[i]['created'];
+                departDate = data[i]['departDate'];
+                departTime = data[i]['departTime'];
+                displayingDateTime = departTime + ' ' + departDate;
                 trID = 'trID' + i.toString();
                 tdID = 'tdID' + i.toString();
                 btnID = 'btnID' + i.toString();
                 console.log(trID);
                 console.log(tdID);
                 tr = '<tr onclick="expandLift('+liftID +','+ driverID +')" id=' +trID + ' ><td class="hidden" id=' + tdID + '>' + liftID + '</td><td class="hidden">' + driverID + '</td><td>' + sCounty + '</td><td>' + dCounty
-                    + '</td><td>' +  created + '</td></tr>';
+                    + '</td><td>' +  displayingDateTime + '</td></tr>';
                     // '<td><input type="button" id="'+ btnID +' " value=">" class="btn btn-primary" onclick="expandLift('+i+')" /></td></tr>';
                 table.append(tr);
             }
@@ -243,6 +247,7 @@ function getLiftDetails(){
             showLift(startLat, startLng, destLat, destLng);
             geocodeCoords(startLat, startLng, 'startRdOnly');
             geocodeCoords(destLat, destLng, 'destinationRdOnly');
+            document.getElementById('liftIDRdOnly').value = liftID;
             document.getElementById('driverRdOnly').value = driver;
             document.getElementById('departTimeRdOnly').value = departTime;
             document.getElementById('departDateRdOnly').value = departDate;
@@ -400,8 +405,6 @@ function initMap(){
 
         var long = position.coords.longitude;
         var accuracy = position.coords.accuracy;
-//            alert("API geolocation success!\n\nlat = " + lat + "\nlng = " + long + '\nacc = ' + accuracy);
-
         var myLatlng = new google.maps.LatLng(lat,long);
         var mapOptions = {zoom: 20,center: myLatlng};
         var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
@@ -480,7 +483,7 @@ function initDestinationMap(){
 
         //Google Maps
         var myLatlng = new google.maps.LatLng(lat,lang);
-        var mapOptions = {zoom: 10,center: myLatlng};
+        var mapOptions = {zoom: 20,center: myLatlng};
         var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
         var marker = new google.maps.Marker({position: myLatlng,map: map, draggable: true});
         chooseDestination(marker, map);

@@ -14,7 +14,8 @@ config = {
 
 #QUERY TO DISPLAY AVAILABLE LIFTS
 def list_available_lifts():
-    _SQL = """SELECT LiftID, DriverID,Start_County, Destination_County, Created_At FROM Lift order by Created_At"""
+    _SQL = """SELECT LiftID, DriverID,Start_County, Destination_County, Depart_Date, Depart_Time FROM Lift
+              order by Depart_Date"""
     with DBcm.UseDatabase(config) as cursor:
         cursor.execute(_SQL)
         data = cursor.fetchall()
@@ -26,7 +27,8 @@ def list_available_lifts():
                 'driverID': item[1],
                 'startCounty': item[2],
                 'destinationCounty': item[3],
-                'created': item[4]
+                'departDate': item[4],
+                'departTime': item[5]
         })
     jsObj = json.dumps(d, default=converter)
     print('js obj', type(jsObj), '\n', jsObj)
