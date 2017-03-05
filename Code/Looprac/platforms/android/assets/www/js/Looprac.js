@@ -14,7 +14,9 @@ function login(){
                 window.sessionStorage.setItem('userID', result['user_id']);
                 window.sessionStorage.setItem('firstName', result['first_name']);
                 window.sessionStorage.setItem('lastName', result['last_name']);
-                window.sessionStorage.setItem('loggedIn', result['logged_in']);
+                window.sessionStorage.setItem('passengerID', result['passengerID']);
+                window.sessionStorage.setItem('driverID', result['dirverID']);
+                window.sessionStorage.setItem('loggedIn', true);
                 window.location.replace("main_page.html");
             }
             else if (result["status"] == "wrongemail/password")
@@ -27,6 +29,48 @@ function login(){
             }
         });
     console.log("LOGIN FUNCTION: after ajax");
+}
+
+function checkLoginStatus(){
+    var userID = sessionStorage.getItem('userID');
+    var fname = sessionStorage.getItem('firstName');
+    var lname = sessionStorage.getItem('lastName');
+    var passID = sessionStorage.getItem('passengerID');
+    var driveID = sessionStorage.getItem('driverID');
+    var loggedin = sessionStorage.getItem('loggedIn');
+    console.log('session data: ' + userID + ' ' + fname + ' ' + lname + ' ' + passID + ' ' + driveID + ' ' + loggedin);
+
+
+    var status = sessionStorage.getItem('loggedIn');
+    console.log('status: ' + status);
+    if(status){
+        console.log('in if statement');
+        window.location = "main_page.html";
+    }
+}
+
+function logout(){
+    console.log('logout funct ' );
+    var form = $("#hiddenMainPageForm");
+    // event.preventDefault(); // prevents form submitting normally
+    // form.submit();
+    // console.log
+    $.ajax({
+        url:'http://looprac.pythonanywhere.com/logoutuser',
+        type:'post',
+        async: false,
+        data:form.serialize()})
+        .done(function(data){
+            var result = JSON.parse(data);
+            if (result["status"] == "logout successful")
+            {
+                sessionStorage.clear();
+                alert('You have successfully logged out.');
+                window.location = "login.html";
+            }
+
+
+        })
 }
 
 
@@ -55,16 +99,21 @@ function SubForm(){
                     window.location = document.URL;
                 },5000);
             }
-
         });
     console.log("after subform ajax")
 }
 
+/******************************
+ * OFFER LIFT
+ */
+
 function subOfferLift(){
     event.preventDefault(); // prevents form submitting normally
     var date = document.getElementById('departDateInput').value;
+    var returnDate = document.getElementById('returnDateInput').value;
     console.log(date);
     var formattedDate = new Date(date).toMysqlFormat();
+    var formattedReturnDate = new Date(returnDate).toMysqlFormat();
     console.log('formatted date '  + formattedDate);
     var d = JSON.stringify({
         'userID' : document.getElementById('userID').value,
@@ -76,6 +125,8 @@ function subOfferLift(){
         'destination_county': document.getElementById('destination_county').value,
         'depart_date' : formattedDate,
         'depart_time' : document.getElementById('departTimeInput').value,
+        'return_date' : formattedReturnDate,
+        'return_time' : document.getElementById('returnTimeInput').value,
         'type' : document.getElementById('liftTypeInput').value,
         'seats' : document.getElementById('seatsInput').value
     });
@@ -111,6 +162,23 @@ function twoDigits(d) {
 Date.prototype.toMysqlFormat = function() {
     return this.getUTCFullYear() + "-" + twoDigits(1 + this.getUTCMonth()) + "-" + twoDigits(this.getUTCDate()) ;
 };
+
+function checkType(){
+    var type = document.getElementById('liftTypeInput').value;
+    console.log('type: ' + type);
+    if (type == 'single'){
+        document.getElementById('returnDateLbl').setAttribute('class','hidden');
+        document.getElementById('returnTimeLbl').setAttribute('class','hidden');
+        document.getElementById('returnDateInput').setAttribute('class','hidden');
+        document.getElementById('returnTimeInput').setAttribute('class','hidden');
+    }
+    else if (type == 'return'){
+        document.getElementById('returnDateLbl').classList.remove('hidden');
+        document.getElementById('returnTimeLbl').classList.remove('hidden');
+        document.getElementById('returnDateInput').classList.remove('hidden');
+        document.getElementById('returnTimeInput').classList.remove('hidden');
+    }
+}
 
 /***********************************
  CHECK IF USER HAS REGISTERED CAR BEFORE OFFERING A LIFT
@@ -241,9 +309,12 @@ function getLiftDetails(){
             var driver = result[0]['DriverFName'] + ' ' + result[0]['DriverLName'];
             var departDate = result[0]['departDate'];
             var departTime = result[0]['departTime'];
+            var returnDate = result[0]['returnDate'];
+            var returnTime = result[0]['returnTime'];
             var seats = result[0]['seats'];
             var liftType = result[0]['liftType'];
 
+            console.log('return date and time ' + returnDate + ' ' + returnTime);
             showLift(startLat, startLng, destLat, destLng);
             geocodeCoords(startLat, startLng, 'startRdOnly');
             geocodeCoords(destLat, destLng, 'destinationRdOnly');
@@ -251,12 +322,58 @@ function getLiftDetails(){
             document.getElementById('driverRdOnly').value = driver;
             document.getElementById('departTimeRdOnly').value = departTime;
             document.getElementById('departDateRdOnly').value = departDate;
+            if(returnDate != null && returnTime != null)
+            {
+                document.getElementById('returnDateRdOnly').value = returnDate;
+                document.getElementById('returnTimeRdOnly').value = returnTime;
+            }
+            else
+            {
+                document.getElementById('returnDateLbl').setAttribute('class','hidden');
+                document.getElementById('returnTimeLbl').setAttribute('class','hidden');
+                document.getElementById('returnDateRdOnly').setAttribute('class','hidden');
+                document.getElementById('returnTimeRdOnly').setAttribute('class','hidden');
+            }
             document.getElementById('seatsRdOnly').value = seats;
             document.getElementById('typeRdOnly').value = liftType;
-
-
         });
     console.log('after ajax request');
+}
+
+
+/*********************************
+ REQUESTS
+ **************************************/
+
+function sendLiftReq() {
+    event.preventDefault();
+    console.log('user id: ' + sessionStorage.getItem('userID'));
+    $.ajax({
+        url:'http://looprac.pythonanywhere.com/requestLift',
+        type:'post',
+        async: false,
+        data: $('#liftReqForm').serialize()})
+        .done(function (data) {
+            var result = JSON.parse(data);
+            if(result["status"] == "request completed"){
+                alert('Your request has been submitted.  You will be notified of the drivers response.');
+                notifyDriver(result["requestID"]);
+            }
+        });
+    console.log('after ajax');
+}
+
+function  notifyDriver(requestID) {
+    console.log('notifying: ' + requestID);
+    navigator.notification.alert(
+        'You have a lift request!',
+        displayRequests()
+    )
+}
+
+function displayRequests() {
+    console.log('worked!')
+
 }
 
 /*********************************************
@@ -590,9 +707,3 @@ function destinationChoice() {
 
     window.history.back();
 }
-
-
-/*******************
- AVAILABLE LIFTS
- // /*****************************/
-

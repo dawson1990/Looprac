@@ -18,6 +18,14 @@ body{
     background: #241023!important;
 }
 
+#logoutIcon{
+    text-align: right;
+    position: absolute;
+    right: 0;
+    font-size: 35px;
+    top: 0;
+}
+
 .customInputs{
     margin: 0 0 10px 0;
     width: 100%!important;
@@ -550,7 +558,7 @@ body{
     text-align: center;
 }
 
-#detailsDiv{
+#liftDetailsForm{
     position: absolute;
     display: flex;
     justify-content: center;
@@ -589,4 +597,13 @@ body{
 #subLiftReqBtn:focus{
     background-color: #ff8800;
     border-color: #ff8800;
+}
+
+#liftDetailsBtnDiv{
+    position: relative;
+}
+
+.liftDetailsBtns{
+    position: relative;
+    top:0;
 }

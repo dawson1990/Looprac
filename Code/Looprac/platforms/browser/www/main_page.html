@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/index.css">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc" type="text/javascript"></script>
+    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
 
     <script src="js/jquery-3.1.1.min.js"></script>
     <meta charset="UTF-8">
@@ -18,17 +19,34 @@
             var sessionP = document.getElementById("sessionP");
             sessionP.innerHTML = "Welcome " + sessionStorage.getItem('firstName');
             document.getElementById('userID').value = sessionStorage.getItem('userID');
+            var userID = sessionStorage.getItem('userID');
+            var fname = sessionStorage.getItem('firstName');
+            var lname = sessionStorage.getItem('lastName');
+            var passID = sessionStorage.getItem('passengerID');
+            var driveID = sessionStorage.getItem('driverID');
+            var loggedin = sessionStorage.getItem('loggedIn');
+            console.log('session data: ' + userID + ' ' + fname + ' ' + lname + ' ' + passID + ' ' + driveID + ' ' + loggedin);
         }
     </script>
 </head>
 <body class="container">
-<div id="sessionDiv" class="col-xs-12"><p id="sessionP" style="color: #ff8800; font-size: 35px; text-align: center;"></p></div>
+<div id="sessionDiv" class="col-xs-12">
+    <p id="sessionP" class="col-xs-7" style="color: #ff8800; font-size: 35px; text-align: right;"> </p>
+    <form method="post" id="hiddenMainPageForm">
+        <input type="number" class="hidden" name="userID" readonly id="userID" />
+        <i id="logoutIcon" class="fa fa-sign-out col-xs-5" style="color: #ffffff;" aria-hidden="true" onclick="logout()"></i>
+        <!--<i id="logoutIcon" class="fa fa-sign-out col-xs-5" style="color: #ffffff;" aria-hidden="true" onclick="logout()"></i>-->
+    </form>
+
+</div>
 <div id="map-canvas"  class="col-xs-12"></div>
 <div id="mainPageFormDiv">
-    <input type="number" class="hidden" readonly id="userID" />
+    <!--<form id="hiddenMainPageForm">-->
+        <!--<input type="number" class="hidden" readonly id="userID" />-->
+    <!--</form>-->
 </div>
 <div id="choiceDiv" class="col-xs-12">
-    <input type="submit" id="mainPageOfferLiftBtn" class="btn btn-primary col-xs-6" value="Offer Lift" onclick="checkHasCarRegistered()" />
+    <input type="button" id="mainPageOfferLiftBtn" class="btn btn-primary col-xs-6" value="Offer Lift" onclick="checkHasCarRegistered()" />
     <input type="button" id="searchLiftBtn" class="btn btn-primary col-xs-6" value="Search for Lift" onclick="window.location = 'availableLifts.html'" />
 </div>
 </body>

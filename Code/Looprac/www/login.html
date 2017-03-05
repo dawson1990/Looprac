@@ -16,13 +16,13 @@
     <title>Carpool</title>
     <script>
         function register() {
-            window.location.replace("register.html");
+            window.location = "register.html";
         }
 //        document.addEventListener("deviceready", login, false);
-
+//        window.onpaint = checkLoginStatus();
     </script>
 </head>
-<body class="container" >
+<body class="container" onload="checkLoginStatus()" >
 <form  method="post" id="login_form">
     <div id="loopracLogoDiv" class="col-xs-12">
         <img id="logo" src="img/Looprac_logo.png" />

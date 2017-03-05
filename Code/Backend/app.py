@@ -1,12 +1,17 @@
 from flask import Flask, render_template, make_response, request, session
 import db
 import json
+import string
+import random
 
 
 UPLOAD_FOLDER = '/home/looprac/LoopracAPI/Uploads/'
 
 app = Flask(__name__)
-app.secret_key = 'fhdgsd;ohfnvervneroigerrenverbner32hrjegb/kjbvr/o'
+randomsecretkey = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(50))
+# app.secret_key = 'fhdgsd;ohfnvervneroigerrenverbner32hrjegb/kjbvr/o'
+app.secret_key = randomsecretkey
+
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
@@ -113,6 +118,14 @@ def login():
         return data
 
 
+@app.route('/logoutuser', methods=['PUT', 'POST'])
+def logout():
+    print('logout function')
+    if request.method == 'POST':
+        userID = request.form['userID']
+        data = db.process_logout(userID)
+        return data
+
 # @app.route('/checkifemailexists', methods=['POST'])
 # def check_if_email_exists():
 #     print('start of if email exists')
@@ -135,17 +148,33 @@ def sub_offer_lift():
         destinationCounty = data['destination_county']
         date = data['depart_date']
         time = data['depart_time']
+        returnDate = data['return_date']
+        returnTime = data['return_time']
         journey_type = data['type']
         seats = data['seats']
         print('recieved: ', userID, startLat, startLong, startCounty, destinationLat, destinationLong,
-              destinationCounty, date, time, journey_type, seats)
+              destinationCounty, date, time, returnDate, returnTime, journey_type, seats)
         if startLat is '' or destinationLat is '' or date is '' or time is '':
             jsObj = json.dumps({"status": "Not all required elements are entered"})
             return jsObj
         else:
             jsObj = db.register_offer_lift(userID,startLat,startLong, startCounty, destinationLat, destinationLong,
-                                           destinationCounty, date, time,  journey_type, seats)
+                                           destinationCounty, date, time, returnDate, returnTime,  journey_type, seats)
             return jsObj
+
+
+@app.route('/requestLift', methods=['PUT', 'POST'])
+def requestLift():
+    print('request lift funct')
+    if request.method == 'POST':
+        print('in if statement')
+        liftID = request.form['liftID']
+        passengerID = request.form['passengerID']
+        print(liftID, passengerID)
+        print('lift: ', liftID, 'passenger:',passengerID)
+        data = db.process_request(liftID, passengerID)
+        return data
+
 
 
 @app.route('/checkcarregistered', methods=['PUT','POST'])

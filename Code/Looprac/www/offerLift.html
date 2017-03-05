@@ -45,7 +45,7 @@
         <div id="offerLiftDiv" class="col-xs-12">
             <input type="number" class="hidden" readonly id="userID" name="userID"/>
             <label id="locationLbl" class="customLbls col-xs-12" for="locationInput">Location</label>
-            <input type="text" id="locationInput" name="start" class="customInputs col-xs-12" placeholder="Carlow"/>
+            <input type="text" id="locationInput" name="start" class="customInputs col-xs-12" placeholder="click on 'Show Map'" readonly/>
 
             <input type="number" id="lat" name="latitude" class="hidden customInputs col-xs-12" placeholder="latitude"/>
             <input type="number" id="lng" name="longitude" class="hidden customInputs col-xs-12" placeholder="longitude"/>
@@ -54,7 +54,7 @@
 
             <label id="destinationlLbl" class="customLbls col-xs-12" for="destinationInput">Destination</label>
 
-            <input type="text" id="destinationInput" name="destination" class="customInputs col-xs-12"  placeholder="Dublin"/>
+            <input type="text" id="destinationInput" name="destination" class="customInputs col-xs-12"  placeholder="click on 'Show Map'" readonly/>
             <input type="number" id="destinationLat" name="destinationLatitude" class="hidden customInputs col-xs-12" placeholder="latitude"/>
             <input type="number" id="destinationLng" name="destinationLongitude" class="hidden customInputs col-xs-12" placeholder="longitude"/>
             <input type="text" id="destination_county" name="destination_county" class="hidden customInputs col-xs-12" placeholder="county" />
@@ -64,9 +64,10 @@
             <label id="departTimeLbl" class="customLbls col-xs-6" for="departTimeInput">Depart Time</label>
             <input type="date" id="departDateInput" name="departDate" class="departInputs col-xs-6" placeholder="dd/mm/yyyy" />
             <input type="time" id="departTimeInput" name="departTime" class="departInputs col-xs-6" placeholder="--:--"/>
-            <label id="liftTypeLbl" class="customLbls col-xs-6" for="liftTypeInput">Return/Single</label>
+            <label id="liftTypeLbl" class="customLbls col-xs-6" for="liftTypeInput">Type</label>
             <label id="seatsLbl" class="customLbls col-xs-6" for="seatsInput">Spaces</label>
-            <select id="liftTypeInput" class="dropdownInputs col-sx-6" name="liftType">
+
+            <select id="liftTypeInput" class="dropdownInputs col-sx-6" name="liftType" onblur="checkType()">
                 <option value="single">Single</option>
                 <option value="return">Return</option>
             </select>
@@ -78,6 +79,10 @@
                 <option value="5">5</option>
                 <option value="6">6</option>
             </select>
+            <label id="returnDateLbl" class="hidden customLbls col-xs-6" for="returnDateInput">Return Date</label>
+            <label id="returnTimeLbl" class="hidden customLbls col-xs-6" for="returnTimeInput">Return Time</label>
+            <input type="date" id="returnDateInput" name="returnDate" class="hidden departInputs col-xs-6" placeholder="dd/mm/yyyy" />
+            <input type="text" id="returnTimeInput" name="returnTime" class="hidden departInputs col-xs-6" placeholder="--:--" />
             <input  type="button" value="Cancel" id="cancelBtn" class="offerLiftBtns btn btn-primary col-xs-6" onclick="window.location ='main_page.html'"/>
             <input  type="submit" value="Offer Lift" id="offerLiftBtn" class="offerLiftBtns btn btn-primary col-xs-6" onclick="subOfferLift()"/>
         </div>
