@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-toggle.min.js"></script>
+    <script src="js/Looprac.js"></script>
+    <link rel="stylesheet" type="text/css"  href="css/index.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
+    <script>
+        window.onload = function () {
+            document.getElementById('userIDHidden').value = sessionStorage.getItem('userID');
+            updateUserLiftRequests();
+        }
+    </script>
+    <link rel="stylesheet" type="text/css"  href="css/index.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
+    <title>Available Requests</title>
+</head>
+<body class="container" >
+<ul class="nav nav-tabs col-xs-12">
+    <li role="presentation" class="active col-xs-4"><a href="#">Requests</a> </li>
+    <li role="presentation" class="col-xs-4"><a href="#">My Lifts</a> </li>
+    <li role="presentation" class="col-xs-4"><a href="#">Requested</a> </li>
+</ul>
+<form id="availableReqHiddenForm">
+    <input id="userIDHidden" type="number" class="hidden" name="userID">
+</form>
+<div id="listDiv" class="col-xs-12"  >
+    <table id="availableRequestsTbl" class="table table-inverse table-hover">
+        <tr style="color: #ffffff;" >
+            <th class="">RequestID</th>
+            <th class="">LiftID</th>
+            <th>DriverID</th>
+            <th>PassengerID</th>
+        </tr>
+    </table>
+</div>
+<input type="button" id="cancelBtn" value="Go Back" class="btn btn-primary cancelLocationBtns col-xs-12" onclick="window.location ='main_page.html'" />
+</body>
+</html>

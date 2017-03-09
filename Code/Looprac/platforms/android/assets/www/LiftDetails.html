@@ -8,17 +8,18 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-toggle.min.js"></script>
     <script src="js/Looprac.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc" type="text/javascript"></script>
-    <!--<script src="https://code.jquery.com/jquery-3.0.0.js"></script>-->
-    <!--<script src="https://code.jquery.com/jquery-migrate-3.0.0.js"></script>-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc&callback=getLiftDetails" async defer type="text/javascript"></script>
     <link rel="stylesheet" type="text/css"  href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
     <script>
         window.onload = function (){
             document.getElementById('passengerIDRdOnly').value = sessionStorage.getItem('passengerID');
-            getLiftDetails();
-        }
+//            getLiftDetails();
+
+        };
+
+
     </script>
     <style>
 

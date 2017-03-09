@@ -26,15 +26,29 @@
             var driveID = sessionStorage.getItem('driverID');
             var loggedin = sessionStorage.getItem('loggedIn');
             console.log('session data: ' + userID + ' ' + fname + ' ' + lname + ' ' + passID + ' ' + driveID + ' ' + loggedin);
+        };
+        /* Set the width of the side navigation to 250px */
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        /* Set the width of the side navigation to 0 */
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
         }
     </script>
 </head>
 <body class="container">
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="availableRequests.html">Your Requests</a>
+    <a href="#" onclick="logout()">Logout</a>
+</div>
+
 <div id="sessionDiv" class="col-xs-12">
-    <p id="sessionP" class="col-xs-7" style="color: #ff8800; font-size: 35px; text-align: right;"> </p>
+    <p id="sessionP" class="col-xs-12" style="color: #ff8800; font-size: 35px; text-align: center;"  onclick="openNav()"> </p>
     <form method="post" id="hiddenMainPageForm">
         <input type="number" class="hidden" name="userID" readonly id="userID" />
-        <i id="logoutIcon" class="fa fa-sign-out col-xs-5" style="color: #ffffff;" aria-hidden="true" onclick="logout()"></i>
         <!--<i id="logoutIcon" class="fa fa-sign-out col-xs-5" style="color: #ffffff;" aria-hidden="true" onclick="logout()"></i>-->
     </form>
 

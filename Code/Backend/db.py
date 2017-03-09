@@ -13,15 +13,29 @@ config = {
 
 
 #QUERY TO DISPLAY AVAILABLE LIFTS
-def list_available_lifts():
-    _SQL = """SELECT LiftID, DriverID,Start_County, Destination_County, Depart_Date, Depart_Time FROM Lift
-              order by Depart_Date"""
+def list_available_lifts(passengerID):
+    data, requestData = [], []
+    # _CHECKIFREQUESTED_SQL = """SELECT LiftID FROM Request WHERE PassengerID = %s"""
+    _SQL = """SELECT LiftID, DriverID,Start_County, Destination_County, Depart_Date, Depart_Time FROM Lift WHERE LiftID NOT IN
+              (SELECT LiftID FROM Request WHERE PassengerID = %s)"""
+    # with DBcm.UseDatabase(config) as cursor:
+    #     try:
+    #         cursor.execute(_CHECKIFREQUESTED_SQL, (passengerID,))
+    #         requestData = cursor.fetchall()
+    #         print('request data: ', requestData)
+    #     except Exception as e:
+    #         print('Error with check if already requested query:', e)
     with DBcm.UseDatabase(config) as cursor:
-        cursor.execute(_SQL)
-        data = cursor.fetchall()
-    print('data', type(data))
+        try:
+            cursor.execute(_SQL, (passengerID,))
+            data = cursor.fetchall()
+            print('data', data)
+        except Exception as e:
+            print('Error with select lift details query: ', e)
+
     d = []
     for item in data:
+        print(item, 'appended')
         d.append({
                 'liftID': item[0],
                 'driverID': item[1],
@@ -31,7 +45,6 @@ def list_available_lifts():
                 'departTime': item[5]
         })
     jsObj = json.dumps(d, default=converter)
-    print('js obj', type(jsObj), '\n', jsObj)
     return jsObj
 
 
@@ -167,15 +180,7 @@ def process_login(email, password):
                 cursor.execute(_SQL, (email,))
                 # data = list(cursor.fetchall())
                 data = cursor.fetchall()
-
                 print('login data: ', data)
-                # if len(data) == 5:
-                #     uID = data[0][0]
-                #     uName = data[0][1]
-                #     uLName = data[0][2]
-                #     passengerID = data[0][3]
-                #     driverID = data[0][4]
-                # elif len(data) == 4:
                 uID = data[0][0]
                 uName = data[0][1]
                 uLName = data[0][2]
@@ -301,6 +306,7 @@ def registerCarAndDriver(userID, carMake, carModel, regNum):
     jsObj = json.dumps({"status": "registered"})
     return jsObj
 
+
 def process_request(liftID, passengerID):
     driverID, requestID = 0, 0
     _GETDRIVER_SQL = """SELECT DriverID FROM Lift
@@ -331,3 +337,37 @@ def process_request(liftID, passengerID):
         return json.dumps({"status": "request completed", "requestID": requestID})
 
 
+def list_user_requests(userID):
+    driverID = 0
+    _GETDRIVER_SQL = """SELECT DriverID FROM Driver WHERE UserID = %s"""
+    _GETREQUESTS_SQL = """SELECT RequestID, DriverID, LiftID, PassengerID FROM Request WHERE DriverID = %s
+                          ORDER BY RequestID  """
+    with DBcm.UseDatabase(config) as cursor:
+        try:
+            cursor.execute(_GETDRIVER_SQL,(userID, ))
+            data = cursor.fetchall()
+            driverID = data[0][0]
+            print('driverID', driverID)
+        except Exception as e:
+            print('Error with get driver select query:', e)
+    with DBcm.UseDatabase(config) as cursor:
+        try:
+            cursor.execute(_GETREQUESTS_SQL, (driverID, ))
+            requestData = cursor.fetchall()
+            print('request data', requestData)
+            d = []
+            for item in requestData:
+                d.append({
+                    'requestID': item[0],
+                    'driverID': item[1],
+                    'liftID': item[2],
+                    'passengerID': item[3],
+                })
+            for i in d:
+                print(i)
+            jsObj = json.dumps(d)
+            print('js obj', jsObj, 'length', len(jsObj))
+        except Exception as e:
+            print('Error with get requests select query:', e)
+        else:
+            return jsObj

@@ -41,13 +41,29 @@ def home():
 #
 
 
+# TRY REMOVING GET TO FIX ACCESS CONTROL ERRORS
 @app.route('/availableLifts', methods=['PUT', 'POST', 'GET'])
 def available_lifts():
     r = make_response(render_template('base.html'))
     r.headers['Access-Control-Allow-Origin'] = '*'
-    if request.method == 'GET':
-        jsObj = db.list_available_lifts()
+    if request.method == 'POST':
+        data = request.get_data()
+        d = json.loads(data.decode('UTF-8'))
+        passengerID = d['passengerID']
+        jsObj = db.list_available_lifts(passengerID)
+        print('returning obj', jsObj)
         print('after function')
+        return jsObj
+
+
+@app.route('/availableRequests', methods=['PUT', 'POST'])
+def available_requests():
+    print('available requests ')
+    if request.method == 'POST':
+        userID = request.form['userID']
+        print('userID', userID)
+        jsObj = db.list_user_requests(userID)
+        print('returning obj', jsObj)
         return jsObj
 
 

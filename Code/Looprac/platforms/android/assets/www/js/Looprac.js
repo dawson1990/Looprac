@@ -6,6 +6,9 @@ function login(){
         type:'post',
         async: false,
         data: $("#login_form").serialize()})
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log('AJAX ERROR\njqXHR: ' + jqXHR +'\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+        })
         .done(function(data){
             var result = JSON.parse(data);
             if (result["status"] == "match")
@@ -15,7 +18,7 @@ function login(){
                 window.sessionStorage.setItem('firstName', result['first_name']);
                 window.sessionStorage.setItem('lastName', result['last_name']);
                 window.sessionStorage.setItem('passengerID', result['passengerID']);
-                window.sessionStorage.setItem('driverID', result['dirverID']);
+                window.sessionStorage.setItem('driverID', result['driverID']);
                 window.sessionStorage.setItem('loggedIn', true);
                 window.location.replace("main_page.html");
             }
@@ -60,6 +63,9 @@ function logout(){
         type:'post',
         async: false,
         data:form.serialize()})
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log('AJAX ERROR\njqXHR: ' + jqXHR +'\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+        })
         .done(function(data){
             var result = JSON.parse(data);
             if (result["status"] == "logout successful")
@@ -81,6 +87,9 @@ function SubForm(){
         type:'post',
         async: false,
         data:  $("#form").serialize()})
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log('AJAX ERROR\njqXHR: ' + jqXHR +'\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+        })
         .done(function(data){
             var result = JSON.parse(data);
             if (result["status"] == "registered")
@@ -138,6 +147,9 @@ function subOfferLift(){
         contentType: 'application/json',
         dataType: 'json',
         data: d })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log('AJAX ERROR\njqXHR: ' + jqXHR +'\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+        })
         .done(function(data){
             // var result = JSON.parse(data);
             if (data["status"] == "registered")
@@ -197,6 +209,9 @@ function checkHasCarRegistered() {
         contentType: 'application/json',
         dataType: 'json',
         data:  j})
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log('AJAX ERROR\njqXHR: ' + jqXHR +'\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+        })
         .done(function(data){
             if (data["status"] == "car registered"){
                 console.log('car reg branch');
@@ -219,6 +234,9 @@ function registerCar() {
         type:'post',
         async: false,
         data: $("#carRegForm").serialize() })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log('AJAX ERROR\njqXHR: ' + jqXHR +'\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+        })
         .done(function(data){
             var result = JSON.parse(data);
             if (result["status"] == "registered"){
@@ -234,16 +252,19 @@ function registerCar() {
 
 
 function updateAvailableLifts(){
-    console.log('inside func before ajax');
-
     $.ajax({
         url:'http://looprac.pythonanywhere.com/availableLifts',
-        type:'get',
+        type:'post',
+        data: JSON.stringify({'passengerID': sessionStorage.getItem('passengerID')})
         // contentType: 'application/json',
-        dataType: 'json'})
+        // dataType: 'json'
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log('AJAX ERROR\njqXHR: ' + jqXHR +'\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+        })
         .done(function(data){
-            // var result = JSON.parse(data);
-            // console.log(result);
+            var result = JSON.parse(data);
+            console.log(result);
             var table = $('#availableLiftsTbl');
             var tr = '';
             var liftID =0;
@@ -258,12 +279,12 @@ function updateAvailableLifts(){
             var displayingDateTime = '';
 
             for (var i = 0; i <= data.length ; i ++ ) {
-                liftID = data[i]["liftID"];
-                driverID = data[i]['driverID'];
-                sCounty =  data[i]['startCounty'];
-                dCounty = data[i]['destinationCounty'];
-                departDate = data[i]['departDate'];
-                departTime = data[i]['departTime'];
+                liftID = result[i]["liftID"];
+                driverID = result[i]['driverID'];
+                sCounty =  result[i]['startCounty'];
+                dCounty = result[i]['destinationCounty'];
+                departDate = result[i]['departDate'];
+                departTime = result[i]['departTime'];
                 displayingDateTime = departTime + ' ' + departDate;
                 trID = 'trID' + i.toString();
                 tdID = 'tdID' + i.toString();
@@ -299,6 +320,9 @@ function getLiftDetails(){
         // contentType: 'application/json',
         // dataType: 'json',
         data:j})
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log('AJAX ERROR\njqXHR: ' + jqXHR +'\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+        })
         .done(function (data) {
             var result = JSON.parse(data);
             console.log('result: ' + result[0]);
@@ -313,7 +337,6 @@ function getLiftDetails(){
             var returnTime = result[0]['returnTime'];
             var seats = result[0]['seats'];
             var liftType = result[0]['liftType'];
-
             console.log('return date and time ' + returnDate + ' ' + returnTime);
             showLift(startLat, startLng, destLat, destLng);
             geocodeCoords(startLat, startLng, 'startRdOnly');
@@ -353,11 +376,14 @@ function sendLiftReq() {
         type:'post',
         async: false,
         data: $('#liftReqForm').serialize()})
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log('AJAX ERROR\njqXHR: ' + jqXHR +'\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+        })
         .done(function (data) {
             var result = JSON.parse(data);
             if(result["status"] == "request completed"){
                 alert('Your request has been submitted.  You will be notified of the drivers response.');
-                notifyDriver(result["requestID"]);
+                window.location = "availableLifts.html";
             }
         });
     console.log('after ajax');
@@ -376,11 +402,80 @@ function displayRequests() {
 
 }
 
+function updateUserLiftRequests(){
+    // var d = ;
+    // console.log('d: ' + d + 'type: ' + typeof  d);
+    $.ajax({
+        url:'http://looprac.pythonanywhere.com/availableRequests',
+        type:'post',
+        data: $('#availableReqHiddenForm').serialize()
+        // async: false
+        // contentType: "application/json; charset=utf-8",
+        // dataType: "json"
+         })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log('AJAX ERROR\njqXHR: ' + jqXHR +'\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+        })
+        .done(function(data){
+            var result = JSON.parse(data);
+            console.log('data ' + data + ' ' + data.length);
+            var table = $('#availableRequestsTbl');
+            var tr = '';
+            var liftID =0;
+            var passengerID = 0;
+            var requestID = 0;
+            var driverID = 0;
+            var trID = '';
+            var tdID = '';
+            var btnID = '';
+            for (var i = 0; i <= result.length ; i ++ ) {
+                liftID = result[i]["liftID"];
+                driverID = result[i]["driverID"];
+                requestID = result[i]["requestID"];
+                passengerID = result[i]["passengerID"];
+                trID = 'trID' + i.toString();
+                tdID = 'tdID' + i.toString();
+                btnID = 'btnID' + i.toString();
+                console.log('request ' + requestID + ' lift ' + liftID + ' driver ' + driverID + ' passenger ' + passengerID);
+                tr = '<tr style="color: #ff8800;"  id=' +trID + ' ><td class="" id=' + tdID + '>' + requestID + '</td><td class="">' + liftID + '</td><td>' + driverID + '</td><td>' + passengerID
+                    + '</td></tr>';
+                table.append(tr);
+            }
+        });
+}
+
+
+// function expandRequest(requestID, driverID){
+//     console.log(liftID);
+//     window.sessionStorage.setItem('expandLiftID', liftID);
+//     window.sessionStorage.setItem('driverID', driverID);
+//     window.location.replace('LiftDetails.html');
+// }
+
+
 /*********************************************
   GOOGLE API FOR OFFER LIFT FORM
  */
 
-
+function calcRoute(startLatLng, destLatLng, map){
+    console.log('in calcRoute');
+    var directionsService = new google.maps.DirectionsService;
+    var directionsDisplay = new google.maps.DirectionsRenderer;
+    directionsDisplay.setMap(map);
+    var request ={
+        origin: startLatLng,
+        destination: destLatLng,
+        travelMode: 'DRIVING',
+        unitSystem: google.maps.UnitSystem.METRIC
+    };
+    directionsService.route(request, function(result, status){
+        if (status == 'OK'){
+            console.log('in success ');
+            directionsDisplay.setDirections(result);
+        }
+    });
+    console.log('end of calc route');
+}
 
 function showLift(startLat, startLng, destinationLat, destinationLng){
     navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 5000 , enableHighAccuracy: true});
@@ -390,6 +485,9 @@ function showLift(startLat, startLng, destinationLat, destinationLng){
         var destLatLng = new google.maps.LatLng(destinationLat, destinationLng);
         var mapOptions = {zoom: 7,center: startLatlng};
         var map = new google.maps.Map(document.getElementById('lift-map-canvas'), mapOptions);
+        calcRoute(startLatlng, destLatLng, map);
+
+
         var markers = [startLatlng, destLatLng];
         for (var i = 0; i <= markers.length; i ++)
         {
