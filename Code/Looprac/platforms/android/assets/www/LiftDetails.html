@@ -8,6 +8,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-toggle.min.js"></script>
     <script src="js/Looprac.js"></script>
+    <!--access Google APIs and on callback calls function getliftdetail -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc&callback=getLiftDetails" async defer type="text/javascript"></script>
     <link rel="stylesheet" type="text/css"  href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -15,8 +16,6 @@
     <script>
         window.onload = function (){
             document.getElementById('passengerIDRdOnly').value = sessionStorage.getItem('passengerID');
-//            getLiftDetails();
-
         };
 
 
@@ -71,7 +70,7 @@
 
 
         <div id="liftDetailsBtnDiv" class="col-xs-12">
-            <input type="button" id="cancelBtn" value="Go Back" class="btn btn-primary liftDetailsBtns  col-xs-6" onclick="window.location ='availableLifts.html'" />
+            <input type="button" id="cancelBtn" value="Go Back" class="btn btn-primary liftDetailsBtns  col-xs-6" onclick="history.back()" />
             <input type="button" id="subLiftReqBtn" value="Request Lift" class="btn btn-primary liftDetailsBtns col-xs-6" onclick="sendLiftReq()" />
 
         </div>

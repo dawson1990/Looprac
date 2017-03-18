@@ -56,15 +56,6 @@ def available_lifts():
         return jsObj
 
 
-@app.route('/availableRequests', methods=['PUT', 'POST'])
-def available_requests():
-    print('available requests ')
-    if request.method == 'POST':
-        userID = request.form['userID']
-        print('userID', userID)
-        jsObj = db.list_user_requests(userID)
-        print('returning obj', jsObj)
-        return jsObj
 
 
 @app.route('/liftDetails', methods=['PUT','POST'])
@@ -83,6 +74,9 @@ def liftDetails():
         print('lift and driver id ', liftID, driverID)
         jsObj = db.getLiftDetails(liftID, driverID)
         return jsObj
+
+
+
 
 
 @app.route('/registeruser', methods=['PUT', 'POST'])
@@ -142,13 +136,6 @@ def logout():
         data = db.process_logout(userID)
         return data
 
-# @app.route('/checkifemailexists', methods=['POST'])
-# def check_if_email_exists():
-#     print('start of if email exists')
-#     if request.method == 'POST':
-#         email = request.get_data('data1')
-#         print('email', email)
-#         return db.check_if_exists(email)
 
 
 @app.route('/offerLift', methods=['POST'])
@@ -179,6 +166,44 @@ def sub_offer_lift():
             return jsObj
 
 
+@app.route('/checkcarregistered', methods=['PUT','POST'])
+def check_user_registered_car():
+    print('check car reg function, before')
+    if request.method == 'POST':
+        print('before request')
+        data = request.get_json()
+        print('data', data)
+        userID = data['userid']
+        print('checking for car', userID)
+        jsObj = db.checkIfCarExists(userID)
+        return jsObj
+
+
+#     REQUESTS
+
+
+@app.route('/myRequests', methods=['PUT', 'POST'])
+def myRequests():
+    print('my requests func')
+    if request.method == 'POST':
+        userID = request.form['userID']
+        print('data', userID)
+        jsObj = db.getMyRequests(userID)
+        return jsObj
+
+
+@app.route('/requestDetails', methods=['PUT', 'POST'])
+def requestDetails():
+    print('request details func')
+    if request.method == 'POST':
+        data = request.get_data()
+        print('data', data)
+        j = json.loads(data.decode('UTF-8'))
+        jsObj = db.getRequestDetails(j['requestID'])
+        print('js obj', jsObj)
+        return jsObj
+
+
 @app.route('/requestLift', methods=['PUT', 'POST'])
 def requestLift():
     print('request lift funct')
@@ -192,18 +217,71 @@ def requestLift():
         return data
 
 
-
-@app.route('/checkcarregistered', methods=['PUT','POST'])
-def check_user_registered_car():
-    print('check car reg function, before')
+@app.route('/availableRequests', methods=['PUT', 'POST'])
+def available_requests():
+    print('available requests ')
     if request.method == 'POST':
-        print('before request')
-        data = request.get_json()
-        print('data', data)
-        userID = data['userid']
-        print('checking for car', userID)
-        jsObj = db.checkIfCarExists(userID)
+        userID = request.form['userID']
+        print('userID', userID)
+        jsObj = db.list_user_requests(userID)
+        print('returning obj', jsObj)
         return jsObj
+
+
+@app.route('/acceptRequest', methods=['PUT','POST'])
+def accept_request():
+    print('accept request func')
+    if request.method == 'POST':
+        requestID = request.form['requestID']
+        jsObj = db.acceptRequest(requestID)
+        print('jsObj', jsObj)
+        return jsObj
+
+
+@app.route('/myGroups', methods=['PUT', 'POST'])
+def my_groups():
+    print('my groups func')
+    if request.method == 'POST':
+        userID = request.form['userID']
+        print('userid', userID)
+        jsObj = db.getMyGroups(userID)
+        print('jsObj', jsObj)
+        return jsObj
+
+
+@app.route('/groupDetails', methods=['PUT', 'POST'])
+def group_details():
+    print('group details func')
+    if request.method == 'POST':
+        data = request.get_data()
+        j = json.loads(data.decode('UTF-8'))
+        jsObj = db.getGroupDetails(j['liftID'], j['groupID'])
+        print(jsObj)
+        return jsObj
+
+
+# MY LIFTS
+
+
+@app.route('/myLifts', methods=['PUT', 'POST'])
+def my_lifts():
+    print('my lifts function')
+    if request.method == 'POST':
+        jsObj = db.getMyLifts(request.form['userID'])
+        print('jsobj', jsObj)
+        return jsObj
+
+
+@app.route('/myLiftDetails', methods=['PUT', 'POST'])
+def my_lift_details():
+    print('my lift details')
+    if request.method == 'POST':
+        data = request.get_data()
+        j = json.loads(data.decode('UTF-8'))
+        jsObj = db.getMyLiftDetails(j['liftID'])
+        print(jsObj)
+        return jsObj
+
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -4,155 +4,27 @@
     <list default="true" id="09e4e59b-c2ae-421a-95aa-99ea5f2cf249" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Backend/app.py" afterPath="$PROJECT_DIR$/../Backend/app.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Backend/db.py" afterPath="$PROJECT_DIR$/../Backend/db.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Documents/Design_Document.docx" afterPath="$PROJECT_DIR$/../../Documents/Design_Document.docx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Documents/FinalReport.docx" afterPath="$PROJECT_DIR$/../../Documents/FinalReport.docx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Backend/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Backend/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/AndroidManifest.xml" afterPath="$PROJECT_DIR$/platforms/android/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/android.json" afterPath="$PROJECT_DIR$/platforms/android/android.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/LiftDetails.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/LiftDetails.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/availableRequests.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/availableRequests.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/css/index.css" afterPath="$PROJECT_DIR$/platforms/android/assets/www/css/index.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/index.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/Looprac.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/Looprac.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/login.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/login.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/main_page.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/main_page.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/values/strings.xml" afterPath="$PROJECT_DIR$/platforms/android/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/xml/config.xml" afterPath="$PROJECT_DIR$/platforms/android/res/xml/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/browser.json" afterPath="$PROJECT_DIR$/platforms/browser/browser.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/config.xml" afterPath="$PROJECT_DIR$/platforms/browser/config.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/LiftDetails.html" afterPath="$PROJECT_DIR$/platforms/browser/www/LiftDetails.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/config.xml" afterPath="$PROJECT_DIR$/platforms/browser/www/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/confighelper.js" afterPath="$PROJECT_DIR$/platforms/browser/www/confighelper.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/cordova-js-src/confighelper.js" afterPath="$PROJECT_DIR$/platforms/browser/www/cordova-js-src/confighelper.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/cordova-js-src/exec.js" afterPath="$PROJECT_DIR$/platforms/browser/www/cordova-js-src/exec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/cordova-js-src/platform.js" afterPath="$PROJECT_DIR$/platforms/browser/www/cordova-js-src/platform.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/cordova.js" afterPath="$PROJECT_DIR$/platforms/browser/www/cordova.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/bootstrap-toggle.min.css" afterPath="$PROJECT_DIR$/platforms/browser/www/css/bootstrap-toggle.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/bootstrap.min.css" afterPath="$PROJECT_DIR$/platforms/browser/www/css/bootstrap.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/HELP-US-OUT.txt" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/HELP-US-OUT.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/css/font-awesome.css" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/css/font-awesome.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/css/font-awesome.min.css" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/css/font-awesome.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/fonts/fontawesome-webfont.svg" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/fonts/fontawesome-webfont.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/animated.less" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/animated.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/bordered-pulled.less" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/bordered-pulled.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/core.less" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/core.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/fixed-width.less" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/fixed-width.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/font-awesome.less" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/font-awesome.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/icons.less" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/icons.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/larger.less" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/larger.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/list.less" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/list.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/mixins.less" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/mixins.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/path.less" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/path.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/rotated-flipped.less" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/rotated-flipped.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/screen-reader.less" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/screen-reader.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/stacked.less" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/stacked.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/variables.less" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/less/variables.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/_animated.scss" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/_animated.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/_bordered-pulled.scss" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/_bordered-pulled.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/_core.scss" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/_core.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/_fixed-width.scss" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/_fixed-width.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/_icons.scss" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/_icons.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/_larger.scss" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/_larger.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/_list.scss" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/_list.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/_mixins.scss" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/_mixins.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/_path.scss" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/_path.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/_rotated-flipped.scss" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/_rotated-flipped.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/_screen-reader.scss" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/_screen-reader.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/_stacked.scss" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/_stacked.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/_variables.scss" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/_variables.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/font-awesome.scss" afterPath="$PROJECT_DIR$/platforms/browser/www/css/font-awesome-4.7.0/scss/font-awesome.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/availableRequests.html" afterPath="$PROJECT_DIR$/platforms/browser/www/availableRequests.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/index.css" afterPath="$PROJECT_DIR$/platforms/browser/www/css/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/exec.js" afterPath="$PROJECT_DIR$/platforms/browser/www/exec.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/index.html" afterPath="$PROJECT_DIR$/platforms/browser/www/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/js/Looprac.js" afterPath="$PROJECT_DIR$/platforms/browser/www/js/Looprac.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/js/bootstrap-toggle.min.js" afterPath="$PROJECT_DIR$/platforms/browser/www/js/bootstrap-toggle.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/js/bootstrap.min.js" afterPath="$PROJECT_DIR$/platforms/browser/www/js/bootstrap.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/js/index.js" afterPath="$PROJECT_DIR$/platforms/browser/www/js/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/js/jquery-3.1.1.min.js" afterPath="$PROJECT_DIR$/platforms/browser/www/js/jquery-3.1.1.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/login.html" afterPath="$PROJECT_DIR$/platforms/browser/www/login.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/main_page.html" afterPath="$PROJECT_DIR$/platforms/browser/www/main_page.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/platform.js" afterPath="$PROJECT_DIR$/platforms/browser/www/platform.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-battery-status/src/browser/BatteryProxy.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-battery-status/src/browser/BatteryProxy.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-battery-status/www/battery.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-battery-status/www/battery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-camera/www/CameraPopoverOptions.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-camera/www/CameraPopoverOptions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-contacts/www/Contact.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-contacts/www/Contact.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-contacts/www/ContactAddress.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-contacts/www/ContactAddress.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-contacts/www/ContactError.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-contacts/www/ContactError.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-contacts/www/ContactField.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-contacts/www/ContactField.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-contacts/www/ContactFieldType.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-contacts/www/ContactFieldType.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-contacts/www/ContactFindOptions.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-contacts/www/ContactFindOptions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-contacts/www/ContactName.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-contacts/www/ContactName.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-contacts/www/ContactOrganization.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-contacts/www/ContactOrganization.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-contacts/www/contacts.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-contacts/www/contacts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-device-motion/src/browser/AccelerometerProxy.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-device-motion/src/browser/AccelerometerProxy.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-device-motion/www/Acceleration.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-device-motion/www/Acceleration.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-device-motion/www/accelerometer.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-device-motion/www/accelerometer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-device-orientation/src/browser/CompassProxy.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-device-orientation/src/browser/CompassProxy.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-device-orientation/www/CompassError.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-device-orientation/www/CompassError.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-device-orientation/www/CompassHeading.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-device-orientation/www/CompassHeading.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-device-orientation/www/compass.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-device-orientation/www/compass.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-device/src/browser/DeviceProxy.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-device/src/browser/DeviceProxy.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-device/www/device.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-device/www/device.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-dialogs/www/browser/notification.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-dialogs/www/browser/notification.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-dialogs/www/notification.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-dialogs/www/notification.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file-transfer/www/FileTransfer.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file-transfer/www/FileTransfer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file-transfer/www/FileTransferError.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file-transfer/www/FileTransferError.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file-transfer/www/browser/FileTransfer.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file-transfer/www/browser/FileTransfer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/src/browser/FileProxy.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/src/browser/FileProxy.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/DirectoryEntry.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/DirectoryEntry.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/DirectoryReader.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/DirectoryReader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/Entry.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/Entry.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/File.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/File.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/FileEntry.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/FileEntry.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/FileError.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/FileError.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/FileReader.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/FileReader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/FileSystem.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/FileSystem.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/FileUploadOptions.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/FileUploadOptions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/FileUploadResult.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/FileUploadResult.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/FileWriter.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/FileWriter.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/Flags.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/Flags.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/LocalFileSystem.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/LocalFileSystem.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/Metadata.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/Metadata.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/ProgressEvent.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/ProgressEvent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/browser/FileSystem.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/browser/FileSystem.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/browser/Preparing.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/browser/Preparing.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/browser/isChrome.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/browser/isChrome.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/fileSystemPaths.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/fileSystemPaths.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/fileSystems.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/fileSystems.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/requestFileSystem.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/requestFileSystem.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/resolveLocalFileSystemURI.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-file/www/resolveLocalFileSystemURI.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-globalization/src/browser/GlobalizationProxy.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-globalization/src/browser/GlobalizationProxy.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-globalization/www/GlobalizationError.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-globalization/www/GlobalizationError.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-globalization/www/browser/moment.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-globalization/www/browser/moment.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-globalization/www/globalization.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-globalization/www/globalization.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-inappbrowser/src/browser/InAppBrowserProxy.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-inappbrowser/src/browser/InAppBrowserProxy.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-inappbrowser/www/inappbrowser.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-inappbrowser/www/inappbrowser.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-media-capture/src/browser/CaptureProxy.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-media-capture/src/browser/CaptureProxy.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-media-capture/www/CaptureAudioOptions.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-media-capture/www/CaptureAudioOptions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-media-capture/www/CaptureError.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-media-capture/www/CaptureError.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-media-capture/www/CaptureImageOptions.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-media-capture/www/CaptureImageOptions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-media-capture/www/CaptureVideoOptions.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-media-capture/www/CaptureVideoOptions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-media-capture/www/MediaFile.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-media-capture/www/MediaFile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-media-capture/www/MediaFileData.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-media-capture/www/MediaFileData.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-media-capture/www/capture.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-media-capture/www/capture.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-media/www/MediaError.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-media/www/MediaError.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-network-information/src/browser/network.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-network-information/src/browser/network.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-network-information/www/Connection.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-network-information/www/Connection.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-network-information/www/network.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-network-information/www/network.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-splashscreen/src/browser/SplashScreenProxy.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-splashscreen/src/browser/SplashScreenProxy.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-splashscreen/www/splashscreen.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-splashscreen/www/splashscreen.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-statusbar/src/browser/statusbar.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-statusbar/src/browser/statusbar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-statusbar/www/statusbar.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-statusbar/www/statusbar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-vibration/src/browser/Vibration.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-vibration/src/browser/Vibration.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-vibration/www/vibration.js" afterPath="$PROJECT_DIR$/platforms/browser/www/plugins/cordova-plugin-vibration/www/vibration.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/spec.html" afterPath="$PROJECT_DIR$/platforms/browser/www/spec.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/spec/helper.js" afterPath="$PROJECT_DIR$/platforms/browser/www/spec/helper.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/spec/index.js" afterPath="$PROJECT_DIR$/platforms/browser/www/spec/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/spec/lib/jasmine-1.2.0/MIT.LICENSE" afterPath="$PROJECT_DIR$/platforms/browser/www/spec/lib/jasmine-1.2.0/MIT.LICENSE" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/spec/lib/jasmine-1.2.0/jasmine-html.js" afterPath="$PROJECT_DIR$/platforms/browser/www/spec/lib/jasmine-1.2.0/jasmine-html.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/spec/lib/jasmine-1.2.0/jasmine.css" afterPath="$PROJECT_DIR$/platforms/browser/www/spec/lib/jasmine-1.2.0/jasmine.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/spec/lib/jasmine-1.2.0/jasmine.js" afterPath="$PROJECT_DIR$/platforms/browser/www/spec/lib/jasmine-1.2.0/jasmine.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/LiftDetails.html" afterPath="$PROJECT_DIR$/www/LiftDetails.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/availableRequests.html" afterPath="$PROJECT_DIR$/www/availableRequests.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/index.css" afterPath="$PROJECT_DIR$/www/css/index.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/Looprac.js" afterPath="$PROJECT_DIR$/www/js/Looprac.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/login.html" afterPath="$PROJECT_DIR$/www/login.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/main_page.html" afterPath="$PROJECT_DIR$/www/main_page.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -174,10 +46,31 @@
       <file leaf-file-name="Looprac.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/Looprac.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="468" column="49" lean-forward="false" selection-start-line="468" selection-start-column="49" selection-end-line="468" selection-end-column="49" />
+            <state relative-caret-position="277">
+              <caret line="710" column="49" lean-forward="true" selection-start-line="710" selection-start-column="49" selection-end-line="710" selection-end-column="49" />
               <folding>
-                <marker date="1489060016111" expanded="true" signature="17807:17822" ph="..." />
+                <marker date="1489857360690" expanded="true" signature="17754:17769" ph="..." />
+                <marker date="1489857360690" expanded="true" signature="20985:21000" ph="..." />
+                <marker date="1489857360690" expanded="true" signature="21295:21309" ph="..." />
+                <marker date="1489857360690" expanded="true" signature="23634:23649" ph="..." />
+                <marker date="1489857360690" expanded="true" signature="25937:25951" ph="..." />
+                <marker date="1489857360690" expanded="true" signature="27628:27643" ph="..." />
+                <marker date="1489857360690" expanded="true" signature="29836:29850" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="myLiftDetails.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/myLiftDetails.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="29" column="116" lean-forward="false" selection-start-line="29" selection-start-column="116" selection-end-line="29" selection-end-column="116" />
+              <folding>
+                <element signature="n#style#0;n#h4#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h4#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h4#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -186,9 +79,21 @@
       <file leaf-file-name="LiftDetails.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/LiftDetails.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="47" lean-forward="true" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="47" />
+            <state relative-caret-position="187">
+              <caret line="11" column="110" lean-forward="true" selection-start-line="11" selection-start-column="100" selection-end-line="11" selection-end-column="110" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="myLifts.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/myLifts.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="16" column="25" lean-forward="false" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="25" />
+              <folding>
+                <element signature="n#style#0;n#h2#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -196,65 +101,9 @@
       <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/css/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10574">
-              <caret line="622" column="16" lean-forward="false" selection-start-line="622" selection-start-column="16" selection-end-line="622" selection-end-column="16" />
+            <state relative-caret-position="10098">
+              <caret line="594" column="18" lean-forward="false" selection-start-line="594" selection-start-column="1" selection-end-line="594" selection-end-column="18" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="register.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/register.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="39" column="29" lean-forward="false" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="availableLifts.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/availableLifts.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="28" column="37" lean-forward="false" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
-              <folding>
-                <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main_page.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/main_page.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="48" column="97" lean-forward="false" selection-start-line="48" selection-start-column="97" selection-end-line="48" selection-end-column="97" />
-              <folding>
-                <element signature="e#1869#1876#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="50" lean-forward="false" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="availableRequests.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/availableRequests.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="35" lean-forward="true" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
-              <folding>
-                <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -289,6 +138,12 @@
       <find>request</find>
       <find>checklogin</find>
       <find>getlift</find>
+      <find>driverID</find>
+      <find>getRequesDetails</find>
+      <find>(</find>
+      <find>liftdetailsl</find>
+      <find>expandLift</find>
+      <find>expand</find>
     </findStrings>
     <replaceStrings>
       <replace>qualifier</replace>
@@ -304,7 +159,6 @@
         <option value="$PROJECT_DIR$/www/requestLift.html" />
         <option value="$PROJECT_DIR$/www/mainPage.html" />
         <option value="$PROJECT_DIR$/www/register.html" />
-        <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/carDetails.html" />
         <option value="$PROJECT_DIR$/www/map.html" />
         <option value="$PROJECT_DIR$/www/startLocalMap.html" />
@@ -312,12 +166,19 @@
         <option value="$PROJECT_DIR$/config.xml" />
         <option value="$PROJECT_DIR$/www/offerLift.html" />
         <option value="$PROJECT_DIR$/www/js/index.js" />
-        <option value="$PROJECT_DIR$/www/css/index.css" />
-        <option value="$PROJECT_DIR$/www/main_page.html" />
         <option value="$PROJECT_DIR$/www/login.html" />
         <option value="$PROJECT_DIR$/www/availableLifts.html" />
-        <option value="$PROJECT_DIR$/www/availableRequests.html" />
         <option value="$PROJECT_DIR$/www/LiftDetails.html" />
+        <option value="$PROJECT_DIR$/www/requestDetails.html" />
+        <option value="$PROJECT_DIR$/www/availableRequests.html" />
+        <option value="$PROJECT_DIR$/www/myRequestsPage.html" />
+        <option value="$PROJECT_DIR$/www/index.html" />
+        <option value="$PROJECT_DIR$/www/css/index.css" />
+        <option value="$PROJECT_DIR$/www/myGroups.html" />
+        <option value="$PROJECT_DIR$/www/groupDetails.html" />
+        <option value="$PROJECT_DIR$/www/myLifts.html" />
+        <option value="$PROJECT_DIR$/www/main_page.html" />
+        <option value="$PROJECT_DIR$/www/myLiftDetails.html" />
         <option value="$PROJECT_DIR$/www/js/Looprac.js" />
       </list>
     </option>
@@ -358,6 +219,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -384,10 +247,26 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Looprac" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Looprac" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="img" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -401,15 +280,15 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Kevin\Google Drive\college\Year4\Project\Project Documents\CarSharingApp\Code\Looprac\www\res\screen\android" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Kevin\Google Drive\college\Year4\Project\Project Documents\CarSharingApp\Code\Looprac\www\img" />
       <recent name="C:\Users\Kevin\Google Drive\college\Year4\Project\Project Documents\CarSharingApp\Code\Looprac\www" />
       <recent name="C:\Users\Kevin\Google Drive\college\Year4\Project\Project Documents\CarSharingApp\Code\Looprac\www\res\screen\wp8" />
       <recent name="C:\Users\Kevin\Google Drive\college\Year4\Project\Project Documents\CarSharingApp\Code\Looprac\www\res\icon\wp8" />
       <recent name="C:\Users\Kevin\Google Drive\college\Year4\Project\Project Documents\CarSharingApp\Code\Looprac\www\res\icon\windows" />
-      <recent name="C:\Users\Kevin\Google Drive\college\Year4\Project\Project Documents\CarSharingApp\Code\Looprac\www\res\screen\windows" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Kevin\Google Drive\college\Year4\Project\Project Documents\CarSharingApp\Code\Looprac\www\res\screen\android" />
     </key>
   </component>
   <component name="RunManager">
@@ -501,12 +380,17 @@
       <workItem from="1488641485540" duration="15786000" />
       <workItem from="1488817662699" duration="8355000" />
       <workItem from="1488913241336" duration="2599000" />
-      <workItem from="1489050358519" duration="8600000" />
+      <workItem from="1489050358519" duration="19513000" />
+      <workItem from="1489421611662" duration="246000" />
+      <workItem from="1489422084334" duration="19083000" />
+      <workItem from="1489573429224" duration="13287000" />
+      <workItem from="1489752848518" duration="8070000" />
+      <workItem from="1489844705939" duration="9418000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="217014000" />
+    <option name="totallyTimeSpent" value="278031000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -538,59 +422,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="7" />
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="42" lean-forward="false" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/main_page.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="21" lean-forward="true" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
-          <folding>
-            <element signature="e#1869#1876#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7854">
-          <caret line="462" column="0" lean-forward="false" selection-start-line="462" selection-start-column="0" selection-end-line="462" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="31" lean-forward="false" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/requestLift.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/register.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="41" column="6" lean-forward="false" selection-start-line="41" selection-start-column="6" selection-end-line="41" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/offerLift.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -604,7 +440,7 @@
         <state relative-caret-position="204">
           <caret line="12" column="41" lean-forward="false" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
           <folding>
-            <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -614,7 +450,13 @@
         <state relative-caret-position="612">
           <caret line="36" column="11" lean-forward="true" selection-start-line="36" selection-start-column="11" selection-end-line="36" selection-end-column="11" />
           <folding>
-            <marker date="1489060016111" expanded="true" signature="17807:17822" ph="..." />
+            <marker date="1489857360690" expanded="true" signature="17754:17769" ph="..." />
+            <marker date="1489857360690" expanded="true" signature="20985:21000" ph="..." />
+            <marker date="1489857360690" expanded="true" signature="21295:21309" ph="..." />
+            <marker date="1489857360690" expanded="true" signature="23634:23649" ph="..." />
+            <marker date="1489857360690" expanded="true" signature="25937:25951" ph="..." />
+            <marker date="1489857360690" expanded="true" signature="27628:27643" ph="..." />
+            <marker date="1489857360690" expanded="true" signature="29836:29850" ph="..." />
           </folding>
         </state>
       </provider>
@@ -637,9 +479,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="7" lean-forward="false" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-          <folding>
-            <element signature="e#1869#1876#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -671,7 +511,7 @@
         <state relative-caret-position="204">
           <caret line="12" column="41" lean-forward="true" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
           <folding>
-            <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -715,13 +555,6 @@
     <entry file="file://$PROJECT_DIR$/www/res/icon/ios/icon.png" />
     <entry file="file://$PROJECT_DIR$/www/res/icon/wp8/ApplicationIcon.png" />
     <entry file="file://$PROJECT_DIR$/www/res/icon/wp8/Background.png" />
-    <entry file="file://$PROJECT_DIR$/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="7" lean-forward="false" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DOMCore.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
@@ -808,57 +641,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10574">
-          <caret line="622" column="16" lean-forward="false" selection-start-line="622" selection-start-column="16" selection-end-line="622" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/register.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
           <caret line="39" column="29" lean-forward="false" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="50" lean-forward="false" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/availableLifts.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="28" column="37" lean-forward="false" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
-          <folding>
-            <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/availableRequests.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="35" lean-forward="true" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
-          <folding>
-            <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/main_page.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="48" column="97" lean-forward="false" selection-start-line="48" selection-start-column="97" selection-end-line="48" selection-end-column="97" />
-          <folding>
-            <element signature="e#1869#1876#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -871,7 +658,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-51">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -879,24 +665,142 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1054">
           <caret line="62" column="0" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/availableLifts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="28" column="37" lean-forward="false" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
+          <folding>
+            <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="6" column="50" lean-forward="false" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="21" lean-forward="false" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/myRequestsPage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="37" lean-forward="false" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="37" />
+          <folding>
+            <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/css/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10098">
+          <caret line="594" column="18" lean-forward="false" selection-start-line="594" selection-start-column="1" selection-end-line="594" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/requestDetails.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="47" lean-forward="false" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/availableRequests.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="42" column="12" lean-forward="false" selection-start-line="33" selection-start-column="3" selection-end-line="42" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/main_page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="15" column="12" lean-forward="true" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/myGroups.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="27" column="15" lean-forward="true" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="15" />
+          <folding>
+            <element signature="n#style#0;n#h2#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/groupDetails.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="17" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="54" selection-end-column="7" />
+          <folding>
+            <element signature="n#style#0;n#h4#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h4#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h4#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/LiftDetails.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="47" lean-forward="true" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="47" />
+        <state relative-caret-position="187">
+          <caret line="11" column="110" lean-forward="true" selection-start-line="11" selection-start-column="100" selection-end-line="11" selection-end-column="110" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/myLifts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="16" column="25" lean-forward="false" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="25" />
+          <folding>
+            <element signature="n#style#0;n#h2#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/myLiftDetails.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="29" column="116" lean-forward="false" selection-start-line="29" selection-start-column="116" selection-end-line="29" selection-end-column="116" />
+          <folding>
+            <element signature="n#style#0;n#h4#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h4#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h4#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/Looprac.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="468" column="49" lean-forward="false" selection-start-line="468" selection-start-column="49" selection-end-line="468" selection-end-column="49" />
+        <state relative-caret-position="277">
+          <caret line="710" column="49" lean-forward="true" selection-start-line="710" selection-start-column="49" selection-end-line="710" selection-end-column="49" />
           <folding>
-            <marker date="1489060016111" expanded="true" signature="17807:17822" ph="..." />
+            <marker date="1489857360690" expanded="true" signature="17754:17769" ph="..." />
+            <marker date="1489857360690" expanded="true" signature="20985:21000" ph="..." />
+            <marker date="1489857360690" expanded="true" signature="21295:21309" ph="..." />
+            <marker date="1489857360690" expanded="true" signature="23634:23649" ph="..." />
+            <marker date="1489857360690" expanded="true" signature="25937:25951" ph="..." />
+            <marker date="1489857360690" expanded="true" signature="27628:27643" ph="..." />
+            <marker date="1489857360690" expanded="true" signature="29836:29850" ph="..." />
           </folding>
         </state>
       </provider>

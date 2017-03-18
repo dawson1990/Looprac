@@ -502,6 +502,14 @@ body{
     position: absolute;
 }
 
+#hamburgerMenuIcon{
+    position: relative;
+    color: #ff8800;
+    font-size: 35px;
+    text-align: center;
+    display: block;
+}
+
 
 /*
     OFFER LIFTS MAPS
@@ -586,6 +594,7 @@ body{
 
 .liftDetailsLabels{
     text-align: left;
+    color: #eae8ff;
 }
 
 #subLiftReqBtn{
@@ -660,4 +669,54 @@ side nav bar: gotten from w3schools.com
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
+}
+
+/*MY REQUESTS */
+
+.requestsTabs{
+    color: #ff8800;
+}
+
+.myHeaders{
+    color: #ff8800;
+}
+
+
+/*MY GROUPS*/
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }

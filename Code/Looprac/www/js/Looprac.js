@@ -256,8 +256,6 @@ function updateAvailableLifts(){
         url:'http://looprac.pythonanywhere.com/availableLifts',
         type:'post',
         data: JSON.stringify({'passengerID': sessionStorage.getItem('passengerID')})
-        // contentType: 'application/json',
-        // dataType: 'json'
         })
         .fail(function (jqXHR, textStatus, errorThrown) {
             console.log('AJAX ERROR\njqXHR: ' + jqXHR +'\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
@@ -316,9 +314,6 @@ function getLiftDetails(){
     $.ajax({
         url:'http://looprac.pythonanywhere.com/liftDetails',
         type:'post',
-        // async: false,
-        // contentType: 'application/json',
-        // dataType: 'json',
         data:j})
         .fail(function (jqXHR, textStatus, errorThrown) {
             console.log('AJAX ERROR\njqXHR: ' + jqXHR +'\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
@@ -409,9 +404,6 @@ function updateUserLiftRequests(){
         url:'http://looprac.pythonanywhere.com/availableRequests',
         type:'post',
         data: $('#availableReqHiddenForm').serialize()
-        // async: false
-        // contentType: "application/json; charset=utf-8",
-        // dataType: "json"
          })
         .fail(function (jqXHR, textStatus, errorThrown) {
             console.log('AJAX ERROR\njqXHR: ' + jqXHR +'\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
@@ -428,16 +420,22 @@ function updateUserLiftRequests(){
             var trID = '';
             var tdID = '';
             var btnID = '';
-            for (var i = 0; i <= result.length ; i ++ ) {
+            var passengerName = '';
+            var status = "";
+            for (var i = 0; i < result.length ; i ++ ) {
                 liftID = result[i]["liftID"];
                 driverID = result[i]["driverID"];
                 requestID = result[i]["requestID"];
                 passengerID = result[i]["passengerID"];
+                passengerName = result[i]["passengerName"];
+                status = result[i]["status"];
                 trID = 'trID' + i.toString();
                 tdID = 'tdID' + i.toString();
                 btnID = 'btnID' + i.toString();
                 console.log('request ' + requestID + ' lift ' + liftID + ' driver ' + driverID + ' passenger ' + passengerID);
-                tr = '<tr style="color: #ff8800;"  id=' +trID + ' ><td class="" id=' + tdID + '>' + requestID + '</td><td class="">' + liftID + '</td><td>' + driverID + '</td><td>' + passengerID
+                tr = '<tr onclick="expandRequest('+ requestID + ',' + driverID +')" style="color: #ff8800;"  id=' +trID
+                    + ' ><td class="hidden" id=' + tdID + '>' + requestID + '</td><td class="hidden">' + liftID + '</td><td class="hidden">' + driverID
+                    + '</td><td class="hidden">' + passengerID + '</td><td>' + passengerName + '</td><td>' + status
                     + '</td></tr>';
                 table.append(tr);
             }
@@ -445,18 +443,295 @@ function updateUserLiftRequests(){
 }
 
 
-// function expandRequest(requestID, driverID){
-//     console.log(liftID);
-//     window.sessionStorage.setItem('expandLiftID', liftID);
-//     window.sessionStorage.setItem('driverID', driverID);
-//     window.location.replace('LiftDetails.html');
-// }
+function expandRequest(requestID, driverID){
+    console.log(requestID);
+    window.sessionStorage.setItem('requestID', requestID);
+    window.sessionStorage.setItem('driverID', driverID);
+    window.location.replace('requestDetails.html');
+}
 
+function getRequestDetails(){
+    console.log('get request details func');
+    var requestID = sessionStorage.getItem('requestID');
+    var driverID = sessionStorage.getItem('driverID');
+    console.log('lift and driver id ' + requestID + ' ' + driverID);
+    var j = JSON.stringify({'requestID': requestID, 'driverID': driverID});
+    $.ajax({
+        url:'http://looprac.pythonanywhere.com/requestDetails',
+        type:'post',
+        data:j})
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log('AJAX ERROR\njqXHR: ' + jqXHR +'\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+        })
+        .done(function (data) {
+            var result = JSON.parse(data);
+            console.log('result: ' + data);
+            document.getElementById('passengerNameRdOnly').value = result["name"];
+            document.getElementById('departTimeRdOnly').value = result["time"];
+            document.getElementById('departDateRdOnly').value = result["date"];
+
+        });
+    console.log('after ajax request');
+}
+
+function updateMyRequests(){
+    $.ajax({
+        url:'http://looprac.pythonanywhere.com/myRequests',
+        type:'post',
+        data: $('#myReqHiddenForm').serialize()
+    })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log('AJAX ERROR\njqXHR: ' + jqXHR +'\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+        })
+        .done(function(data){
+            var result = JSON.parse(data);
+            console.log('data ' + data + ' ' + data.length);
+            var table = $('#myRequestsTbl');
+            var tr = '';
+            var liftID =0;
+            var passengerID = 0;
+            var requestID = 0;
+            var driverID = 0;
+            var driverName = '';
+            var trID = '';
+            var tdID = '';
+            var btnID = '';
+            var status = '';
+            for (var i = 0; i < result.length ; i ++ ) {
+                liftID = result[i]["liftID"];
+                driverID = result[i]["driverID"];
+                requestID = result[i]["requestID"];
+                passengerID = result[i]["passengerID"];
+                status = result[i]["status"];
+                driverName = result[i]["driverFName"] + " " + result[i]["driverLName"];
+                trID = 'trID' + i.toString();
+                tdID = 'tdID' + i.toString();
+                btnID = 'btnID' + i.toString();
+                console.log('request ' + requestID + ' lift ' + liftID + ' driver ' + driverID + ' passenger ' + passengerID);
+                tr = '<tr style="color: #ff8800;"  id='
+                    +trID + ' ><td class="hidden" id=' + tdID + '>' + requestID + '</td><td class="hidden">' + liftID + '</td><td class="hidden">'
+                    + driverID + '</td><td class="hidden">' + passengerID
+                    + '</td><td>' + driverName + '</td><td style="color:#eae8ff;">' + status + '</td></tr>';
+                table.append(tr);
+            }
+        });
+}
+
+
+function acceptRequest() {
+    console.log('accept request func');
+    $.ajax({
+        url: 'http://looprac.pythonanywhere.com/acceptRequest',
+        type: 'post',
+        data: $('#liftReqForm').serialize()
+    })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log('AJAX ERROR\njqXHR: ' + jqXHR + '\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+        })
+        .done(function (data) {
+            console.log('data ' + data);
+            var result = JSON.parse(data);
+            if (result["status"] == "complete"){
+                console.log('inside if statement');
+                alert('Request accepted.  The passenger will be notified.');
+                window.location = "main_page.html";
+            }
+        });
+    console.log('after ajax');
+}
+
+
+function updateMyGroups(){
+    console.log('my lifts func');
+    $.ajax({
+        url: 'http://looprac.pythonanywhere.com/myGroups',
+        type: 'post',
+        data: $('#myReqHiddenForm').serialize()
+    })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log('AJAX ERROR\njqXHR: ' + jqXHR + '\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+        })
+        .done(function (data) {
+            console.log('data ' + data);
+            var result = JSON.parse(data);
+            var table = $('#myGroupsTbl');
+            var tr = '';
+            var groupID = 0;
+            var driverName = '';
+            var departTime = '';
+            var departDate = '';
+            var liftID = '';
+            var trID = '';
+            var tdID = '';
+            var btnID = '';
+            for (var i = 0; i < result.length ; i ++ ) {
+                groupID = result[i]["groupID"];
+                driverName = result[i]["driverName"];
+                liftID = result[i]["liftID"];
+                departTime = result[i]["departTime"];
+                departDate = result[i]["departDate"];
+                trID = 'trID' + i.toString();
+                tdID = 'tdID' + i.toString();
+                btnID = 'btnID' + i.toString();
+                console.log('LIFT id ' + liftID);
+                tr = '<tr onclick="expandGroup(' + liftID + ',' + groupID +')" style="color: #ff8800;" id=' +trID + '><td class="hidden" id=' + tdID + '>' + liftID+ '</td><td>' + driverName + '</td><td>' + departTime + ' ' + departDate +  '</td></tr>';
+                table.append(tr);
+                // $('#trID').on("click", showGroupDetails(groupID, departTime, departDate, driverName, i));
+            }
+        });
+    console.log('after ajax');
+}
+
+function expandGroup(liftID, groupID){
+    window.sessionStorage.setItem('groupLiftID', liftID);
+    window.sessionStorage.setItem('groupID', groupID);
+
+    window.location.replace('groupDetails.html');
+}
+
+function showGroupDetails(liftID, groupID )
+{
+    $.ajax({
+        url: 'http://looprac.pythonanywhere.com/groupDetails',
+        type: 'post',
+        data: JSON.stringify({"liftID": liftID, "groupID": groupID})
+    })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log('AJAX ERROR\njqXHR: ' + jqXHR + '\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+        })
+        .done(function (data) {
+            var result = JSON.parse(data);
+            console.log('data ' + data + ' ' + result.length);
+
+            document.getElementById('driverNameRdOnly').value =  result[0]['driverName'];
+            document.getElementById('carRegRdOnly').value =  result[0]['carReg'];
+            document.getElementById('driverPhoneRdOnly').value =  result[0]['driverPhone'];
+            document.getElementById('routeRdOnly').value = result[0]["startCounty"] + ' To ' + result[0]["destCounty"];
+            document.getElementById('departTimeRdOnly').value = result[0]["departTime"];
+            document.getElementById('departDateRdOnly').value = result[0]["departDate"];
+            var paragraph = '';
+            var passengerName = '';
+            var table = $('#passengersTbl');
+            var phone = '';
+            var trID ='';
+            var tdID = '';
+            var btnID = '';
+            for (var index = 0; index < result.length; index++)
+            {
+                trID = 'trID' + index.toString();
+                tdID = 'tdID' + index.toString();
+                btnID = 'btnID' + index.toString();
+                passengerName = result[index]["passengerName"];
+                phone = result[index]["passengerPhone"];
+                paragraph = '<tr style="color:#ff8800;"><td>'+ passengerName + '</td><td>' + phone + '</td></tr>';
+                console.log('name: ' + passengerName + ' ' + 'phone: ' + phone);
+                table.append(paragraph);
+            }
+        });
+
+
+}
+
+//MY LIFTS: where driver see's the lifts they have created and who the passengers are
+
+function updateMyLifts(){
+    console.log('my lifts func');
+    $.ajax({
+        url: 'http://looprac.pythonanywhere.com/myLifts',
+        type: 'post',
+        data: $('#myLiftsHiddenForm').serialize()
+    })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log('AJAX ERROR\njqXHR: ' + jqXHR + '\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+        })
+        .done(function (data) {
+            console.log('data ' + data);
+            var result = JSON.parse(data);
+            var table = $('#myLiftsTbl');
+            var tr = '';
+            var liftID = 0;
+            var userID = 0;
+            var route = '';
+            var departingInfo= '';
+            var trID = '';
+            var tdID = '';
+            var btnID = '';
+            for (var i = 0; i < result.length ; i ++ ) {
+                liftID = result[i]["liftID"];
+                userID = result[i]["userID"];
+                liftID = result[i]["liftID"];
+                route = result[i]["route"];
+                departingInfo = result[i]["departTime"] + ' ' + result[i]["departDate"];
+                trID = 'trID' + i.toString();
+                tdID = 'tdID' + i.toString();
+                btnID = 'btnID' + i.toString();
+                console.log('LIFT id ' + liftID);
+                tr = '<tr onclick="expandMyLift(' + liftID +')" style="color: #ff8800;" id=' +trID + '><td>' + route + '</td><td>' + departingInfo +  '</td></tr>';
+                table.append(tr);
+                // $('#trID').on("click", showGroupDetails(groupID, departTime, departDate, driverName, i));
+            }
+        });
+    console.log('after ajax');
+}
+
+function expandMyLift(liftID){
+    window.sessionStorage.setItem('myLiftID', liftID);
+    window.location.replace("myLiftDetails.html");
+}
+
+function showMyLiftDetails(liftID )
+{
+    $.ajax({
+        url: 'http://looprac.pythonanywhere.com/myLiftDetails',
+        type: 'post',
+        data: JSON.stringify({"liftID": liftID})
+    })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log('AJAX ERROR\njqXHR: ' + jqXHR + '\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+        })
+        .done(function (data) {
+            var result = JSON.parse(data);
+            console.log('data ' + data + ' ' + result.length);
+
+            document.getElementById('spacesAvailableRdOnly').value =  result[0]['spaces'];
+            document.getElementById('routeRdOnly').value = result[0]["startCounty"] + ' To ' + result[0]["destCounty"];
+            document.getElementById('departTimeRdOnly').value = result[0]["departTime"];
+            document.getElementById('departDateRdOnly').value = result[0]["departDate"];
+            document.getElementById('liftTypeTitle').value = 'Type: ' + result[0]["type"];
+
+            var paragraph = '';
+            var passengerName = '';
+            var table = $('#passengersTbl');
+            var phone = '';
+            var trID ='';
+            var tdID = '';
+            var btnID = '';
+            for (var index = 0; index < result.length; index++)
+            {
+                trID = 'trID' + index.toString();
+                tdID = 'tdID' + index.toString();
+                btnID = 'btnID' + index.toString();
+                passengerName = result[index]["passengerName"];
+                phone = result[index]["passengerPhone"];
+                if (passengerName == "None")
+                {
+                    passengerName = "";
+                    phone = "";
+                }
+                paragraph = '<tr style="color:#ff8800;"><td>'+ passengerName + '</td><td>' + phone + '</td></tr>';
+                console.log('name: ' + passengerName + ' ' + 'phone: ' + phone);
+                table.append(paragraph);
+            }
+        });
+
+
+}
 
 /*********************************************
   GOOGLE API FOR OFFER LIFT FORM
  */
 
+// api call that displays the route between start and destination on map
 function calcRoute(startLatLng, destLatLng, map){
     console.log('in calcRoute');
     var directionsService = new google.maps.DirectionsService;
@@ -473,8 +748,35 @@ function calcRoute(startLatLng, destLatLng, map){
             console.log('in success ');
             directionsDisplay.setDirections(result);
         }
+        else{
+            console.log('Directions request failed due to ' + status);
+        }
     });
     console.log('end of calc route');
+}
+
+//api call for getting distance between points on google maps
+function calcDistance(startLatLng, destLatLng){
+    console.log('calc distance func');
+    var service = new google.maps.DistanceMatrixService;
+    service.getDistanceMatrix({
+        origins: [startLatLng],
+        destinations: [destLatLng],
+        travelMode: 'DRIVING',
+        unitSystem: google.maps.UnitSystem.Metric
+    }, function (response, status) {
+        if (status != 'OK'){
+            console.log('Error was: ' + status);
+        }
+        else{
+            var originList = response.originAddresses;
+            var destinationList = response.destinationAddresses;
+            var distance = response.rows[0].elements[0].distance.text;
+            // var outputDiv = document.getElementById('output');
+            // outputDiv.innerHTML = '';
+           console.log('origin list: ' + originList + '\n' + 'destination list: ' + destinationList + '\n' + 'distance: ' + distance);
+        }
+    })
 }
 
 function showLift(startLat, startLng, destinationLat, destinationLng){
@@ -486,7 +788,7 @@ function showLift(startLat, startLng, destinationLat, destinationLng){
         var mapOptions = {zoom: 7,center: startLatlng};
         var map = new google.maps.Map(document.getElementById('lift-map-canvas'), mapOptions);
         calcRoute(startLatlng, destLatLng, map);
-
+        calcDistance(startLatlng, destLatLng);
 
         var markers = [startLatlng, destLatLng];
         for (var i = 0; i <= markers.length; i ++)

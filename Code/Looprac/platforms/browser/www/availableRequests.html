@@ -23,10 +23,9 @@
     <title>Available Requests</title>
 </head>
 <body class="container" >
-<ul class="nav nav-tabs col-xs-12">
-    <li role="presentation" class="active col-xs-4"><a href="#">Requests</a> </li>
-    <li role="presentation" class="col-xs-4"><a href="#">My Lifts</a> </li>
-    <li role="presentation" class="col-xs-4"><a href="#">Requested</a> </li>
+<ul class="requestsTabs nav nav-tabs col-xs-12">
+    <li role="presentation" class="active col-xs-4"><a href="availableRequests.html">Requests</a> </li>
+    <li role="presentation" class="col-xs-4"><a href="myRequestsPage.html">Requested</a> </li>
 </ul>
 <form id="availableReqHiddenForm">
     <input id="userIDHidden" type="number" class="hidden" name="userID">
@@ -34,10 +33,12 @@
 <div id="listDiv" class="col-xs-12"  >
     <table id="availableRequestsTbl" class="table table-inverse table-hover">
         <tr style="color: #ffffff;" >
-            <th class="">RequestID</th>
-            <th class="">LiftID</th>
-            <th>DriverID</th>
-            <th>PassengerID</th>
+            <th class="hidden">RequestID</th>
+            <th class="hidden">LiftID</th>
+            <th class="hidden">DriverID</th>
+            <th class="hidden">PassengerID</th>
+            <th>Passenger Name</th>
+            <th>Status</th>
         </tr>
     </table>
 </div>

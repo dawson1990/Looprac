@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <script type="text/javascript" src="cordova.js"></script>
+    <!--<script type="text/javascript" src="cordova.js"></script>-->
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-toggle.min.js"></script>
@@ -14,31 +14,26 @@
     <script>
         window.onload = function () {
             document.getElementById('userIDHidden').value = sessionStorage.getItem('userID');
-            updateUserLiftRequests();
+            updateMyLifts();
         }
     </script>
     <link rel="stylesheet" type="text/css"  href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
-    <title>Available Requests</title>
+    <title>My Lifts</title>
 </head>
 <body class="container" >
-<ul class="requestsTabs nav nav-tabs col-xs-12">
-    <li role="presentation" class="active col-xs-4"><a href="availableRequests.html">Requests</a> </li>
-    <li role="presentation" class="col-xs-4"><a href="myRequestsPage.html">Requested</a> </li>
-</ul>
-<form id="availableReqHiddenForm">
+
+<h2 style="text-align: center;" class="col-xs-12 myHeaders">My Lifts</h2>
+<form id="myLiftsHiddenForm">
     <input id="userIDHidden" type="number" class="hidden" name="userID">
 </form>
 <div id="listDiv" class="col-xs-12"  >
-    <table id="availableRequestsTbl" class="table table-inverse table-hover">
+    <table id="myLiftsTbl" class="table table-inverse table-hover">
         <tr style="color: #ffffff;" >
-            <th class="hidden">RequestID</th>
-            <th class="hidden">LiftID</th>
-            <th class="hidden">DriverID</th>
-            <th class="hidden">PassengerID</th>
-            <th>Passenger Name</th>
-            <th>Status</th>
+            <th class="hidden">liftID</th>
+            <th>Route</th>
+            <th>Departing</th>
         </tr>
     </table>
 </div>

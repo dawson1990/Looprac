@@ -40,13 +40,16 @@
 </head>
 <body class="container">
 <div id="mySidenav" class="sidenav">
+    <p id="sessionP" class="col-xs-12" style="color: #ff8800; font-size: 35px; text-align: center;"  onclick=""> </p>
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="availableRequests.html">Your Requests</a>
+    <a href="availableRequests.html">My Requests</a>
+    <a href="myGroups.html">My Groups</a>
+    <a href="myLifts.html">My Lifts</a>
     <a href="#" onclick="logout()">Logout</a>
 </div>
 
 <div id="sessionDiv" class="col-xs-12">
-    <p id="sessionP" class="col-xs-12" style="color: #ff8800; font-size: 35px; text-align: center;"  onclick="openNav()"> </p>
+    <i id="hamburgerMenuIcon" class="fa fa-bars col-xs-12" aria-hidden="true" onclick="openNav()"></i>
     <form method="post" id="hiddenMainPageForm">
         <input type="number" class="hidden" name="userID" readonly id="userID" />
         <!--<i id="logoutIcon" class="fa fa-sign-out col-xs-5" style="color: #ffffff;" aria-hidden="true" onclick="logout()"></i>-->
