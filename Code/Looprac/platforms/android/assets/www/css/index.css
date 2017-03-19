@@ -683,40 +683,86 @@ side nav bar: gotten from w3schools.com
 
 
 /*MY GROUPS*/
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
+
+#myGroup-map-canvas{
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    bottom: 485px;
+    right: 0;
+    left:0;
+    position: absolute;
+
 }
 
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+#groupDetailsDiv{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    bottom: 0;
+    right: 0;
+    color: #ff8800;
+    overflow: visible;
+
 }
 
-/* The Close Button */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+#groupDetailsInnerDiv{
+    position: absolute;
+    display: block;
+    justify-content: center;
+    flex-wrap: wrap;
+    bottom: 0;
+    right: 0;
+    color: #ff8800;
+    overflow: auto;
+    max-height: 488px;
 }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+/*MY LIFTS*/
+
+#myLift-map-canvas{
+    top: 0;
+    bottom: 485px;
+    right: 0;
+    left:0;
+    position: absolute;
+    display: block;
+}
+
+#myLiftDetailsDiv{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    bottom: 0;
+    right: 0;
+    color: #ff8800;
+    overflow: visible;
+
+}
+
+#myLiftDetailsInnerDiv {
+    position: absolute;
+    display: block;
+    justify-content: center;
+    flex-wrap: wrap;
+    bottom: 0;
+    right: 0;
+    color: #ff8800;
+    overflow: auto;
+    max-height: 488px;
+}
+
+#tableDiv{
+    margin: 0 auto;
+    width: 90%;
+    max-height: 60%;
+    overflow: scroll;
+}
+
+#myLiftDetailsCancelBtn{
+    border-radius: 5px;
+    border-color: #eae8ff;
+    color: #eae8ff;
+    background-color:transparent;
+    padding: 5px 10px 5px 10px;
 }

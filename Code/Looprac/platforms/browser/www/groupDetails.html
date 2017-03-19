@@ -8,6 +8,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-toggle.min.js"></script>
     <script src="js/Looprac.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc" async defer type="text/javascript"></script>
     <link rel="stylesheet" type="text/css"  href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
@@ -22,8 +23,10 @@
     <title>Group Details</title>
 </head>
 <body class="container" >
+<div id="myLift-map-canvas" class="col-xs-12" ></div>
+<div class="bufferDiv col-xs-12"></div>
 <div id="groupDetailsDiv" class="col-xs-12 " >
-    <div class="col-xs-12">
+    <div id="groupDetailsInnerDiv"  class="col-xs-12">
         <h4 style="color: #ff8800;text-align: center;">Driver & Car</h4>
         <label class="col-xs-12 liftDetailsLabels" for="driverNameRdOnly">Driver </label>
         <input type="text" id="driverNameRdOnly" class="liftDetailsInput col-xs-12" readonly />
@@ -45,10 +48,11 @@
                 <th>Phone</th>
             </tr>
         </table>
+        <div id="liftDetailsBtnDiv" class="col-xs-12">
+            <input type="button" id="cancelBtn" value="Go Back" class="btn btn-primary liftDetailsBtns  col-xs-12" onclick="window.location = 'myGroups.html'" />
+        </div>
     </div>
-    <div id="liftDetailsBtnDiv" class="col-xs-12">
-        <input type="button" id="cancelBtn" value="Go Back" class="btn btn-primary liftDetailsBtns  col-xs-12" onclick="window.location = 'myGroups.html'" />
-    </div>
+
 </div>
 
 </body>

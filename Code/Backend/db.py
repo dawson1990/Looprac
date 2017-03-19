@@ -20,13 +20,6 @@ def list_available_lifts(passengerID):
               WHERE  Available_Spaces > 0
               AND LiftID NOT IN
               (SELECT LiftID FROM Request WHERE PassengerID = %s)"""
-    # with DBcm.UseDatabase(config) as cursor:
-    #     try:
-    #         cursor.execute(_CHECKIFREQUESTED_SQL, (passengerID,))
-    #         requestData = cursor.fetchall()
-    #         print('request data: ', requestData)
-    #     except Exception as e:
-    #         print('Error with check if already requested query:', e)
     with DBcm.UseDatabase(config) as cursor:
         try:
             cursor.execute(_SQL, (passengerID,))
@@ -34,7 +27,6 @@ def list_available_lifts(passengerID):
             print('data', data)
         except Exception as e:
             print('Error with select lift details query: ', e)
-
     d = []
     for item in data:
         print(item, 'appended')
@@ -55,10 +47,11 @@ def converter(obj):
 
 
 def getLiftDetails(liftID, driverID):
-    print('before query')
-    _SELECT = """ SELECT Driver.UserID, User.First_Name, User.Last_Name
-                  FROM User, Driver
-                  WHERE Driver.DriverID= %s"""
+    print('liftID', liftID, 'driverID', driverID)
+    _SELECT = """ SELECT u.UserID, u.First_Name, u.Last_Name
+                  FROM User u, Driver d
+                  WHERE u.UserID = d.UserID
+                  AND d.DriverID= %s"""
     _SQL = """SELECT * FROM Lift WHERE LiftID= %s order by Created_At"""
     # _GETDRIVER_SQL = """ SELECT UserID FROM Driver WHERE DriverID= %s """
     # _GETUSER_SQL = """SELECT First_Name, Last_Name FROM User WHERE UserID= %s"""
@@ -89,19 +82,19 @@ def getLiftDetails(liftID, driverID):
                 'DriverLName': i[2],
                 'liftID': item[0],
                 'driverID': item[1],
-                'startLat': item[3],
-                'startLng': item[4],
-                'startCounty': item[5],
-                'destinationLat': item[6],
-                'destinationLng': item[7],
-                'destinationCounty': item[8],
-                'departDate': item[9],
-                'returnDate': item[10],
-                'departTime': item[11],
-                'returnTime': item[12],
-                'seats': item[13],
-                'liftType': item[14],
-                'created': item[15]
+                'startLat': item[2],
+                'startLng': item[3],
+                'startCounty': item[4],
+                'destinationLat': item[5],
+                'destinationLng': item[6],
+                'destinationCounty': item[7],
+                'departDate': item[8],
+                'returnDate': item[9],
+                'departTime': item[10],
+                'returnTime': item[11],
+                'seats': item[12],
+                'liftType': item[13],
+                'created': item[14]
             })
     print('after d append')
     print('d', d)
@@ -480,6 +473,18 @@ def acceptRequest(requestID):
     return jsObj
 
 
+def denyRequest(requestID):
+    _UPDATEREQUESTSTATUS_SQL = """UPDATE Request SET Status = 'Denied' WHERE RequestID = %s"""
+    with DBcm.UseDatabase(config) as cursor:
+        try:
+            cursor.execute(_UPDATEREQUESTSTATUS_SQL, (requestID,))
+            jsObj = json.dumps({"status": "complete"})
+        except Exception as e:
+            print('Error with updating request status: ', e)
+        else:
+            return jsObj
+
+
 def getMyGroups(userID):
     _GROUPDETAIL_SQL = """SELECT c.GroupID, u.First_Name, u.Last_Name, l.LiftID, l.Depart_Time, l.Depart_Date
                           FROM CarGroup c, Driver d, User u, Lift l, Passenger p
@@ -516,7 +521,8 @@ def getGroupDetails(liftID, groupID):
                             AND p.UserID = u.UserID
                             AND c.LiftID = %s
                            """
-    _GETGROUPDETAILS_SQL = """SELECT l.Start_County, l.Destination_County, l.Depart_Date, l.Depart_Time
+    _GETGROUPDETAILS_SQL = """SELECT l.Start_County, l.Destination_County, l.Depart_Date, l.Depart_Time, l.Return_Date,
+                                  l.Return_Time, l.Start_Lat, l.Start_Long, l. Destination_Lat, l.Destination_Long
                                   FROM Lift l, CarGroup c
                                   WHERE c.LiftID = l.LiftID
                                   AND c.GroupID = %s"""
@@ -560,6 +566,12 @@ def getGroupDetails(liftID, groupID):
                             'destCounty': item[1],
                             'departDate': item[2],
                             'departTime': item[3],
+                            'returnDate': item[4],
+                            'returnTime': item[5],
+                            'startLat': item[6],
+                            'startLng': item[7],
+                            'destLat': item[8],
+                            'destLng': item[9],
                             'passengerName': it[0] + ' ' + it[1],
                             'passengerPhone': it[2]
                         })

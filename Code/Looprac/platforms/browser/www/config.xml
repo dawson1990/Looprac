@@ -11,7 +11,7 @@
         Looprac is a carsharing application allowing users to be both drivers and passengers.
     </description>
     <author email="c00130965@itcarlow.ie">
-        PhoneGap Team
+        Kevin Dawson
     </author>
     <content src="login.html" />
     <access origin="*" />

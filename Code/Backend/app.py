@@ -27,42 +27,26 @@ def home():
     return 'API home screen'
 
 
-# @app.route('/availableLifts', methods=['PUT', 'POST'])
-# def availableLifts():
-#     r = make_response(render_template('base.html'))
-#     r.headers['Access-Control-Allow-Origin'] = '*'
-#     print('available lifts start')
-#     if request.method == 'POST':
-#         jsObj = db.list_available_lifts()
-#         print('after function')
-#         return jsObj
-#     else:
-#         'post did not work'
-#
-
-
 # TRY REMOVING GET TO FIX ACCESS CONTROL ERRORS
-@app.route('/availableLifts', methods=['PUT', 'POST', 'GET'])
+@app.route('/availableLifts', methods=['PUT', 'POST'])
 def available_lifts():
-    r = make_response(render_template('base.html'))
-    r.headers['Access-Control-Allow-Origin'] = '*'
+    # r = make_response(render_template('base.html'))
+    # r.headers['Access-Control-Allow-Origin'] = '*'
+
     if request.method == 'POST':
         data = request.get_data()
         d = json.loads(data.decode('UTF-8'))
-        passengerID = d['passengerID']
-        jsObj = db.list_available_lifts(passengerID)
+        jsObj = db.list_available_lifts(d['passengerID'])
         print('returning obj', jsObj)
         print('after function')
         return jsObj
 
 
-
-
 @app.route('/liftDetails', methods=['PUT','POST'])
 def liftDetails():
     print('lift details func')
-    r = make_response(render_template('base.html'))
-    r.headers['Access-Control-Allow-Origin'] = '*'
+    # r = make_response(render_template('base.html'))
+    # r.headers['Access-Control-Allow-Origin'] = '*'
     if request.method == 'POST':
         data = request.get_data()
         print(type(data))
@@ -232,11 +216,18 @@ def available_requests():
 def accept_request():
     print('accept request func')
     if request.method == 'POST':
-        requestID = request.form['requestID']
-        jsObj = db.acceptRequest(requestID)
+        jsObj = db.acceptRequest(request.form['requestID'])
         print('jsObj', jsObj)
         return jsObj
 
+
+@app.route('/denyRequest', methods=['PUT', 'POST'])
+def deny_request():
+    print('deny request func')
+    if request.method == 'POST':
+        jsObj = db.denyRequest(request.form['requestID'])
+        print('jsobj', jsObj)
+        return jsObj
 
 @app.route('/myGroups', methods=['PUT', 'POST'])
 def my_groups():

@@ -1,3 +1,33 @@
+function showHideModal(){
+    // Get the modal
+    var modal = document.getElementById('routeModal');
+
+// Get the button that opens the modal
+    var btn = document.getElementById("displayLiftBtn");
+
+// Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    };
+
+// When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    };
+
+// When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    };
+}
+
+
+
 function login(){
     console.log("LOGIN FUNCTION");
     event.preventDefault(); // prevents form submitting normally
@@ -276,7 +306,7 @@ function updateAvailableLifts(){
             var btnID = '';
             var displayingDateTime = '';
 
-            for (var i = 0; i <= data.length ; i ++ ) {
+            for (var i = 0; i < result.length ; i ++ ) {
                 liftID = result[i]["liftID"];
                 driverID = result[i]['driverID'];
                 sCounty =  result[i]['startCounty'];
@@ -333,7 +363,7 @@ function getLiftDetails(){
             var seats = result[0]['seats'];
             var liftType = result[0]['liftType'];
             console.log('return date and time ' + returnDate + ' ' + returnTime);
-            showLift(startLat, startLng, destLat, destLng);
+            showLift(startLat, startLng, destLat, destLng, "lift-map-canvas");
             geocodeCoords(startLat, startLng, 'startRdOnly');
             geocodeCoords(destLat, destLng, 'destinationRdOnly');
             document.getElementById('liftIDRdOnly').value = liftID;
@@ -384,18 +414,6 @@ function sendLiftReq() {
     console.log('after ajax');
 }
 
-function  notifyDriver(requestID) {
-    console.log('notifying: ' + requestID);
-    navigator.notification.alert(
-        'You have a lift request!',
-        displayRequests()
-    )
-}
-
-function displayRequests() {
-    console.log('worked!')
-
-}
 
 function updateUserLiftRequests(){
     // var d = ;
@@ -433,10 +451,19 @@ function updateUserLiftRequests(){
                 tdID = 'tdID' + i.toString();
                 btnID = 'btnID' + i.toString();
                 console.log('request ' + requestID + ' lift ' + liftID + ' driver ' + driverID + ' passenger ' + passengerID);
-                tr = '<tr onclick="expandRequest('+ requestID + ',' + driverID +')" style="color: #ff8800;"  id=' +trID
-                    + ' ><td class="hidden" id=' + tdID + '>' + requestID + '</td><td class="hidden">' + liftID + '</td><td class="hidden">' + driverID
-                    + '</td><td class="hidden">' + passengerID + '</td><td>' + passengerName + '</td><td>' + status
-                    + '</td></tr>';
+                if (status != "Pending"){
+                    tr = '<tr style="color: #ff8800;"  id=' +trID
+                        + ' ><td class="hidden" id=' + tdID + '>' + requestID + '</td><td class="hidden">' + liftID + '</td><td class="hidden">' + driverID
+                        + '</td><td class="hidden">' + passengerID + '</td><td>' + passengerName + '</td><td>' + status
+                        + '</td></tr>';
+                }
+                else{
+                    tr = '<tr onclick="expandRequest('+ requestID + ',' + driverID +')" style="color: #ff8800;"  id=' +trID
+                        + ' ><td class="hidden" id=' + tdID + '>' + requestID + '</td><td class="hidden">' + liftID + '</td><td class="hidden">' + driverID
+                        + '</td><td class="hidden">' + passengerID + '</td><td>' + passengerName + '</td><td>' + status
+                        + '</td></tr>';
+                }
+
                 table.append(tr);
             }
         });
@@ -541,6 +568,29 @@ function acceptRequest() {
 }
 
 
+function denyRequest(){
+    console.log('deny request func');
+    $.ajax({
+        url: 'http://looprac.pythonanywhere.com/denyRequest',
+        type: 'post',
+        data: $('#liftReqForm').serialize()
+    })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log('AJAX ERROR\njqXHR: ' + jqXHR + '\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+        })
+        .done(function (data) {
+            console.log('data ' + data);
+            var result = JSON.parse(data);
+            if (result["status"] == "complete"){
+                console.log('inside if statement');
+                alert('Request has been denied.  The passenger will be notified.');
+                window.location = "main_page.html";
+            }
+        });
+    console.log('after ajax');
+}
+
+
 function updateMyGroups(){
     console.log('my lifts func');
     $.ajax({
@@ -609,6 +659,10 @@ function showGroupDetails(liftID, groupID )
             document.getElementById('routeRdOnly').value = result[0]["startCounty"] + ' To ' + result[0]["destCounty"];
             document.getElementById('departTimeRdOnly').value = result[0]["departTime"];
             document.getElementById('departDateRdOnly').value = result[0]["departDate"];
+            var startLat = result[0]["startLat"];
+            var startLng = result[0]["startLng"];
+            var destinationLat = result[0]["destLat"];
+            var destinationLng= result[0]["destLng"];
             var paragraph = '';
             var passengerName = '';
             var table = $('#passengersTbl');
@@ -627,6 +681,8 @@ function showGroupDetails(liftID, groupID )
                 console.log('name: ' + passengerName + ' ' + 'phone: ' + phone);
                 table.append(paragraph);
             }
+            window.onload = showLift(startLat, startLng, destinationLat, destinationLng, "myLift-map-canvas");
+
         });
 
 
@@ -697,7 +753,11 @@ function showMyLiftDetails(liftID )
             document.getElementById('routeRdOnly').value = result[0]["startCounty"] + ' To ' + result[0]["destCounty"];
             document.getElementById('departTimeRdOnly').value = result[0]["departTime"];
             document.getElementById('departDateRdOnly').value = result[0]["departDate"];
-            document.getElementById('liftTypeTitle').value = 'Type: ' + result[0]["type"];
+            document.getElementById('liftTypeTitle').value =result[0]["type"];
+            var startLat = result[0]["startLat"];
+            var startLng = result[0]["startLng"];
+            var destinationLat = result[0]["destLat"];
+            var destinationLng= result[0]["destLng"];
 
             var paragraph = '';
             var passengerName = '';
@@ -722,6 +782,8 @@ function showMyLiftDetails(liftID )
                 console.log('name: ' + passengerName + ' ' + 'phone: ' + phone);
                 table.append(paragraph);
             }
+            window.onload = showLift(startLat, startLng, destinationLat, destinationLng, "myLift-map-canvas");
+
         });
 
 
@@ -749,6 +811,7 @@ function calcRoute(startLatLng, destLatLng, map){
             directionsDisplay.setDirections(result);
         }
         else{
+            console.log('not successful');
             console.log('Directions request failed due to ' + status);
         }
     });
@@ -779,14 +842,23 @@ function calcDistance(startLatLng, destLatLng){
     })
 }
 
-function showLift(startLat, startLng, destinationLat, destinationLng){
-    navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 5000 , enableHighAccuracy: true});
+function showLift(startLat, startLng, destinationLat, destinationLng, mapID){
+    navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 7000 , enableHighAccuracy: true});
+    console.log('in show lift func');
     function onSuccess(position) {
         //Google Maps
         var startLatlng = new google.maps.LatLng(startLat,startLng);
         var destLatLng = new google.maps.LatLng(destinationLat, destinationLng);
         var mapOptions = {zoom: 7,center: startLatlng};
-        var map = new google.maps.Map(document.getElementById('lift-map-canvas'), mapOptions);
+        var map = new google.maps.Map(document.getElementById(mapID), mapOptions);
+
+// Resize map to show on a Bootstrap's modal
+        $('#routeModal').on('shown.bs.modal', function() {
+            var currentCenter = map.getCenter();  // Get current center before resizing
+            google.maps.event.trigger(map, "resize");
+            map.setCenter(currentCenter); // Re-set previous center
+        });
+        console.log('in success, before calcRoute call');
         calcRoute(startLatlng, destLatLng, map);
         calcDistance(startLatlng, destLatLng);
 
@@ -798,6 +870,7 @@ function showLift(startLat, startLng, destinationLat, destinationLng){
 
     }
     function onError (error) {
+        console.log('in ERROR ' + error);
         switch (error.code) {
             case error.TIMEOUT:
                 refresh();
@@ -810,6 +883,15 @@ function showLift(startLat, startLng, destinationLat, destinationLng){
                 break;
             case error.POSITION_UNAVAILABLE:
                 alert("Please ensure your GPS is turned on !\n\nPosition unavailable.");
+                break;
+            case error.code == 1:
+                alert("You have decided not to share your location.");
+                break;
+            case error.code == 2:
+                alert("The positioning service cannot be reached at this time.");
+                break;
+            case error.code == 3:
+                alert("The attempt timed out before it could get the location data.");
                 break;
         }
     }
@@ -832,7 +914,7 @@ function showLift(startLat, startLng, destinationLat, destinationLng){
         var startLatlng = new google.maps.LatLng(startLat,startLng);
         var destLatLng = new google.maps.LatLng(destinationLat, destinationLng);
         var mapOptions = {zoom: 7,center: startLatlng};
-        var map = new google.maps.Map(document.getElementById('lift-map-canvas'), mapOptions);
+        var map = new google.maps.Map(document.getElementById(mapID), mapOptions);
         var markers = [startLatlng, destLatLng];
         for (var i = 0; i <= markers.length; i ++)
         {
@@ -872,7 +954,7 @@ function geocodeCoords(lat, lng, elementID){
 
 
 function initMap(){
-    navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 5000 , enableHighAccuracy: true});
+    navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 7000 , enableHighAccuracy: true});
     function onSuccess(position) {
         var lat = position.coords.latitude;
         var lang = position.coords.longitude;
@@ -991,7 +1073,7 @@ function locationChoice() {
 
 
 function initDestinationMap(){
-    navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 5000 , enableHighAccuracy: true});
+    navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 7000 , enableHighAccuracy: true});
     function onSuccess(position) {
         var lat = position.coords.latitude;
         var lang = position.coords.longitude;

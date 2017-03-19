@@ -9,16 +9,13 @@
     <script src="js/bootstrap-toggle.min.js"></script>
     <script src="js/Looprac.js"></script>
     <!--access Google APIs and on callback calls function getliftdetail -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc" async defer type="text/javascript"></script>
     <link rel="stylesheet" type="text/css"  href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
     <script>
         window.onload = function (){
             document.getElementById('requestIDRdOnly').value = sessionStorage.getItem('requestID');
-            document.getElementById('driverIDRdOnly').value = sessionStorage.getItem('driverID');
             getRequestDetails();
-//            getLiftDetails();
 
         };
 
@@ -38,7 +35,6 @@
 <div id="liftDetailsForm" class="col-xs-12 " >
     <div class="col-xs-12">
         <form method='post' id="liftReqForm" class="col-xs-12">
-            <input type="number" name="driverID" id="driverIDRdOnly" class="col-xs-12 liftDetailsInput" readonly />
             <input type="number" name="requestID" id="requestIDRdOnly" class="col-xs-12 liftDetailsInput" readonly />
         </form>
         <label class="col-xs-12 liftDetailsLabels" for="passengerNameRdOnly">Name </label>
@@ -51,7 +47,7 @@
         <input type="text" id="departDateRdOnly" class="col-xs-12 liftDetailsInput" readonly />
     </div>
     <div id="liftDetailsBtnDiv" class="col-xs-12">
-        <input type="button" id="denyReqBtn" value="Deny" class="btn btn-primary liftDetailsBtns col-xs-4" onclick="" />
+        <input type="button" id="denyReqBtn" value="Deny" class="btn btn-primary liftDetailsBtns col-xs-4" onclick="denyRequest()" />
         <input type="button" id="cancelBtn" value="Go Back" class="btn btn-primary liftDetailsBtns  col-xs-4" onclick="window.location ='availableRequests.html'" />
         <input type="button" id="acceptReqBtn" value="Accept" class="btn btn-primary liftDetailsBtns col-xs-4" onclick="acceptRequest()" />
 

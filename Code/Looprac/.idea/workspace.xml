@@ -8,24 +8,40 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Documents/FinalReport.docx" afterPath="$PROJECT_DIR$/../../Documents/FinalReport.docx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Backend/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Backend/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.xml" afterPath="$PROJECT_DIR$/config.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/LiftDetails.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/LiftDetails.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/availableLifts.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/availableLifts.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/availableRequests.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/availableRequests.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/css/index.css" afterPath="$PROJECT_DIR$/platforms/android/assets/www/css/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/index.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/groupDetails.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/groupDetails.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/Looprac.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/Looprac.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/main_page.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/main_page.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/myLiftDetails.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/myLiftDetails.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/myRequestsPage.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/myRequestsPage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/offerLift.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/offerLift.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/requestDetails.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/requestDetails.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/xml/config.xml" afterPath="$PROJECT_DIR$/platforms/android/res/xml/config.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/config.xml" afterPath="$PROJECT_DIR$/platforms/browser/config.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/LiftDetails.html" afterPath="$PROJECT_DIR$/platforms/browser/www/LiftDetails.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/availableLifts.html" afterPath="$PROJECT_DIR$/platforms/browser/www/availableLifts.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/availableRequests.html" afterPath="$PROJECT_DIR$/platforms/browser/www/availableRequests.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/config.xml" afterPath="$PROJECT_DIR$/platforms/browser/www/config.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/index.css" afterPath="$PROJECT_DIR$/platforms/browser/www/css/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/index.html" afterPath="$PROJECT_DIR$/platforms/browser/www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/groupDetails.html" afterPath="$PROJECT_DIR$/platforms/browser/www/groupDetails.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/js/Looprac.js" afterPath="$PROJECT_DIR$/platforms/browser/www/js/Looprac.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/main_page.html" afterPath="$PROJECT_DIR$/platforms/browser/www/main_page.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/myLiftDetails.html" afterPath="$PROJECT_DIR$/platforms/browser/www/myLiftDetails.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/myRequestsPage.html" afterPath="$PROJECT_DIR$/platforms/browser/www/myRequestsPage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/offerLift.html" afterPath="$PROJECT_DIR$/platforms/browser/www/offerLift.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/requestDetails.html" afterPath="$PROJECT_DIR$/platforms/browser/www/requestDetails.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/LiftDetails.html" afterPath="$PROJECT_DIR$/www/LiftDetails.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/availableLifts.html" afterPath="$PROJECT_DIR$/www/availableLifts.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/availableRequests.html" afterPath="$PROJECT_DIR$/www/availableRequests.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/index.css" afterPath="$PROJECT_DIR$/www/css/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/groupDetails.html" afterPath="$PROJECT_DIR$/www/groupDetails.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/Looprac.js" afterPath="$PROJECT_DIR$/www/js/Looprac.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/main_page.html" afterPath="$PROJECT_DIR$/www/main_page.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/myLiftDetails.html" afterPath="$PROJECT_DIR$/www/myLiftDetails.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/myRequestsPage.html" afterPath="$PROJECT_DIR$/www/myRequestsPage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/offerLift.html" afterPath="$PROJECT_DIR$/www/offerLift.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/requestDetails.html" afterPath="$PROJECT_DIR$/www/requestDetails.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -43,20 +59,46 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Looprac.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Looprac.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/Looprac.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="710" column="49" lean-forward="true" selection-start-line="710" selection-start-column="49" selection-end-line="710" selection-end-column="49" />
+            <state relative-caret-position="-7">
+              <caret line="664" column="53" lean-forward="false" selection-start-line="664" selection-start-column="53" selection-end-line="664" selection-end-column="53" />
               <folding>
-                <marker date="1489857360690" expanded="true" signature="17754:17769" ph="..." />
-                <marker date="1489857360690" expanded="true" signature="20985:21000" ph="..." />
-                <marker date="1489857360690" expanded="true" signature="21295:21309" ph="..." />
-                <marker date="1489857360690" expanded="true" signature="23634:23649" ph="..." />
-                <marker date="1489857360690" expanded="true" signature="25937:25951" ph="..." />
-                <marker date="1489857360690" expanded="true" signature="27628:27643" ph="..." />
-                <marker date="1489857360690" expanded="true" signature="29836:29850" ph="..." />
+                <marker date="1489951880504" expanded="true" signature="18296:18311" ph="..." />
+                <marker date="1489951880504" expanded="true" signature="18776:18791" ph="..." />
+                <marker date="1489951880504" expanded="true" signature="22038:22053" ph="..." />
+                <marker date="1489951880504" expanded="true" signature="22348:22362" ph="..." />
+                <marker date="1489951880504" expanded="true" signature="25504:25519" ph="..." />
+                <marker date="1489951880504" expanded="true" signature="28016:28030" ph="..." />
+                <marker date="1489951880504" expanded="true" signature="29819:29834" ph="..." />
+                <marker date="1489951880504" expanded="true" signature="32224:32238" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="groupDetails.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/groupDetails.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="404">
+              <caret line="52" column="14" lean-forward="false" selection-start-line="52" selection-start-column="14" selection-end-line="52" selection-end-column="14" />
+              <folding>
+                <element signature="n#style#0;n#h4#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h4#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h4#2;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="availableLifts.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/availableLifts.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="6" column="9" lean-forward="false" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -64,13 +106,13 @@
       <file leaf-file-name="myLiftDetails.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/myLiftDetails.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="29" column="116" lean-forward="false" selection-start-line="29" selection-start-column="116" selection-end-line="29" selection-end-column="116" />
+            <state relative-caret-position="268">
+              <caret line="56" column="30" lean-forward="true" selection-start-line="56" selection-start-column="30" selection-end-line="56" selection-end-column="30" />
               <folding>
-                <element signature="n#style#0;n#h4#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h4#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h4#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h4#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h4#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h4#2;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -79,30 +121,48 @@
       <file leaf-file-name="LiftDetails.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/LiftDetails.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="110" lean-forward="true" selection-start-line="11" selection-start-column="100" selection-end-line="11" selection-end-column="110" />
+            <state relative-caret-position="153">
+              <caret line="33" column="28" lean-forward="false" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="myLifts.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/myLifts.html">
+      <file leaf-file-name="offerLift.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/offerLift.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="16" column="25" lean-forward="false" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="25" />
-              <folding>
-                <element signature="n#style#0;n#h2#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="558">
+              <caret line="84" column="29" lean-forward="false" selection-start-line="84" selection-start-column="29" selection-end-line="84" selection-end-column="29" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="requestDetails.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/requestDetails.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/css/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10098">
-              <caret line="594" column="18" lean-forward="false" selection-start-line="594" selection-start-column="1" selection-end-line="594" selection-end-column="18" />
+            <state relative-caret-position="273">
+              <caret line="703" column="22" lean-forward="false" selection-start-line="703" selection-start-column="22" selection-end-line="703" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-140">
+              <caret line="10" column="53" lean-forward="false" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -120,11 +180,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>offerLiftBtn</find>
-      <find>reg</find>
-      <find>geometry</find>
-      <find>alert</find>
-      <find>sessionup</find>
       <find>density</find>
       <find>history</find>
       <find>email</find>
@@ -137,13 +192,24 @@
       <find>init</find>
       <find>request</find>
       <find>checklogin</find>
-      <find>getlift</find>
       <find>driverID</find>
       <find>getRequesDetails</find>
       <find>(</find>
       <find>liftdetailsl</find>
       <find>expandLift</find>
       <find>expand</find>
+      <find>updatea</find>
+      <find>getlift</find>
+      <find>calcRoute</find>
+      <find>timeout</find>
+      <find>in error</find>
+      <find>accep</find>
+      <find>mylif</find>
+      <find>lift-map-canvas</find>
+      <find>map-canvas</find>
+      <find>showLift</find>
+      <find>liftDetailsForm</find>
+      <find>cancel</find>
     </findStrings>
     <replaceStrings>
       <replace>qualifier</replace>
@@ -163,23 +229,23 @@
         <option value="$PROJECT_DIR$/www/map.html" />
         <option value="$PROJECT_DIR$/www/startLocalMap.html" />
         <option value="$PROJECT_DIR$/www/destinationLocalMap.html" />
-        <option value="$PROJECT_DIR$/config.xml" />
-        <option value="$PROJECT_DIR$/www/offerLift.html" />
         <option value="$PROJECT_DIR$/www/js/index.js" />
         <option value="$PROJECT_DIR$/www/login.html" />
-        <option value="$PROJECT_DIR$/www/availableLifts.html" />
-        <option value="$PROJECT_DIR$/www/LiftDetails.html" />
-        <option value="$PROJECT_DIR$/www/requestDetails.html" />
-        <option value="$PROJECT_DIR$/www/availableRequests.html" />
-        <option value="$PROJECT_DIR$/www/myRequestsPage.html" />
         <option value="$PROJECT_DIR$/www/index.html" />
-        <option value="$PROJECT_DIR$/www/css/index.css" />
         <option value="$PROJECT_DIR$/www/myGroups.html" />
-        <option value="$PROJECT_DIR$/www/groupDetails.html" />
         <option value="$PROJECT_DIR$/www/myLifts.html" />
         <option value="$PROJECT_DIR$/www/main_page.html" />
-        <option value="$PROJECT_DIR$/www/myLiftDetails.html" />
+        <option value="$PROJECT_DIR$/www/availableRequests.html" />
+        <option value="$PROJECT_DIR$/www/myRequestsPage.html" />
+        <option value="$PROJECT_DIR$/www/availableLifts.html" />
+        <option value="$PROJECT_DIR$/www/offerLift.html" />
+        <option value="$PROJECT_DIR$/www/LiftDetails.html" />
+        <option value="$PROJECT_DIR$/www/requestDetails.html" />
         <option value="$PROJECT_DIR$/www/js/Looprac.js" />
+        <option value="$PROJECT_DIR$/config.xml" />
+        <option value="$PROJECT_DIR$/www/myLiftDetails.html" />
+        <option value="$PROJECT_DIR$/www/groupDetails.html" />
+        <option value="$PROJECT_DIR$/www/css/index.css" />
       </list>
     </option>
   </component>
@@ -244,24 +310,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Looprac" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Looprac" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="img" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -385,12 +433,12 @@
       <workItem from="1489422084334" duration="19083000" />
       <workItem from="1489573429224" duration="13287000" />
       <workItem from="1489752848518" duration="8070000" />
-      <workItem from="1489844705939" duration="9418000" />
+      <workItem from="1489844705939" duration="27244000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="278031000" />
+    <option name="totallyTimeSpent" value="295857000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -422,7 +470,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="8" />
+      <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -450,13 +498,14 @@
         <state relative-caret-position="612">
           <caret line="36" column="11" lean-forward="true" selection-start-line="36" selection-start-column="11" selection-end-line="36" selection-end-column="11" />
           <folding>
-            <marker date="1489857360690" expanded="true" signature="17754:17769" ph="..." />
-            <marker date="1489857360690" expanded="true" signature="20985:21000" ph="..." />
-            <marker date="1489857360690" expanded="true" signature="21295:21309" ph="..." />
-            <marker date="1489857360690" expanded="true" signature="23634:23649" ph="..." />
-            <marker date="1489857360690" expanded="true" signature="25937:25951" ph="..." />
-            <marker date="1489857360690" expanded="true" signature="27628:27643" ph="..." />
-            <marker date="1489857360690" expanded="true" signature="29836:29850" ph="..." />
+            <marker date="1489951880504" expanded="true" signature="18296:18311" ph="..." />
+            <marker date="1489951880504" expanded="true" signature="18776:18791" ph="..." />
+            <marker date="1489951880504" expanded="true" signature="22038:22053" ph="..." />
+            <marker date="1489951880504" expanded="true" signature="22348:22362" ph="..." />
+            <marker date="1489951880504" expanded="true" signature="25504:25519" ph="..." />
+            <marker date="1489951880504" expanded="true" signature="28016:28030" ph="..." />
+            <marker date="1489951880504" expanded="true" signature="29819:29834" ph="..." />
+            <marker date="1489951880504" expanded="true" signature="32224:32238" ph="..." />
           </folding>
         </state>
       </provider>
@@ -605,21 +654,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="78" lean-forward="false" selection-start-line="12" selection-start-column="78" selection-end-line="12" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/offerLift.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1428">
-          <caret line="84" column="83" lean-forward="false" selection-start-line="84" selection-start-column="83" selection-end-line="84" selection-end-column="83" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DOMEvents.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
@@ -668,16 +702,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/availableLifts.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="28" column="37" lean-forward="false" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
-          <folding>
-            <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -690,40 +714,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="21" lean-forward="false" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/myRequestsPage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="37" lean-forward="false" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="37" />
-          <folding>
-            <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10098">
-          <caret line="594" column="18" lean-forward="false" selection-start-line="594" selection-start-column="1" selection-end-line="594" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/requestDetails.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="47" lean-forward="false" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/availableRequests.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="42" column="12" lean-forward="false" selection-start-line="33" selection-start-column="3" selection-end-line="42" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -745,23 +735,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/groupDetails.html">
+    <entry file="file://$PROJECT_DIR$/www/myRequestsPage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="17" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="54" selection-end-column="7" />
+        <state relative-caret-position="319">
+          <caret line="27" column="50" lean-forward="false" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
           <folding>
-            <element signature="n#style#0;n#h4#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h4#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h4#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/LiftDetails.html">
+    <entry file="file://$PROJECT_DIR$/www/availableRequests.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="110" lean-forward="true" selection-start-line="11" selection-start-column="100" selection-end-line="11" selection-end-column="110" />
+        <state relative-caret-position="268">
+          <caret line="27" column="43" lean-forward="false" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
           <folding />
         </state>
       </provider>
@@ -776,32 +763,94 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/myLiftDetails.html">
+    <entry file="file://$PROJECT_DIR$/www/offerLift.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="29" column="116" lean-forward="false" selection-start-line="29" selection-start-column="116" selection-end-line="29" selection-end-column="116" />
-          <folding>
-            <element signature="n#style#0;n#h4#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h4#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h4#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="558">
+          <caret line="84" column="29" lean-forward="false" selection-start-line="84" selection-start-column="29" selection-end-line="84" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/Looprac.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="710" column="49" lean-forward="true" selection-start-line="710" selection-start-column="49" selection-end-line="710" selection-end-column="49" />
+        <state relative-caret-position="-7">
+          <caret line="664" column="53" lean-forward="false" selection-start-line="664" selection-start-column="53" selection-end-line="664" selection-end-column="53" />
           <folding>
-            <marker date="1489857360690" expanded="true" signature="17754:17769" ph="..." />
-            <marker date="1489857360690" expanded="true" signature="20985:21000" ph="..." />
-            <marker date="1489857360690" expanded="true" signature="21295:21309" ph="..." />
-            <marker date="1489857360690" expanded="true" signature="23634:23649" ph="..." />
-            <marker date="1489857360690" expanded="true" signature="25937:25951" ph="..." />
-            <marker date="1489857360690" expanded="true" signature="27628:27643" ph="..." />
-            <marker date="1489857360690" expanded="true" signature="29836:29850" ph="..." />
+            <marker date="1489951880504" expanded="true" signature="18296:18311" ph="..." />
+            <marker date="1489951880504" expanded="true" signature="18776:18791" ph="..." />
+            <marker date="1489951880504" expanded="true" signature="22038:22053" ph="..." />
+            <marker date="1489951880504" expanded="true" signature="22348:22362" ph="..." />
+            <marker date="1489951880504" expanded="true" signature="25504:25519" ph="..." />
+            <marker date="1489951880504" expanded="true" signature="28016:28030" ph="..." />
+            <marker date="1489951880504" expanded="true" signature="29819:29834" ph="..." />
+            <marker date="1489951880504" expanded="true" signature="32224:32238" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/requestDetails.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-140">
+          <caret line="10" column="53" lean-forward="false" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/availableLifts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="6" column="9" lean-forward="false" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/LiftDetails.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="33" column="28" lean-forward="false" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/myLiftDetails.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="56" column="30" lean-forward="true" selection-start-line="56" selection-start-column="30" selection-end-line="56" selection-end-column="30" />
+          <folding>
+            <element signature="n#style#0;n#h4#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h4#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h4#2;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/groupDetails.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="52" column="14" lean-forward="false" selection-start-line="52" selection-start-column="14" selection-end-line="52" selection-end-column="14" />
+          <folding>
+            <element signature="n#style#0;n#h4#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h4#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h4#2;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/css/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="703" column="22" lean-forward="false" selection-start-line="703" selection-start-column="22" selection-end-line="703" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
