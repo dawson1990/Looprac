@@ -1,5 +1,16 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <feature name="GoogleMaps">
+        <param name="android-package" value="plugin.google.maps.GoogleMaps" />
+        <param name="onload" value="true" />
+        <param name="onreset" value="true" />
+    </feature>
+    <feature name="External">
+        <param name="android-package" value="plugin.google.maps.External" />
+    </feature>
+    <feature name="Geocoder">
+        <param name="android-package" value="plugin.google.maps.MyGeocoder" />
+    </feature>
     <name>Looprac</name>
     <description>
         Looprac is a carsharing application allowing users to be both drivers and passengers.
@@ -9,6 +20,7 @@
     </author>
     <content src="login.html" />
     <access origin="*" />
+    <access origin="https://pythonanywhere.com" subdomains="true" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
@@ -16,6 +28,7 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <splash src="splash.png" />
+    <icon density="ldpi" src="http://looprac.pythonanywhere.com/getLifts" />
     <icon density="ldpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
     <icon density="mdpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
     <icon density="hdpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />

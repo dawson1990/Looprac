@@ -174,7 +174,8 @@
         },
         "is_top_level": true,
         "variables": {
-            "API_KEY_FO_ANDROID": "AIzaSyCGfQTTdYNKRHoSMHHc8D8_vulGmbNuN1Y"
+            "API_KEY_FOR_ANDROID": "AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc",
+            "API_KEY_FOR_IOS": "AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc"
         }
     }
 }

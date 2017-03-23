@@ -3,19 +3,19 @@
 <head>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/index.css">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc" type="text/javascript"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/Looprac.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc" async defer type="text/javascript"></script>
     <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
 
-    <script src="js/jquery-3.1.1.min.js"></script>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="js/Looprac.js"></script>
     <style>
 
     </style>
     <script>
-        window.onload = initMap();
-        window.onload = function sessionupdate() {
+        window.onload = function (){
+            mainPageMap();
             var sessionP = document.getElementById("sessionP");
             sessionP.innerHTML = "Welcome " + sessionStorage.getItem('firstName');
             document.getElementById('userID').value = sessionStorage.getItem('userID');

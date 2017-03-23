@@ -27,12 +27,19 @@ def home():
     return 'API home screen'
 
 
+@app.route('/getLifts', methods=['PUT', 'POST'])
+def main_page_lifts():
+    if request.method == 'POST':
+        data = request.get_data()
+        d = json.loads(data.decode('UTF-8'))
+        jsObj = db.get_main_page_lifts(d['passengerID'])
+        print('jsobj', jsObj)
+        return jsObj
+
 # TRY REMOVING GET TO FIX ACCESS CONTROL ERRORS
 @app.route('/availableLifts', methods=['PUT', 'POST'])
 def available_lifts():
-    # r = make_response(render_template('base.html'))
-    # r.headers['Access-Control-Allow-Origin'] = '*'
-
+    # request.headers['Access-Control-Allow-Origin'] = '*'
     if request.method == 'POST':
         data = request.get_data()
         d = json.loads(data.decode('UTF-8'))
@@ -42,11 +49,9 @@ def available_lifts():
         return jsObj
 
 
-@app.route('/liftDetails', methods=['PUT','POST'])
+@app.route('/liftDetails', methods=['PUT', 'POST'])
 def liftDetails():
     print('lift details func')
-    # r = make_response(render_template('base.html'))
-    # r.headers['Access-Control-Allow-Origin'] = '*'
     if request.method == 'POST':
         data = request.get_data()
         print(type(data))
@@ -121,7 +126,6 @@ def logout():
         return data
 
 
-
 @app.route('/offerLift', methods=['POST'])
 def sub_offer_lift():
     if request.method == 'POST':
@@ -135,18 +139,15 @@ def sub_offer_lift():
         destinationCounty = data['destination_county']
         date = data['depart_date']
         time = data['depart_time']
-        returnDate = data['return_date']
-        returnTime = data['return_time']
-        journey_type = data['type']
         seats = data['seats']
         print('recieved: ', userID, startLat, startLong, startCounty, destinationLat, destinationLong,
-              destinationCounty, date, time, returnDate, returnTime, journey_type, seats)
+              destinationCounty, date, time, seats)
         if startLat is '' or destinationLat is '' or date is '' or time is '':
             jsObj = json.dumps({"status": "Not all required elements are entered"})
             return jsObj
         else:
             jsObj = db.register_offer_lift(userID,startLat,startLong, startCounty, destinationLat, destinationLong,
-                                           destinationCounty, date, time, returnDate, returnTime,  journey_type, seats)
+                                           destinationCounty, date, time, seats)
             return jsObj
 
 

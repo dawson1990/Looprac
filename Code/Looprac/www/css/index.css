@@ -571,7 +571,7 @@ body{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    bottom: 0;
+    bottom: 100px;
     right: 0;
     color: #ff8800;
 }
@@ -609,7 +609,9 @@ body{
 }
 
 #liftDetailsBtnDiv{
-    position: relative;
+    position: fixed;
+    bottom: 0;
+    right: 0;
 }
 
 .liftDetailsBtns{
@@ -673,6 +675,15 @@ side nav bar: gotten from w3schools.com
 
 /*MY REQUESTS */
 
+#myRequestMap-Canvas{
+    top: 60px;
+    bottom: 360px;
+    right: 0;
+    left: 0;
+    position: absolute;
+}
+
+
 .requestsTabs{
     color: #ff8800;
 }
@@ -681,12 +692,25 @@ side nav bar: gotten from w3schools.com
     color: #ff8800;
 }
 
+#acceptReqBtn{
+    background-color: #ff8800;
+    color: #231024;
+    outline: none;
+    border-color: #ff8800;
+}
+
+#acceptReqBtn:active{
+    background-color: #23ff10;
+    border-color: #23ff10;
+    color: #ffffff;
+}
+
 
 /*MY GROUPS*/
 
 #myGroup-map-canvas{
     top: 0;
-    bottom: 485px;
+    bottom: 444px;
     right: 0;
     left:0;
     position: absolute;
@@ -714,14 +738,33 @@ side nav bar: gotten from w3schools.com
     right: 0;
     color: #ff8800;
     overflow: auto;
-    max-height: 488px;
+    max-height: 438px;
 }
 
 /*MY LIFTS*/
+#startLiftBtn{
+    position: relative;
+    background: #ff8800;
+    border-color: #ff8800;
+    border-radius: 8px;
+    color: #ffffff;
+    width: 100%;
+    height: auto;
+    font-size: 34px;
 
+}
+
+#beginLiftBtnDiv{
+    position: absolute;
+    top: 164px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: block;
+}
 #myLift-map-canvas{
     top: 0;
-    bottom: 485px;
+    bottom: 444px;
     right: 0;
     left:0;
     position: absolute;
@@ -749,7 +792,7 @@ side nav bar: gotten from w3schools.com
     right: 0;
     color: #ff8800;
     overflow: auto;
-    max-height: 488px;
+    max-height: 438px;
 }
 
 #tableDiv{

@@ -26,31 +26,25 @@
     <title>My Lift Details</title>
 </head>
 <body class="container" >
-<div id="myLift-map-canvas" class="col-xs-12" ></div>
-<div class="bufferDiv col-xs-12"></div>
+
+<div id="myLift-map-canvas" class="col-xs-12" >  </div>
+<div id="beginLiftBtnDiv" class="col-xs-12"><input type="button" class="col-xs-12" id="startLiftBtn" value="Begin!" onclick="checkCanDepart()" />
+</div>
 
 <div id="myLiftDetailsDiv" class="col-xs-12 " >
-
     <div id="myLiftDetailsInnerDiv" class="col-xs-12">
         <h4 style="color: #ff8800;text-align: center;">Car</h4>
         <label class="col-xs-12 liftDetailsLabels" for="spacesAvailableRdOnly">Spaces Available </label>
         <input type="text" id="spacesAvailableRdOnly" class="liftDetailsInput col-xs-12" readonly />
         <h4 style="color: #ff8800;text-align: center;" class="col-xs-12">Route</h4>
-        <label class="col-xs-12 liftDetailsLabels" for="liftTypeTitle">Type</label>
-        <input class="liftDetailsInput col-xs-12 "  type="text" id="liftTypeTitle" readonly />
         <label class="col-xs-12 liftDetailsLabels" for="routeRdOnly">Route</label>
         <input type="text" id="routeRdOnly" class="col-xs-8 liftDetailsInput" readonly />
-        <label class="col-xs-12 liftDetailsLabels" for="departTimeRdOnly">Depart Time </label>
-        <input type="text" id="departTimeRdOnly" class="liftDetailsInput col-xs-12" readonly />
-        <label class="col-xs-12 liftDetailsLabels" for="departDateRdOnly">Depart Date </label>
-        <input type="text" id="departDateRdOnly" class="col-xs-12 liftDetailsInput" readonly />
-
-        <label class="hidden col-xs-12 liftDetailsLabels" for="returnTimeRdOnly">Return Time </label>
-        <input type="text" id="returnTimeRdOnly" class="hidden liftDetailsInput col-xs-12" readonly />
-        <label class="hidden col-xs-12 liftDetailsLabels" for="returnDateRdOnly">Return Date </label>
-        <input type="text" id="returnDateRdOnly" class="hidden col-xs-12 liftDetailsInput" readonly />
-
-        <h4 style="color: #ff8800;text-align: center;" class="col-xs-12">Passengers</h4>
+        <label class="col-xs-6 liftDetailsLabels" for="departTimeRdOnly">Depart Time </label>
+        <label class="col-xs-6 liftDetailsLabels" for="departDateRdOnly">Depart Date </label>
+        <input type="text" id="departTimeRdOnly" class="liftDetailsInput col-xs-6" readonly />
+        <input type="text" id="departDateRdOnly" class="col-xs-6 liftDetailsInput" readonly />
+        <h4 style="color: #ff8800;text-align: center;" id="numOfPassengersHeader" class="col-xs-12"></h4>
+        <input  type="number" id="hiddenNumOfPassengers" class="hidden" />
         <table id="passengersTbl" class="table table-inverse table-hover">
             <tr style="color: #ffffff;" >
                 <th>Name</th>
