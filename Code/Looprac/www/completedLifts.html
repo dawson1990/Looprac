@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <!--<script type="text/javascript" src="cordova.js"></script>-->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-toggle.min.js"></script>
+    <script src="js/Looprac.js"></script>
+    <link rel="stylesheet" type="text/css"  href="css/index.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
+    <script>
+        window.onload = function () {
+            document.getElementById('userIDHidden').value = sessionStorage.getItem('userID');
+            updateMyCompletedLifts();
+        }
+    </script>
+    <link rel="stylesheet" type="text/css"  href="css/index.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
+    <title>My Lifts</title>
+</head>
+<body class="container" >
+<ul class="requestsTabs nav nav-tabs col-xs-12">
+    <li role="presentation" class=" col-xs-6"><a href="myLifts.html">Active</a> </li>
+    <li role="presentation" class="active col-xs-6"><a href="completedLifts.html">Completed</a> </li>
+</ul>
+<h2 style="text-align: center;" class="col-xs-12 myHeaders">My Completed Lifts</h2>
+<form id="myCompletedLiftsHiddenForm">
+    <input id="userIDHidden" type="number" class="hidden" name="userID">
+</form>
+<div id="listDiv" class="col-xs-12"  >
+    <table id="myCompletedLiftsTbl" class="table table-inverse table-hover">
+        <tr style="color: #ffffff;" >
+            <th class="hidden">liftID</th>
+            <th>Route</th>
+            <th>Departed</th>
+        </tr>
+    </table>
+</div>
+<input type="button" id="cancelBtn" value="Go Back" class="btn btn-primary cancelLocationBtns col-xs-12" onclick="window.location ='main_page.html'" />
+</body>
+</html>

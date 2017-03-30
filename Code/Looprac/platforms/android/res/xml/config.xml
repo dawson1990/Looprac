@@ -20,7 +20,6 @@
     </author>
     <content src="login.html" />
     <access origin="*" />
-    <access origin="https://pythonanywhere.com" subdomains="true" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
@@ -28,7 +27,6 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <splash src="splash.png" />
-    <icon density="ldpi" src="http://looprac.pythonanywhere.com/getLifts" />
     <icon density="ldpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
     <icon density="mdpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />
     <icon density="hdpi" src="www/res/icon/android/Infinity_Loop_Logo.png" />

@@ -6,29 +6,30 @@
     <!--<script type="text/javascript" src="cordova.js"></script>-->
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-toggle.min.js"></script>
+    <link rel="stylesheet" type="text/css"  href="css/index.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/Looprac.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc" async defer type="text/javascript"></script>
     <link rel="stylesheet" type="text/css"  href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
     <script>
         window.onload = function (){
-            showGroupDetails(sessionStorage.getItem('groupLiftID'), sessionStorage.getItem('groupID'));
+            showGroupDetails(sessionStorage.getItem('myLiftID'), sessionStorage.getItem('groupID'));
         };
     </script>
-    <link rel="stylesheet" type="text/css"  href="css/index.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
+
     <title>Group Details</title>
 </head>
 <body class="container" >
 <div id="myLift-map-canvas" class="col-xs-12" ></div>
+<div id="beginLiftBtnDiv" class="col-xs-12"><input type="button" class="col-xs-12" id="startLiftBtn" value="Begin!" onclick="checkIfCanDepart()" />
+</div>
 <div class="bufferDiv col-xs-12"></div>
 <div id="groupDetailsDiv" class="col-xs-12 " >
     <div id="groupDetailsInnerDiv"  class="col-xs-12">
         <h4 style="color: #ff8800;text-align: center;">Driver & Car</h4>
         <label class="col-xs-6 liftDetailsLabels" for="driverNameRdOnly">Driver </label>
+        <input type="number" id="hiddenDriverID" class="hidden" readonly/>
         <label class="col-xs-6 liftDetailsLabels" for="driverDetailsRdOnly">Rating </label>
         <input type="text" id="driverNameRdOnly" class="liftDetailsInput col-xs-6" readonly />
         <input type="text" id="driverDetailsRdOnly" class="liftDetailsInput col-xs-6" readonly />
@@ -43,7 +44,8 @@
         <label class="col-xs-6 liftDetailsLabels" for="departDateRdOnly">Depart Date </label>
         <input type="text" id="departTimeRdOnly" class="liftDetailsInput col-xs-6" readonly />
         <input type="text" id="departDateRdOnly" class="col-xs-6 liftDetailsInput" readonly />
-        <h4 style="color: #ff8800;text-align: center;">Passengers</h4>
+        <input  type="number" id="hiddenNumOfPassengers" class="hidden" />
+        <h4 id="numOfPassengersHeader" style="color: #ff8800;text-align: center;"></h4>
         <table id="passengersTbl" class="table table-inverse table-hover">
             <tr style="color: #ffffff;" >
                 <th>Name</th>

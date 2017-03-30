@@ -6,7 +6,7 @@
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/Looprac.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc" async defer type="text/javascript"></script>
-    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
 
     <meta charset="UTF-8">
     <title>Title</title>
@@ -23,7 +23,7 @@
             var fname = sessionStorage.getItem('firstName');
             var lname = sessionStorage.getItem('lastName');
             var passID = sessionStorage.getItem('passengerID');
-            var driveID = sessionStorage.getItem('driverID');
+            var driveID = sessionStorage.getItem('myDriverID');
             var loggedin = sessionStorage.getItem('loggedIn');
             console.log('session data: ' + userID + ' ' + fname + ' ' + lname + ' ' + passID + ' ' + driveID + ' ' + loggedin);
         };
@@ -40,7 +40,7 @@
 </head>
 <body class="container">
 <div id="mySidenav" class="sidenav">
-    <p id="sessionP" class="col-xs-12" style="color: #ff8800; font-size: 35px; text-align: center;"  onclick=""> </p>
+    <p id="sessionP" class="col-xs-12" style="color: #ff8800; font-size: 35px; text-align: center;"  onclick="window.location='profile.html'"> </p>
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="availableRequests.html">My Requests</a>
     <a href="myGroups.html">My Groups</a>

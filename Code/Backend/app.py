@@ -1,4 +1,4 @@
-from flask import Flask, render_template, make_response, request, session
+from flask import Flask, request
 import db
 import json
 import string
@@ -9,7 +9,6 @@ UPLOAD_FOLDER = '/home/looprac/LoopracAPI/Uploads/'
 
 app = Flask(__name__)
 randomsecretkey = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(50))
-# app.secret_key = 'fhdgsd;ohfnvervneroigerrenverbner32hrjegb/kjbvr/o'
 app.secret_key = randomsecretkey
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -107,12 +106,8 @@ def registerCar():
 
 @app.route('/loginuser', methods=['PUT', 'POST'])
 def login():
-    print('start of check_email')
     if request.method == 'POST':
-        print('method = post')
-        email = request.form['email_login']
-        password = request.form['password_login']
-        data = db.process_login(email, password)
+        data = db.process_login(request.form['email_login'], request.form['password_login'])
         print('after process login', data )
         return data
 
@@ -230,6 +225,8 @@ def deny_request():
         print('jsobj', jsObj)
         return jsObj
 
+
+# MY GROUPS
 @app.route('/myGroups', methods=['PUT', 'POST'])
 def my_groups():
     print('my groups func')
@@ -252,7 +249,22 @@ def group_details():
         return jsObj
 
 
+@app.route('/myCompletedGroups', methods=['PUT', 'POST'])
+def my_completed_groups():
+    if request.method == 'POST':
+        jsObj = db.get_my_completed_groups(request.form['userID'])
+        print('jsobj', jsObj)
+        return jsObj
+
 # MY LIFTS
+
+
+@app.route('/myCompletedLifts', methods=['PUT', 'POST'])
+def my_completed_lifts():
+    if request.method == 'POST':
+        jsObj = db.getMyCompletedLifts(request.form['userID'])
+        print('jsobj', jsObj)
+        return jsObj
 
 
 @app.route('/myLifts', methods=['PUT', 'POST'])
@@ -274,6 +286,85 @@ def my_lift_details():
         print(jsObj)
         return jsObj
 
+
+@app.route('/completeLift', methods=['PUT', 'POST'])
+def complete_lift():
+    if request.method == 'POST':
+        data = request.get_data()
+        j = json.loads(data.decode('UTF-8'))
+        jsObj = db.complete_lift(j['liftID'], j['distance'])
+        print(jsObj)
+        return jsObj
+
+
+# FINISH LIFT
+@app.route('/rateUsers', methods=['PUT', 'POST'])
+def rate_users():
+    if request.method == 'POST':
+        data = request.get_data()
+        j = json.loads(data.decode('UTF-8'))
+        print('j', j)
+        jsObj = db.rate_group(j['driverID'], j['driverRating'], j['passengerData'])
+        return jsObj
+
+
+@app.route('/checkIfDriver', methods=['PUT', 'POST'])
+def check_if_driver():
+    if request.method == 'POST':
+        data = request.get_data()
+        j = json.loads(data.decode('UTF-8'))
+        print('j', j)
+        jsObj = db.check_if_user_is_driver(j['liftID'], j['driverID'])
+        return jsObj
+
+
+@app.route('/getExperience', methods=['PUT', 'POST'])
+def get_experience():
+    if request.method == 'POST':
+        data = request.get_data()
+        j = json.loads(data.decode('UTF-8'))
+        print('j', j)
+        jsObj = db.get_user_experience(j['userID'], j['newExp'], j['distance'], j['numOfPassengers'])
+        return jsObj
+
+
+@app.route('/populateRatingTables', methods=['PUT', 'POST'])
+def populate_ratings_table():
+    if request.method == 'POST':
+        data = request.get_data()
+        j = json.loads(data.decode('UTF-8'))
+        print('j', j)
+        jsObj = db.pop_ratings_table(j['liftID'], j['userID'])
+        return jsObj
+
+
+# ACTIVE LIFT
+@app.route('/getDriver', methods=['PUT', 'POST'])
+def get_driver():
+    if request.method == 'POST':
+        data = request.get_data()
+        j = json.loads(data.decode('UTF-8'))
+        jsObj = db.get_driver_id(j['liftID'])
+        return jsObj
+
+
+@app.route('/checkIfLiftFinished', methods=['PUT', 'POST'])
+def check_if_lift_finished():
+    if request.method == 'POST':
+        data = request.get_data()
+        j = json.loads(data.decode('UTF-8'))
+        jsObj = db.check_if_lift_finished(j['liftID'])
+        return jsObj
+
+
+# PROFILE
+@app.route('/profile', methods=['PUT', 'POST'])
+def user_profile():
+    if request.method == 'POST':
+        data = request.get_data()
+        j = json.loads(data.decode('UTF-8'))
+        jsObj = db.get_profile(j['userID'])
+        return jsObj
 
 if __name__ == '__main__':
     app.run(debug=True)

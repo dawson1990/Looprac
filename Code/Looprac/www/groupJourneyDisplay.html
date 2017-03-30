@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/Looprac.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc&callback=display" async defer type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css"  href="css/index.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script>
+        function display() {
+            displayActiveLift(sessionStorage.getItem('myLiftID'));
+        }
+
+    </script>
+    <title>In Progress Lift</title>
+</head>
+<body class="container" >
+    <div id="map" class="col-xs-12" >  </div>
+    <div id="groupJourneyMainDiv">
+        <div id="groupJourneyInnerDiv" class="col-xs-12">
+            <input type="text" id="liftID" class="col-xs-12 hidden" readonly />
+            <div id="activeLiftBtnDiv" class="col-xs-12">
+                <input type="button" id="activeLiftCancelBtn" value="Go Back" class="btn btn-primary liftDetailsBtns col-xs-6" onclick="history.back();" />
+                <input type="button" id="finishLiftBtn" value="Complete!" class="btn btn-primary liftDetailsBtns col-xs-6" onclick="checkIfCanFinish()" />
+            </div>
+        </div>
+    </div>
+</body>
+</html>

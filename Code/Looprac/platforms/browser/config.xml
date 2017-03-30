@@ -15,7 +15,6 @@
     </author>
     <content src="login.html" />
     <access origin="*" />
-    <access origin="https://pythonanywhere.com" subdomains="true" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />

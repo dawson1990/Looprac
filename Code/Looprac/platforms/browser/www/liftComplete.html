@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc" async defer type="text/javascript"></script>
+    <script src="js/Looprac.js"></script>
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/star-rating.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <script src="js/star-rating.js"></script>
+    <script src="js/theme.js"></script>
+    <link rel="stylesheet" type="text/css"  href="css/index.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+<script>
+    window.onload = displayRatingTables();
+</script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body class="container">
+    <h2 style="color: #ff8800; text-align: center;" class="col-xs-12">Complete!</h2>
+    <h4 style="color: #ff8800; text-align: center;" class="col-xs-12">Please rate the other passengers</h4>
+    <h5  style="color: #ff8800; text-align: center;" class="col-xs-12" id="driverHeader">Driver</h5>
+    <table id="driverRatingTbl" class="table table-inverse table-hover col-xs-12">
+        <tr style="color: #ffffff;" >
+            <th class="col-xs-5">Name</th>
+            <th class=" hidden">ID</th>
+            <th class="col-xs-7">Please Rate</th>
+        </tr>
+        <tr>
+            <td id="driverName"></td>
+            <td ></td>
+            <td id="driverRating">
+        </tr>
+    </table>
+    <h5  style="color: #ff8800; text-align: center;" class="col-xs-12" id="passengerHeader">Passengers</h5>
+    <table id="ratingTbl" class="table table-inverse table-hover col-xs-12">
+        <tr style="color: #ffffff;" >
+            <th class="col-xs-5">Name</th>
+            <th class="hidden">ID</th>
+            <th class="col-xs-7">Please Rate</th>
+        </tr>
+    </table>
+<div id="completeRatingsBtnDiv" class="col-xs-12">
+    <input type="button" value="Submit!" class="col-xs-12" id="submitRatingsBtn" onclick="checkAllRated()" />
+</div>
+</body>
+</html>

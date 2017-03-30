@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc" async defer type="text/javascript"></script>
+    <script src="js/Looprac.js"></script>
+    <link rel="stylesheet" type="text/css"  href="css/index.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script>
+        window.onload = function (){
+            showMyCompletedLiftDetails(sessionStorage.getItem('myCompletedLiftID'));
+        };
+    </script>
+    <title>My Completed Lift Details</title>
+</head>
+<body class="container" >
+<div id="myLift-map-canvas" class="col-xs-12" >  </div>
+<div id="myCompletedLiftDetailsDiv" class="col-xs-12 " >
+    <div id="myCompletedLiftDetailsInnerDiv" class="col-xs-12">
+        <h4 style="color: #ff8800;text-align: center;">Car & Driver</h4>
+        <label class="col-xs-12 liftDetailsLabels" for="driverNameRdOnly">Driver</label>
+        <input type="text" id="driverNameRdOnly" class="liftDetailsInput col-xs-12" readonly />
+        <label class="col-xs-6 liftDetailsLabels" for="carRegRdOnly">Car Registration</label>
+        <label class="col-xs-6 liftDetailsLabels" for="driverRatingRdOnly">Rating</label>
+        <input type="text" id="carRegRdOnly" class="liftDetailsInput col-xs-6" readonly />
+        <input type="text" id="driverRatingRdOnly" class="liftDetailsInput col-xs-6" readonly />
+        <h4 style="color: #ff8800;text-align: center;" class="col-xs-12">Route</h4>
+        <label class="col-xs-12 liftDetailsLabels" for="routeRdOnly">Route</label>
+        <input type="text" id="routeRdOnly" class="col-xs-8 liftDetailsInput" readonly />
+        <label class="col-xs-6 liftDetailsLabels" for="departTimeRdOnly">Departed Time </label>
+        <label class="col-xs-6 liftDetailsLabels" for="departDateRdOnly">Departed Date </label>
+        <input type="text" id="departTimeRdOnly" class="liftDetailsInput col-xs-6" readonly />
+        <input type="text" id="departDateRdOnly" class="col-xs-6 liftDetailsInput" readonly />
+        <h4 style="color: #ff8800;text-align: center;" id="numOfPassengersHeader" class="col-xs-12"></h4>
+        <input  type="number" id="hiddenNumOfPassengers" class="hidden" />
+        <table id="passengersTbl" class="table table-inverse table-hover">
+            <tr style="color: #ffffff;" >
+                <th>Name</th>
+                <th>Rating</th>
+                <th>Phone</th>
+            </tr>
+        </table>
+
+        <div id="liftDetailsBtnDiv" class="col-xs-12">
+            <input type="button" id="myLiftDetailsCancelBtn" value="Go Back" class="btn btn-primary liftDetailsBtns  col-xs-12" onclick="window.location = 'main_page.html'" />
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

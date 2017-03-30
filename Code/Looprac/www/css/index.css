@@ -10,7 +10,7 @@ index.css
             local('Roboto Light'),
             local('Roboto-Light'),
             local('sans-serif-light'),
-            url('fonts/Roboto-Light.woff2') format('woff2');
+            url('../fonts/Roboto-Light.woff2') format('woff2');
     /*unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;*/
 }
 
@@ -594,9 +594,27 @@ body{
 
 .liftDetailsLabels{
     text-align: left;
-    color: #eae8ff;
+    color: #ff8800;
 }
 
+.seatDetails{
+    text-align: center;
+    color: #ff8800;
+}
+
+.seatDetailsInput{
+    text-align: center;
+    font-size: 40px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+
+#liftDetailsSeatsDiv{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
 #subLiftReqBtn{
     background-color: #ff8800;
     border-color: #ff8800;
@@ -808,4 +826,175 @@ side nav bar: gotten from w3schools.com
     color: #eae8ff;
     background-color:transparent;
     padding: 5px 10px 5px 10px;
+}
+
+/***********************
+    ACTIVE LIFTS
+ */
+
+#map{
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left:0;
+    position: absolute;
+    display: block;
+}
+
+#activeLiftBtnDiv{
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: block;
+}
+
+#activeLiftCancelBtn{
+    position: relative;
+    border-radius: 5px;
+    border-color: #eae8ff;
+    color: #eae8ff;
+    background-color:#231024;
+    padding: 5px 10px 5px 10px;
+}
+
+#groupJourneyMainDiv{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    bottom: 0;
+    right: 0;
+    color: #ff8800;
+    overflow: visible;
+}
+
+#groupJourneyInnerDiv{
+    position: relative;
+    display: block;
+    justify-content: center;
+    flex-wrap: wrap;
+    bottom: 0;
+    right: 0;
+    color: #ff8800;
+    overflow: auto;
+    max-height: 438px;
+ }
+
+.liftActiveBtn{
+    background-color: #4cae4c !important;
+    color: #ffffff !important;
+    border-color: #4cae4c !important;
+    outline: #4cae4c !important;
+}
+
+/***************
+    RATING PAGE
+ */
+
+#submitRatingsBtn {
+    background-color: transparent;
+    color: #ff8800;
+    border: 1px solid #ff8800;
+    border-radius: 5px;
+    outline: none;
+}
+
+/**********************
+    EXPERIENCE
+ */
+
+#experienceBtnDiv{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+#experienceFinishBtn{
+    background-color: transparent;
+    color: #ff8800;
+    border: 1px solid #ff8800;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+/****************
+    COMPLETED LIFTS
+ */
+
+#myCompletedLiftDetailsDiv{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    bottom: 0;
+    right: 0;
+    color: #ff8800;
+    overflow: visible;
+
+}
+
+#myCompletedLiftDetailsInnerDiv {
+    position: absolute;
+    display: block;
+    justify-content: center;
+    flex-wrap: wrap;
+    bottom: 0;
+    right: 0;
+    color: #ff8800;
+    overflow: auto;
+    max-height: 438px;
+}
+
+/********************
+    PROFILE
+*/
+
+.profileLbs{
+    color: #ff8800;
+    display: block;
+    text-align: center;
+}
+
+.profileInputs{
+    background-color: transparent;
+    color: #eae8ff;
+    border-color: transparent;
+    outline:none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    text-align: center;
+}
+
+#profileBtnsDiv{
+    position: relative;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+#profileBackBtn{
+    background-color: #231024;
+    color: #ff8800;
+    border: 1px solid #ff8800;
+    border-radius: 5px;
+    text-align: center;
+
+}
+
+#profileEditBtn{
+    background-color: #ff8800;
+    color: #231024;
+    border: 1px solid #231024;
+    border-radius: 5px;
+    text-align: center;
+
+}
+
+#profileRatingExpDiv{
+    text-align:center;
 }
