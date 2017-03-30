@@ -95,6 +95,9 @@
         "phonegap-plugin-push": {
             "SENDER_ID": "430746089068",
             "PACKAGE_NAME": "com.phonegap.helloworld"
+        },
+        "cordova-plugin-http": {
+            "PACKAGE_NAME": "com.phonegap.helloworld"
         }
     },
     "dependent_plugins": {},
@@ -733,6 +736,14 @@
             "clobbers": [
                 "PushNotification"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-http/www/cordovaHTTP.js",
+            "id": "cordova-plugin-http.CordovaHttpPlugin",
+            "pluginId": "cordova-plugin-http",
+            "clobbers": [
+                "CordovaHttpPlugin"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -759,6 +770,7 @@
         "cordova-plugin-whitelist": "1.2.2",
         "cordova-plugin-googlemaps": "1.4.0",
         "cordova-plugin-mapbox": "1.2.3",
-        "phonegap-plugin-push": "1.9.4"
+        "phonegap-plugin-push": "1.9.4",
+        "cordova-plugin-http": "1.2.0"
     }
 }

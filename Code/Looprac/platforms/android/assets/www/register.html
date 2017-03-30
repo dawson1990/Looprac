@@ -4,17 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <script src="js/jquery-3.1.1.min.js"></script>
-    <!--<script src="https://code.jquery.com/jquery-3.0.0.js"></script>-->
-    <!--<script src="https://code.jquery.com/jquery-migrate-3.0.0.js"></script>-->
-    <script type="text/javascript" src="cordova.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-toggle.min.js"></script>
-    <!--<script src="js/dbCalls.js"></script>-->
     <script src="js/Looprac.js"></script>
     <link rel="stylesheet" type="text/css"  href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
-    <!--<link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">-->
     <script>
         function go_back() {
             console.log("go back");
@@ -25,7 +20,7 @@
     <title>Register</title>
 </head>
 <body class="container">
-<form id="form" method="post" action="http://looprac.pythonanywhere.com/registeruser" enctype="multipart/form-data">
+<form id="form" method="post" action="http://looprac.pythonanywhere.com/registeruser"  enctype="multipart/form-data">
     <div id="registerHeaderDiv" class="col-xs-12">
         <h1 class="registerH1">Register</h1>
     </div>
@@ -41,8 +36,8 @@
         <input type="number" id="phoneInput" name="phoneNum" class="customInputs col-xs-12"  placeholder="0851234567" required="required" />
         <label id="passwordLbl" class="customLbls col-xs-12" for="passwordInput">Password</label>
         <input type="password" id="passwordInput" name="password" class="customInputs col-xs-12" pattern=".{6,}" placeholder="Must be at least 6 characters" required="required"/>
-        <!--<label id="photoLbl" class="customLbls col-xs-12" for="photoInput">Photo</label>-->
-        <!--<input id="photoInput" name="picture" type="file" required />-->
+        <label id="photoLbl" class="customLbls col-xs-12" for="file">Photo</label>
+        <input id="file" name="file" type="file" required/>
         <div class="registerBtnsDiv col-xs-12">
             <input  type="button" value="Cancel" id="cancelBtn" class="registerBtns btn btn-primary col-xs-6" onclick="go_back()"/>
             <input  type="submit" value="Register" id="registrationBtn" class="registerBtns btn btn-primary col-xs-6" onclick=RegisterUser(); />

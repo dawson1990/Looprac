@@ -16,8 +16,9 @@
     <script>
         window.onload = function (){
             mainPageMap();
+            getPicture(sessionStorage.getItem('userID'));
             var sessionP = document.getElementById("sessionP");
-            sessionP.innerHTML = "Welcome " + sessionStorage.getItem('firstName');
+            sessionP.innerHTML = sessionStorage.getItem('firstName');
             document.getElementById('userID').value = sessionStorage.getItem('userID');
             var userID = sessionStorage.getItem('userID');
             var fname = sessionStorage.getItem('firstName');
@@ -40,7 +41,10 @@
 </head>
 <body class="container">
 <div id="mySidenav" class="sidenav">
-    <p id="sessionP" class="col-xs-12" style="color: #ff8800; font-size: 35px; text-align: center;"  onclick="window.location='profile.html'"> </p>
+    <div id="profilePicDiv">
+        <img id="profilePic" src="" class="col-xs-12"/>
+    </div>
+    <p id="sessionP" class="col-xs-12" style="color: #ff8800; font-size: 35px; text-align: center;"  onclick="getProfile(sessionStorage.getItem('passengerID'))"> </p>
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="availableRequests.html">My Requests</a>
     <a href="myGroups.html">My Groups</a>

@@ -970,6 +970,19 @@ side nav bar: gotten from w3schools.com
     text-align: center;
 }
 
+.profileEditedInputs{
+    background-color: transparent;
+    color: #eae8ff;
+    border-color: transparent;
+    border-bottom: 1px solid #ff8800;
+    outline:none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    text-align: center;
+
+}
+
 #profileBtnsDiv{
     position: relative;
     bottom:0;
@@ -993,6 +1006,14 @@ side nav bar: gotten from w3schools.com
     border-radius: 5px;
     text-align: center;
 
+}
+
+#saveChangesBtn{
+    background-color: #4cae4c;
+    color: #ffffff;
+    border: 1px solid #4cae4c;
+    border-radius: 5px;
+    text-align: center;
 }
 
 #profileRatingExpDiv{

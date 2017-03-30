@@ -146,7 +146,7 @@ def getLiftDetails(liftID, driverID):
     return jsObj
 
 
-def register(fName, lName, emailAddr, phoneN, passw):
+def register(fName, lName, emailAddr, phoneN, passw, filename):
     jsObj = {}
     userID = 0
     print('register function')
@@ -163,9 +163,9 @@ def register(fName, lName, emailAddr, phoneN, passw):
     else:
         print('registering')
         _USER_REGISTER_SQL = """INSERT INTO User
-                        (First_Name, Last_Name, Email, Phone_Number, Password, Date_Created)
+                        (First_Name, Last_Name, Email, Phone_Number, Password, Pic_Path, Date_Created)
                         VALUES
-                        (%s, %s, %s, %s, %s, CURRENT_DATE )"""
+                        (%s, %s, %s, %s, %s, %s, CURRENT_DATE )"""
         _PASSENGER_REGISTRATION_SQL = """INSERT INTO Passenger
                            (UserID)
                            VALUES
@@ -181,7 +181,7 @@ def register(fName, lName, emailAddr, phoneN, passw):
                                            (%s)"""
         with DBcm.UseDatabase(config) as cursor:
             try:
-                cursor.execute(_USER_REGISTER_SQL, (firstName, lastName, emailAddress, phone, hashedPassword))
+                cursor.execute(_USER_REGISTER_SQL, (firstName, lastName, emailAddress, phone, hashedPassword, filename))
                 userID = cursor.lastrowid
             except Exception as e:
                 print('Error registering user to User table:', e )
@@ -261,7 +261,7 @@ def process_login(email, password):
                             driverID = it[0]
                         print('my driver id', driverID)
                         jsObj = json.dumps(
-                            {"status": "match", "email": email, "user_id": UserID, "first_name": uName, "last_name": uLName,
+                            {"status": "match", "email": email, "user_id": UserID, "first_name": uName.capitalize(), "last_name": uLName.capitalize(),
                                 "passengerID": passengerID, "myDriverID": driverID})
                 else:
                     for i in data:
@@ -270,7 +270,7 @@ def process_login(email, password):
                         uLName = i[2]
                         passengerID = i[3]
                         jsObj = json.dumps(
-                            {"status": "match", "email": email, "user_id": UserID, "first_name": uName, "last_name": uLName,
+                            {"status": "match", "email": email, "user_id": UserID, "first_name": uName.capitalize(), "last_name": uLName.capitalize(),
                              "passengerID": passengerID, "driverID": driverID})
             except Exception as e:
                 print('error with getting login information: ', e)
@@ -805,7 +805,7 @@ def getMyLifts(userID):
 def getMyLiftDetails(liftID):
     d, passengerData, liftData = [], [], []
     numOfPassengers = 0
-    _GETPASSENGERS_SQL = """SELECT u.First_Name, u.Last_Name, u.Phone_Number, r.Rating
+    _GETPASSENGERS_SQL = """SELECT u.First_Name, u.Last_Name, u.Phone_Number, r.Rating, p.PassengerID
                             FROM User u, Passenger p, CarGroup c, UserRating r
                             WHERE c.PassengerID = p.PassengerID
                             AND r.UserID = p.UserID
@@ -854,7 +854,8 @@ def getMyLiftDetails(liftID):
                             'driverRating': item[15],
                             'passengerName': i[0] + ' ' + i[1],
                             'passengerPhone': i[2],
-                            'passengerRating':i[3],
+                            'passengerRating': i[3],
+                            'passengerID': i[4],
                             'numOfPassengers': numOfPassengers
                         })
             else:
@@ -1259,3 +1260,55 @@ def get_profile(user_id):
                         'overallDistance': item[8],
                         'carMake': 'None'
                     }, default=converter)
+
+
+def get_picture(user_id):
+    _GET_PICTURE_PATH_SQL = """SELECT Pic_Path FROM User WHERE UserID = %s"""
+    with DBcm.UseDatabase(config) as cursor:
+        try:
+            cursor.execute(_GET_PICTURE_PATH_SQL, (user_id,))
+            data = cursor.fetchall()
+            print('data', data)
+        except Exception as e:
+            print('Error getting users car information:', e)
+        else:
+            return data[0][0]
+
+
+def get_user_id(passenger_id):
+    _GET_USER_ID_SQL = """SELECT UserID from Passenger WHERE PassengerID =%s"""
+    with DBcm.UseDatabase(config) as cursor:
+        try:
+            cursor.execute(_GET_USER_ID_SQL, (passenger_id,))
+            data = cursor.fetchall()
+        except Exception as e:
+            print('Error getting user ID:', e)
+        else:
+            return json.dumps({'userID': data[0][0]})
+
+
+def update_details(user_id, phone, car_make, car_model, car_reg):
+    car_data = []
+    _UPDATE_PHONE_SQL = """UPDATE User SET Phone_Number = %s WHERE UserID = %s"""
+    _CHECK_IF_CAR_REGISTERED_SQL ="""SELECT * FROM CarDetails WHERE UserID = %s"""
+    _UPDATE_CAR_SQL = """UPDATE CarDetails SET Car_Make = %s, Car_Model = %s, Car_Reg = %s WHERE UserID = %s"""
+    with DBcm.UseDatabase(config) as cursor:
+        try:
+            cursor.execute(_UPDATE_PHONE_SQL, (phone, user_id))
+            print('update done')
+        except Exception as e:
+            print('Error updating user information:', e)
+    with DBcm.UseDatabase(config) as cursor1:
+        try:
+            cursor1.execute(_CHECK_IF_CAR_REGISTERED_SQL, (user_id, ))
+            car_data = cursor1.fetchall()
+        except Exception as e:
+            print('Error check if car exists:', e)
+    if car_make != "" and car_data != []:
+        print('in car update')
+        with DBcm.UseDatabase(config) as cursor2:
+            try:
+                cursor2.execute(_UPDATE_CAR_SQL, (car_make, car_model, car_reg, user_id))
+            except Exception as e:
+                print('Error updating car details:', e)
+    return json.dumps({'update': 'complete'})

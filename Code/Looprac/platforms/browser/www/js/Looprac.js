@@ -1,4 +1,3 @@
-
 function login(){
     console.log("LOGIN FUNCTION");
     event.preventDefault(); // prevents form submitting normally
@@ -80,11 +79,16 @@ function logout(){
 
 function RegisterUser(){
     event.preventDefault(); // prevents form submitting normally
+    var form =$('#form')[0];
+    var formData = new FormData(form);
     $.ajax({
         url:'http://looprac.pythonanywhere.com/registeruser',
         type:'post',
-        async: false,
-        data:  $("#form").serialize()})
+        enctype: 'multipart/form-data',
+        processData: false,
+        contentType: false,
+        cache: false,
+        data: formData })
         .fail(function (jqXHR, textStatus, errorThrown) {
             console.log('AJAX ERROR\njqXHR: ' + jqXHR +'\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
         })
@@ -109,6 +113,7 @@ function RegisterUser(){
         });
     console.log("after subform ajax")
 }
+
 
 /******************************
  * OFFER LIFT
@@ -856,6 +861,7 @@ function showMyCompletedLiftDetails(liftID) {
             var destinationLat = result[0]["destLat"];
             var destinationLng = result[0]["destLng"];
             var paragraph = '';
+            var passengerID = 0;
             var passengerName = '';
             var passengerRating = '';
             var table = $('#passengersTbl');
@@ -868,15 +874,17 @@ function showMyCompletedLiftDetails(liftID) {
                 passengerName = result[index]["passengerName"];
                 passengerRating = result[index]["passengerRating"];
                 phone = result[index]["passengerPhone"];
+                passengerID = result[index]["passengerID"];
                 document.getElementById('numOfPassengersHeader').innerHTML = 'Passengers: ' + result[index]["numOfPassengers"];
                 document.getElementById('hiddenNumOfPassengers').value = result[index]["numOfPassengers"];
                 document.getElementById('carRegRdOnly').value = result[index]["car reg"];
                 if (passengerName == "None") {
                     passengerName = "";
                     passengerRating = "";
+                    passengerID ="";
                     phone = "";
                 }
-                paragraph = '<tr style="color:#ff8800;"><td>' + passengerName + '</td><td>' + passengerRating + '</td><td>' + phone + '</td></tr>';
+                paragraph = '<tr onclick="getProfile(' + passengerID + ')" style="color:#ff8800;"><td>' + passengerUserID + ' </td><td>' + passengerName + '</td><td>' + passengerRating + '</td><td>' + phone + '</td></tr>';
                 table.append(paragraph);
             }
             window.onload = showLift(startLat, startLng, destinationLat, destinationLng, "myLift-map-canvas");
@@ -1560,6 +1568,22 @@ function checkIfCanFinish(){
  *      PROFILE PAGE
  */
 
+function getProfile(passengerID) {
+    $.ajax({
+        url: 'http://looprac.pythonanywhere.com/getUserID',
+        type: 'post',
+        data: JSON.stringify({'passengerID': passengerID})
+    })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log('AJAX ERROR\njqXHR: ' + jqXHR + '\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+        })
+        .done(function (data) {
+            var result = JSON.parse(data);
+            window.sessionStorage.setItem('profileUserID', result["userID"]);
+            window.location = 'profile.html';
+        })
+}
+
 function populateProfile(userID){
     $.ajax({
         url: 'http://looprac.pythonanywhere.com/profile',
@@ -1572,6 +1596,7 @@ function populateProfile(userID){
         .done(function (data) {
             console.log(data);
             var result = JSON.parse(data);
+            document.getElementById('hiddenUserId').value = sessionStorage.getItem('userID');
             document.getElementById('profileCreated').value = result["created"];
             document.getElementById('profileName').innerHTML= result["name"];
             document.getElementById('profileEmail').value = result["email"];
@@ -1592,6 +1617,86 @@ function populateProfile(userID){
         })
 }
 
+
+function getPicture(userID){
+    $.ajax({
+        url: 'http://looprac.pythonanywhere.com/getPicture',
+        type: 'post',
+        async: true,
+        data: JSON.stringify({'userID': userID})
+    })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log('AJAX ERROR\njqXHR: ' + jqXHR + '\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+            alert('Sorry but the image you uploaded is too large to retrieve');
+        })
+        .done(function (data) {
+            $("#profilePic").attr("src","data:image/jpeg;base64," + data);
+        })
+}
+
+function edit(){
+    if (    document.getElementById('profilePhone').hasAttribute('readonly'))
+    {
+        document.getElementById('saveChangesBtn').setAttribute('class', 'col-xs-12');
+        document.getElementById('file').setAttribute('class', 'col-xs-12');
+        document.getElementById('profilePhone').removeAttribute('readonly') ;
+        document.getElementById('profilePhone').setAttribute('class', 'profileEditedInputs col-xs-12');
+        if (document.getElementById('profileCarMake').value != "")
+        {
+            document.getElementById('profileCarMake').removeAttribute('readonly') ;
+            document.getElementById('profileCarMake').setAttribute('class', 'profileEditedInputs col-xs-12');
+            document.getElementById('profileCarModel').removeAttribute('readonly');
+            document.getElementById('profileCarModel').setAttribute('class', 'profileEditedInputs col-xs-12');
+            document.getElementById('profileCarReg').removeAttribute('readonly');
+            document.getElementById('profileCarReg').setAttribute('class', 'profileEditedInputs col-xs-12');
+            document.getElementById('profileCarDetailsDiv').removeAttribute( 'class');
+        }
+    }
+    else{
+        document.getElementById('file').setAttribute('class', 'hidden');
+        document.getElementById('saveChangesBtn').setAttribute('class', 'hidden col-xs-12');
+        document.getElementById('profilePhone').setAttribute('readonly', 'true');
+        document.getElementById('profileCarMake').setAttribute('readonly', 'true');
+        document.getElementById('profileCarModel').setAttribute('readonly', 'true');
+        document.getElementById('profileCarReg').setAttribute('readonly', 'true');
+        document.getElementById('profilePhone').setAttribute('class', 'profileInputs col-xs-12');
+        document.getElementById('profileCarMake').setAttribute('class', 'profileInputs col-xs-12');
+        document.getElementById('profileCarModel').setAttribute('class', 'profileInputs col-xs-12');
+        document.getElementById('profileCarReg').setAttribute('class', 'profileInputs col-xs-12');
+        if(document.getElementById('profileCarMake').value == "" || document.getElementById('profileCarModel').value =="" || document.getElementById('profileCarReg').value == ""){
+            document.getElementById('profileCarDetailsDiv').setAttribute('class', 'hidden');
+        }
+
+}
+}
+
+function updateInfo(){
+    event.preventDefault(); // prevents form submitting normally
+    var form =$('#profileForm')[0];
+    var formData = new FormData(form);
+    $.ajax({
+        url: 'http://looprac.pythonanywhere.com/updateInfo',
+        type:'post',
+        enctype: 'multipart/form-data',
+        processData: false,
+        contentType: false,
+        cache: false,
+        data: formData })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log('AJAX ERROR\njqXHR: ' + jqXHR + '\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+        })
+        .done(function (data) {
+            var result = JSON.parse(data);
+            if (result["update"] == "complete"){
+                alert('Your details have been updated.');
+                location.reload();
+            }
+            else{
+                alert('Sorry, there was a problem updating your details.');
+                location.reload();
+            }
+        })
+}
 /*********************************************
   GOOGLE API FUNCTION CALLS FOR OFFER LIFT FORM
  */
@@ -1753,7 +1858,7 @@ function geocodeCoords(lat, lng, elementID){
 
 }
 
-function mainPageMap(){
+function mainPageMap() {
     console.log('main map function');
     $.ajax({
         url: 'http://looprac.pythonanywhere.com/getLifts',
@@ -1768,7 +1873,7 @@ function mainPageMap(){
             var customIcon = {
                 url: 'https://www.pythonanywhere.com/user/Looprac/files/home/Looprac/LoopracAPI/icons/icon.png',
                 scaledSize: new google.maps.Size(60, 60), // scaled size
-                origin: new google.maps.Point(0,0), // origin
+                origin: new google.maps.Point(0, 0), // origin
                 anchor: new google.maps.Point(30, 60) // anchor
             };
             console.log('result: ' + data);
@@ -1778,7 +1883,7 @@ function mainPageMap(){
                 var infoWindow = new google.maps.InfoWindow;
                 var lat = position.coords.latitude;
                 var lang = position.coords.longitude;
-                var  i;
+                var i;
                 var myLatlng = new google.maps.LatLng(lat, lang);
                 var mapOptions = {zoom: 20, center: myLatlng};
                 var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
@@ -1807,7 +1912,6 @@ function mainPageMap(){
                         })(marker, i));
                     }
                 }
-
 
 
             }
@@ -1847,7 +1951,7 @@ function mainPageMap(){
                 var infoWindow = new google.maps.InfoWindow;
                 var lat = position.coords.latitude;
                 var lang = position.coords.longitude;
-                var  i;
+                var i;
                 var myLatlng = new google.maps.LatLng(lat, lang);
                 var mapOptions = {zoom: 20, center: myLatlng};
                 var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
@@ -1884,10 +1988,10 @@ function mainPageMap(){
                     location.reload();
                 }
             }
-        })
+        });
+
+
 }
-
-
 function initMap(){
     navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 7000 , enableHighAccuracy: true});
     function onSuccess(position) {

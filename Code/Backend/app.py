@@ -1,11 +1,14 @@
-from flask import Flask, request
+from flask import Flask, request, Response
 import db
 import json
 import string
 import random
+from werkzeug.utils import secure_filename
+import os
+import base64
 
 
-UPLOAD_FOLDER = '/home/looprac/LoopracAPI/Uploads/'
+UPLOAD_FOLDER = 'Uploads/'
 
 app = Flask(__name__)
 randomsecretkey = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(50))
@@ -69,22 +72,32 @@ def liftDetails():
 
 @app.route('/registeruser', methods=['PUT', 'POST'])
 def registeruser():
+    filename =""
     if request.method == 'POST':
-        print('method == POST')
-        # jsObj = {}
-        fname = request.form['firstName']
-        lname = request.form['lastName']
-        email = request.form['email']
-        phonenum = request.form['phoneNum']
-        password = request.form['password']
-
-        if fname is '' or lname is '' or email is '' or phonenum is 0 or password is '':
-            jsObj = json.dumps({"status": "Not all required elements are entered"})
-            return jsObj
-        else:
-            print('app going to register function')
-            jsObj = db.register(fname, lname, email, phonenum, password)
-            return jsObj
+        try:
+            print('method == POST')
+            # jsObj = {}
+            first_name = request.form['firstName']
+            last_name = request.form['lastName']
+            email = request.form['email']
+            phonenum = request.form['phoneNum']
+            password = request.form['password']
+            file = request.files['file']
+            if first_name is '' or last_name is '' or email is '' or phonenum is 0 or password is '':
+                jsObj = json.dumps({"status": "Not all required elements are entered"})
+                return jsObj
+            else:
+                print('app going to register function')
+                if file:
+                    print('in file if statement')
+                    basedir = os.path.abspath(os.path.dirname(__file__))
+                    filename = secure_filename(email + '.jpg')
+                    file.save(os.path.join(basedir, app.config['UPLOAD_FOLDER'], filename))
+                    filepath = os.path.join(basedir, app.config['UPLOAD_FOLDER'], filename)
+                jsObj = db.register(first_name, last_name, email, phonenum, password, filename)
+                return jsObj
+        except Exception as e:
+            print('Error registering user:', e )
     else:
         return 'POST did not work'
 
@@ -365,6 +378,69 @@ def user_profile():
         j = json.loads(data.decode('UTF-8'))
         jsObj = db.get_profile(j['userID'])
         return jsObj
+
+
+@app.route('/getPicture', methods=['POST', 'PUT'])
+def get_profile_picture():
+    if request.method == 'POST':
+        try:
+            data = request.get_data()
+            j = json.loads(data.decode('UTF-8'))
+            filename = db.get_picture(j['userID'])
+            print('path', filename)
+            basedir = os.path.abspath(os.path.dirname(__file__))
+            filepath = os.path.join(basedir, app.config['UPLOAD_FOLDER'], filename)
+            with open(filepath, "rb") as image_file:
+                encoded_string = base64.b64encode(image_file.read())
+            return Response(encoded_string, mimetype='image/jpeg', headers={"Content-disposition":"attachment: filename="+filepath})
+        except Exception as e:
+            print('Error sending picture:', e)
+
+
+@app.route('/getUserID', methods=['PUT', 'POST'])
+def get_user():
+    if request.method == 'POST':
+        data = request.get_data()
+        j = json.loads(data.decode('UTF-8'))
+        jsObj = db.get_user_id(j['passengerID'])
+        return jsObj
+
+
+@app.route('/updateInfo', methods=['PUT', 'POST'])
+def update_info():
+    print('in update func')
+    if request.method == 'POST':
+        user_id = request.form['userID']
+        phone = request.form['phone']
+        email = request.form['email']
+        print('before cars')
+        car_make = request.form['carMake']
+        car_model = request.form['carModel']
+        car_reg = request.form['carReg']
+        print('before getting file')
+        file = request.files['file']
+        print('after file')
+        if file:
+            print('in file if')
+            delete_item(email)
+            print('in file if statement')
+            basedir = os.path.abspath(os.path.dirname(__file__))
+            filename = secure_filename(email + '.jpg')
+            file.save(os.path.join(basedir, app.config['UPLOAD_FOLDER'], filename))
+            # filepath = os.path.join(basedir, app.config['UPLOAD_FOLDER'], filename)
+        jsObj = db.update_details(user_id, phone, car_make, car_model, car_reg)
+        print(jsObj)
+        return jsObj
+
+
+def delete_item(email):
+    try:
+        basedir = os.path.abspath(os.path.dirname(__file__))
+        filename = secure_filename(email + '.jpg')
+        os.remove(os.path.join(basedir, app.config['UPLOAD_FOLDER'], filename))
+    except Exception as e:
+        print('Error deleting image from server:', e)
+    return 'done'
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -14,49 +14,54 @@
     <link rel="stylesheet" type="text/css"  href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script type="application/javascript">
-        window.onload = populateProfile(sessionStorage.getItem('userID'));
+        window.onload =function () {
+            populateProfile(sessionStorage.getItem('profileUserID'));
+            getPicture(sessionStorage.getItem('profileUserID'));
+        }
     </script>
     <title>My Profile</title>
 </head>
 <body class="container">
-<div id="ratingHeaderDiv" class="col-xs-12">
+<form id="profileForm" method="post" action="http://looprac.pythonanywhere.com/registeruser"  enctype="multipart/form-data">
+    <div id="profilePicDiv" class="col-xs-12">
+        <img id="profilePic" src="" class="col-xs-12"/>
+    </div>
+    <div id="profileDetailsDiv" class="col-xs-12">
+        <input type="number" name="userID" id="hiddenUserId" class="hidden" readonly />
+        <input id="file" name="file" type="file" required class="hidden"/>
+        <label class="col-xs-12 profileLbs" for="profileCreated">Member Since</label>
+        <input type="text" class="col-xs-12 profileInputs" id="profileCreated" readonly />
+        <h1 id="profileName" class="col-xs-12" style="text-align: center;color: #ff8800;"></h1>
+        <label class="col-xs-12 profileLbs" for="profilePhone">Phone Number</label>
+        <input name="phone" type="text" class="col-xs-12 profileInputs" id="profilePhone" readonly />
+        <label class="col-xs-12 profileLbs" for="profileEmail">Email</label>
+        <input name="email" type="text" class="col-xs-12 profileInputs" id="profileEmail" readonly />
+    </div>
+    <div id="profileRatingExpDiv">
+        <!--<label class="col-xs-12 profileLbs" for="profileRating">Rating</label>-->
+        <input id="profileRating" data-step="1.0" type="text"  class="rating col-xs-6 " data-show-clear="false" data-size="sm" readonly>
+        <input type="text" id="profileRatingAmt" class="col-xs-12 profileInputs" readonly />
+        <label class="col-xs-12 profileLbs" for="profileExp">Experience</label>
+        <input type="text" class="col-xs-12 profileInputs" id="profileExp" readonly />
+        <label class="col-xs-12 profileLbs" for="profileDistance">Distance travelled with other people</label>
+        <input type="text" class="col-xs-12 profileInputs" id="profileDistance" readonly />
 
-    <h1 class="_h1 " >Looper</h1>
-</div>
-<div id="profilePicDiv" class="col-xs-12">
-    <!--<img id="profilePic" src="css/profile_pic.png" />-->
-    <label class="col-xs-12 profileLbs" for="profileCreated">Member Since</label>
-    <input type="text" class="col-xs-12 profileInputs" id="profileCreated" readonly />
-</div>
-<div id="profileDetailsDiv" class="col-xs-12">
-    <h1 id="profileName" class="col-xs-12" style="text-align: center;color: #ff8800;"></h1>
-    <label class="col-xs-12 profileLbs" for="profilePhone">Phone Number</label>
-    <input type="text" class="col-xs-12 profileInputs" id="profilePhone" readonly />
-    <label class="col-xs-12 profileLbs" for="profileEmail">Email</label>
-    <input type="text" class="col-xs-12 profileInputs" id="profileEmail" readonly />
-</div>
-<div id="profileRatingExpDiv">
-    <!--<label class="col-xs-12 profileLbs" for="profileRating">Rating</label>-->
-    <input id="profileRating" data-step="1.0" type="text"  class="rating col-xs-6 " data-show-clear="false" data-size="sm" readonly>
-    <input type="text" id="profileRatingAmt" class="col-xs-12 profileInputs" />
-    <label class="col-xs-12 profileLbs" for="profileExp">Experience</label>
-    <input type="text" class="col-xs-12 profileInputs" id="profileExp" readonly />
-    <label class="col-xs-12 profileLbs" for="profileDistance">Distance travelled with other Loopers</label>
-    <input type="text" class="col-xs-12 profileInputs" id="profileDistance" readonly />
+    </div>
+    <div id="profileCarDetailsDiv">
+        <h3 class="col-xs-12" style="text-align: center;color: #ff8800;" >Car Details</h3>
+        <label class="col-xs-12 profileLbs" for="profileCarMake">Make</label>
+        <input type="text" name="carMake" class="col-xs-12 profileInputs" id="profileCarMake" readonly />
+        <label class="col-xs-12 profileLbs" for="profileCarModel">Model</label>
+        <input type="text" name="carModel" class="col-xs-12 profileInputs" id="profileCarModel" readonly />
+        <label class="col-xs-12 profileLbs" for="profileCarReg">Registration</label>
+        <input type="text" name="carReg" class="col-xs-12 profileInputs" id="profileCarReg" readonly />
+    </div>
+    <div id="profileBtnsDiv">
+        <input type="button" id="saveChangesBtn" class="col-xs-12 hidden" value="Save" onclick="updateInfo()" />
+        <input type="button" id="profileBackBtn" class="col-xs-6" value="Back" onclick="window.location='main_page.html'"/>
+        <input type="button" id="profileEditBtn" class="col-xs-6" value="Edit" onclick="edit()" />
+    </div>
 
-</div>
-<div id="profileCarDetailsDiv">
-    <h3 class="col-xs-12" style="text-align: center;color: #ff8800;" >Car Details</h3>
-    <label class="col-xs-12 profileLbs" for="profileCarMake">Make</label>
-    <input type="text" class="col-xs-12 profileInputs" id="profileCarMake" readonly />
-    <label class="col-xs-12 profileLbs" for="profileCarModel">Model</label>
-    <input type="text" class="col-xs-12 profileInputs" id="profileCarModel" readonly />
-    <label class="col-xs-12 profileLbs" for="profileCarReg">Registration</label>
-    <input type="text" class="col-xs-12 profileInputs" id="profileCarReg" readonly />
-</div>
-<div id="profileBtnsDiv">
-    <input type="button" id="profileBackBtn" class="col-xs-6" value="Back" onclick="window.location='main_page.html'"/>
-    <input type="button" id="profileEditBtn" class="col-xs-6" value="Edit" />
-</div>
+</form>
 </body>
 </html>
