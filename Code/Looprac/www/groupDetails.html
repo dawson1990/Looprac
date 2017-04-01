@@ -9,15 +9,19 @@
     <link rel="stylesheet" type="text/css"  href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/Looprac.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc" async defer type="text/javascript"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc"  defer type="text/javascript"></script>
     <link rel="stylesheet" type="text/css"  href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
     <script>
         window.onload = function (){
             showGroupDetails(sessionStorage.getItem('myLiftID'), sessionStorage.getItem('groupID'));
         };
-    </script>
+        function profile(){
+            getProfile(document.getElementById('hiddenDriverPassengerID').value);
 
+        }
+    </script>
     <title>Group Details</title>
 </head>
 <body class="container" >
@@ -28,8 +32,10 @@
 <div id="groupDetailsDiv" class="col-xs-12 " >
     <div id="groupDetailsInnerDiv"  class="col-xs-12">
         <h4 style="color: #ff8800;text-align: center;">Driver & Car</h4>
+        <i id="profileIcon" class="fa fa-user col-xs-12" aria-hidden="true" onclick="profile()"></i>
         <label class="col-xs-6 liftDetailsLabels" for="driverNameRdOnly">Driver </label>
         <input type="number" id="hiddenDriverID" class="hidden" readonly/>
+        <input type="number" id="hiddenDriverPassengerID" class="hidden" readonly/>
         <label class="col-xs-6 liftDetailsLabels" for="driverDetailsRdOnly">Rating </label>
         <input type="text" id="driverNameRdOnly" class="liftDetailsInput col-xs-6" readonly />
         <input type="text" id="driverDetailsRdOnly" class="liftDetailsInput col-xs-6" readonly />
@@ -40,14 +46,13 @@
         <h4 style="color: #ff8800;text-align: center;">Route</h4>
         <label class="col-xs-12 liftDetailsLabels" for="routeRdOnly">Route</label>
         <input type="text" id="routeRdOnly" class="col-xs-12 liftDetailsInput" readonly />
-        <label class="col-xs-6 liftDetailsLabels" for="departTimeRdOnly">Depart Time </label>
         <label class="col-xs-6 liftDetailsLabels" for="departDateRdOnly">Depart Date </label>
-        <input type="text" id="departTimeRdOnly" class="liftDetailsInput col-xs-6" readonly />
         <input type="text" id="departDateRdOnly" class="col-xs-6 liftDetailsInput" readonly />
         <input  type="number" id="hiddenNumOfPassengers" class="hidden" />
         <h4 id="numOfPassengersHeader" style="color: #ff8800;text-align: center;"></h4>
         <table id="passengersTbl" class="table table-inverse table-hover">
             <tr style="color: #ffffff;" >
+                <th class="hidden">PassengerID</th>
                 <th>Name</th>
                 <th>Rating</th>
                 <th>Phone</th>

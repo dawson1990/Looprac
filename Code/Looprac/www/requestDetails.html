@@ -12,13 +12,17 @@
     <link rel="stylesheet" type="text/css"  href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
     <script>
         window.onload = function (){
             document.getElementById('requestIDRdOnly').value = sessionStorage.getItem('requestID');
             getRequestDetails();
         };
 
+        function profile(){
+            getProfile(document.getElementById('hiddenPassengerID').value);
 
+        }
     </script>
     <style>
 
@@ -39,14 +43,14 @@
             <input type="number" name="requestID" id="requestIDRdOnly" class="hidden col-xs-12 liftDetailsInput" readonly />
         </form>
         <h4 class="col-xs-12" style="color: #ff8800;text-align: center;">Passenger Details</h4>
+        <i class="fa fa-user col-xs-12" aria-hidden="true" onclick="profile()"></i>
+        <input  type="number" id="hiddenPassengerID" class="hidden" />
         <label class="col-xs-6 liftDetailsLabels" for="passengerNameRdOnly">Name </label>
         <label class="col-xs-6 liftDetailsLabels" for="passengerRatingRdOnly">Rating</label>
         <input type="text" id="passengerNameRdOnly" class="liftDetailsInput col-xs-6" readonly />
         <input type="text" id="passengerRatingRdOnly" class="col-xs-6 liftDetailsInput" readonly />
         <h4 style="color: #ff8800;text-align: center;">Leaving on</h4>
-        <label class="col-xs-6 liftDetailsLabels" for="departTimeRdOnly">Depart Time </label>
         <label class="col-xs-6 liftDetailsLabels" for="departDateRdOnly">Depart Date </label>
-        <input type="text" id="departTimeRdOnly" class="liftDetailsInput col-xs-6" readonly />
         <input type="text" id="departDateRdOnly" class="col-xs-6 liftDetailsInput" readonly />
     </div>
     <div id="liftDetailsBtnDiv" class="col-xs-12">

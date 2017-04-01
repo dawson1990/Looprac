@@ -2,7 +2,7 @@ import DBcm
 import json
 import hashlib
 import datetime
-
+from dateutil.tz import *
 config = {
     'host': 'Looprac.mysql.pythonanywhere-services.com',
     'user': 'Looprac',
@@ -35,13 +35,13 @@ def get_main_page_lifts(passengerID):
                    AND p.PassengerID = %s) """
     with DBcm.UseDatabase(config) as cursor:
         try:
-            cursor.execute(_FILTERLIFTLIST_SQL, (day, passengerID, passengerID ))
+            cursor.execute(_FILTERLIFTLIST_SQL, (time, passengerID, passengerID ))
             data = cursor.fetchall()
             print('length', len(data), 'data', data)
             if data != []:
                 for item in data:
                     d.append({
-                        'available lifts': 'yes',
+                        'availablelifts': 'yes',
                         'liftID': item[0],
                         'driverID': item[1],
                         'startLat': item[2],
@@ -49,7 +49,7 @@ def get_main_page_lifts(passengerID):
                     })
                     jsObj = json.dumps(d, default=converter)
             else:
-                jsObj = json.dumps({"available lifts": "none"})
+                jsObj = json.dumps({"availablelifts": "none"})
         except Exception as e:
             print('Error with select lift details that user hasnt requested query: ', e)
         else:
@@ -61,8 +61,10 @@ def list_available_lifts(passengerID):
     data, data2, d = [], [], []
     now = datetime.datetime.now()
     day = now.strftime("%Y-%m-%d")
+    time = now.strftime("%Y-%m-%d %H:%M:%S")
+
     # Query that filters available lifts to only display lifts that have available spaces, they user hasn't already requested or if the user is a driver, not to show their lifts
-    _FILTERLIFTLIST_SQL = """SELECT l.LiftID, l.DriverID, l.Start_County, l.Destination_County, l.Depart_Date, l.Depart_Time
+    _FILTERLIFTLIST_SQL = """SELECT l.LiftID, l.DriverID, l.Start_County, l.Destination_County, l.Depart_Date
                  FROM Lift l, Driver d, User u, Passenger p
                  WHERE  l.Available_Spaces > 0
                  AND l.Depart_Date > %s
@@ -79,7 +81,7 @@ def list_available_lifts(passengerID):
                    AND p.PassengerID = %s) """
     with DBcm.UseDatabase(config) as cursor:
         try:
-            cursor.execute(_FILTERLIFTLIST_SQL, (day, passengerID, passengerID))
+            cursor.execute(_FILTERLIFTLIST_SQL, (time, passengerID, passengerID))
             data = cursor.fetchall()
             print('length', len(data), 'data', data)
         except Exception as e:
@@ -90,8 +92,7 @@ def list_available_lifts(passengerID):
                 'driverID': item[1],
                 'startCounty': item[2],
                 'destinationCounty': item[3],
-                'departDate': item[4],
-                'departTime': item[5]
+                'departing': item[4],
         })
     jsObj = json.dumps(d, default=converter)
     return jsObj
@@ -104,9 +105,10 @@ def converter(obj):
 
 def getLiftDetails(liftID, driverID):
     print('liftID', liftID, 'driverID', driverID)
-    _DRIVER_DETAILS_SQL = """ SELECT u.UserID, u.First_Name, u.Last_Name, r.Rating
-                  FROM User u, Driver d, UserRating r
+    _DRIVER_DETAILS_SQL = """ SELECT u.UserID, u.First_Name, u.Last_Name, r.Rating, p.PassengerID
+                  FROM User u, Driver d, UserRating r, Passenger p
                   WHERE u.UserID = d.UserID
+                  AND u.UserID = p.UserID
                   AND r.UserID = u.UserID
                   AND d.DriverID= %s"""
     _LIFT_DETAILS_SQL = """SELECT * FROM Lift WHERE LiftID= %s order by Created_At"""
@@ -127,6 +129,7 @@ def getLiftDetails(liftID, driverID):
                 'DriverFName': i[1],
                 'DriverLName': i[2],
                 'rating': i[3],
+                'driversPassengerID': i[4],
                 'liftID': item[0],
                 'driverID': item[1],
                 'startLat': item[2],
@@ -135,8 +138,8 @@ def getLiftDetails(liftID, driverID):
                 'destinationLat': item[5],
                 'destinationLng': item[6],
                 'destinationCounty': item[7],
-                'departDate': item[8],
-                'departTime': item[9],
+                'distance': item[8],
+                'departing': item[9],
                 'seats': item[10],
                 'created': item[11]
             })
@@ -271,7 +274,7 @@ def process_login(email, password):
                         passengerID = i[3]
                         jsObj = json.dumps(
                             {"status": "match", "email": email, "user_id": UserID, "first_name": uName.capitalize(), "last_name": uLName.capitalize(),
-                             "passengerID": passengerID, "driverID": driverID})
+                             "passengerID": passengerID, "driverID": 0})
             except Exception as e:
                 print('error with getting login information: ', e)
             else:
@@ -318,13 +321,13 @@ def check_if_exists(email: str):
 
 
 def register_offer_lift(userID,startLat, startLong, startCounty, destinationLat, destinationLong, destinationCounty,
-                        date, time, seats):
+                        distance, departing, seats):
     print('register function', userID, startLat, startLong, startCounty,destinationLat, destinationLong, destinationCounty,
-          date, time, seats)
+          departing, seats)
     _GETDRIVER_SQL = """SELECT DriverID FROM Driver WHERE UserID= %s """
     _User_Register_SQL = """INSERT INTO Lift
                        (DriverID, Start_Lat, Start_Long, Start_County, Destination_Lat, Destination_Long,
-                       Destination_County, Depart_Date, Depart_Time, Available_Spaces,
+                       Destination_County, Distance, Depart_Date, Available_Spaces,
                        Created_At)
                        VALUES
                        (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,CURRENT_TIMESTAMP )"""
@@ -335,7 +338,7 @@ def register_offer_lift(userID,startLat, startLong, startCounty, destinationLat,
         driverID = data[0][0]
         print('driver id', driverID)
         cursor.execute(_User_Register_SQL, (driverID, startLat, startLong, startCounty, destinationLat, destinationLong,
-                                            destinationCounty, date, time, seats))
+                                            destinationCounty, distance, departing, seats))
     jsObj = json.dumps({"status": "registered"})
     return jsObj
 
@@ -486,7 +489,7 @@ def getRequestDetails(requestID):
                                   AND p.passengerID = r.PassengerID
                                   AND ur.UserID = p.UserID
                                   AND r.requestID = %s"""
-    _GETLIFTDETAILS_SQL = """SELECT l.Depart_Date, l.Depart_Time, l.Start_Lat, l.Start_Long, l.Destination_Lat, l.Destination_Long
+    _GETLIFTDETAILS_SQL = """SELECT l.Depart_Date, l.Start_Lat, l.Start_Long, l.Destination_Lat, l.Destination_Long
                               FROM Lift l, Request r
                               WHERE r.LiftID = l.LiftID
                               AND r.RequestID = %s"""
@@ -512,12 +515,11 @@ def getRequestDetails(requestID):
                         'name': item[0] + ' ' + item[1],
                         'rating': item[4],
                         'phoneNum': item[2],
-                        'date': i[0],
-                        'time': i[1],
-                        'startLat': i[2],
-                        'startLng': i[3],
-                        'destLat': i[4],
-                        'destLng': i[5]
+                        'departing': i[0],
+                        'startLat': i[1],
+                        'startLng': i[2],
+                        'destLat': i[3],
+                        'destLng': i[4]
                     })
                     jsObj = json.dumps(d, default=converter)
                     return jsObj
@@ -608,7 +610,7 @@ def denyRequest(requestID):
 # MY GROUPS
 
 def getMyGroups(userID):
-    _GROUPDETAIL_SQL = """SELECT c.GroupID, u.First_Name, u.Last_Name, l.LiftID, l.Depart_Time, l.Depart_Date
+    _GROUPDETAIL_SQL = """SELECT c.GroupID, u.First_Name, u.Last_Name, l.LiftID, l.Depart_Date
                           FROM CarGroup c, Driver d, User u, Lift l, Passenger p
                           WHERE c.DriverID = d.DriverID
                           AND u.UserID = d.UserID
@@ -627,8 +629,7 @@ def getMyGroups(userID):
                     'groupID': item[0],
                     'driverName': item[1] + ' ' + item[2],
                     'liftID': item[3],
-                    'departTime': item[4],
-                    'departDate': item[5],
+                    'departing': item[4],
                 })
             jsObj = json.dumps(d, default=converter)
         except Exception as e:
@@ -640,21 +641,22 @@ def getMyGroups(userID):
 def getGroupDetails(liftID, groupID):
     data, driverData = [], []
     print('lift', liftID, 'group', groupID)
-    _GETPASSENGERS_SQL = """SELECT u.First_Name, u.Last_Name, u.Phone_Number, r.Rating
+    _GETPASSENGERS_SQL = """SELECT u.First_Name, u.Last_Name, u.Phone_Number, r.Rating, p.PassengerID
                             FROM User u, Passenger p, CarGroup c, UserRating r
                             WHERE c.PassengerID = p.PassengerID
                             AND p.UserID = u.UserID
                             AND u.UserID = r.UserID
                             AND c.LiftID = %s
                            """
-    _GETGROUPDETAILS_SQL = """SELECT l.Start_County, l.Destination_County, l.Depart_Date, l.Depart_Time,
-                                  l.Start_Lat, l.Start_Long, l. Destination_Lat, l.Destination_Long
+    _GETGROUPDETAILS_SQL = """SELECT l.Start_County, l.Destination_County, l.Depart_Date,l.Start_Lat, l.Start_Long,
+                              l. Destination_Lat, l.Destination_Long
                                   FROM Lift l, CarGroup c
                                   WHERE c.LiftID = l.LiftID
                                   AND c.GroupID = %s"""
-    _GETDRIVERDETAILS_SQL = """SELECT u.First_Name, u.Last_Name, u.Phone_Number, r.Rating, c.Car_Reg, d.DriverID
-                               FROM User u, CarDetails c, Driver d, CarGroup g, UserRating r
+    _GETDRIVERDETAILS_SQL = """SELECT u.First_Name, u.Last_Name, u.Phone_Number, r.Rating, c.Car_Reg, d.DriverID, p.PassengerID
+                               FROM User u, CarDetails c, Driver d, CarGroup g, UserRating r, Passenger p
                                WHERE u.UserID = c.UserID
+                               AND u.UserID = p.UserID
                                AND u.UserID = d.UserID
                                AND d.DriverID = g.DriverID
                                AND r.UserID = u.UserID
@@ -691,17 +693,18 @@ def getGroupDetails(liftID, groupID):
                             'driverRating': i[3],
                             'carReg': i[4],
                             'driverID': i[5],
+                            'driverPassengerID': i[6],
                             'startCounty': item[0],
                             'destCounty': item[1],
-                            'departDate': item[2],
-                            'departTime': item[3],
-                            'startLat': item[4],
-                            'startLng': item[5],
-                            'destLat': item[6],
-                            'destLng': item[7],
+                            'departing': item[2],
+                            'startLat': item[3],
+                            'startLng': item[4],
+                            'destLat': item[5],
+                            'destLng': item[6],
                             'passengerName': it[0] + ' ' + it[1],
                             'passengerPhone': it[2],
-                            'passengerRating': it[3]
+                            'passengerRating': it[3],
+                            'passengerID': it[4]
                         })
             jsObj = json.dumps(d, default=converter)
         except Exception as e:
@@ -712,7 +715,7 @@ def getGroupDetails(liftID, groupID):
 
 def get_my_completed_groups(userID):
     d, liftData = [], []
-    _MY_COMPLETED_GROUPS_LIST_SQL = """SELECT u.First_Name, u.Last_Name, l.LiftID, l.Depart_Time, l.Depart_Date
+    _MY_COMPLETED_GROUPS_LIST_SQL = """SELECT u.First_Name, u.Last_Name, l.LiftID, l.Depart_Date
                                       FROM CarGroup c, Driver d, User u, Lift l, Passenger p, CompletedLifts cl
                                       WHERE c.DriverID = d.DriverID
                                       AND u.UserID = d.UserID
@@ -731,8 +734,7 @@ def get_my_completed_groups(userID):
                 d.append({
                     'driverName': item[0] + ' ' + item[1],
                     'liftID': item[2],
-                    'time': item[3],
-                    'date': item[4]
+                    'departed': item[3]
                 })
         except Exception as e:
             print('Error getting completed groups:', e)
@@ -745,7 +747,7 @@ def get_my_completed_groups(userID):
 
 def getMyCompletedLifts(userID):
     d, liftData = [], []
-    _MY_COMPLETED_LIFT_LIST_SQL = """SELECT l.LiftID, l.Start_County, l.Destination_County, l.Depart_Date, l.Depart_Time
+    _MY_COMPLETED_LIFT_LIST_SQL = """SELECT l.LiftID, l.Start_County, l.Destination_County, l.Depart_Date
                              FROM Lift l, Driver d, CompletedLifts c
                              WHERE c.DriverID = d.DriverID
                              AND c.LiftID = l.LiftID
@@ -763,8 +765,7 @@ def getMyCompletedLifts(userID):
                 d.append({
                     'liftID': item[0],
                     'route': item[1] + ' to ' + item[2],
-                    'departDate': item[3],
-                    'departTime': item[4]
+                    'departing': item[3],
                 })
             return json.dumps(d, default=converter)
 
@@ -774,7 +775,7 @@ def getMyLifts(userID):
     now = datetime.datetime.now()
     day = now.strftime("%Y-%m-%d")
     time = now.strftime("%H:%M")
-    _LIFTDETAIL_SQL = """SELECT l.LiftID, l.Start_County, l.Destination_County, l.Depart_Date, l.Depart_Time
+    _LIFTDETAIL_SQL = """SELECT l.LiftID, l.Start_County, l.Destination_County, l.Depart_Date
                              FROM Lift l, Driver d
                              WHERE l.DriverID = d.DriverID
                              AND l.Depart_Date > %s
@@ -792,8 +793,7 @@ def getMyLifts(userID):
                     'userID': userID,
                     'liftID': item[0],
                     'route': item[1] + ' to ' + item[2],
-                    'departDate': item[3],
-                    'departTime': item[4]
+                    'departing': item[3],
                 })
             jsObj = json.dumps(d, default=converter)
         except Exception as e:
@@ -811,13 +811,14 @@ def getMyLiftDetails(liftID):
                             AND r.UserID = p.UserID
                             AND p.UserID = u.UserID
                             AND c.LiftID = %s"""
-    _GETMYLIFTDETAILS_SQL = """SELECT l.*, cd.Car_Reg, u.First_Name, u.Last_Name, r.Rating
-                                FROM Lift l, CarDetails cd, Driver d, User u, UserRating r
+    _GETMYLIFTDETAILS_SQL = """SELECT l.*, cd.Car_Reg, u.First_Name, u.Last_Name, r.Rating, p.PassengerID
+                                FROM Lift l, CarDetails cd, Driver d, User u, UserRating r, Passenger p
                                 WHERE l.LiftID = %s
                                 AND l.DriverID = d.DriverID
                                 AND d.UserID = u.UserID
                                 AND r.UserID = u.UserID
-                                AND d.UserID = cd.UserID"""
+                                AND d.UserID = cd.UserID
+                                AND u.UserID = p.UserID"""
     with DBcm.UseDatabase(config) as cursor:
         try:
             cursor.execute(_GETPASSENGERS_SQL, (liftID,))
@@ -845,13 +846,14 @@ def getMyLiftDetails(liftID):
                             'destLat': item[5],
                             'destLng': item[6],
                             'destCounty': item[7],
-                            'departDate': item[8],
-                            'departTime': item[9],
+                            'distance': item[8],
+                            'departing': item[9],
                             'spaces': item[10],
                             'created': item[11],
                             'car reg': item[12],
                             'driverName': item[13] + ' ' + item[14],
                             'driverRating': item[15],
+                            'driverPassengerID': item[16],
                             'passengerName': i[0] + ' ' + i[1],
                             'passengerPhone': i[2],
                             'passengerRating': i[3],
@@ -869,11 +871,14 @@ def getMyLiftDetails(liftID):
                         'destLat': item[5],
                         'destLng': item[6],
                         'destCounty': item[7],
-                        'departDate': item[8],
-                        'departTime': item[9],
+                        'distance': item[8],
+                        'departing': item[9],
                         'spaces': item[10],
                         'created': item[11],
                         'car reg': item[12],
+                        'driverName': item[13] + ' ' + item[14],
+                        'driverRating': item[15],
+                        'driverPassengerID': item[16],
                         'passengerName': 'None',
                         'passengerPhone': 'None'
                     })
@@ -884,10 +889,11 @@ def getMyLiftDetails(liftID):
             return jsObj
 
 
-def complete_lift(liftID, distance):
-    d, passengerIDs, driverIdData =  [], [], []
+def complete_lift(liftID):
+    print('COMPLETE LIFT FUNCTION')
+    d, passengerIDs, driverIdData, distance_data = [], [], [], []
     driverID, driverIdForCompletedLift = 0, 0
-    print('distance', distance)
+    distance = 0.0
     # query to get drivers id to insert into completed lifts
     _GET_DRIVER_ID_SQL = """SELECT DISTINCT c.DriverID
                         FROM Driver d, CarGroup c
@@ -898,6 +904,7 @@ def complete_lift(liftID, distance):
                                 FROM Passenger p, CarGroup c
                                  WHERE c.PassengerID = p.PassengerID
                                  AND c.LiftID = %s"""
+    _GET_DISTANCE_SQL = """SELECT Distance FROM Lift WHERE LiftID = %s"""
     _INSERT_COMPLETED_LIFT_DRIVER_SQL = """INSERT INTO CompletedLifts (LiftID, DriverID, Distance_Kilometers)
                                 VALUES (%s, %s, %s)"""
     _INSERT_COMPLETED_LIFT_PASSENGERS_SQL = """INSERT INTO CompletedLifts (LiftID, PassengerID, Distance_Kilometers)
@@ -912,7 +919,13 @@ def complete_lift(liftID, distance):
             print('driver id for complete lift', driverIdForCompletedLift)
         except Exception as e:
             print('Error getting driver user ID for insert:', e)
-
+    with DBcm.UseDatabase(config) as cursor2:
+        try:
+            cursor2.execute(_GET_DISTANCE_SQL, (liftID, ))
+            distance_data = cursor2.fetchall()
+            distance = distance_data[0][0]
+        except Exception as e:
+            print('Error getting distance information:', e)
     if driverIdData:
         with DBcm.UseDatabase(config) as cursor3:
             try:
@@ -1130,24 +1143,33 @@ def calculateRating(starCountData):
 
 
 def check_if_user_is_driver(liftID, driverID):
-    driverData = []
+    driverData, distanceData = [], []
     # see if user was the driver
     _SEE_IF_USER_IS_DRIVER_SQL = """SELECT DriverID FROM CarGroup
                                     WHERE LiftID = %s
                                     AND DriverID = %s"""
+    _GET_DISTANCE_SQL = """SELECT Distance FROM Lift WHERE LiftID = %s"""
     with DBcm.UseDatabase(config) as cursor:
         try:
-            cursor.execute(_SEE_IF_USER_IS_DRIVER_SQL, (liftID, driverID))
-            driverData = cursor.fetchall()
+            cursor.execute(_GET_DISTANCE_SQL, (liftID, ))
+            distanceData = cursor.fetchall()
+            print('driver data', driverData)
+        except Exception as e:
+            print('Error checking if user is the driver:', e)
+    with DBcm.UseDatabase(config) as cursor1:
+        try:
+            cursor1.execute(_SEE_IF_USER_IS_DRIVER_SQL, (liftID, driverID))
+            driverData = cursor1.fetchall()
             print('driver data', driverData)
         except Exception as e:
             print('Error checking if user is the driver:', e)
         else:
             if driverData != []:
-                return json.dumps({'is driver': 'true'})
+                for item in distanceData:
+                    return json.dumps({'is driver': 'true', 'distance': str(item[0])})
             else:
-                return json.dumps({'is driver': 'false'})
-
+                for i in distanceData:
+                    return json.dumps({'is driver': 'false', 'distance': str(i[0])})
 
 
 def get_user_experience(userID, newExp, distance, numOfPassengers):
@@ -1173,7 +1195,7 @@ def get_user_experience(userID, newExp, distance, numOfPassengers):
             for item in experienceData:
                 d.append({
                     'overall distance': item[0],
-                    'overall passengers': item[1],
+                    'overallpassengers': item[1],
                     'experience': item[2]
                 })
             return json.dumps(d, default=converter)

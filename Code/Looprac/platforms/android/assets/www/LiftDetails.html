@@ -3,29 +3,24 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <!--<script type="text/javascript" src="cordova.js"></script>-->
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-toggle.min.js"></script>
     <script src="js/Looprac.js"></script>
     <!--access Google APIs and on callback calls function getliftdetail -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc&callback=getLiftDetails" async defer type="text/javascript"></script>
     <link rel="stylesheet" type="text/css"  href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
     <script>
         window.onload = function (){
             document.getElementById('passengerIDRdOnly').value = sessionStorage.getItem('passengerID');
         };
 
+        function profile(){
+            getProfile(document.getElementById('driverPassengerIDRdOnly').value);
 
+        }
     </script>
-    <style>
-
-    </style>
-    <link rel="stylesheet" type="text/css"  href="css/index.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
     <title>Lift Details</title>
 </head>
 <body class="container" >
@@ -37,6 +32,8 @@
                 <input type="number" name="liftID" id="liftIDRdOnly" class="hidden col-xs-12 liftDetailsInput" readonly />
                 <input type="number" name="passengerID" id="passengerIDRdOnly" class="hidden col-xs-12 liftDetailsInput" readonly />
             </form>
+            <input type="number" name="driverPassengerID" id="driverPassengerIDRdOnly" class="hidden col-xs-12 liftDetailsInput" readonly />
+            <i class="fa fa-user col-xs-12" aria-hidden="true" onclick="profile()"></i>
             <label class="col-xs-6 liftDetailsLabels" for="driverRdOnly">Driver </label>
             <label class="col-xs-6 liftDetailsLabels" for="driverRatingRdOnly">Rating</label>
             <input type="text" id="driverRdOnly" class="liftDetailsInput col-xs-6" readonly  />
@@ -47,10 +44,8 @@
             <input type="text" id="destinationRdOnly" class="liftDetailsInput col-xs-12" readonly />
         </div>
         <div class="col-xs-12">
-            <label class="col-xs-6 liftDetailsLabels" for="departTimeRdOnly">Depart Time </label>
-            <label class="col-xs-6 liftDetailsLabels" for="departDateRdOnly">Depart Date </label>
-            <input type="text" id="departTimeRdOnly" class="col-xs-6 liftDetailsInput" readonly />
-            <input type="text" id="departDateRdOnly" class="col-xs-6 liftDetailsInput" readonly />
+            <label class="col-xs-12 liftDetailsLabels" for="departDateRdOnly">Departing </label>
+            <input type="text" id="departDateRdOnly" class="col-xs-12 liftDetailsInput" readonly />
         </div>
         <div id="liftDetailsSeatsDiv" class="col-xs-12">
             <label class="col-xs-12 seatDetails" for="seatsRdOnly" >Seats </label>

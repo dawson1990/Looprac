@@ -10,8 +10,8 @@
     <link rel="stylesheet" type="text/css"  href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <title>Experience</title>
-    <script> window.onload =calculateExperience(sessionStorage.getItem('userID'), sessionStorage.getItem('distance'),
-        sessionStorage.getItem('myLiftID'), sessionStorage.getItem('driverID'));
+    <script> window.onload =calculateExperience(sessionStorage.getItem('userID'),
+        sessionStorage.getItem('myLiftID'), sessionStorage.getItem('myDriverID'));
     </script>
 </head>
 <body class="container">
@@ -28,9 +28,9 @@
     <input id="distance" class="liftDetailsInput col-xs-6" />
     <input id="overallDistance" class="liftDetailsInput col-xs-6" />
     <label for="numOfPassengers" id="numOfPassengersLbl" class="liftDetailsLabels col-xs-6">Passengers</label>
-    <label for="overallnumOfPassengers" id="overallnumOfPassengersLbl" class="liftDetailsLabels col-xs-6">Overall Passengers</label>
+    <label for="overallNumOfPassengers" id="overallNumOfPassengersLbl" class="liftDetailsLabels col-xs-6">Overall Passengers</label>
     <input id="numOfPassengers" class="liftDetailsInput col-xs-6" />
-    <input id="overallnumOfPassengers" class="liftDetailsInput col-xs-6" />
+    <input id="overallNumOfPassengers" class="liftDetailsInput col-xs-6" />
 </div>
 <div id="overallExperienceDiv" class="col-xs-12">
     <h4 style="text-align: center; color: #ff8800;">Your Experience</h4>

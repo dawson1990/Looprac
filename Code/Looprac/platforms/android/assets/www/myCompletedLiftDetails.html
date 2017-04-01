@@ -7,12 +7,17 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc" async defer type="text/javascript"></script>
     <script src="js/Looprac.js"></script>
+    <link rel="stylesheet" href="css/font-awesome.css">
     <link rel="stylesheet" type="text/css"  href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script>
         window.onload = function (){
             showMyCompletedLiftDetails(sessionStorage.getItem('myCompletedLiftID'));
         };
+        function profile(){
+            getProfile(document.getElementById('hiddenDriverPassengerID').value);
+
+        }
     </script>
     <title>My Completed Lift Details</title>
 </head>
@@ -21,7 +26,10 @@
 <div id="myCompletedLiftDetailsDiv" class="col-xs-12 " >
     <div id="myCompletedLiftDetailsInnerDiv" class="col-xs-12">
         <h4 style="color: #ff8800;text-align: center;">Car & Driver</h4>
+        <i id="profileIcon" class="fa fa-user col-xs-12" aria-hidden="true" onclick="profile()"></i>
         <label class="col-xs-12 liftDetailsLabels" for="driverNameRdOnly">Driver</label>
+        <input  type="number" id="hiddenDriverPassengerID" class="hidden" />
+
         <input type="text" id="driverNameRdOnly" class="liftDetailsInput col-xs-12" readonly />
         <label class="col-xs-6 liftDetailsLabels" for="carRegRdOnly">Car Registration</label>
         <label class="col-xs-6 liftDetailsLabels" for="driverRatingRdOnly">Rating</label>
@@ -30,9 +38,7 @@
         <h4 style="color: #ff8800;text-align: center;" class="col-xs-12">Route</h4>
         <label class="col-xs-12 liftDetailsLabels" for="routeRdOnly">Route</label>
         <input type="text" id="routeRdOnly" class="col-xs-8 liftDetailsInput" readonly />
-        <label class="col-xs-6 liftDetailsLabels" for="departTimeRdOnly">Departed Time </label>
         <label class="col-xs-6 liftDetailsLabels" for="departDateRdOnly">Departed Date </label>
-        <input type="text" id="departTimeRdOnly" class="liftDetailsInput col-xs-6" readonly />
         <input type="text" id="departDateRdOnly" class="col-xs-6 liftDetailsInput" readonly />
         <h4 style="color: #ff8800;text-align: center;" id="numOfPassengersHeader" class="col-xs-12"></h4>
         <input  type="number" id="hiddenNumOfPassengers" class="hidden" />

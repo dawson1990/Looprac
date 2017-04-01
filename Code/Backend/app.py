@@ -83,19 +83,19 @@ def registeruser():
             phonenum = request.form['phoneNum']
             password = request.form['password']
             file = request.files['file']
-            if first_name is '' or last_name is '' or email is '' or phonenum is 0 or password is '':
-                jsObj = json.dumps({"status": "Not all required elements are entered"})
-                return jsObj
-            else:
-                print('app going to register function')
-                if file:
-                    print('in file if statement')
-                    basedir = os.path.abspath(os.path.dirname(__file__))
-                    filename = secure_filename(email + '.jpg')
-                    file.save(os.path.join(basedir, app.config['UPLOAD_FOLDER'], filename))
-                    filepath = os.path.join(basedir, app.config['UPLOAD_FOLDER'], filename)
-                jsObj = db.register(first_name, last_name, email, phonenum, password, filename)
-                return jsObj
+            # if first_name is '' or last_name is '' or email is '' or phonenum is 0 or password is '':
+            #     jsObj = json.dumps({"status": "Not all required elements are entered"})
+            #     return jsObj
+            # else:
+            print('app going to register function')
+            if file:
+                print('in file if statement')
+                basedir = os.path.abspath(os.path.dirname(__file__))
+                filename = secure_filename(email + '.jpg')
+                file.save(os.path.join(basedir, app.config['UPLOAD_FOLDER'], filename))
+                filepath = os.path.join(basedir, app.config['UPLOAD_FOLDER'], filename)
+            jsObj = db.register(first_name, last_name, email, phonenum, password, filename)
+            return jsObj
         except Exception as e:
             print('Error registering user:', e )
     else:
@@ -145,18 +145,15 @@ def sub_offer_lift():
         destinationLat = data['destination_lat']
         destinationLong = data['destination_long']
         destinationCounty = data['destination_county']
-        date = data['depart_date']
-        time = data['depart_time']
+        distance = data['distance']
+        departing = data['departing']
         seats = data['seats']
         print('recieved: ', userID, startLat, startLong, startCounty, destinationLat, destinationLong,
-              destinationCounty, date, time, seats)
-        if startLat is '' or destinationLat is '' or date is '' or time is '':
-            jsObj = json.dumps({"status": "Not all required elements are entered"})
-            return jsObj
-        else:
-            jsObj = db.register_offer_lift(userID,startLat,startLong, startCounty, destinationLat, destinationLong,
-                                           destinationCounty, date, time, seats)
-            return jsObj
+              destinationCounty, ' distance', distance, departing, seats)
+
+        jsObj = db.register_offer_lift(userID,startLat,startLong, startCounty, destinationLat, destinationLong,
+                                       destinationCounty, distance, departing, seats)
+        return jsObj
 
 
 @app.route('/checkcarregistered', methods=['PUT','POST'])
@@ -305,7 +302,7 @@ def complete_lift():
     if request.method == 'POST':
         data = request.get_data()
         j = json.loads(data.decode('UTF-8'))
-        jsObj = db.complete_lift(j['liftID'], j['distance'])
+        jsObj = db.complete_lift(j['liftID'])
         print(jsObj)
         return jsObj
 

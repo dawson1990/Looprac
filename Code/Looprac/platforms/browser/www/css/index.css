@@ -1,9 +1,7 @@
-index.css
-
 /*GENERAL CSS*/
 
 @font-face {
-    font-family: 'Roboto-Light';
+    font-family: Custom;
     font-style: normal;
     font-weight: 300;
     src:
@@ -16,6 +14,7 @@ index.css
 
 body{
     background: #241023!important;
+    font-family: Custom !important;
 }
 
 #logoutIcon{
@@ -27,19 +26,22 @@ body{
 }
 
 .customInputs{
-    margin: 0 0 10px 0;
-    width: 100%!important;
-    height: 130%;
-    border-radius: 10px;
-    padding: 10px;
+    font-family: Custom !important;
+    background-color: transparent;
+    border-radius: 8px;
+    border: none;
+    border-bottom: 1px solid #ff8800;
+    display: flex;
+    flex-wrap: wrap;
+    color: #ffffff;
 }
 
 .customInputs:focus{
-    box-shadow: #ff8800 2px 1px 20px 3px;
     outline: none;
 }
 
 .customLbls{
+    font-family: Custom !important;
     color: #eae8ff;
     font-family: 'Roboto-Light', sans-serif!important;
     position: relative;
@@ -49,9 +51,6 @@ body{
 
 /*INDEX(LOGIN) CSS */
 #logo {
-    /*top: 56px;*/
-    /*right: 8px;*/
-    /*position: relative;*/
     width: 100%;
     display: flex;
     justify-content: center;
@@ -103,73 +102,6 @@ body{
     padding: 5px 10px 5px 10px;
 }
 
-
-#remMeLbl{
-    color: #CCfbfe;
-    font-family: 'Roboto-Light', sans-serif!important;
-    position: relative;
-    top: 5px;
-}
-
-/*!*toggle code*!*/
-/*.onoffswitch {*/
-/*display: flex;*/
-/*justify-content: center;*/
-/*height: 104%;*/
-/*align-items: center;*/
-/*!*position: relative; width: 90px;*!*/
-/*!*-webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;*!*/
-/*}*/
-/*.onoffswitch-checkbox {*/
-/*display: none;*/
-/*}*/
-/*.onoffswitch-label {*/
-/*display: block; overflow: hidden; cursor: pointer;*/
-/*border: 2px solid #999999; border-radius: 20px;*/
-/*}*/
-/*.onoffswitch-inner {*/
-/*display: block; width: 200%; margin-left: -100%;*/
-/*transition: margin 0.3s ease-in 0s;*/
-/*}*/
-/*.onoffswitch-inner:before, .onoffswitch-inner:after {*/
-/*display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;*/
-/*font-size: 14px; color: white; font-family: 'Roboto-Light', sans-serif!important;*/
-/*font-weight: bold;*/
-/*box-sizing: border-box;*/
-/*}*/
-/*.onoffswitch-inner:before {*/
-/*content: "Yes";*/
-/*padding-left: 10px;*/
-/*background-color: #CCFBFE; color: #231024;*/
-/*}*/
-/*.onoffswitch-inner:after {*/
-/*content: "No";*/
-/*padding-right: 10px;*/
-/*background-color: #EEEEEE; color: #999999;*/
-/*text-align: right;*/
-/*}*/
-/*.onoffswitch-switch {*/
-
-/*display: block;*/
-/*width: 25px;*/
-/*height: 25px;*/
-/*margin: 2px;*/
-/*background: #241023;*/
-/*position: absolute;*/
-/*top: 0px;*/
-/*bottom: 0;*/
-
-/*border: 2px solid #ff8800;*/
-/*border-radius: 20px;*/
-/*transition: all 0.3s ease-in 0s;*/
-/*}*/
-/*.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {*/
-/*margin-left: 0;*/
-/*}*/
-/*.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {*/
-/*right: 0px;*/
-/*}*/
-
 /*REGISTER CSS*/
 #registerHeaderDiv{
     display: flex;
@@ -180,7 +112,7 @@ body{
 .registerH1{
     color: #ff8800;
     font-size: 500%;
-    font-family: 'Roboto-Light', sans-serif!important;
+    font-family: Custom !important;
 }
 
 #registerDiv{
@@ -234,6 +166,7 @@ body{
 }
 
 #liftTypeInput{
+    font-family: Custom !important;
     position: relative;
     left: 0;
     width: 37%;
@@ -243,52 +176,59 @@ body{
 }
 
 #liftTypeLbl{
+    font-family: Custom !important;
     position:relative;
     right:17px;
 }
 
 #seatsLbl{
+    font-family: Custom !important;
     position: relative;
     right:17px;
 }
 #seatsInput{
+    font-family: Custom !important;
     position: relative;
 
 }
 
 .departInputs{
-    position: relative;
-    width: 49% !important;
+    font-family: Custom !important;
+    background-color: transparent;
+    color: #ff8800;
     height: 40px !important;
     margin: auto;
     padding: 0px 0px 0px 0px;
     text-align: center;
     border-radius: 6px;
     outline: none;
+    border: none;
+    border-bottom: 1px solid #ff8800;
 }
 
 .departInputs:focus{
-    box-shadow: #ff8800 2px 1px 20px 3px;
+    font-family: Custom !important;
     outline: none;
 }
 
 .dropdownInputs{
+    font-family: Custom !important;
     position: relative;
     width: 49% !important;
     height: 40px !important;
     margin: auto;
-    padding: 0px 0px 0px 0px;
     text-align: center;
     border-radius: 6px;
     outline: none;
 }
 
 .dropdownInputs:focus{
-    box-shadow: #ff8800 2px 1px 20px 3px;
+    font-family: Custom !important;
     outline: none;
 }
 
 .offerLiftBtns{
+    font-family: Custom !important;
     position: relative;
     top: 60px;
     width: 43%!important;
@@ -297,6 +237,7 @@ body{
 }
 
 #offerLiftBtn{
+    font-family: Custom !important;
     border-radius: 5px;
     border-color: #ff8800;
     color: #ff8800;
@@ -306,21 +247,25 @@ body{
 }
 
 .mapLinks{
+    font-family: Custom !important;
     color: #ccfbfe;
     text-align: right;
 }
 
 .mapLinks:focus{
+    font-family: Custom !important;
     opacity: .9;
     text-decoration: none;
 }
 
 #departDateLbl {
+    font-family: Custom !important;
     position: relative;
     right: 14px;
 }
 
 #departTimeLbl {
+    font-family: Custom !important;
     position: relative;
     right: 17px;
 }
@@ -332,86 +277,29 @@ body{
     align-items: center;
 }
 
-#infinityLoopLogo{
-    width:100px;
-}
+#mapIconLogo{
+    max-width: 80px;
+    max-height: 90%}
 
 /****************************
     AVAILABLE LIFTS PAGE
  */
 
 #listDiv{
+    font-family: Custom !important;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 #availableLiftsTbl {
+    font-family: Custom !important;
     position: relative;
     justify-content: center;
     align-items: center;
     color: #ff8800;
 }
 
-/******************************
-    RATINGS_PAGE_DRIVER
- */
-
-.backarrow{
-    color: #ff8800;
-}
-
-.backarrow:active{
-    opacity: .2;
-}
-
-._h1{
-    color: #ff8800;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#ratingHeaderDiv{
-    font-family: 'Roboto-Light', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#profilePicDiv{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#profilePic {
-    width: 35%;
-}
-
-#ratingDiv{
-    font-family: 'Roboto-Light', sans-serif;
-    display: list-item;
-    justify-content: center;
-    align-items: center;
-    wrap-option: wrap;
-}
-
-.ratingH1{
-    font-family: 'Roboto-Light', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #ffffff;
-}
-
-.ratingH2{
-    font-family: 'Roboto-Light', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #eae8ff;
-}
 
 /****************************
     REQUEST LIFT PAGE
@@ -426,10 +314,6 @@ body{
 }
 
 .detailDiv{
-    border-top:1px solid #ffffff;
-}
-
-.dbInfoDiv{
     border-top:1px solid #ffffff;
 }
 
@@ -721,6 +605,12 @@ side nav bar: gotten from w3schools.com
     background-color: #23ff10;
     border-color: #23ff10;
     color: #ffffff;
+}
+
+#denyReqBtn{
+    background-color: #ff1a1e;
+    color: #ffffff;
+    border: 1px solid #ff1a1e;
 }
 
 
@@ -1018,4 +908,8 @@ side nav bar: gotten from w3schools.com
 
 #profileRatingExpDiv{
     text-align:center;
+}
+
+#file{
+    color: #ff8800;
 }

@@ -10,13 +10,6 @@
     <link rel="stylesheet" type="text/css"  href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
-    <script>
-        function go_back() {
-            console.log("go back");
-            window.location.replace("index.html");
-        }
-
-    </script>
     <title>Register</title>
 </head>
 <body class="container">
@@ -30,16 +23,19 @@
         <label id="lastNameLbl" class="customLbls col-xs-12" for="lastNameInput">Last Name</label>
         <input type="text" id="lastNameInput" name="lastName" class="customInputs col-xs-12" placeholder="Sample" pattern="^[a-z A-Z]+$" required="required" />
         <label id="emailLbl" class="customLbls col-xs-12" for="emailInput">Email</label>
-        <input type="email" id="emailInput" name="email" class="customInputs col-xs-12"  placeholder="sample@email.com" required="required" />
+        <input type="email" id="emailInput" name="email" class="customInputs col-xs-12"  placeholder="sample@email.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"  required="required" />
         <div><p id="emailError" style="color: #ffffff; font-weight: bold;"></p> </div>
         <label id="phoneNumLbl" class="customLbls col-xs-12" for="phoneInput">Phone No.</label>
-        <input type="number" id="phoneInput" name="phoneNum" class="customInputs col-xs-12"  placeholder="0851234567" required="required" />
+        <input type="number" id="phoneInput" name="phoneNum" class="customInputs col-xs-12" pattern=""  placeholder="0851234567" required="required" />
         <label id="passwordLbl" class="customLbls col-xs-12" for="passwordInput">Password</label>
-        <input type="password" id="passwordInput" name="password" class="customInputs col-xs-12" pattern=".{6,}" placeholder="Must be at least 6 characters" required="required"/>
+        <input type="password" id="passwordInput" name="password" class="customInputs col-xs-12" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Must be at least 6 characters" required="required" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"/>
         <label id="photoLbl" class="customLbls col-xs-12" for="file">Photo</label>
         <input id="file" name="file" type="file" required/>
+        <p class="col-xs-12" style="text-align: center; color: #eae8ff;">
+            Please make this a clear photo of yourself.  This is to help other users identify you, when sharing a lift.
+        </p>
         <div class="registerBtnsDiv col-xs-12">
-            <input  type="button" value="Cancel" id="cancelBtn" class="registerBtns btn btn-primary col-xs-6" onclick="go_back()"/>
+            <input  type="button" value="Cancel" id="cancelBtn" class="registerBtns btn btn-primary col-xs-6" onclick="window.location = 'login.html'"/>
             <input  type="submit" value="Register" id="registrationBtn" class="registerBtns btn btn-primary col-xs-6" onclick=RegisterUser(); />
         </div>
     </div>

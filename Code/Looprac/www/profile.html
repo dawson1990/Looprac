@@ -39,7 +39,7 @@
     </div>
     <div id="profileRatingExpDiv">
         <!--<label class="col-xs-12 profileLbs" for="profileRating">Rating</label>-->
-        <input id="profileRating" data-step="1.0" type="text"  class="rating col-xs-6 " data-show-clear="false" data-size="sm" readonly>
+        <input id="profileRating" data-step="0.1" type="text" value=""  class=" col-xs-6 " data-show-clear="false" data-size="sm" readonly>
         <input type="text" id="profileRatingAmt" class="col-xs-12 profileInputs" readonly />
         <label class="col-xs-12 profileLbs" for="profileExp">Experience</label>
         <input type="text" class="col-xs-12 profileInputs" id="profileExp" readonly />
@@ -58,7 +58,7 @@
     </div>
     <div id="profileBtnsDiv">
         <input type="button" id="saveChangesBtn" class="col-xs-12 hidden" value="Save" onclick="updateInfo()" />
-        <input type="button" id="profileBackBtn" class="col-xs-6" value="Back" onclick="window.location='main_page.html'"/>
+        <input type="button" id="profileBackBtn" class="col-xs-6" value="Back" onclick="history.back()"/>
         <input type="button" id="profileEditBtn" class="col-xs-6" value="Edit" onclick="edit()" />
     </div>
 

@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <script type="text/javascript" src="cordova.js"></script>
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/Looprac.js"></script>
-    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc&callback=initMap" type="text/javascript"></script>-->
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-toggle.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc"  type="text/javascript"></script>
+
     <link rel="stylesheet" type="text/css"  href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
     <title>Offer Lift</title>
     <script>
         window.onload = function fillLocationCoords() {
@@ -39,39 +37,34 @@
 <body >
 <div class="container">
     <div id="loopLogoDiv" class="col-xs-12">
-        <img class="col-xs-12" id="infinityLoopLogo" src="img/Infinity_Loop_Logo.png" />
+        <img class="col-xs-12" id="mapIconLogo" src="img/icon.png" />
     </div>
-    <form id="offerLiftForm" class="col-xs-12">
+    <form id="offerLiftForm" name="offerLiftForm" class="col-xs-12">
         <div id="offerLiftDiv" class="col-xs-12">
             <input type="number" class="hidden" readonly id="userID" name="userID"/>
             <label id="locationLbl" class="customLbls col-xs-12" for="locationInput">Location</label>
-            <input type="text" id="locationInput" name="start" class="customInputs col-xs-12" placeholder="click on 'Show Map'" readonly/>
+            <input type="text" id="locationInput" name="start" class="customInputs col-xs-12" placeholder="click on 'Show Map'" readonly required/>
 
-            <input type="number" id="lat" name="latitude" class="hidden customInputs col-xs-12" placeholder="latitude"/>
-            <input type="number" id="lng" name="longitude" class="hidden customInputs col-xs-12" placeholder="longitude"/>
-            <input type="text" id="start_county" name="start_county" class="hidden customInputs col-xs-12" placeholder="county" />
+            <input type="number" step="0.01" id="lat" name="latitude" style="display:none" class=" customInputs col-xs-12" placeholder="latitude" readonly />
+            <input type="number" step="0.01" id="lng" name="longitude" style="display:none" class=" customInputs col-xs-12" placeholder="longitude" readonly/>
+            <input type="text" id="start_county" name="start_county" style="display:none" class=" customInputs col-xs-12" placeholder="county" readonly/>
             <a id="locationMapLink" class="mapLinks col-xs-12" href="startLocalMap.html">Show Map</a>
 
             <label id="destinationlLbl" class="customLbls col-xs-12" for="destinationInput">Destination</label>
 
-            <input type="text" id="destinationInput" name="destination" class="customInputs col-xs-12"  placeholder="click on 'Show Map'" readonly/>
-            <input type="number" id="destinationLat" name="destinationLatitude" class="hidden customInputs col-xs-12" placeholder="latitude"/>
-            <input type="number" id="destinationLng" name="destinationLongitude" class="hidden customInputs col-xs-12" placeholder="longitude"/>
-            <input type="text" id="destination_county" name="destination_county" class="hidden customInputs col-xs-12" placeholder="county" />
+            <input type="text" id="destinationInput" name="destination" class="customInputs col-xs-12"  placeholder="click on 'Show Map'" readonly required/>
+            <input type="number" step="0.01" id="destinationLat" style="display:none" name="destinationLatitude" class=" customInputs col-xs-12" placeholder="latitude" readonly=""/>
+            <input type="number" step="0.01" id="destinationLng" style="display:none" name="destinationLongitude" class=" customInputs col-xs-12" placeholder="longitude" readonly/>
+            <input type="text" id="destination_county" name="destination_county" style="display:none" class=" customInputs col-xs-12" placeholder="county" readonly/>
 
             <a id="destinationMapLink" class="mapLinks col-xs-12" href="destinationLocalMap.html">Show Map</a>
-            <label id="departDateLbl" class="customLbls col-xs-6" for="departDateInput">Depart Date</label>
-            <label id="departTimeLbl" class="customLbls col-xs-6" for="departTimeInput">Depart Time</label>
-            <input type="date" id="departDateInput" name="departDate" class="departInputs col-xs-6" placeholder="dd/mm/yyyy" />
-            <input type="time" id="departTimeInput" name="departTime" class="departInputs col-xs-6" placeholder="--:--"/>
-            <!--<label id="liftTypeLbl" class="customLbls col-xs-6" for="liftTypeInput">Type</label>-->
+            <label id="departDateLbl" class="customLbls col-xs-12" for="departingInput">Departing</label>
+            <!--<label id="departTimeLbl" class="customLbls col-xs-6" for="departTimeInput">Depart Time</label>-->
+            <input type="datetime-local" id="departingInput" name="departing" class="departInputs col-xs-12" placeholder="dd/mm/yyyy --:--"  required/>
+            <!--<input type="time" id="departTimeInput" name="departTime" class="departInputs col-xs-6" placeholder="&#45;&#45;:&#45;&#45;"/>-->
             <label id="seatsLbl" class="customLbls col-xs-12" for="seatsInput" style="text-align:center;">Spaces</label>
 
-            <!--<select id="liftTypeInput" class="dropdownInputs col-sx-6" name="liftType" onblur="checkType()">-->
-                <!--<option value="single">Single</option>-->
-                <!--<option value="return">Return</option>-->
-            <!--</select>-->
-            <select id="seatsInput" class="dropdownInputs col-sx-12" name="seats">
+            <select id="seatsInput" class="dropdownInputs col-sx-12 departInputs" name="seats">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -79,10 +72,6 @@
                 <option value="5">5</option>
                 <option value="6">6</option>
             </select>
-            <!--<label id="returnDateLbl" class="hidden customLbls col-xs-6" for="returnDateInput">Return Date</label>-->
-            <!--<label id="returnTimeLbl" class="hidden customLbls col-xs-6" for="returnTimeInput">Return Time</label>-->
-            <!--<input type="date" id="returnDateInput" name="returnDate" class="hidden departInputs col-xs-6" placeholder="dd/mm/yyyy" />-->
-            <!--<input type="time" id="returnTimeInput" name="returnTime" class="hidden departInputs col-xs-6" placeholder="&#45;&#45;:&#45;&#45;" />-->
             <div class="col-xs-12">
                 <input  type="button" value="Cancel" id="cancelBtn" class="offerLiftBtns btn btn-primary col-xs-6" onclick="window.location ='main_page.html'"/>
                 <input  type="submit" value="Offer Lift" id="offerLiftBtn" class="offerLiftBtns btn btn-primary col-xs-6" onclick="subOfferLift()"/>

@@ -78,39 +78,45 @@ function logout(){
 
 
 function RegisterUser(){
-    event.preventDefault(); // prevents form submitting normally
-    var form =$('#form')[0];
-    var formData = new FormData(form);
-    $.ajax({
-        url:'http://looprac.pythonanywhere.com/registeruser',
-        type:'post',
-        enctype: 'multipart/form-data',
-        processData: false,
-        contentType: false,
-        cache: false,
-        data: formData })
-        .fail(function (jqXHR, textStatus, errorThrown) {
-            console.log('AJAX ERROR\njqXHR: ' + jqXHR +'\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
-        })
-        .done(function(data){
-            var result = JSON.parse(data);
-            if (result["status"] == "registered")
-            {
-                alert("You are now a registered Looper :)");
-                window.location.replace("login.html");
-            }
-            else if (result["status"] == "Not all required elements are entered")
-            {
-                alert("ERROR: not all fields were filled in");
-            }
-            else if (result["status"] == "email exists")
-            {
-                document.getElementById("emailError").innerHTML = "This email address already exists";
-                setTimeout(function () {
-                    window.location = document.URL;
-                },5000);
-            }
-        });
+    var form =$('#form');
+    form.submit(function(event){
+
+        event.preventDefault();
+        var formData = new FormData(form[0]);
+        $.ajax({
+            url:'http://looprac.pythonanywhere.com/registeruser',
+            type:'post',
+            enctype: 'multipart/form-data',
+            processData: false,
+            contentType: false,
+            cache: false,
+            data: formData })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.log('AJAX ERROR\njqXHR: ' + jqXHR +'\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+            })
+            .done(function(data){
+                var result = JSON.parse(data);
+                if (result["status"] == "registered")
+                {
+                    alert("You are now a registered Looper :)");
+                    window.location.replace("login.html");
+                }
+                else if (result["status"] == "Not all required elements are entered")
+                {
+                    alert("ERROR: not all fields were filled in");
+                }
+                else if (result["status"] == "email exists")
+                {
+                    document.getElementById("emailError").innerHTML = "This email address already exists";
+                    setTimeout(function () {
+                        window.location = document.URL;
+                    },5000);
+                }
+            });
+    });
+    // event.preventDefault(); // prevents form submitting normally
+    // var form =$('#form')[0];
+
     console.log("after subform ajax")
 }
 
@@ -120,47 +126,85 @@ function RegisterUser(){
  */
 
 function subOfferLift(){
-    event.preventDefault(); // prevents form submitting normally
-    var date = document.getElementById('departDateInput').value;
-    console.log(date);
-    var formattedDate = new Date(date).toMysqlFormat();
-    console.log('formatted date '  + formattedDate);
-    var d = JSON.stringify({
-        'userID' : document.getElementById('userID').value,
-        'start_lat': document.getElementById('lat').value,
-        'start_long': document.getElementById('lng').value,
-        'start_county': document.getElementById('start_county').value,
-        'destination_lat': document.getElementById('destinationLat').value,
-        'destination_long': document.getElementById('destinationLng').value,
-        'destination_county': document.getElementById('destination_county').value,
-        'depart_date' : formattedDate,
-        'depart_time' : document.getElementById('departTimeInput').value,
-        'seats' : document.getElementById('seatsInput').value
-    });
-    console.log(d);
-    $.ajax({
-        url:'http://looprac.pythonanywhere.com/offerLift',
-        type:'post',
-        async: false,
-        contentType: 'application/json',
-        dataType: 'json',
-        data: d })
-        .fail(function (jqXHR, textStatus, errorThrown) {
-            console.log('AJAX ERROR\njqXHR: ' + jqXHR +'\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
-        })
-        .done(function(data){
-            // var result = JSON.parse(data);
-            if (data["status"] == "registered")
-            {
-                alert("Your lift offer has been submitted" );
-                window.location.replace("main_page.html");
-            }
-            else if (data["status"] == "Not all required elements are entered")
-            {
-                alert("ERROR: not all fields were filled in");
-            }
+    checkDate();
+    var form =$('#offerLiftForm');
+    form.submit(function(event){
+        event.preventDefault(); // prevents form submitting normally
+        var d = '';
+        var date = document.getElementById('departingInput').value;
+        console.log(date);
+        var formattedDate = new Date(date).toMysqlFormat();
+        console.log('formatted date '  + formattedDate);
+        var startLat =  document.getElementById('lat').value;
+        var startLng =  document.getElementById('lng').value;
+        var destinationLat = document.getElementById('destinationLat').value;
+        var destinationLng = document.getElementById('destinationLng').value;
+        var startLatlng = new google.maps.LatLng(startLat,startLng);
+        var destLatLng = new google.maps.LatLng(destinationLat, destinationLng);
+        calcDistance(startLatlng, destLatLng)
+            .done(function(response){
+                var origins = response.originAddresses;
+                for (var i = 0; i < origins.length; i++) {
+                    var results = response.rows[i].elements;
+                    for (var j = 0; j < results.length; j++) {
+                        //console.log(results[j].distance.text);
+                        var distance =  results[j].distance.text;
+                        console.log('distance callback: ' + distance);
+                        // var distance = sessionStorage.getItem('distance');
+                        // d = sessionStorage.getItem('distance');
+                        // var distance = d.substring(0, d.indexOf(' '));
+                        d = JSON.stringify({
+                            'userID' : document.getElementById('userID').value,
+                            'start_lat': document.getElementById('lat').value,
+                            'start_long': document.getElementById('lng').value,
+                            'start_county': document.getElementById('start_county').value,
+                            'destination_lat': document.getElementById('destinationLat').value,
+                            'destination_long': document.getElementById('destinationLng').value,
+                            'destination_county': document.getElementById('destination_county').value,
+                            'distance': distance,
+                            'departing' : document.getElementById('departingInput').value,
+                            'seats' : document.getElementById('seatsInput').value
+                        });
+                        console.log(d);
+                        $.ajax({
+                            url:'http://looprac.pythonanywhere.com/offerLift',
+                            type:'post',
+                            async: false,
+                            contentType: 'application/json',
+                            dataType: 'json',
+                            data: d })
+                            .fail(function (jqXHR, textStatus, errorThrown) {
+                                console.log('AJAX ERROR\njqXHR: ' + jqXHR +'\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+                            })
+                            .done(function(data){
+                                // var result = JSON.parse(data);
+                                if (data["status"] == "registered")
+                                {
+                                    alert("Your lift offer has been submitted" );
+                                    window.location.replace("main_page.html");
+                                }
+                                else if (data["status"] == "Not all required elements are entered")
+                                {
+                                    alert("ERROR: not all fields were filled in");
+                                }
 
-        });
+                            });
+                    }
+                }
+            });
+
+
+    })
+}
+
+function checkDate(){
+    var input = new Date(document.getElementById('departingInput').value).getTime();
+    console.log('input: ' + input);
+    var now = new Date().getTime();
+    console.log('now: ' + now);
+    if (input <= now){
+        alert('Please choose a time beyond this point in time.');
+    }
 }
 
 function twoDigits(d) {
@@ -253,28 +297,23 @@ function updateAvailableLifts(){
             var sCounty = '';
             var dCounty = '';
             var departDate = '';
-            var departTime = '';
             var trID = '';
             var tdID = '';
             var btnID = '';
-            var displayingDateTime = '';
 
             for (var i = 0; i < result.length ; i ++ ) {
                 liftID = result[i]["liftID"];
                 driverID = result[i]['driverID'];
                 sCounty =  result[i]['startCounty'];
                 dCounty = result[i]['destinationCounty'];
-                departDate = result[i]['departDate'];
-                departTime = result[i]['departTime'];
-                displayingDateTime = departTime + ' ' + departDate;
+                departDate = result[i]['departing'];
                 trID = 'trID' + i.toString();
                 tdID = 'tdID' + i.toString();
                 btnID = 'btnID' + i.toString();
                 console.log(trID);
                 console.log(tdID);
                 tr = '<tr onclick="expandLift('+liftID +','+ driverID +')" id=' +trID + ' ><td class="hidden" id=' + tdID + '>' + liftID + '</td><td class="hidden">' + driverID + '</td><td>' + sCounty + '</td><td>' + dCounty
-                    + '</td><td>' +  displayingDateTime + '</td></tr>';
-                    // '<td><input type="button" id="'+ btnID +' " value=">" class="btn btn-primary" onclick="expandLift('+i+')" /></td></tr>';
+                    + '</td><td>' +  departDate + '</td></tr>';
                 table.append(tr);
             }
         });
@@ -310,22 +349,19 @@ function getLiftDetails(){
             var destLng = result[0]['destinationLng'];
             var driver = result[0]['DriverFName'] + ' ' + result[0]['DriverLName'];
             var rating = result[0]['rating'];
-            var departDate = result[0]['departDate'];
-            var departTime = result[0]['departTime'];
-            var returnDate = result[0]['returnDate'];
-            var returnTime = result[0]['returnTime'];
+            var departing = result[0]['departing'];
             var seats = result[0]['seats'];
+            var driverPassengerID =result[0]['driversPassengerID'];
 
-            console.log('return date and time ' + returnDate + ' ' + returnTime);
             showLift(startLat, startLng, destLat, destLng, "lift-map-canvas");
             geocodeCoords(startLat, startLng, 'startRdOnly');
             geocodeCoords(destLat, destLng, 'destinationRdOnly');
             document.getElementById('liftIDRdOnly').value = liftID;
             document.getElementById('driverRdOnly').value = driver;
             document.getElementById('driverRatingRdOnly').value = rating + ' / 5.0';
-            document.getElementById('departTimeRdOnly').value = departTime;
-            document.getElementById('departDateRdOnly').value = departDate;
+            document.getElementById('departDateRdOnly').value = departing;
             document.getElementById('seatsRdOnly').value = seats;
+            document.getElementById('driverPassengerIDRdOnly').value = driverPassengerID;
 
         });
     console.log('after ajax request');
@@ -440,9 +476,9 @@ function getRequestDetails(){
             var destLat = result[0]["destLat"];
             var destLng = result[0]["destLng"];
             console.log('result: ' + data);
+            document.getElementById('hiddenPassengerID').value = result[0]["passengerID"];
             document.getElementById('passengerNameRdOnly').value = result[0]["name"];
-            document.getElementById('departTimeRdOnly').value = result[0]["time"];
-            document.getElementById('departDateRdOnly').value = result[0]["date"];
+            document.getElementById('departDateRdOnly').value = result[0]["departing"];
             document.getElementById('passengerRatingRdOnly').value = result[0]["rating"] + ' / 5.0';
             window.onload = showLift(startLat, startLng, destLat, destLng, "myRequestMap-Canvas");
 
@@ -558,8 +594,7 @@ function updateMyGroups(){
             var tr = '';
             var groupID = 0;
             var driverName = '';
-            var departTime = '';
-            var departDate = '';
+            var departing = '';
             var liftID = '';
             var trID = '';
             var tdID = '';
@@ -568,15 +603,13 @@ function updateMyGroups(){
                 groupID = result[i]["groupID"];
                 driverName = result[i]["driverName"];
                 liftID = result[i]["liftID"];
-                departTime = result[i]["departTime"];
-                departDate = result[i]["departDate"];
+                departing = result[i]["departing"];
                 trID = 'trID' + i.toString();
                 tdID = 'tdID' + i.toString();
                 btnID = 'btnID' + i.toString();
                 console.log('LIFT id ' + liftID);
-                tr = '<tr onclick="expandGroup(' + liftID + ',' + groupID +')" style="color: #ff8800;" id=' +trID + '><td class="hidden" id=' + tdID + '>' + liftID+ '</td><td>' + driverName + '</td><td>' + departTime + ' ' + departDate +  '</td></tr>';
+                tr = '<tr onclick="expandGroup(' + liftID + ',' + groupID +')" style="color: #ff8800;" id=' +trID + '><td class="hidden" id=' + tdID + '>' + liftID+ '</td><td>' + driverName + '</td><td>' + departing +  '</td></tr>';
                 table.append(tr);
-                // $('#trID').on("click", showGroupDetails(groupID, departTime, departDate, driverName, i));
             }
         });
     console.log('after ajax');
@@ -607,12 +640,12 @@ function showGroupDetails(liftID, groupID )
             window.sessionStorage.setItem('numOfPassengers', numOfPassengers);
             document.getElementById('hiddenNumOfPassengers').value = numOfPassengers;
             document.getElementById('driverNameRdOnly').value =  result[0]["driverName"];
+            document.getElementById('hiddenDriverPassengerID').value =  result[0]["driverPassengerID"];
             document.getElementById('carRegRdOnly').value =  result[0]["carReg"];
             document.getElementById('driverPhoneRdOnly').value =  result[0]["driverPhone"];
             document.getElementById('driverDetailsRdOnly').value = result[0]["driverRating"];
             document.getElementById('routeRdOnly').value = result[0]["startCounty"] + ' To ' + result[0]["destCounty"];
-            document.getElementById('departTimeRdOnly').value = result[0]["departTime"];
-            document.getElementById('departDateRdOnly').value = result[0]["departDate"];
+            document.getElementById('departDateRdOnly').value = result[0]["departing"];
             document.getElementById('hiddenDriverID').value = result[0]["driverID"];
             document.getElementById('numOfPassengersHeader').innerHTML ='Passengers: ' + numOfPassengers;
             var startLat = result[0]["startLat"];
@@ -626,6 +659,7 @@ function showGroupDetails(liftID, groupID )
             var paragraph = '';
             var passengerName = '';
             var passengerRating = '';
+            var passengerID = 0;
             var table = $('#passengersTbl');
             var phone = '';
             var trID ='';
@@ -638,8 +672,9 @@ function showGroupDetails(liftID, groupID )
                 btnID = 'btnID' + index.toString();
                 passengerName = result[index]["passengerName"];
                 phone = result[index]["passengerPhone"];
+                passengerID = result[index]["passengerID"];
                 passengerRating = result[index]["passengerRating"];
-                paragraph = '<tr style="color:#ff8800;"><td>'+ passengerName + '</td><td>' + passengerRating + '</td><td>' + phone + '</td></tr>';
+                paragraph = '<tr onclick="getProfile(' + passengerID + ')" style="color:#ff8800;"><td class="hidden">' + passengerID + '</td><td>'+ passengerName + '</td><td>' + passengerRating + '</td><td>' + phone + '</td></tr>';
                 console.log('name: ' + passengerName + ' ' + 'phone: ' + phone);
                 table.append(paragraph);
             }
@@ -669,21 +704,20 @@ function updateMyLifts(){
             var tr = '';
             var liftID = 0;
             var route = '';
-            var departingInfo= '';
+            var departing= '';
             var trID = '';
             var tdID = '';
             var btnID = '';
             for (var i = 0; i < result.length ; i ++ ) {
                 liftID = result[i]["liftID"];
                 route = result[i]["route"];
-                departingInfo = result[i]["departTime"] + ' ' + result[i]["departDate"];
+                departing = result[i]["departing"];
                 trID = 'trID' + i.toString();
                 tdID = 'tdID' + i.toString();
                 btnID = 'btnID' + i.toString();
                 console.log('LIFT id ' + liftID);
-                tr = '<tr onclick="expandMyLift(' + liftID +')" style="color: #ff8800;" id=' +trID + '><td>' + route + '</td><td>' + departingInfo +  '</td></tr>';
+                tr = '<tr onclick="expandMyLift(' + liftID +')" style="color: #ff8800;" id=' +trID + '><td>' + route + '</td><td>' + departing +  '</td></tr>';
                 table.append(tr);
-                // $('#trID').on("click", showGroupDetails(groupID, departTime, departDate, driverName, i));
             }
         });
     console.log('after ajax');
@@ -710,8 +744,7 @@ function showMyLiftDetails(liftID )
 
             document.getElementById('spacesAvailableRdOnly').value =  result[0]['spaces'];
             document.getElementById('routeRdOnly').value = result[0]["startCounty"] + ' To ' + result[0]["destCounty"];
-            document.getElementById('departTimeRdOnly').value = result[0]["departTime"];
-            document.getElementById('departDateRdOnly').value = result[0]["departDate"];
+            document.getElementById('departDateRdOnly').value = result[0]["departing"];
             document.getElementById('carRegRdOnly').value = result[0]["car reg"];
             document.getElementById('hiddenDriverID').value = sessionStorage.getItem('myDriverID');
 
@@ -724,6 +757,7 @@ function showMyLiftDetails(liftID )
             window.sessionStorage.setItem('myLiftDestinationLat', destinationLat);
             window.sessionStorage.setItem('myLiftDestinationLng', destinationLng);
             var passengerRating = '';
+            var passengerID = 0;
             var paragraph = '';
             var passengerName = '';
             var table = $('#passengersTbl');
@@ -738,6 +772,7 @@ function showMyLiftDetails(liftID )
                 btnID = 'btnID' + index.toString();
                 passengerName = result[index]["passengerName"];
                 phone = result[index]["passengerPhone"];
+                passengerID = result[index]["passengerID"];
                 window.sessionStorage.setItem('numOfPassengers', result[index]["numOfPassengers"]);
                 console.log(result[index]["numOfPassengers"]);
                 if (result[index]["numOfPassengers"] == undefined){
@@ -754,7 +789,7 @@ function showMyLiftDetails(liftID )
                     passengerRating = "";
                     phone = "";
                 }
-                paragraph = '<tr style="color:#ff8800;"><td>'+ passengerName + '</td><td>' + passengerRating + '</td><td>' + phone + '</td></tr>';
+                paragraph = '<tr style="color:#ff8800;" onclick="getProfile(' + passengerID +')"><td class="hidden">' + passengerID + '</td><td>'+ passengerName + '</td><td>' + passengerRating + '</td><td>' + phone + '</td></tr>';
                 console.log('name: ' + passengerName + ' ' + 'phone: ' + phone);
                 table.append(paragraph);
             }
@@ -791,7 +826,7 @@ function updateMyCompletedGroups(){
             for (var i = 0; i < result.length ; i ++ ) {
                 driverName = result[i]["driverName"];
                 liftID = result[i]["liftID"];
-                departed = result[i]["time"] + ' ' + result[i]["date"];
+                departed = result[i]["departed"];
                 trID = 'trID' + i.toString();
                 tdID = 'tdID' + i.toString();
                 tr = '<tr onclick="expandMyCompletedLift(' + liftID + ')" style="color: #ff8800;" id=' + trID + '><td class="hidden" id=' + tdID + '>' + liftID+ '</td><td>' + driverName + '</td><td>' + departed +  '</td></tr>';
@@ -815,20 +850,19 @@ function updateMyCompletedLifts(){
             var tr = '';
             var liftID = 0;
             var route = '';
-            var departedInfo= '';
+            var departing= '';
             var trID = '';
             var tdID = '';
             var btnID = '';
             for (var i = 0; i < result.length ; i ++ ) {
                 liftID = result[i]["liftID"];
                 route = result[i]["route"];
-                departedInfo = result[i]["departTime"] + ' ' + result[i]["departDate"];
+                departing = result[i]["departing"];
                 trID = 'trID' + i.toString();
                 tdID = 'tdID' + i.toString();
                 btnID = 'btnID' + i.toString();
-                tr = '<tr onclick="expandMyCompletedLift(' + liftID +')" style="color: #ff8800;" id=' +trID + '><td>' + route + '</td><td>' + departedInfo +  '</td></tr>';
+                tr = '<tr onclick="expandMyCompletedLift(' + liftID +')" style="color: #ff8800;" id=' +trID + '><td>' + route + '</td><td>' + departing +  '</td></tr>';
                 table.append(tr);
-                // $('#trID').on("click", showGroupDetails(groupID, departTime, departDate, driverName, i));
             }
         });
 }
@@ -851,10 +885,10 @@ function showMyCompletedLiftDetails(liftID) {
             var result = JSON.parse(data);
             console.log('data ' + data + ' ' + result.length);
             document.getElementById('routeRdOnly').value = result[0]["startCounty"] + ' To ' + result[0]["destCounty"];
-            document.getElementById('departTimeRdOnly').value = result[0]["departTime"];
-            document.getElementById('departDateRdOnly').value = result[0]["departDate"];
+            document.getElementById('departDateRdOnly').value = result[0]["departing"];
             document.getElementById('driverNameRdOnly').value = result[0]["driverName"];
             document.getElementById('driverRatingRdOnly').value = result[0]["driverRating"];
+            document.getElementById('hiddenDriverPassengerID').value = result[0]["driverPassengerID"];
 
             var startLat = result[0]["startLat"];
             var startLng = result[0]["startLng"];
@@ -864,6 +898,7 @@ function showMyCompletedLiftDetails(liftID) {
             var passengerID = 0;
             var passengerName = '';
             var passengerRating = '';
+            var passengerUserID = 0;
             var table = $('#passengersTbl');
             var phone = '';
             var trID = '';
@@ -884,19 +919,19 @@ function showMyCompletedLiftDetails(liftID) {
                     passengerID ="";
                     phone = "";
                 }
-                paragraph = '<tr onclick="getProfile(' + passengerID + ')" style="color:#ff8800;"><td>' + passengerUserID + ' </td><td>' + passengerName + '</td><td>' + passengerRating + '</td><td>' + phone + '</td></tr>';
+                paragraph = '<tr onclick="getProfile(' + passengerID + ')" style="color:#ff8800;"><td class="hidden">' + passengerUserID + ' </td><td>' + passengerName + '</td><td>' + passengerRating + '</td><td>' + phone + '</td></tr>';
                 table.append(paragraph);
             }
             window.onload = showLift(startLat, startLng, destinationLat, destinationLng, "myLift-map-canvas");
         })
 }
 
-function completeLiftAndFilterRatingList(liftID, distance){
-    console.log('distance ' + distance);
+function completeLiftAndFilterRatingList(liftID){
+    alert('lift id for lift ' + liftID);
     $.ajax({
         url: 'http://looprac.pythonanywhere.com/completeLift',
         type: 'post',
-        data: JSON.stringify({"liftID": liftID, "distance": distance})
+        data: JSON.stringify({"liftID": liftID})
     })
         .fail(function (jqXHR, textStatus, errorThrown) {
             console.log('AJAX ERROR\njqXHR: ' + jqXHR + '\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
@@ -1038,7 +1073,7 @@ function checkAllRated(){
 
 }
 
-function calculateExperience(userID, distance, liftID, driverID){
+function calculateExperience(userID, liftID, driverID){
     console.log('driver ID ' + sessionStorage.getItem('myDriverID'));
     $.ajax({
         url: 'http://looprac.pythonanywhere.com/checkIfDriver',
@@ -1049,8 +1084,10 @@ function calculateExperience(userID, distance, liftID, driverID){
             console.log('AJAX ERROR\njqXHR: ' + jqXHR + '\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
         })
         .done(function (data) {
-                var result = JSON.parse(data);
-                if (result["is driver"] == 'true'){
+            var result = JSON.parse(data);
+            var distance = result['distance'];
+
+            if (result["is driver"] == 'true'){
                     console.log('is driver');
                     calculateDriverExperience(userID, distance, sessionStorage.getItem('numOfPassengers'));
                 }
@@ -1063,10 +1100,10 @@ function calculateExperience(userID, distance, liftID, driverID){
 
 function calculateDriverExperience(userID, distance, numOfPassengers){
     //driver experience is calculated by getting (10 + number of passengers) % of the distance of the journey
-    var driverMultiplier = (10 + numOfPassengers) * 1/100;
+    var driverMultiplier = (.10 + (numOfPassengers / 100));
     var newExperience = parseFloat(distance) * driverMultiplier;
     document.getElementById('newExpHeader').innerHTML = newExperience.toString() + ' XP';
-    document.getElementById('distance').value = distance;
+    document.getElementById('distance').value = distance + ' km';
     document.getElementById('numOfPassengers').value = numOfPassengers;
     $.ajax({
         url: 'http://looprac.pythonanywhere.com/getExperience',
@@ -1078,18 +1115,21 @@ function calculateDriverExperience(userID, distance, numOfPassengers){
         })
         .done(function (data) {
             var result = JSON.parse(data);
-            console.log(data);
-            document.getElementById('overallExpHeader').innerHTML = result[0]["experience"] + ' XP';
-            document.getElementById('overallDistance').value = result[0]["overall distance"] + ' km';
-            document.getElementById('overallNumOfPassengers').value = result[0]["overall passengers"];
+            console.log(data + ' here' + result[0]['overallpassengers']);
+            for (var i = 0; i < result.length; i++){
+                document.getElementById('overallExpHeader').innerHTML = result[i]["experience"] + ' XP';
+                document.getElementById('overallDistance').value = result[i]["overall distance"] + ' km';
+                document.getElementById('overallNumOfPassengers').value = result[i]["overallpassengers"];
+            }
+
         })
 
 }
 
 function calculatePassengerExperience(userID, distance){
-    document.getElementById('overallnumOfPassengers').setAttribute('class', 'hidden');
+    document.getElementById('overallNumOfPassengers').setAttribute('class', 'hidden');
     document.getElementById('numOfPassengers').setAttribute('class','hidden');
-    document.getElementById('overallnumOfPassengersLbl').setAttribute('class', 'hidden');
+    document.getElementById('overallNumOfPassengersLbl').setAttribute('class', 'hidden');
     document.getElementById('numOfPassengersLbl').setAttribute('class','hidden');
     //passenger experience is calculated by getting 10% of the distance of the journey
     var newExperience = parseFloat(distance) * .1;
@@ -1119,74 +1159,75 @@ function passengerActiveLift() {
 
 }
 
-
 function checkIfCanDepart() {
     console.log('in');
-    navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 7000 , enableHighAccuracy: true});
-    function onSuccess(position){
-        var currentDateTime = new Date();
-        var now = new Date().toLocaleTimeString();
-        var departTime = document.getElementById('departTimeRdOnly').value;
+    navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout: 7000, enableHighAccuracy: true});
+    function onSuccess(position) {
         var departDate = document.getElementById('departDateRdOnly').value;
-        var formattedDepartDate = new Date(departDate).toLocaleDateString();
-        var formattedDepartTime = toDate(departTime,"h:m");
-        var combinedDepartInfo = new Date(formattedDepartDate + ' ' + formattedDepartTime);
-        var today = formattedDepartDate;
+        var departing = new Date(departDate).getTime();
+        var today = new Date().getTime();
         var myLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        console.log('my local ' + myLocation);
-        // var myLatLng = new google.maps.LatLng()
         var startLocation = new google.maps.LatLng(sessionStorage.getItem('myLiftStartLat'), sessionStorage.getItem('myLiftStartLng'));
-        var distance = calcDistance(startLocation, myLocation);
-        var numOfPassengers = document.getElementById('hiddenNumOfPassengers').value;
-        if (numOfPassengers > 0)
-        {
-            console.log('date: ' + today + ' time: ' + now + ' d: ' + formattedDepartDate + ' formatted time: ' + formattedDepartTime
-                + ' combined: ' + combinedDepartInfo + ' currentDateTime ' + currentDateTime.getTime());
-            if (formattedDepartDate === today){
-                console.log('Dates Match');
-                var timeDifferenceMilliseconds = combinedDepartInfo.getTime() - currentDateTime.getTime();
-                var x = timeDifferenceMilliseconds /1000;
-                var seconds = Math.floor(x % 60);
-                x /= 60;
-                var minutes =Math.floor(x % 60);
-                x /= 60;
-                var hours = Math.floor(x % 24);
-                x /= 24;
-                var days = Math.floor(x);
-                console.log('time difference, day: ' + days + ' hours: ' + hours + ' minutes: ' + minutes );
-                //FOR TESTING
-                hours = 0;
-                minutes =4;
-                if (hours == 0 && minutes < 5){
-                    //for the driver
-                    if(sessionStorage.getItem('myDriverID') == document.getElementById('hiddenDriverID').value){
-                        window.location = "groupJourneyDisplay.html";
-                    }
-                    else{
-                        passengerActiveLift();
+        calcDistance(myLocation, startLocation)
+            .done(function (response) {
+                var origins = response.originAddresses;
+                for (var i = 0; i < origins.length; i++) {
+                    var results = response.rows[i].elements;
+                    for (var j = 0; j < results.length; j++) {
+                        //console.log(results[j].distance.text);
+                        var distance = results[j].distance.text;
+                        alert('distance callback: ' + distance + 'type ' + typeof distance);
+                        var km = 'k';
+                        var d = 0;
+
+                        if (distance.includes(km)) {
+                            console.log('km');
+                            d = parseFloat(distance) * 1000;
+                        }
+                        else {
+                            console.log('m');
+                            d = parseFloat(distance);
+                        }
+                        var numOfPassengers = document.getElementById('hiddenNumOfPassengers').value;
+                        if (numOfPassengers > 0) {
+                            var timeDifferenceMilliseconds = departing - today;
+                            console.log(timeDifferenceMilliseconds);
+                            // d = 200;
+                            if (timeDifferenceMilliseconds <= 300000) {
+                                if (d <= 500) {
+                                    //for the driver
+                                    if (sessionStorage.getItem('myDriverID') == document.getElementById('hiddenDriverID').value) {
+                                        window.location = "groupJourneyDisplay.html";
+                                    }
+                                    else {
+                                        passengerActiveLift();
+                                    }
+                                }
+                                else {
+                                    alert('Sorry, but your current location is too far from start location. Please move closer to the area shown on map as A');
+                                }
+                            }
+                            else {
+                                alert('Sorry, it is to early to start this lift from the agreed time');
+                            }
+                        }
+                        else {
+                            alert('Sorry, but to begin this lift you need at least one passenger.  Try "My Requests" to see if anyone' +
+                                ' has requested to join this trip')
+                        }
                     }
                 }
-                else{
-                    alert('Sorry, it is to early to start this lift from the agreed time');
-                }
-            }
-            else{
-                alert('Sorry, but it is too early to begin this trip.  It is not scheduled to depart until ' + formattedDepartDate);
-            }
-        }
-        else{
-            alert('Sorry, but to begin this lift you need at least one passenger.  Try "My Requests" to see if anyone' +
-                ' has requested to join this trip')
-        }
+            });
     }
-    function onError (error) {
+
+    function onError(error) {
         console.log('in ERROR ' + error);
         switch (error.code) {
             case error.TIMEOUT:
                 refresh();
                 break;
             case error.PERMISSION_DENIED:
-                if(error.message.indexOf("Only secure origins are allowed") == 0) {
+                if (error.message.indexOf("Only secure origins are allowed") == 0) {
                     tryAPIGeolocation();
 
                 }
@@ -1205,93 +1246,79 @@ function checkIfCanDepart() {
                 break;
         }
     }
-    var tryAPIGeolocation = function() {
-        jQuery.post( "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc", function(success) {
+
+    var tryAPIGeolocation = function () {
+        jQuery.post("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc", function (success) {
             apiGeolocationSuccess(
                 {
-                    coords:
-                        {
-                            latitude: success.location.lat,
-                            longitude: success.location.lng
-                        }
+                    coords: {
+                        latitude: success.location.lat,
+                        longitude: success.location.lng
+                    }
                 });
         })
-            .fail(function(err) {
-                alert("API Geolocation error! \n\n"+err);
+            .fail(function (err) {
+                alert("API Geolocation error! \n\n" + err);
             });
     };
-    var apiGeolocationSuccess = function(position) {
-        // var today = new Date().toLocaleDateString();
-        var currentDateTime = new Date();
-        var now = new Date().toLocaleTimeString();
-        // console.log('Time: ' + time + ' Date: ' + date);
-        var departTime = document.getElementById('departTimeRdOnly').value;
+    var apiGeolocationSuccess = function (position) {
         var departDate = document.getElementById('departDateRdOnly').value;
-        var formattedDepartDate = new Date(departDate).toLocaleDateString();
-        var formattedDepartTime = toDate(departTime,"h:m");
-        var combinedDepartInfo = new Date(formattedDepartDate + ' ' + formattedDepartTime);
-        var today = formattedDepartDate;
+        var departing = new Date(departDate).getTime();
+        var today = new Date().getTime();
         var myLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        console.log('my local ' + myLocation);
-        // var myLatLng = new google.maps.LatLng()
         var startLocation = new google.maps.LatLng(sessionStorage.getItem('myLiftStartLat'), sessionStorage.getItem('myLiftStartLng'));
-        console.log('my local type ' + typeof  myLocation);
-        calcDistance(startLocation, myLocation);
-        var d = sessionStorage.getItem('distance');
-        var distance = d.substring(0, d.indexOf(' '));
+        calcDistance(myLocation, startLocation)
+        .done(function (response) {
+            var origins = response.originAddresses;
+            for (var i = 0; i < origins.length; i++) {
+                var results = response.rows[i].elements;
+                for (var j = 0; j < results.length; j++) {
+                    //console.log(results[j].distance.text);
+                    var distance = results[j].distance.text;
+                    alert('distance callback: ' + distance + 'type ' + typeof distance);
+                    var km = 'k';
+                    var d = 0;
 
-        //FOR TESTING
-        distance = .5;
-
-        console.log('distance : ' + distance);
-        var numOfPassengers = document.getElementById('hiddenNumOfPassengers').value;
-        if (numOfPassengers > 0)
-        {
-            console.log('date: ' + today + ' time: ' + now + ' d: ' + formattedDepartDate + ' formatted time: ' + formattedDepartTime
-                + ' combined: ' + combinedDepartInfo + ' currentDateTime ' + currentDateTime.getTime());
-            if (formattedDepartDate === today){
-                console.log('Dates Match');
-                var timeDifferenceMilliseconds = combinedDepartInfo.getTime() - currentDateTime.getTime();
-                var x = timeDifferenceMilliseconds /1000;
-                var seconds = Math.floor(x % 60);
-                x /= 60;
-                var minutes =Math.floor(x % 60);
-                x /= 60;
-                var hours = Math.floor(x % 24);
-                x /= 24;
-                var days = Math.floor(x);
-                console.log('time difference, day: ' + days + ' hours: ' + hours + ' minutes: ' + minutes );
-                //FOR TESTING
-                hours = 0;
-                minutes =4;
-                if (hours == 0 && minutes < 5){
-                    console.log('time is within 5 mins');
-                    if (distance <= .5 ){
-                        //for the driver
-                        if(sessionStorage.getItem('myDriverID') == document.getElementById('hiddenDriverID').value){
-                            window.location = "groupJourneyDisplay.html";
+                    if (distance.includes(km)) {
+                        console.log('km');
+                        d = parseFloat(distance) * 1000;
+                    }
+                    else {
+                        console.log('m');
+                        d = parseFloat(distance);
+                    }
+                    var numOfPassengers = document.getElementById('hiddenNumOfPassengers').value;
+                    if (numOfPassengers > 0) {
+                        var timeDifferenceMilliseconds = departing - today;
+                        console.log(timeDifferenceMilliseconds);
+                        d = 200;
+                        if (timeDifferenceMilliseconds <= 300000) {
+                            if (d <= 500) {
+                                //for the driver
+                                if (sessionStorage.getItem('myDriverID') == document.getElementById('hiddenDriverID').value) {
+                                    window.location = "groupJourneyDisplay.html";
+                                }
+                                else {
+                                    passengerActiveLift();
+                                }
+                            }
+                            else {
+                                alert('Sorry, but your current location is too far from start location. Please move closer to the area shown on map as A');
+                            }
                         }
-                        else{
-                            passengerActiveLift();
+                        else {
+                            alert('Sorry, it is to early to start this lift from the agreed time');
                         }
                     }
-                    else{
-                        alert('Sorry, but your current location is too far from start location. Please move closer to the area shown on map as A');
+                    else {
+                        alert('Sorry, but to begin this lift you need at least one passenger.  Try "My Requests" to see if anyone' +
+                            ' has requested to join this trip')
                     }
                 }
-                else{
-                    alert('Sorry, it is too early to start this lift from the agreed time');
-                }
             }
-            else{
-                alert('Sorry, but it is too early to begin this trip.  It is not scheduled to depart until ' + formattedDepartDate);
-            }
-        }
-        else{
-            alert('Sorry, but to begin this lift you need at least one passenger.  Try "My Requests" to see if anyone' +
-                ' has requested to join this trip')
-        }
+        });
     };
+
     google.maps.event.addDomListener(window, 'load', onSuccess);
 }
 
@@ -1317,7 +1344,7 @@ function toDate(str, format){
 function displayActiveLift(liftID){
     navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 7000 , enableHighAccuracy: true});
     function onSuccess(position){
-        console.log('liftID ' +  liftID);
+        console.log('liftID ' + liftID);
         document.getElementById('liftID').value = liftID;
         var startLat = sessionStorage.getItem('myLiftStartLat');
         var startLng = sessionStorage.getItem('myLiftStartLng');
@@ -1325,17 +1352,29 @@ function displayActiveLift(liftID){
         var destLng = sessionStorage.getItem('myLiftDestinationLng');
         console.log('start ' + startLat + ' ' + startLng + ' destination ' + destLat + ' ' + destLng);
 
-        var startLatlng = new google.maps.LatLng(startLat,startLng);
+        var startLatlng = new google.maps.LatLng(startLat, startLng);
         var destLatLng = new google.maps.LatLng(destLat, destLng);
-        var myLat = position.coords.latitude;
-        var myLng = position.coords.longitude;
-        var myLatlng = new google.maps.LatLng(myLat, myLng);
-        var mapOptions = {zoom: 17,center: myLatlng};
+        window.sessionStorage.setItem('destinationLat', destLat);
+        window.sessionStorage.setItem('destinationLng', destLng);
+        var driverLat = position.coords.latitude;
+        var driverLng = position.coords.longitude;
+        var driverLatlng = new google.maps.LatLng(driverLat, driverLng);
+        var mapOptions = {zoom: 11, center: driverLatlng};
         var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-        // calcRoute(startLatlng, destLatLng, map );
-        var start =  new google.maps.Marker({position: startLatlng, map: map, label: ' A '});
-        var end =  new google.maps.Marker({position: destLatLng, map: map, label: ' B '});
-        var myLocation = new google.maps.Marker({position: myLatlng, map: map, label: ' Me '});
+        var start = new google.maps.Marker({position: startLatlng, map: map, label: ' A '});
+        var end = new google.maps.Marker({position: destLatLng, map: map, label: ' B '});
+        var driverLocation = new google.maps.Marker({position: driverLatlng, map: map, label: ' Me '});
+        //creates a red circle on map at destination with a raidus of 500m to show where they can complete journey
+        var startCircle = new google.maps.Circle({
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#FF0000',
+            fillOpacity: 0.35,
+            map: map,
+            center: startLatlng,
+            radius: 500
+        });
         var finishCircle = new google.maps.Circle({
             strokeColor: '#FF0000',
             strokeOpacity: 0.8,
@@ -1347,6 +1386,7 @@ function displayActiveLift(liftID){
             radius: 500
         });
     }
+
     function onError (error) {
         console.log('in ERROR ' + error);
         switch (error.code) {
@@ -1410,6 +1450,16 @@ function displayActiveLift(liftID){
             var end = new google.maps.Marker({position: destLatLng, map: map, label: ' B '});
             var driverLocation = new google.maps.Marker({position: driverLatlng, map: map, label: ' Me '});
             //creates a red circle on map at destination with a raidus of 500m to show where they can complete journey
+            var startCircle = new google.maps.Circle({
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: '#FF0000',
+                fillOpacity: 0.35,
+                map: map,
+                center: startLatlng,
+                radius: 500
+            });
             var finishCircle = new google.maps.Circle({
                 strokeColor: '#FF0000',
                 strokeOpacity: 0.8,
@@ -1438,7 +1488,11 @@ function checkIfLiftFinished() {
         .done(function (data) {
             var result = JSON.parse(data);
             if (result["status"] == "lift finished" ){
-                alert('lift finished! You will be brought to the ratings page next.');
+                var alerted = sessionStorage.getItem('alerted') || '';
+                if (alerted != 'yes') {
+                    alert('lift finished! You will be brought to the ratings page next.');
+                    sessionStorage.setItem('alerted','yes');
+                }
                 window.location = "liftComplete.html";
             }
             else{
@@ -1449,41 +1503,75 @@ function checkIfLiftFinished() {
         })
 }
 function checkIfCanFinish(){
-    navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 7000 , enableHighAccuracy: true});
+    navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 7000 , enableHighAccuracy: true});
     function onSuccess(position){
         var driverLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
         var destLat = sessionStorage.getItem('myLiftDestinationLat');
         var destLng = sessionStorage.getItem('myLiftDestinationLng');
-        var startLat = sessionStorage.getItem('myLiftStartLat');
-        var startLng = sessionStorage.getItem('myLiftStartLng');
-        var startLatLng = new google.maps.LatLng(startLat, startLng);
         var destLatLng = new google.maps.LatLng(destLat, destLng);
-        console.log('destlat ' + destLat + ' destlng ' + destLng);
-        calcDistance(destLatLng, driverLocation);
-        var d = sessionStorage.getItem('distance');
-        var distance = d.substring(0, d.indexOf(' '));
-        var mapOptions = {zoom: 11,center: driverLocation};
-        var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-        var marker;
-        //FOR TESTING
+        calcDistance(driverLocation, destLatLng)
+            .done(function (response) {
+                var origins = response.originAddresses;
+                for (var i = 0; i < origins.length; i++) {
+                    var results = response.rows[i].elements;
+                    for (var j = 0; j < results.length; j++) {
+                        var distance = results[j].distance.text;
+                        console.log('distance callback: ' + distance);
+                        var meter = 'm';
+                        var km = 'k';
+                        var d = 0;
+                        if (distance.includes(km)) {
+                            console.log('km');
+                            d = parseFloat(distance) * 1000;
+                        }
+                        else {
+                            console.log('m');
+                            d = parseFloat(distance);
+                        }
+                        alert('distance callback: ' + distance + ' type ' + typeof distance + ' d ' + d + ' ' + typeof d);
 
-        distance = .3;
+                        var mapOptions = {zoom: 11, center: driverLocation};
+                        var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                        var marker;
+                        var start;
+                        var destination;
+                        // d = 410;
+                        if (d <= 500) {
+                            console.log('COMPLETE');
+                            marker = new google.maps.Marker({position: driverLocation, map: map, label: ' Me '});
+                            completeLiftAndFilterRatingList(sessionStorage.getItem('myLiftID'));
+                            window.location = "liftComplete.html";
+                        }
+                        else {
+                            marker = new google.maps.Marker({position: driverLocation, map: map, label: ' Me '});
+                            start = new google.maps.Marker({position: startLatLng, map: map, label: ' A '});
+                            destination = new google.maps.Marker({position: destLatLng, map: map, label: ' B '});
+                            var startCircle = new google.maps.Circle({
+                                strokeColor: '#FF0000',
+                                strokeOpacity: 0.8,
+                                strokeWeight: 2,
+                                fillColor: '#FF0000',
+                                fillOpacity: 0.35,
+                                map: map,
+                                center: startLatLng,
+                                radius: 500
+                            });
+                            var destinationCircle = new google.maps.Circle({
+                                strokeColor: '#FF0000',
+                                strokeOpacity: 0.8,
+                                strokeWeight: 2,
+                                fillColor: '#FF0000',
+                                fillOpacity: 0.35,
+                                map: map,
+                                center: destLatLng,
+                                radius: 500
+                            });
+                            alert('Sorry, you are too far from the destination to complete it.  Get within 500 meters to complete journey');
+                        }
+                    }
+                }
+            })
 
-        if (distance <= .5){
-            console.log('COMPLETE');
-            calcDistance(startLatLng, destLatLng);
-            d = sessionStorage.getItem('distance');
-            distance = d.substring(0, d.indexOf(' '));
-            window.sessionStorage.setItem('liftDistance', distance);
-            console.log('distance ' + sessionStorage.getItem('distance') + ' lift distance ' + sessionStorage.getItem('liftDistance'));
-            marker = new google.maps.Marker({position: driverLocation, map: map, label: ' Me '});
-            completeLiftAndFilterRatingList(sessionStorage.getItem('myLiftID'), sessionStorage.getItem('liftDistance'));
-            window.location = "liftComplete.html";
-        }
-        else{
-            marker = new google.maps.Marker({position: driverLocation, map: map, label: ' Me '});
-            alert('Sorry, you are too far from the destination to complete it.  Get within 500 meters to complete journey');
-        }
     }
     function onError (error) {
         console.log('in ERROR ' + error);
@@ -1530,36 +1618,69 @@ function checkIfCanFinish(){
         var driverLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
         var destLat = sessionStorage.getItem('myLiftDestinationLat');
         var destLng = sessionStorage.getItem('myLiftDestinationLng');
-        var startLat = sessionStorage.getItem('myLiftStartLat');
-        var startLng = sessionStorage.getItem('myLiftStartLng');
-        var startLatLng = new google.maps.LatLng(startLat, startLng);
         var destLatLng = new google.maps.LatLng(destLat, destLng);
-        console.log('destlat ' + destLat + ' destlng ' + destLng);
-        calcDistance(destLatLng, driverLocation);
-        var d = sessionStorage.getItem('distance');
-        var distance = d.substring(0, d.indexOf(' '));
-        var mapOptions = {zoom: 11,center: driverLocation};
-        var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-        var marker;
-        //FOR TESTING
+        calcDistance(driverLocation, destLatLng)
+            .done(function (response) {
+                var origins = response.originAddresses;
+                for (var i = 0; i < origins.length; i++) {
+                    var results = response.rows[i].elements;
+                    for (var j = 0; j < results.length; j++) {
+                        var distance = results[j].distance.text;
+                        console.log('distance callback: ' + distance);
+                        var meter = 'm';
+                        var km = 'k';
+                        var d = 0;
+                        if (distance.includes(km)) {
+                            console.log('km');
+                            d = parseFloat(distance) * 1000;
+                        }
+                        else {
+                            console.log('m');
+                            d = parseFloat(distance);
+                        }
+                        alert('distance callback: ' + distance + ' type ' + typeof distance + ' d ' + d + ' ' + typeof d);
 
-        distance = .3;
-
-        if (distance <= .5){
-            console.log('COMPLETE');
-            calcDistance(startLatLng, destLatLng);
-            d = sessionStorage.getItem('distance');
-            distance = d.substring(0, d.indexOf(' '));
-            window.sessionStorage.setItem('liftDistance', distance);
-            console.log('distance ' + sessionStorage.getItem('distance') + ' lift distance ' + sessionStorage.getItem('liftDistance'));
-            marker = new google.maps.Marker({position: driverLocation, map: map, label: ' Me '});
-            completeLiftAndFilterRatingList(sessionStorage.getItem('myLiftID'), sessionStorage.getItem('liftDistance'));
-            window.location = "liftComplete.html";
-        }
-        else{
-            marker = new google.maps.Marker({position: driverLocation, map: map, label: ' Me '});
-            alert('Sorry, you are too far from the destination to complete it.  Get within 500 meters to complete journey');
-        }
+                        var mapOptions = {zoom: 11, center: driverLocation};
+                        var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                        var marker;
+                        var start;
+                        var destination;
+                        d = 410;
+                        if (d <= 500) {
+                            alert('COMPLETE');
+                            marker = new google.maps.Marker({position: driverLocation, map: map, label: ' Me '});
+                            completeLiftAndFilterRatingList(sessionStorage.getItem('myLiftID'));
+                            window.location = "liftComplete.html";
+                        }
+                        else {
+                            marker = new google.maps.Marker({position: driverLocation, map: map, label: ' Me '});
+                            start = new google.maps.Marker({position: startLatLng, map: map, label: ' A '});
+                            destination = new google.maps.Marker({position: destLatLng, map: map, label: ' B '});
+                            var startCircle = new google.maps.Circle({
+                                strokeColor: '#FF0000',
+                                strokeOpacity: 0.8,
+                                strokeWeight: 2,
+                                fillColor: '#FF0000',
+                                fillOpacity: 0.35,
+                                map: map,
+                                center: startLatLng,
+                                radius: 500
+                            });
+                            var destinationCircle = new google.maps.Circle({
+                                strokeColor: '#FF0000',
+                                strokeOpacity: 0.8,
+                                strokeWeight: 2,
+                                fillColor: '#FF0000',
+                                fillOpacity: 0.35,
+                                map: map,
+                                center: destLatLng,
+                                radius: 500
+                            });
+                            alert('Sorry, you are too far from the destination to complete it.  Get within 500 meters to complete journey');
+                        }
+                    }
+                }
+            })
     };
     google.maps.event.addDomListener(window, 'load', onSuccess);
 }
@@ -1567,6 +1688,8 @@ function checkIfCanFinish(){
 /***********************************************
  *      PROFILE PAGE
  */
+
+
 
 function getProfile(passengerID) {
     $.ajax({
@@ -1595,16 +1718,23 @@ function populateProfile(userID){
         })
         .done(function (data) {
             console.log(data);
+            console.log('userID ' + sessionStorage.getItem('userID') + ' profiles userID ' + sessionStorage.getItem('profileUserID'));
             var result = JSON.parse(data);
-            document.getElementById('hiddenUserId').value = sessionStorage.getItem('userID');
+            if (sessionStorage.getItem('userID') != sessionStorage.getItem('profileUserID')) {
+                document.getElementById('profileEditBtn').setAttribute('class', 'hidden');
+                document.getElementById('profileBackBtn').setAttribute('class', 'col-xs-12');
+            }
+            document.getElementById('hiddenUserId').value = sessionStorage.getItem('profileUserID');
             document.getElementById('profileCreated').value = result["created"];
             document.getElementById('profileName').innerHTML= result["name"];
             document.getElementById('profileEmail').value = result["email"];
             document.getElementById('profilePhone').value = result["phone"];
-            document.getElementById('profileRating').value = result["rating"];
+            console.log('rating ' + result["rating"] + ' type ' + typeof result["rating"] );
             document.getElementById('profileRatingAmt').value = '( ' +  result["numOfRatings"] + ' )';
-            document.getElementById('profileExp').value = result["experience"];
-            document.getElementById('profileDistance').value = result["overallDistance"];
+            document.getElementById('profileExp').value = result["experience"] + ' XP ';
+            document.getElementById('profileDistance').value = result["overallDistance"] + ' KM ';
+            document.getElementById('profileRating').value = parseFloat(result["rating"]);
+
             if(result["carMake"] == "None"){
                 document.getElementById('profileCarDetailsDiv').setAttribute('class', 'hidden');
             }
@@ -1613,7 +1743,9 @@ function populateProfile(userID){
                 document.getElementById('profileCarModel').value = result["carModel"];
                 document.getElementById('profileCarReg').value = result["carReg"];
             }
-            $('#profileRating').rating({showCaption:false});
+            $('#profileRating').rating({showCaption:true});
+
+
         })
 }
 
@@ -1730,28 +1862,22 @@ function calcRoute(startLatLng, destLatLng, map){
 
 //api call for getting distance between points on google maps
 function calcDistance(startLatLng, destLatLng){
-    console.log('calc distance func');
     var service = new google.maps.DistanceMatrixService;
-    service.getDistanceMatrix({
-        origins: [startLatLng],
-        destinations: [destLatLng],
-        travelMode: 'DRIVING',
-        unitSystem: google.maps.UnitSystem.Metric
-    }, function (response, status) {
-        if (status != google.maps.DistanceMatrixStatus.OK){
-            console.log('Error was: ' + status);
+    var d = $.Deferred();
+    var distance = service.getDistanceMatrix({
+            origins: [startLatLng],
+            destinations: [destLatLng],
+            travelMode: 'DRIVING',
+            unitSystem: google.maps.UnitSystem.Metric
+        }, function (response, status) {
+            if (status != google.maps.DistanceMatrixStatus.OK){
+                d.reject(status);
+            }
+            else{
+                d.resolve(response);
         }
-        else{
-            var originList = response.originAddresses;
-            var destinationList = response.destinationAddresses;
-            var distance = response.rows[0].elements[0].distance.text;
-            window.sessionStorage.setItem('distance', distance);
-            // var outputDiv = document.getElementById('output');
-            // outputDiv.innerHTML = '';
-           console.log('origin list: ' + originList + '\n' + 'destination list: ' + destinationList + '\n' + 'distance: ' + distance);
-           return distance;
-        }
-    })
+    });
+    return d.promise();
 }
 
 function showLift(startLat, startLng, destinationLat, destinationLng, mapID){
@@ -1769,6 +1895,26 @@ function showLift(startLat, startLng, destinationLat, destinationLng, mapID){
         var distance = calcDistance(startLatlng, destLatLng);
         console.log('distance ' + distance);
         var markers = [startLatlng, destLatLng];
+        var startCircle = new google.maps.Circle({
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#FF0000',
+            fillOpacity: 0.35,
+            map: map,
+            center: startLatlng,
+            radius: 500
+        });
+        var destinationCircle = new google.maps.Circle({
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#FF0000',
+            fillOpacity: 0.35,
+            map: map,
+            center: destLatLng,
+            radius: 500
+        });
         for (var i = 0; i <= markers.length; i ++)
         {
             var marker = new google.maps.Marker({position: markers[i],map: map});
@@ -1822,6 +1968,26 @@ function showLift(startLat, startLng, destinationLat, destinationLng, mapID){
         var mapOptions = {zoom: 7,center: startLatlng};
         var map = new google.maps.Map(document.getElementById(mapID), mapOptions);
         var markers = [startLatlng, destLatLng];
+        var startCircle = new google.maps.Circle({
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#FF0000',
+            fillOpacity: 0.35,
+            map: map,
+            center: startLatlng,
+            radius: 500
+        });
+        var destinationCircle = new google.maps.Circle({
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#FF0000',
+            fillOpacity: 0.35,
+            map: map,
+            center: destLatLng,
+            radius: 500
+        });
         for (var i = 0; i <= markers.length; i ++)
         {
             var marker = new google.maps.Marker({position: markers[i],map: map});
@@ -1863,23 +2029,23 @@ function mainPageMap() {
     $.ajax({
         url: 'http://looprac.pythonanywhere.com/getLifts',
         type: 'post',
+        async: false,
         data: JSON.stringify({"passengerID": sessionStorage.getItem("passengerID")})
     })
         .fail(function (jqXHR, textStatus, errorThrown) {
             console.log('AJAX ERROR\njqXHR: ' + jqXHR + '\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
         })
         .done(function (data) {
-            var result = JSON.parse(data);
-            var customIcon = {
-                url: 'https://www.pythonanywhere.com/user/Looprac/files/home/Looprac/LoopracAPI/icons/icon.png',
-                scaledSize: new google.maps.Size(60, 60), // scaled size
-                origin: new google.maps.Point(0, 0), // origin
-                anchor: new google.maps.Point(30, 60) // anchor
-            };
+            // var customIcon = {
+            //     url: 'https://www.pythonanywhere.com/user/Looprac/files/home/Looprac/LoopracAPI/icons/icon.png',
+            //     scaledSize: new google.maps.Size(60, 60), // scaled size
+            //     origin: new google.maps.Point(0, 0), // origin
+            //     anchor: new google.maps.Point(30, 60) // anchor
+            // };
             console.log('result: ' + data);
             navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout: 7000, enableHighAccuracy: true});
             function onSuccess(position) {
-
+                var result = JSON.parse(data);
                 var infoWindow = new google.maps.InfoWindow;
                 var lat = position.coords.latitude;
                 var lang = position.coords.longitude;
@@ -1891,7 +2057,7 @@ function mainPageMap() {
                 var locationStartLng;
                 var locationLatLng;
                 var mylocation = new google.maps.Marker({position: myLatlng, map: map, label: ' Me '});
-                if (result["available lifts"] == "yes") {
+                if (result[0]["available lifts"] == "yes") {
                     for (i = 0; i < result.length; i++) {
                         console.log('marker creation ' + result[i]["startLat"] + ' ' + result[i]["startLng"]);
                         locationStartLat = result[i]["startLat"];
@@ -1948,6 +2114,8 @@ function mainPageMap() {
                     });
             };
             var apiGeolocationSuccess = function (position) {
+                var result = JSON.parse(data);
+                console.log('available lift ' + result['availablelifts'] );
                 var infoWindow = new google.maps.InfoWindow;
                 var lat = position.coords.latitude;
                 var lang = position.coords.longitude;
@@ -1959,7 +2127,8 @@ function mainPageMap() {
                 var locationStartLng;
                 var locationLatLng;
                 var mylocation = new google.maps.Marker({position: myLatlng, map: map, label: ' Me '});
-                if (result["available lifts"] == "yes") {
+                if (result["availablelifts"] == "yes") {
+                    console.log('available lifts yes');
                     for (i = 0; i < result.length; i++) {
                         console.log('marker creation ' + result[i]["startLat"] + ' ' + result[i]["startLng"]);
                         locationStartLat = result[i]["startLat"];
