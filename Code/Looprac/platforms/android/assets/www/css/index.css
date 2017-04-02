@@ -3,14 +3,15 @@
 @font-face {
     font-family: Custom;
     font-style: normal;
-    font-weight: 300;
+    font-weight: 100;
     src:
-            local('Roboto Light'),
-            local('Roboto-Light'),
-            local('sans-serif-light'),
-            url('../fonts/Roboto-Light.woff2') format('woff2');
+            local('Roboto Thin'),
+            local('Roboto-Thin'),
+            local('sans-serif-thin'),
+            url('../fonts/Roboto-Thin.ttf') format('ttf');
     /*unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;*/
 }
+
 
 body{
     background: #241023!important;
@@ -26,7 +27,7 @@ body{
 }
 
 .customInputs{
-    font-family: Custom !important;
+    /*font-family: Custom !important;*/
     background-color: transparent;
     border-radius: 8px;
     border: none;
@@ -41,9 +42,8 @@ body{
 }
 
 .customLbls{
-    font-family: Custom !important;
+    /*font-family: Custom !important;*/
     color: #eae8ff;
-    font-family: 'Roboto-Light', sans-serif!important;
     position: relative;
     font-size: 160%;
     padding:0;
@@ -112,7 +112,7 @@ body{
 .registerH1{
     color: #ff8800;
     font-size: 500%;
-    font-family: Custom !important;
+    /*font-family: Custom !important;*/
 }
 
 #registerDiv{
@@ -166,7 +166,7 @@ body{
 }
 
 #liftTypeInput{
-    font-family: Custom !important;
+    /*font-family: Custom !important;*/
     position: relative;
     left: 0;
     width: 37%;
@@ -176,24 +176,24 @@ body{
 }
 
 #liftTypeLbl{
-    font-family: Custom !important;
+    /*font-family: Custom !important;*/
     position:relative;
     right:17px;
 }
 
 #seatsLbl{
-    font-family: Custom !important;
+    /*font-family: Custom !important;*/
     position: relative;
     right:17px;
 }
 #seatsInput{
-    font-family: Custom !important;
+    /*font-family: Custom !important;*/
     position: relative;
 
 }
 
 .departInputs{
-    font-family: Custom !important;
+    /*font-family: Custom !important;*/
     background-color: transparent;
     color: #ff8800;
     height: 40px !important;
@@ -207,12 +207,12 @@ body{
 }
 
 .departInputs:focus{
-    font-family: Custom !important;
+    /*font-family: Custom !important;*/
     outline: none;
 }
 
 .dropdownInputs{
-    font-family: Custom !important;
+    /*font-family: Custom !important;*/
     position: relative;
     width: 49% !important;
     height: 40px !important;
@@ -223,12 +223,12 @@ body{
 }
 
 .dropdownInputs:focus{
-    font-family: Custom !important;
+    /*font-family: Custom !important;*/
     outline: none;
 }
 
 .offerLiftBtns{
-    font-family: Custom !important;
+    /*font-family: Custom !important;*/
     position: relative;
     top: 60px;
     width: 43%!important;
@@ -237,7 +237,7 @@ body{
 }
 
 #offerLiftBtn{
-    font-family: Custom !important;
+    /*font-family: Custom !important;*/
     border-radius: 5px;
     border-color: #ff8800;
     color: #ff8800;
@@ -247,25 +247,25 @@ body{
 }
 
 .mapLinks{
-    font-family: Custom !important;
+    /*font-family: Custom !important;*/
     color: #ccfbfe;
     text-align: right;
 }
 
 .mapLinks:focus{
-    font-family: Custom !important;
+    /*font-family: Custom !important;*/
     opacity: .9;
     text-decoration: none;
 }
 
 #departDateLbl {
-    font-family: Custom !important;
+    /*font-family: Custom !important;*/
     position: relative;
     right: 14px;
 }
 
 #departTimeLbl {
-    font-family: Custom !important;
+    /*font-family: Custom !important;*/
     position: relative;
     right: 17px;
 }
@@ -286,14 +286,14 @@ body{
  */
 
 #listDiv{
-    font-family: Custom !important;
+    /*font-family: Custom !important;*/
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 #availableLiftsTbl {
-    font-family: Custom !important;
+    /*font-family: Custom !important;*/
     position: relative;
     justify-content: center;
     align-items: center;
@@ -306,18 +306,8 @@ body{
  */
 
 #liftDetailsDiv{
+    /*font-family: Custom !important;*/
     color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.detailDiv{
-    border-top:1px solid #ffffff;
-}
-
-#requestLiftBtnDiv{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -912,4 +902,18 @@ side nav bar: gotten from w3schools.com
 
 #file{
     color: #ff8800;
+}
+
+/***********************
+    LEADERBOARD
+ */
+
+#backBtn{
+    background-color: #231024;
+    color: #eae8ff;
+    border: 1px solid #eae8ff;
+    border-radius: 5px;
+    position: fixed;
+    bottom: 0;
+    width: 85%;
 }

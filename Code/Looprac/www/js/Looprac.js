@@ -1829,6 +1829,55 @@ function updateInfo(){
             }
         })
 }
+
+
+/*****************************
+ *     LEADERBOARD
+ */
+
+function getLeaderBoard(){
+    $.ajax({
+        url: 'http://looprac.pythonanywhere.com/leaderboard',
+        type:'post',
+        data: JSON.stringify({'userID': sessionStorage.getItem('userID')})
+
+    })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log('AJAX ERROR\njqXHR: ' + jqXHR + '\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+        })
+        .done(function (data) {
+            console.log(data);
+            var result = JSON.parse(data);
+            var name = '';
+            var passengerID = 0;
+            var exp = 0;
+            var trID = '';
+            var tdID = '';
+            var tr = '';
+            var row;
+            var table = $('#leaderboardTbl');
+            for (var i = 0; i < result.length ; i ++ ) {
+                row = i + 1;
+                name = result[i]["name"];
+                passengerID = result[i]["passengerID"];
+                exp = result[i]["experience"];
+                trID = 'trID' + i.toString();
+                tdID = 'tdID' + i.toString();
+                if(passengerID == sessionStorage.getItem('passengerID')){
+                    tr = '<tr style="color:#000000; background-color: #ffffff;" onclick="getProfile(' + passengerID + ')" id=' + trID + ' ><td>' + row + ' </td><td class="hidden" id=' + tdID + '>' + passengerID + '</td><td>' + name + '</td><td>' + exp + '</td><td></tr>';
+                    var positon = i + 1;
+                    document.getElementById('position').innerHTML = 'You are number ' + positon;
+                }
+                else{
+                    tr = '<tr style="color:#ff8800;" onclick="getProfile(' + passengerID + ')" id=' + trID + ' ><td class="hidden" id=' + tdID + '>' + passengerID + '</td><td>' + row + ' </td><td>' + name + '</td><td>' + exp + '</td><td></tr>';
+
+                }
+                table.append(tr);
+            }
+        })
+
+}
+
 /*********************************************
   GOOGLE API FUNCTION CALLS FOR OFFER LIFT FORM
  */

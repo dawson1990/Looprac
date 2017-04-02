@@ -1334,3 +1334,27 @@ def update_details(user_id, phone, car_make, car_model, car_reg):
             except Exception as e:
                 print('Error updating car details:', e)
     return json.dumps({'update': 'complete'})
+
+
+def get_leaderboard():
+    d =[]
+    _GET_USERS_SQL_ = """SELECT u.First_Name, u.Last_Name, p.PassengerID, e.Experience
+                         FROM User u, Passenger p, Experience e
+                         WHERE u.UserID = p.UserID
+                         AND u.UserID = e.UserID
+                         ORDER BY e.Experience DESC"""
+    with DBcm.UseDatabase(config) as cursor:
+        try:
+            cursor.execute(_GET_USERS_SQL_)
+            data = cursor.fetchall()
+            print(data)
+            for item in data:
+                d.append({
+                    'name': item[0] + ' ' + item[1],
+                    'passengerID': item[2],
+                    'experience': str(item[3])
+                })
+        except Exception as e:
+            print('Error check if car exists:', e)
+        else:
+            return json.dumps(d)

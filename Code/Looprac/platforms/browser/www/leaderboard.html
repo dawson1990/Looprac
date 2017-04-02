@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/Looprac.js"></script>
+    <link rel="stylesheet" type="text/css"  href="css/index.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>Leaderboard</title>
+    <script>
+        window.onload = getLeaderBoard();
+    </script>
+</head>
+<body class="container">
+<div class="col-xs-12">
+    <h1 class="col-xs-12" style="text-align: center; color: #ff8800">Leaderboard</h1>
+    <h2 class="col-xs-12" id="position" style="text-align: center; color: #ff8800"></h2>
+    <table id="leaderboardTbl" class="table table-inverse table-hover">
+        <tr style="color: #ffffff;" >
+            <th class="hidden">PassengerID</th>
+            <th ></th>
+            <th>Name</th>
+            <th>Experience</th>
+        </tr>
+    </table>
+
+</div>
+<div id="BtnDiv" class="col-xs-12">
+    <input type="button" id="backBtn" value="Go Back" class="btn btn-primary  col-xs-12" onclick="window.location ='main_page.html'" />
+</div>
+</body>
+</html>

@@ -1,4 +1,4 @@
-from flask import Flask, request, Response
+from flask import Flask, request, Response, make_response, render_template
 import db
 import json
 import string
@@ -430,6 +430,16 @@ def update_info():
         return jsObj
 
 
+@app.route('/leaderboard', methods=['PUT', 'POST'])
+def leaderboard():
+    # r = make_response(render_template('base.html'))
+    # r.headers['Access-Control-Allow-Origin'] = '*'
+    if request.method == 'POST':
+        jsObj = db.get_leaderboard()
+        print(jsObj)
+        return jsObj
+
+
 def delete_item(email):
     try:
         basedir = os.path.abspath(os.path.dirname(__file__))
@@ -438,6 +448,9 @@ def delete_item(email):
     except Exception as e:
         print('Error deleting image from server:', e)
     return 'done'
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
