@@ -297,6 +297,25 @@ def my_lift_details():
         return jsObj
 
 
+@app.route('/checkIfCanDeleteLift', methods=['PUT', 'POST'])
+def check_if_can_delete():
+    if request.method == 'POST':
+        data = request.get_data()
+        j = json.loads(data.decode('UTF-8'))
+        jsObj = db.check_can_delete(j['liftID'])
+        print(jsObj)
+        return jsObj
+
+
+@app.route('/deleteLift', methods=['PUT', 'POST'])
+def deletelift():
+    if request.method == 'POST':
+        data = request.get_data()
+        j = json.loads(data.decode('UTF-8'))
+        jsObj = db.delete_lift(j['liftID'])
+        print(jsObj)
+        return jsObj
+
 @app.route('/completeLift', methods=['PUT', 'POST'])
 def complete_lift():
     if request.method == 'POST':
@@ -440,6 +459,15 @@ def leaderboard():
         return jsObj
 
 
+@app.route('/deleteAccount', methods=['PUT', 'POST'])
+def delete_account():
+    if request.method == 'POST':
+        data = request.get_data()
+        j = json.loads(data.decode('UTF-8'))
+        jsObj = db.delete_user_account(j['userID'])
+        print(jsObj)
+        return jsObj
+
 def delete_item(email):
     try:
         basedir = os.path.abspath(os.path.dirname(__file__))
@@ -448,6 +476,7 @@ def delete_item(email):
     except Exception as e:
         print('Error deleting image from server:', e)
     return 'done'
+
 
 
 

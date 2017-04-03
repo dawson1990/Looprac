@@ -272,9 +272,10 @@ def process_login(email, password):
                         uName = i[1]
                         uLName = i[2]
                         passengerID = i[3]
+                        driverID = 0
                         jsObj = json.dumps(
                             {"status": "match", "email": email, "user_id": UserID, "first_name": uName.capitalize(), "last_name": uLName.capitalize(),
-                             "passengerID": passengerID, "driverID": 0})
+                             "passengerID": passengerID, "myDriverID": driverID})
             except Exception as e:
                 print('error with getting login information: ', e)
             else:
@@ -889,6 +890,32 @@ def getMyLiftDetails(liftID):
             return jsObj
 
 
+def check_can_delete(liftID):
+    group_data = []
+    _CHECK_IF_ACTIVE_SQL = """SELECT * FROM CarGroup WHERE LiftID = %s"""
+    with DBcm.UseDatabase(config) as cursor:
+        try:
+            cursor.execute(_CHECK_IF_ACTIVE_SQL, (liftID,))
+            group_data = cursor.fetchall()
+            print('group data', group_data)
+        except Exception as e:
+            print('Error checking if lift is active:', e)
+        else:
+            if group_data == []:
+                return json.dumps({'active': 'false'})
+            else:
+                return json.dumps({'active': 'true'})
+
+def delete_lift(liftID):
+    _DELETE_LIFT_SQL= """DELETE FROM Lift WHERE LiftID = %s"""
+    with DBcm.UseDatabase(config) as cursor:
+        try:
+            cursor.execute(_DELETE_LIFT_SQL, (liftID,))
+        except Exception as e:
+            print('Error deleting lift:', e)
+        else:
+            return json.dumps({'status': 'deleted'})
+
 def complete_lift(liftID):
     print('COMPLETE LIFT FUNCTION')
     d, passengerIDs, driverIdData, distance_data = [], [], [], []
@@ -1234,7 +1261,7 @@ def check_if_lift_finished(liftID):
 def get_profile(user_id):
     car_data, user_data = [], []
     _GET_USER_DETAILS_SQL = """SELECT u.First_Name, u.Last_Name, u.Email, u.Phone_Number, u.Date_Created, r.Rating,
-                                r.Number_of_Ratings, e.Experience, e.Overall_Distance_kilo
+                                r.Number_of_Ratings, e.Experience, e.Overall_Distance_kilo, e.Overall_Passengers
                                 FROM User u, UserRating r, Experience e
                                 WHERE u.UserID = r.UserID
                                 AND u.UserID = e.UserID
@@ -1265,6 +1292,7 @@ def get_profile(user_id):
                             'numOfRatings': item[6],
                             'experience': item[7],
                             'overallDistance': item[8],
+                            'overallPassengers': item[9],
                             'carMake': i[0],
                             'carModel': i[1],
                             'carReg': i[2]
@@ -1280,6 +1308,7 @@ def get_profile(user_id):
                         'numOfRatings': item[6],
                         'experience': item[7],
                         'overallDistance': item[8],
+                        'overallPassengers': item[9],
                         'carMake': 'None'
                     }, default=converter)
 
@@ -1334,6 +1363,90 @@ def update_details(user_id, phone, car_make, car_model, car_reg):
             except Exception as e:
                 print('Error updating car details:', e)
     return json.dumps({'update': 'complete'})
+
+
+def delete_user_account(user_id):
+    driver_data = []
+    driver_id = 0
+    _CHECK_IF_DRIVER_SQL = """SELECT DriverID FROM Driver WHERE UserID = %s"""
+    _DELETE_DRIVER_LIFT_SQL = """DELETE FROM Lift WHERE DriverID = %s"""
+    _DELETE_DRIVER_CAR_SQL = """DELETE FROM CarDetails WHERE UserID = %s"""
+    _DELETE_DRIVER_SQL = """DELETE FROM Driver WHERE UserID = %s"""
+
+
+    _DELETE_USERRATING_SQL = """DELETE FROM UserRating WHERE UserID = %s"""
+    _DELETE_Passenger_SQL = """DELETE FROM Passenger WHERE UserID = %s"""
+    _DELETE_EXPERIENCE_SQL = """DELETE FROM Experience WHERE UserID = %s"""
+    _DELETE_USER_SQL = """DELETE FROM User WHERE UserID = %s"""
+    with DBcm.UseDatabase(config) as cursor:
+        try:
+            cursor.execute(_CHECK_IF_DRIVER_SQL, (user_id, ))
+            driver_data = cursor.fetchall()
+            driver_id = driver_data[0][0]
+            print('driver id', driver_id)
+        except Exception as e:
+            print('Error checking if a driver:', e)
+    if driver_data != []:
+        print('is a driver')
+        with DBcm.UseDatabase(config) as cursor:
+            try:
+                cursor.execute(_DELETE_DRIVER_LIFT_SQL, (driver_id,))
+            except Exception as e:
+                print('Error deleting user and driver data:', e)
+        with DBcm.UseDatabase(config) as cursor:
+            try:
+                cursor.execute(_DELETE_DRIVER_CAR_SQL, (user_id,))
+            except Exception as e:
+                print('Error deleting user and driver data:', e)
+        with DBcm.UseDatabase(config) as cursor:
+            try:
+                cursor.execute(_DELETE_DRIVER_SQL, (user_id,))
+            except Exception as e:
+                print('Error deleting user and driver data:', e)
+        with DBcm.UseDatabase(config) as cursor:
+            try:
+                cursor.execute(_DELETE_USERRATING_SQL, (user_id,))
+            except Exception as e:
+                print('Error deleting user and driver data:', e)
+        with DBcm.UseDatabase(config) as cursor:
+            try:
+                cursor.execute(_DELETE_Passenger_SQL, (user_id,))
+            except Exception as e:
+                print('Error deleting user passenger data:', e)
+        with DBcm.UseDatabase(config) as cursor:
+            try:
+                cursor.execute(_DELETE_EXPERIENCE_SQL, (user_id,))
+            except Exception as e:
+                print('Error deleting user experience data:', e)
+        with DBcm.UseDatabase(config) as cursor:
+            try:
+                cursor.execute(_DELETE_USER_SQL, (user_id,))
+            except Exception as e:
+                print('Error deleting user  data:', e)
+    else:
+        print('is a passenger')
+        with DBcm.UseDatabase(config) as cursor:
+            try:
+                cursor.execute(_DELETE_USERRATING_SQL, (user_id,))
+            except Exception as e:
+                print('Error deleting user rating data:', e)
+        with DBcm.UseDatabase(config) as cursor:
+            try:
+                cursor.execute(_DELETE_Passenger_SQL, (user_id,))
+            except Exception as e:
+                print('Error deleting user passenger data:', e)
+        with DBcm.UseDatabase(config) as cursor:
+            try:
+                cursor.execute(_DELETE_EXPERIENCE_SQL, (user_id,))
+            except Exception as e:
+                print('Error deleting user experience data:', e)
+        with DBcm.UseDatabase(config) as cursor:
+            try:
+                cursor.execute(_DELETE_USER_SQL, (user_id,))
+            except Exception as e:
+                print('Error deleting user  data:', e)
+    return json.dumps({'status': 'complete'})
+
 
 
 def get_leaderboard():

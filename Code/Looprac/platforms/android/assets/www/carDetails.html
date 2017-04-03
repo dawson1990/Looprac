@@ -4,18 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <script src="js/jquery-3.1.1.min.js"></script>
-    <!--<script type="text/javascript" src="cordova.js"></script>-->
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-toggle.min.js"></script>
     <script src="js/Looprac.js"></script>
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
     <script>
-        function go_back() {
-            console.log("go back");
-            window.location.replace("index.html");
-        }
         window.onload = function userID() {
             document.getElementById('userID').value = sessionStorage.getItem('userID');
         }
@@ -26,20 +19,23 @@
 <div id="loopLogoDiv" class="col-xs-12">
     <img class="col-xs-12" id="infinityLoopLogo" src="img/Infinity_Loop_Logo.png" />
 </div>
-    <form id="carRegForm" class="col-xs-12">
+<div class="col-xs-12">
+    <form id="carRegForm" class="col-xs-12" >
         <div id="carDetails" class="col-xs-12">
             <label id="carMakeLbl" class="customLbls col-xs-12" for="carMakeInput">Car Make</label>
-            <input type="text" id="carMakeInput" name="carMake" class="customInputs col-xs-12" placeholder="Ford" />
+            <input type="text" id="carMakeInput" name="carMake" class="customInputs col-xs-12" placeholder="Ford" required  pattern="^[a-z A-Z 0-9]+$" title="Letters and numbers only" />
             <label id="carModelLbl" class="customLbls col-xs-12" for="carModelInput">Car Model</label>
-            <input type="text" id="carModelInput" name="carModel" class="customInputs col-xs-12"  placeholder="Focus" />
+            <input type="text" id="carModelInput" name="carModel" class="customInputs col-xs-12"  placeholder="Focus" required pattern="^[a-z A-Z 0-9]+$" title="Letters and numbers only"/>
             <label id="regNumLbl" class="customLbls col-xs-12" for="regNumInput">Registration Number</label>
-            <input type="text" id="regNumInput" name="regNum" class="customInputs col-xs-12" placeholder="01-D-XXXXX" />
+            <input type="text" id="regNumInput" name="regNum" class="customInputs col-xs-12" placeholder="01-D-1234" required  />
             <input type="number" id="userID" name="userID" class="hidden" readonly />
         </div>
         <div class="carRegisterBtnsDiv col-xs-12">
-            <input  type="button" value="Cancel" id="cancelBtn" class="registerBtns btn btn-primary col-xs-6" onclick="go_back()"/>
+            <input  type="button" value="Cancel" id="cancelBtn" class="registerBtns btn btn-primary col-xs-6" onclick="window.location='main_page.html'"/>
             <input  type="submit" value="Register" id="registrationBtn" class="registerBtns btn btn-primary col-xs-6" onclick=registerCar(); />
         </div>
     </form>
+</div>
+
 </body>
 </html>

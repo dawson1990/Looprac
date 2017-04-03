@@ -245,8 +245,10 @@ function checkHasCarRegistered() {
             }
             else if (data["status"] == "car not registered"){
                 console.log('car not registered branch');
-                alert("Please register your car before you offer a lift");
-                window.location.replace("carDetails.html");
+                var r = confirm("Please register your car before you offer a lift");
+                if (r == true){
+                    window.location.replace("carDetails.html");
+                }
             }
 
         });
@@ -254,26 +256,24 @@ function checkHasCarRegistered() {
 }
 
 function registerCar() {
-    event.preventDefault(); // prevents form submitting normally
-    $.ajax({
-        url:'http://looprac.pythonanywhere.com/registercar',
-        type:'post',
-        async: false,
-        data: $("#carRegForm").serialize() })
-        .fail(function (jqXHR, textStatus, errorThrown) {
-            console.log('AJAX ERROR\njqXHR: ' + jqXHR +'\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
-        })
-        .done(function(data){
-            var result = JSON.parse(data);
-            if (result["status"] == "registered"){
-                window.sessionStorage.setItem("driverID", result["driverID"]);
-                window.location.replace("offerLift.html");
-            }
-            else if (result["status" == "Not all required elements are entered"]){
-                alert("ERROR: not all fields were filled in");
-            }
+        $.ajax({
+            url: 'http://looprac.pythonanywhere.com/registercar',
+            type: 'post',
+            data: $('#carRegForm').serialize()
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+                console.log('AJAX ERROR\njqXHR: ' + jqXHR + '\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+            })
+            .done(function (data) {
+                var result = JSON.parse(data);
+                if (result["status"] == "registered") {
+                    window.sessionStorage.setItem("driverID", result["driverID"]);
+                    window.location.replace("offerLift.html");
+                }
+                else if (result["status" == "Not all required elements are entered"]) {
+                    alert("ERROR: not all fields were filled in");
+                }
 
-        });
+            });
 }
 
 
@@ -739,8 +739,10 @@ function showMyLiftDetails(liftID )
             console.log('AJAX ERROR\njqXHR: ' + jqXHR + '\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
         })
         .done(function (data) {
+            checkIfCanDeleteLift(liftID);
             var result = JSON.parse(data);
             console.log('data ' + data + ' ' + result.length);
+            document.getElementById('hiddenLiftID').value =  liftID;
 
             document.getElementById('spacesAvailableRdOnly').value =  result[0]['spaces'];
             document.getElementById('routeRdOnly').value = result[0]["startCounty"] + ' To ' + result[0]["destCounty"];
@@ -800,6 +802,45 @@ function showMyLiftDetails(liftID )
 
 }
 
+function checkIfCanDeleteLift(liftID){
+    $.ajax({
+        url: 'http://looprac.pythonanywhere.com/checkIfCanDeleteLift',
+        type: 'post',
+        data: JSON.stringify({"liftID": liftID})
+    })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log('AJAX ERROR\njqXHR: ' + jqXHR + '\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+        })
+        .done(function (data) {
+            var result = JSON.parse(data);
+            if(result['active'] == 'false'){
+                document.getElementById('deleteLiftBtn').setAttribute('class', 'col-xs-12');
+            }
+        })
+}
+
+
+function deleteLift(){
+    var r = confirm('Are you sure you want to delete this lift? It will not be able to be retrieved.');
+    if (r == true){
+        var liftID = document.getElementById('hiddenLiftID').value;
+        $.ajax({
+            url: 'http://looprac.pythonanywhere.com/deleteLift',
+            type: 'post',
+            data: JSON.stringify({"liftID": liftID})
+        })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.log('AJAX ERROR\njqXHR: ' + jqXHR + '\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+            })
+            .done(function (data) {
+                var result = JSON.parse(data);
+                if(result['status'] == 'deleted'){
+                    alert('Your lift has been deleted.');
+                    window.location = 'myLifts.html';
+                }
+            })
+    }
+}
 /*************************************
  * COMPLETED LIFTS
  */
@@ -1363,7 +1404,7 @@ function displayActiveLift(liftID){
         var map = new google.maps.Map(document.getElementById('map'), mapOptions);
         var start = new google.maps.Marker({position: startLatlng, map: map, label: ' A '});
         var end = new google.maps.Marker({position: destLatLng, map: map, label: ' B '});
-        var driverLocation = new google.maps.Marker({position: driverLatlng, map: map, label: ' Me '});
+        var driverLocation = new google.maps.Marker({position: driverLatlng, map: map, label: ' ME '});
         //creates a red circle on map at destination with a raidus of 500m to show where they can complete journey
         var startCircle = new google.maps.Circle({
             strokeColor: '#FF0000',
@@ -1448,7 +1489,7 @@ function displayActiveLift(liftID){
             var map = new google.maps.Map(document.getElementById('map'), mapOptions);
             var start = new google.maps.Marker({position: startLatlng, map: map, label: ' A '});
             var end = new google.maps.Marker({position: destLatLng, map: map, label: ' B '});
-            var driverLocation = new google.maps.Marker({position: driverLatlng, map: map, label: ' Me '});
+            var driverLocation = new google.maps.Marker({position: driverLatlng, map: map, label: ' ME '});
             //creates a red circle on map at destination with a raidus of 500m to show where they can complete journey
             var startCircle = new google.maps.Circle({
                 strokeColor: '#FF0000',
@@ -1533,29 +1574,17 @@ function checkIfCanFinish(){
                         var mapOptions = {zoom: 11, center: driverLocation};
                         var map = new google.maps.Map(document.getElementById('map'), mapOptions);
                         var marker;
-                        var start;
                         var destination;
                         // d = 410;
                         if (d <= 500) {
                             console.log('COMPLETE');
-                            marker = new google.maps.Marker({position: driverLocation, map: map, label: ' Me '});
+                            marker = new google.maps.Marker({position: driverLocation, map: map, label: ' ME '});
                             completeLiftAndFilterRatingList(sessionStorage.getItem('myLiftID'));
                             window.location = "liftComplete.html";
                         }
                         else {
-                            marker = new google.maps.Marker({position: driverLocation, map: map, label: ' Me '});
-                            start = new google.maps.Marker({position: startLatLng, map: map, label: ' A '});
+                            marker = new google.maps.Marker({position: driverLocation, map: map, label: ' ME '});
                             destination = new google.maps.Marker({position: destLatLng, map: map, label: ' B '});
-                            var startCircle = new google.maps.Circle({
-                                strokeColor: '#FF0000',
-                                strokeOpacity: 0.8,
-                                strokeWeight: 2,
-                                fillColor: '#FF0000',
-                                fillOpacity: 0.35,
-                                map: map,
-                                center: startLatLng,
-                                radius: 500
-                            });
                             var destinationCircle = new google.maps.Circle({
                                 strokeColor: '#FF0000',
                                 strokeOpacity: 0.8,
@@ -1638,7 +1667,6 @@ function checkIfCanFinish(){
                             console.log('m');
                             d = parseFloat(distance);
                         }
-                        alert('distance callback: ' + distance + ' type ' + typeof distance + ' d ' + d + ' ' + typeof d);
 
                         var mapOptions = {zoom: 11, center: driverLocation};
                         var map = new google.maps.Map(document.getElementById('map'), mapOptions);
@@ -1647,25 +1675,13 @@ function checkIfCanFinish(){
                         var destination;
                         d = 410;
                         if (d <= 500) {
-                            alert('COMPLETE');
-                            marker = new google.maps.Marker({position: driverLocation, map: map, label: ' Me '});
+                            marker = new google.maps.Marker({position: driverLocation, map: map, label: ' ME '});
                             completeLiftAndFilterRatingList(sessionStorage.getItem('myLiftID'));
                             window.location = "liftComplete.html";
                         }
                         else {
-                            marker = new google.maps.Marker({position: driverLocation, map: map, label: ' Me '});
-                            start = new google.maps.Marker({position: startLatLng, map: map, label: ' A '});
+                            marker = new google.maps.Marker({position: driverLocation, map: map, label: ' ME '});
                             destination = new google.maps.Marker({position: destLatLng, map: map, label: ' B '});
-                            var startCircle = new google.maps.Circle({
-                                strokeColor: '#FF0000',
-                                strokeOpacity: 0.8,
-                                strokeWeight: 2,
-                                fillColor: '#FF0000',
-                                fillOpacity: 0.35,
-                                map: map,
-                                center: startLatLng,
-                                radius: 500
-                            });
                             var destinationCircle = new google.maps.Circle({
                                 strokeColor: '#FF0000',
                                 strokeOpacity: 0.8,
@@ -1734,6 +1750,15 @@ function populateProfile(userID){
             document.getElementById('profileExp').value = result["experience"] + ' XP ';
             document.getElementById('profileDistance').value = result["overallDistance"] + ' KM ';
             document.getElementById('profileRating').value = parseFloat(result["rating"]);
+            if (result['overallPassengers'] != 0){
+                document.getElementById('profilePassengers').value = result["overallPassengers"];
+            }
+            else{
+                document.getElementById('profilePassengers').setAttribute('class', 'hidden');
+                document.getElementById('passengerLbl').setAttribute('class', 'hidden');
+
+            }
+
 
             if(result["carMake"] == "None"){
                 document.getElementById('profileCarDetailsDiv').setAttribute('class', 'hidden');
@@ -1770,6 +1795,7 @@ function edit(){
     if (    document.getElementById('profilePhone').hasAttribute('readonly'))
     {
         document.getElementById('saveChangesBtn').setAttribute('class', 'col-xs-12');
+        document.getElementById('deleteBtn').setAttribute('class', 'col-xs-12');
         document.getElementById('file').setAttribute('class', 'col-xs-12');
         document.getElementById('profilePhone').removeAttribute('readonly') ;
         document.getElementById('profilePhone').setAttribute('class', 'profileEditedInputs col-xs-12');
@@ -1787,6 +1813,7 @@ function edit(){
     else{
         document.getElementById('file').setAttribute('class', 'hidden');
         document.getElementById('saveChangesBtn').setAttribute('class', 'hidden col-xs-12');
+        document.getElementById('deleteBtn').setAttribute('class', 'hidden col-xs-12');
         document.getElementById('profilePhone').setAttribute('readonly', 'true');
         document.getElementById('profileCarMake').setAttribute('readonly', 'true');
         document.getElementById('profileCarModel').setAttribute('readonly', 'true');
@@ -1830,6 +1857,28 @@ function updateInfo(){
         })
 }
 
+
+function deleteAccount(){
+    var r = confirm('This will delete your account from Looprac.  Are you sure you want to do this?');
+    if (r == true){
+        $.ajax({
+            url: 'http://looprac.pythonanywhere.com/deleteAccount',
+            type:'post',
+            data: JSON.stringify({'userID': sessionStorage.getItem('userID')}) })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.log('AJAX ERROR\njqXHR: ' + jqXHR + '\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
+            })
+            .done(function (data) {
+                var result =  JSON.parse(data);
+                if(result["status"] == "complete"){
+                    alert("Your account has been deleted.  Sorry to see you go :'(");
+                    sessionStorage.clear();
+                    window.location = "login.html";
+                }
+            })
+    }
+
+}
 
 /*****************************
  *     LEADERBOARD
@@ -1941,8 +1990,6 @@ function showLift(startLat, startLng, destinationLat, destinationLng, mapID){
 
         console.log('in success, before calcRoute call');
         calcRoute(startLatlng, destLatLng, map);
-        var distance = calcDistance(startLatlng, destLatLng);
-        console.log('distance ' + distance);
         var markers = [startLatlng, destLatLng];
         var startCircle = new google.maps.Circle({
             strokeColor: '#FF0000',
@@ -2016,6 +2063,7 @@ function showLift(startLat, startLng, destinationLat, destinationLng, mapID){
         var destLatLng = new google.maps.LatLng(destinationLat, destinationLng);
         var mapOptions = {zoom: 7,center: startLatlng};
         var map = new google.maps.Map(document.getElementById(mapID), mapOptions);
+        calcRoute(startLatlng, destLatLng, map);
         var markers = [startLatlng, destLatLng];
         var startCircle = new google.maps.Circle({
             strokeColor: '#FF0000',
@@ -2085,12 +2133,6 @@ function mainPageMap() {
             console.log('AJAX ERROR\njqXHR: ' + jqXHR + '\ntext status: ' + textStatus + '\nError thrown: ' + errorThrown);
         })
         .done(function (data) {
-            // var customIcon = {
-            //     url: 'https://www.pythonanywhere.com/user/Looprac/files/home/Looprac/LoopracAPI/icons/icon.png',
-            //     scaledSize: new google.maps.Size(60, 60), // scaled size
-            //     origin: new google.maps.Point(0, 0), // origin
-            //     anchor: new google.maps.Point(30, 60) // anchor
-            // };
             console.log('result: ' + data);
             navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout: 7000, enableHighAccuracy: true});
             function onSuccess(position) {
@@ -2105,8 +2147,8 @@ function mainPageMap() {
                 var locationStartLat;
                 var locationStartLng;
                 var locationLatLng;
-                var mylocation = new google.maps.Marker({position: myLatlng, map: map, label: ' Me '});
-                if (result[0]["available lifts"] == "yes") {
+                var mylocation = new google.maps.Marker({position: myLatlng, map: map, label: ' ME '});
+                if (result[0]["availablelifts"] == "yes") {
                     for (i = 0; i < result.length; i++) {
                         console.log('marker creation ' + result[i]["startLat"] + ' ' + result[i]["startLng"]);
                         locationStartLat = result[i]["startLat"];
@@ -2175,8 +2217,8 @@ function mainPageMap() {
                 var locationStartLat;
                 var locationStartLng;
                 var locationLatLng;
-                var mylocation = new google.maps.Marker({position: myLatlng, map: map, label: ' Me '});
-                if (result["availablelifts"] == "yes") {
+                var mylocation = new google.maps.Marker({position: myLatlng, map: map, label: ' ME '});
+                if (result[0]["availablelifts"] == "yes") {
                     console.log('available lifts yes');
                     for (i = 0; i < result.length; i++) {
                         console.log('marker creation ' + result[i]["startLat"] + ' ' + result[i]["startLng"]);

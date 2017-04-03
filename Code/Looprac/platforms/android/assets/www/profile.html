@@ -23,6 +23,8 @@
 </head>
 <body class="container">
 <form id="profileForm" method="post" action="http://looprac.pythonanywhere.com/registeruser"  enctype="multipart/form-data">
+    <input type="button" id="deleteBtn" class="col-xs-12 hidden" value="Delete Account" onclick="deleteAccount()" />
+
     <div id="profilePicDiv" class="col-xs-12">
         <img id="profilePic" src="" class="col-xs-12"/>
     </div>
@@ -38,13 +40,14 @@
         <input name="email" type="text" class="col-xs-12 profileInputs" id="profileEmail" readonly />
     </div>
     <div id="profileRatingExpDiv">
-        <!--<label class="col-xs-12 profileLbs" for="profileRating">Rating</label>-->
         <input id="profileRating" data-step="0.1" type="text" value=""  class=" col-xs-6 " data-show-clear="false" data-size="sm" readonly>
         <input type="text" id="profileRatingAmt" class="col-xs-12 profileInputs" readonly />
         <label class="col-xs-12 profileLbs" for="profileExp">Experience</label>
         <input type="text" class="col-xs-12 profileInputs" id="profileExp" readonly />
         <label class="col-xs-12 profileLbs" for="profileDistance">Distance travelled with other people</label>
         <input type="text" class="col-xs-12 profileInputs" id="profileDistance" readonly />
+        <label class="col-xs-12 profileLbs" for="profilePassengers" id="passengerLbl">Number of Passengers</label>
+        <input type="text" class="col-xs-12 profileInputs" id="profilePassengers" readonly />
 
     </div>
     <div id="profileCarDetailsDiv">

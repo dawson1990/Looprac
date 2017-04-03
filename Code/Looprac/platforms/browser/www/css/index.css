@@ -273,7 +273,6 @@ body{
 #loopLogoDiv{
     display: flex;
     justify-content: center;
-    height: 90px;
     align-items: center;
 }
 
@@ -708,6 +707,24 @@ side nav bar: gotten from w3schools.com
     padding: 5px 10px 5px 10px;
 }
 
+#deleteLiftBtn {
+    background: #ff0a10;
+    color: #ffffff;
+    border: 1px solid #ff0a10;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+#deleteLiftBtn:active{
+    opacity: .8;
+    outline:none;
+}
+
+#deleteLiftBtn:focus{
+    opacity: .8;
+    outline:none;
+}
+
 /***********************
     ACTIVE LIFTS
  */
@@ -902,6 +919,25 @@ side nav bar: gotten from w3schools.com
 
 #file{
     color: #ff8800;
+}
+
+#deleteBtn{
+    color: #ffffff;
+    background-color: #ff0a10;
+    border: 1px solid #ff0a10;
+    border-radius: 5px;
+    position: relative;
+    font-size: 19px;
+}
+
+#deleteBtn:active{
+    opacity: .8;
+    outline:none;
+}
+
+#deleteBtn:focus{
+    opacity: .8;
+    outline:none;
 }
 
 /***********************
