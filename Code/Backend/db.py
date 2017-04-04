@@ -2,7 +2,8 @@ import DBcm
 import json
 import hashlib
 import datetime
-from dateutil.tz import *
+import data_utils
+
 config = {
     'host': 'Looprac.mysql.pythonanywhere-services.com',
     'user': 'Looprac',
@@ -62,8 +63,8 @@ def list_available_lifts(passengerID):
     now = datetime.datetime.now()
     day = now.strftime("%Y-%m-%d")
     time = now.strftime("%Y-%m-%d %H:%M:%S")
-
-    # Query that filters available lifts to only display lifts that have available spaces, they user hasn't already requested or if the user is a driver, not to show their lifts
+    # Query that filters available lifts to only display lifts that have available spaces, they user hasn't already
+    # requested or if the user is a driver, not to show their lifts
     _FILTERLIFTLIST_SQL = """SELECT l.LiftID, l.DriverID, l.Start_County, l.Destination_County, l.Depart_Date
                  FROM Lift l, Driver d, User u, Passenger p
                  WHERE  l.Available_Spaces > 0
@@ -906,6 +907,7 @@ def check_can_delete(liftID):
             else:
                 return json.dumps({'active': 'true'})
 
+
 def delete_lift(liftID):
     _DELETE_LIFT_SQL= """DELETE FROM Lift WHERE LiftID = %s"""
     with DBcm.UseDatabase(config) as cursor:
@@ -915,6 +917,7 @@ def delete_lift(liftID):
             print('Error deleting lift:', e)
         else:
             return json.dumps({'status': 'deleted'})
+
 
 def complete_lift(liftID):
     print('COMPLETE LIFT FUNCTION')
@@ -1103,7 +1106,7 @@ def rate_group(driverID, driverRating, passengerData):
                             '4': item[3],
                             '5': item[4]
                         }
-                    driverRating = calculateRating(driverStars)
+                    driverRating = data_utils.calculateRating(driverStars)
                     print('driver rating: ', driverRating)
                 except Exception as e:
                     print('Error getting driver star count:', e)
@@ -1147,7 +1150,7 @@ def rate_group(driverID, driverRating, passengerData):
                             '5': i[4]
                         }
                     print('passenger star dict', passengerStars)
-                    passengerRating = calculateRating(passengerStars)
+                    passengerRating = data_utils.calculateRating(passengerStars)
                     print('passenger rating: ', passengerRating)
                 except Exception as e:
                     print('Error getting passenger star count:', e)
@@ -1162,11 +1165,6 @@ def rate_group(driverID, driverRating, passengerData):
         return json.dumps({'ratings': 'complete'})
 
 
-def calculateRating(starCountData):
-    # weighted average
-    return (5*starCountData['5'] + 4 * starCountData['4'] + 3 * starCountData['3'] + 2 * starCountData['2'] + 1 *
-            starCountData['1']) / (starCountData['5'] + starCountData['4'] + starCountData['3'] + starCountData['2']
-                                   + starCountData['1'])
 
 
 def check_if_user_is_driver(liftID, driverID):
@@ -1446,7 +1444,6 @@ def delete_user_account(user_id):
             except Exception as e:
                 print('Error deleting user  data:', e)
     return json.dumps({'status': 'complete'})
-
 
 
 def get_leaderboard():

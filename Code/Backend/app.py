@@ -6,7 +6,7 @@ import random
 from werkzeug.utils import secure_filename
 import os
 import base64
-
+import data_utils
 
 UPLOAD_FOLDER = 'Uploads/'
 
@@ -38,6 +38,7 @@ def main_page_lifts():
         print('jsobj', jsObj)
         return jsObj
 
+
 # TRY REMOVING GET TO FIX ACCESS CONTROL ERRORS
 @app.route('/availableLifts', methods=['PUT', 'POST'])
 def available_lifts():
@@ -65,9 +66,6 @@ def liftDetails():
         print('lift and driver id ', liftID, driverID)
         jsObj = db.getLiftDetails(liftID, driverID)
         return jsObj
-
-
-
 
 
 @app.route('/registeruser', methods=['PUT', 'POST'])
@@ -408,7 +406,8 @@ def get_profile_picture():
             filepath = os.path.join(basedir, app.config['UPLOAD_FOLDER'], filename)
             with open(filepath, "rb") as image_file:
                 encoded_string = base64.b64encode(image_file.read())
-            return Response(encoded_string, mimetype='image/jpeg', headers={"Content-disposition":"attachment: filename="+filepath})
+            return Response(encoded_string, mimetype='image/jpeg', headers={
+                "Content-disposition": "attachment: filename="+filepath})
         except Exception as e:
             print('Error sending picture:', e)
 
@@ -438,12 +437,11 @@ def update_info():
         print('after file')
         if file:
             print('in file if')
-            delete_item(email)
+            data_utils.delete_item(email)
             print('in file if statement')
             basedir = os.path.abspath(os.path.dirname(__file__))
             filename = secure_filename(email + '.jpg')
             file.save(os.path.join(basedir, app.config['UPLOAD_FOLDER'], filename))
-            # filepath = os.path.join(basedir, app.config['UPLOAD_FOLDER'], filename)
         jsObj = db.update_details(user_id, phone, car_make, car_model, car_reg)
         print(jsObj)
         return jsObj
@@ -451,8 +449,6 @@ def update_info():
 
 @app.route('/leaderboard', methods=['PUT', 'POST'])
 def leaderboard():
-    # r = make_response(render_template('base.html'))
-    # r.headers['Access-Control-Allow-Origin'] = '*'
     if request.method == 'POST':
         jsObj = db.get_leaderboard()
         print(jsObj)
@@ -467,15 +463,6 @@ def delete_account():
         jsObj = db.delete_user_account(j['userID'])
         print(jsObj)
         return jsObj
-
-def delete_item(email):
-    try:
-        basedir = os.path.abspath(os.path.dirname(__file__))
-        filename = secure_filename(email + '.jpg')
-        os.remove(os.path.join(basedir, app.config['UPLOAD_FOLDER'], filename))
-    except Exception as e:
-        print('Error deleting image from server:', e)
-    return 'done'
 
 
 

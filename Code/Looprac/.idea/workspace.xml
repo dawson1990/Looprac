@@ -2,41 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09e4e59b-c2ae-421a-95aa-99ea5f2cf249" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Backend/app.py" afterPath="$PROJECT_DIR$/../Backend/app.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Backend/db.py" afterPath="$PROJECT_DIR$/../Backend/db.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Documents/Car Sharing App - Business Canvas Model.xlsx" afterPath="$PROJECT_DIR$/../../Documents/Car Sharing App - Business Canvas Model.xlsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Documents/Design_Document.docx" afterPath="$PROJECT_DIR$/../../Documents/Design_Document.docx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Documents/FinalReport.docx" afterPath="$PROJECT_DIR$/../../Documents/FinalReport.docx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Documents/Research_Document.docx" afterPath="$PROJECT_DIR$/../../Documents/Research_Document.docx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Backend/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Backend/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/carDetails.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/carDetails.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/css/index.css" afterPath="$PROJECT_DIR$/platforms/android/assets/www/css/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/groupDetails.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/groupDetails.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/groupJourneyDisplay.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/groupJourneyDisplay.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/Looprac.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/Looprac.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/myLiftDetails.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/myLiftDetails.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/offerLift.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/offerLift.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/profile.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/profile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/register.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/register.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/carDetails.html" afterPath="$PROJECT_DIR$/platforms/browser/www/carDetails.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/index.css" afterPath="$PROJECT_DIR$/platforms/browser/www/css/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/groupDetails.html" afterPath="$PROJECT_DIR$/platforms/browser/www/groupDetails.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/groupJourneyDisplay.html" afterPath="$PROJECT_DIR$/platforms/browser/www/groupJourneyDisplay.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/js/Looprac.js" afterPath="$PROJECT_DIR$/platforms/browser/www/js/Looprac.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/myLiftDetails.html" afterPath="$PROJECT_DIR$/platforms/browser/www/myLiftDetails.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/offerLift.html" afterPath="$PROJECT_DIR$/platforms/browser/www/offerLift.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/profile.html" afterPath="$PROJECT_DIR$/platforms/browser/www/profile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/register.html" afterPath="$PROJECT_DIR$/platforms/browser/www/register.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/carDetails.html" afterPath="$PROJECT_DIR$/www/carDetails.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/index.css" afterPath="$PROJECT_DIR$/www/css/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/groupDetails.html" afterPath="$PROJECT_DIR$/www/groupDetails.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/groupJourneyDisplay.html" afterPath="$PROJECT_DIR$/www/groupJourneyDisplay.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/Looprac.js" afterPath="$PROJECT_DIR$/www/js/Looprac.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/myLiftDetails.html" afterPath="$PROJECT_DIR$/www/myLiftDetails.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/offerLift.html" afterPath="$PROJECT_DIR$/www/offerLift.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/profile.html" afterPath="$PROJECT_DIR$/www/profile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/register.html" afterPath="$PROJECT_DIR$/www/register.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -77,8 +47,8 @@
       <file leaf-file-name="Looprac.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/Looprac.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="1754" column="13" lean-forward="false" selection-start-line="1754" selection-start-column="13" selection-end-line="1754" selection-end-column="13" />
+            <state relative-caret-position="186">
+              <caret line="1996" column="24" lean-forward="false" selection-start-line="1996" selection-start-column="18" selection-end-line="1996" selection-end-column="24" />
               <folding>
                 <marker date="1491257494755" expanded="true" signature="18095:18110" ph="..." />
                 <marker date="1491257494755" expanded="true" signature="18575:18590" ph="..." />
@@ -489,15 +459,15 @@
       <workItem from="1491144297599" duration="616000" />
       <workItem from="1491151791221" duration="638000" />
       <workItem from="1491161124084" duration="5914000" />
-      <workItem from="1491218542195" duration="12843000" />
+      <workItem from="1491218542195" duration="13445000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="550690000" />
+    <option name="totallyTimeSpent" value="551292000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2001488" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -870,8 +840,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/Looprac.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="1754" column="13" lean-forward="false" selection-start-line="1754" selection-start-column="13" selection-end-line="1754" selection-end-column="13" />
+        <state relative-caret-position="186">
+          <caret line="1996" column="24" lean-forward="false" selection-start-line="1996" selection-start-column="18" selection-end-line="1996" selection-end-column="24" />
           <folding>
             <marker date="1491257494755" expanded="true" signature="18095:18110" ph="..." />
             <marker date="1491257494755" expanded="true" signature="18575:18590" ph="..." />
