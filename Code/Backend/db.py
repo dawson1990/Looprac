@@ -12,13 +12,11 @@ config = {
 }
 
 
-def get_main_page_lifts(passengerID):
-    jsObj = {}
+def get_main_page_lifts(passenger_id):
+    js_obj = {}
     d = []
     now = datetime.datetime.now()
-    day = now.strftime("%Y-%m-%d")
     time = now.strftime("%Y-%m-%d %H:%M:%S")
-    print('day', day, 'time', time)
     _FILTERLIFTLIST_SQL = """SELECT l.LiftID, l.DriverID, l.Start_Lat, l.Start_Long
                  FROM Lift l, Driver d, User u, Passenger p
                  WHERE  l.Available_Spaces > 0
@@ -36,9 +34,8 @@ def get_main_page_lifts(passengerID):
                    AND p.PassengerID = %s) """
     with DBcm.UseDatabase(config) as cursor:
         try:
-            cursor.execute(_FILTERLIFTLIST_SQL, (time, passengerID, passengerID ))
+            cursor.execute(_FILTERLIFTLIST_SQL, (time, passenger_id, passenger_id ))
             data = cursor.fetchall()
-            print('length', len(data), 'data', data)
             if data != []:
                 for item in data:
                     d.append({
@@ -48,20 +45,19 @@ def get_main_page_lifts(passengerID):
                         'startLat': item[2],
                         'startLng': item[3],
                     })
-                    jsObj = json.dumps(d, default=converter)
+                    js_obj = json.dumps(d, default=converter)
             else:
-                jsObj = json.dumps({"availablelifts": "none"})
+                js_obj = json.dumps({"availablelifts": "none"})
         except Exception as e:
             print('Error with select lift details that user hasnt requested query: ', e)
         else:
-            return jsObj
+            return js_obj
 
 
-#QUERY TO DISPLAY AVAILABLE LIFTS
-def list_available_lifts(passengerID):
+# QUERY TO DISPLAY AVAILABLE LIFTS
+def list_available_lifts(passenger_id):
     data, data2, d = [], [], []
     now = datetime.datetime.now()
-    day = now.strftime("%Y-%m-%d")
     time = now.strftime("%Y-%m-%d %H:%M:%S")
     # Query that filters available lifts to only display lifts that have available spaces, they user hasn't already
     # requested or if the user is a driver, not to show their lifts
@@ -82,9 +78,8 @@ def list_available_lifts(passengerID):
                    AND p.PassengerID = %s) """
     with DBcm.UseDatabase(config) as cursor:
         try:
-            cursor.execute(_FILTERLIFTLIST_SQL, (time, passengerID, passengerID))
+            cursor.execute(_FILTERLIFTLIST_SQL, (time, passenger_id, passenger_id))
             data = cursor.fetchall()
-            print('length', len(data), 'data', data)
         except Exception as e:
             print('Error with select lift details that user hasnt requested query: ', e)
     for item in data:
@@ -95,8 +90,8 @@ def list_available_lifts(passengerID):
                 'destinationCounty': item[3],
                 'departing': item[4],
         })
-    jsObj = json.dumps(d, default=converter)
-    return jsObj
+    js_obj = json.dumps(d, default=converter)
+    return js_obj
 
 
 # for JSON obj, if json.dumps() receives an object it can't process, its sent to this function and converted to str
@@ -104,8 +99,7 @@ def converter(obj):
     return str(obj)
 
 
-def getLiftDetails(liftID, driverID):
-    print('liftID', liftID, 'driverID', driverID)
+def getLiftDetails(lift_id, driver_id):
     _DRIVER_DETAILS_SQL = """ SELECT u.UserID, u.First_Name, u.Last_Name, r.Rating, p.PassengerID
                   FROM User u, Driver d, UserRating r, Passenger p
                   WHERE u.UserID = d.UserID
@@ -114,18 +108,14 @@ def getLiftDetails(liftID, driverID):
                   AND d.DriverID= %s"""
     _LIFT_DETAILS_SQL = """SELECT * FROM Lift WHERE LiftID= %s order by Created_At"""
     with DBcm.UseDatabase(config) as cursor:
-        cursor.execute(_LIFT_DETAILS_SQL, (liftID,))
+        cursor.execute(_LIFT_DETAILS_SQL, (lift_id,))
         data = cursor.fetchall()
-    print('data', data)
-    print('after lift query')
     with DBcm.UseDatabase(config) as cursor:
-        cursor.execute(_DRIVER_DETAILS_SQL, (driverID,))
-        userDetails = cursor.fetchall()
-    print('user', userDetails)
-    print('after user query')
+        cursor.execute(_DRIVER_DETAILS_SQL, (driver_id,))
+        user_details = cursor.fetchall()
     d = []
     for item in data:
-        for i in userDetails:
+        for i in user_details:
             d.append({
                 'DriverFName': i[1],
                 'DriverLName': i[2],
@@ -144,28 +134,23 @@ def getLiftDetails(liftID, driverID):
                 'seats': item[10],
                 'created': item[11]
             })
-    print('after d append')
-    print('d', d)
-    jsObj = json.dumps(d, default=converter)
-    return jsObj
+    js_obj = json.dumps(d, default=converter)
+    return js_obj
 
 
-def register(fName, lName, emailAddr, phoneN, passw, filename):
-    jsObj = {}
-    userID = 0
-    print('register function')
-    firstName = fName.lower()
-    lastName = lName.lower()
-    phone = str(phoneN)
-    emailAddress = emailAddr.lower()
-    hashedPassword = hashlib.sha256(bytes(passw, encoding='utf-8')).hexdigest()
-    emailExists = check_if_exists(emailAddress)
-    print('posted', firstName, lastName, emailAddress, hashedPassword)
-    if emailExists is True:
-        jsObj = json.dumps({"status": "email exists"})
-        return jsObj
+def register(f_name, l_name, email_addr, phone_n, passw, filename):
+    js_obj = {}
+    user_id = 0
+    first_name = f_name.lower()
+    last_name = l_name.lower()
+    phone = str(phone_n)
+    email_address = email_addr.lower()
+    hashed_password = hashlib.sha256(bytes(passw, encoding='utf-8')).hexdigest()
+    email_exists = check_if_exists(email_address)
+    if email_exists is True:
+        js_obj = json.dumps({"status": "email exists"})
+        return js_obj
     else:
-        print('registering')
         _USER_REGISTER_SQL = """INSERT INTO User
                         (First_Name, Last_Name, Email, Phone_Number, Password, Pic_Path, Date_Created)
                         VALUES
@@ -185,28 +170,28 @@ def register(fName, lName, emailAddr, phoneN, passw, filename):
                                            (%s)"""
         with DBcm.UseDatabase(config) as cursor:
             try:
-                cursor.execute(_USER_REGISTER_SQL, (firstName, lastName, emailAddress, phone, hashedPassword, filename))
-                userID = cursor.lastrowid
+                cursor.execute(_USER_REGISTER_SQL, (first_name, last_name, email_address, phone, hashed_password, filename))
+                user_id = cursor.lastrowid
             except Exception as e:
                 print('Error registering user to User table:', e )
         with DBcm.UseDatabase(config) as cursor:
             try:
-                cursor.execute(_PASSENGER_REGISTRATION_SQL, (userID,))
+                cursor.execute(_PASSENGER_REGISTRATION_SQL, (user_id,))
             except Exception as e:
                 print('Error adding user to Passenger table', e)
         with DBcm.UseDatabase(config) as cursor:
             try:
-                cursor.execute(USER_RATING_REGISTER_SQL, (userID,))
+                cursor.execute(USER_RATING_REGISTER_SQL, (user_id,))
             except Exception as e:
                 print('Error registering user rating:', e)
         with DBcm.UseDatabase(config) as cursor4:
             try:
-                cursor4.execute(_USER_EXPERIENCE_REGISTER_SQL, (userID, ))
+                cursor4.execute(_USER_EXPERIENCE_REGISTER_SQL, (user_id, ))
             except Exception as e:
                 print('Error registering user experience:', e)
             else:
-                jsObj = json.dumps({"status": "registered"})
-                return jsObj
+                js_obj = json.dumps({"status": "registered"})
+                return js_obj
 
 
 def process_login(email, password):
@@ -218,114 +203,100 @@ def process_login(email, password):
                                            AND u.UserID = %s"""
     _GET_DRIVER_ID_SQL = """SELECT DriverID FROM Driver WHERE UserID = %s"""
     _UPDATE_LOGIN_SQL = """UPDATE User SET Logged_In=1 WHERE UserID= %s"""
-    emaildata, passworddata, driverData = [], [], []
-    jsObj = {}
-    UserID, passengerID, driverID = 0, 0, 0
-    uName, uLName = "", ""
-    hashedPassword = hashlib.sha256(bytes(password, encoding='utf-8')).hexdigest()
+    emaildata, passworddata, driver_data = [], [], []
+    js_obj = {}
+    user_id, passenger_id, driver_id = 0, 0, 0
+    u_name, u_l_name = "", ""
+    hashed_password = hashlib.sha256(bytes(password, encoding='utf-8')).hexdigest()
     with DBcm.UseDatabase(config) as cursor:
         try:
             cursor.execute(_EMAIL_SQL, (email,))
             emaildata = cursor.fetchall()
-            UserID = emaildata[0][0]
-            print('user ID', UserID, 'email', emaildata[0][1])
+            user_id = emaildata[0][0]
         except Exception as e:
             print('Error looking up email:', e)
     with DBcm.UseDatabase(config) as cursor1:
         try:
-            cursor1.execute(_PASSWORD_SQL, (hashedPassword,))
+            cursor1.execute(_PASSWORD_SQL, (hashed_password,))
             passworddata = cursor1.fetchall()
-            print('password data:', passworddata)
         except Exception as e:
             print('error looking up password: ', e)
     if emaildata == [] or passworddata == []:
-        jsObj = json.dumps({"status": "wrongemail/password"})
-    elif email == emaildata[0][1] and hashedPassword == passworddata[0][0]:
-        print('in main part ')
+        js_obj = json.dumps({"status": "wrongemail/password"})
+    elif email == emaildata[0][1] and hashed_password == passworddata[0][0]:
         with DBcm.UseDatabase(config) as cursor2:
             try:
-                cursor2.execute(_GET_DRIVER_ID_SQL, (UserID,))
-                driverData = cursor2.fetchall()
-                print('driver data', driverData)
+                cursor2.execute(_GET_DRIVER_ID_SQL, (user_id,))
+                driver_data = cursor2.fetchall()
             except Exception as e:
                 print('Error getting driver id:', e)
         with DBcm.UseDatabase(config) as cursor3:
             try:
-                cursor3.execute(_GET_USER_DETAILS_SQL, (UserID,))
-                print('email', email, 'type', type(email))
+                cursor3.execute(_GET_USER_DETAILS_SQL, (user_id,))
                 data = cursor3.fetchall()
-                print('login data: ', data, 'len ', len(data))
-                if driverData != []:
+                if driver_data != []:
                     for i in data:
-                        for it in driverData:
-                            UserID = i[0]
-                            uName = i[1]
-                            uLName = i[2]
-                            passengerID = i[3]
-                            driverID = it[0]
-                        print('my driver id', driverID)
-                        jsObj = json.dumps(
-                            {"status": "match", "email": email, "user_id": UserID, "first_name": uName.capitalize(), "last_name": uLName.capitalize(),
-                                "passengerID": passengerID, "myDriverID": driverID})
+                        for it in driver_data:
+                            user_id = i[0]
+                            u_name = i[1]
+                            u_l_name = i[2]
+                            passenger_id = i[3]
+                            driver_id = it[0]
+                        js_obj = json.dumps(
+                            {"status": "match", "email": email, "user_id": user_id, "first_name": u_name.capitalize(),
+                             "last_name": u_l_name.capitalize(), "passengerID": passenger_id, "myDriverID": driver_id})
                 else:
                     for i in data:
-                        UserID = i[0]
-                        uName = i[1]
-                        uLName = i[2]
-                        passengerID = i[3]
-                        driverID = 0
-                        jsObj = json.dumps(
-                            {"status": "match", "email": email, "user_id": UserID, "first_name": uName.capitalize(), "last_name": uLName.capitalize(),
-                             "passengerID": passengerID, "myDriverID": driverID})
+                        user_id = i[0]
+                        u_name = i[1]
+                        u_l_name = i[2]
+                        passenger_id = i[3]
+                        driver_id = 0
+                        js_obj = json.dumps(
+                            {"status": "match", "email": email, "user_id": user_id, "first_name": u_name.capitalize(),
+                             "last_name": u_l_name.capitalize(), "passengerID": passenger_id, "myDriverID": driver_id})
             except Exception as e:
                 print('error with getting login information: ', e)
             else:
                 with DBcm.UseDatabase(config) as cursor4:
                     try:
-                        cursor4.execute(_UPDATE_LOGIN_SQL, (UserID,))
+                        cursor4.execute(_UPDATE_LOGIN_SQL, (user_id,))
                     except Exception as e:
                         print('error executing update:', e)
                     else:
-                        return jsObj
+                        return js_obj
     else:
-        jsObj = json.dumps({"status": "nomatch"})
-    return jsObj
+        js_obj = json.dumps({"status": "nomatch"})
+    return js_obj
 
 
-def process_logout(userID):
-    print('process logout func', userID)
+def process_logout(user_id):
     with DBcm.UseDatabase(config) as cursor:
         try:
             _SQL = """UPDATE User SET Logged_In=0 WHERE UserID=%s   """
-            cursor.execute(_SQL, (userID,))
-            jsObj = json.dumps({"status": "logout successful"})
-            return jsObj
+            cursor.execute(_SQL, (user_id,))
+            js_obj = json.dumps({"status": "logout successful"})
+            return js_obj
         except Exception as err:
             print('sql error:', err)
 
 
 def check_if_exists(email: str):
-    print('if exists function')
     exists = False
     with DBcm.UseDatabase(config) as cursor:
         _SQL = """SELECT Email FROM User WHERE Email= %s"""
         cursor.execute(_SQL, (email,))
         data = list(cursor.fetchall())
         emaildata = [i[0] for i in data]
-    print('email data', emaildata)
     if emaildata == []:
-        print('doesnt exist')
         return exists
     else:
         exists = True
-        print('exists', exists)
         return exists
 
 
-def register_offer_lift(userID,startLat, startLong, startCounty, destinationLat, destinationLong, destinationCounty,
+def register_offer_lift(user_id, start_lat, start_long, start_county, destination_lat, destination_long, destination_county,
                         distance, departing, seats):
-    print('register function', userID, startLat, startLong, startCounty,destinationLat, destinationLong, destinationCounty,
-          departing, seats)
     _GETDRIVER_SQL = """SELECT DriverID FROM Driver WHERE UserID= %s """
     _User_Register_SQL = """INSERT INTO Lift
                        (DriverID, Start_Lat, Start_Long, Start_County, Destination_Lat, Destination_Long,
@@ -334,49 +305,41 @@ def register_offer_lift(userID,startLat, startLong, startCounty, destinationLat,
                        VALUES
                        (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,CURRENT_TIMESTAMP )"""
     with DBcm.UseDatabase(config) as cursor:
-        cursor.execute(_GETDRIVER_SQL, (userID,))
+        cursor.execute(_GETDRIVER_SQL, (user_id,))
         data = cursor.fetchall()
-        print('data', data)
-        driverID = data[0][0]
-        print('driver id', driverID)
-        cursor.execute(_User_Register_SQL, (driverID, startLat, startLong, startCounty, destinationLat, destinationLong,
-                                            destinationCounty, distance, departing, seats))
-    jsObj = json.dumps({"status": "registered"})
-    return jsObj
+        driver_id = data[0][0]
+        cursor.execute(_User_Register_SQL, (driver_id, start_lat, start_long, start_county, destination_lat,
+                                            destination_long, destination_county, distance, departing, seats))
+    js_obj = json.dumps({"status": "registered"})
+    return js_obj
 
 
 # CHECK IF USER HAS A CAR REGISTERED BEFORE OFFERING A LIFT
-def is_car_registered(userID):
-    print('is car registered func')
-    if checkIfCarExists(userID):
-        print('car exists')
-        jsObj = json.dumps({"status": "car registered"})
+def is_car_registered(user_id):
+    if check_if_car_exists(user_id):
+        js_obj = json.dumps({"status": "car registered"})
     else:
-        print('car doesnt exist')
-        jsObj = json.dumps({"status": "car not registered"})
-    return jsObj
+        js_obj = json.dumps({"status": "car not registered"})
+    return js_obj
 
 
-def checkIfCarExists(userID):
+def check_if_car_exists(user_id):
     with DBcm.UseDatabase(config) as cursor:
         _SQL = """SELECT * FROM CarDetails WHERE UserID= %s"""
-        cursor.execute(_SQL, (userID,))
+        cursor.execute(_SQL, (user_id,))
         data = list(cursor.fetchall())
-    print('data from db for car details', data)
     if data == []:
-        print('car doesnt exist')
-        jsObj = json.dumps({"status": "car not registered"})
+        js_obj = json.dumps({"status": "car not registered"})
     else:
-        print('car exists')
-        jsObj = json.dumps({"status": "car registered"})
-    return jsObj
+        js_obj = json.dumps({"status": "car registered"})
+    return js_obj
 
 
-def registerCarAndDriver(userID, carMake, carModel, regNum):
-    carmake_lower = carMake.lower()
-    carmodel_lower = carModel.lower()
-    reg_lower = regNum.lower()
-    carID, driverID = 0, 0
+def register_car_and_driver(user_id, car_make, car_model, reg_num):
+    carmake_lower = car_make.lower()
+    carmodel_lower = car_model.lower()
+    reg_lower = reg_num.lower()
+    car_id, driver_id = 0, 0
     _CAR_SQL = """INSERT INTO CarDetails
                        (Car_Make, Car_Model, Car_Reg, UserID)
                        VALUES
@@ -388,32 +351,32 @@ def registerCarAndDriver(userID, carMake, carModel, regNum):
     _GET_DRIVER_ID_SQL = """SELECT DriverID FROM Driver WHERE UserID = %s"""
     with DBcm.UseDatabase(config) as cursor:
         try:
-            cursor.execute(_CAR_SQL, (carmake_lower, carmodel_lower, reg_lower, userID))
-            carID = cursor.lastrowid
+            cursor.execute(_CAR_SQL, (carmake_lower, carmodel_lower, reg_lower, user_id))
+            car_id = cursor.lastrowid
         except Exception as e:
             print('Error registering car:', e)
     with DBcm.UseDatabase(config) as cursor1:
         try:
-            cursor1.execute(_DRIVER_SQL, (userID, carID))
+            cursor1.execute(_DRIVER_SQL, (user_id, car_id))
         except Exception as e:
             print('Error registering user as driver:', e)
     with DBcm.UseDatabase(config) as cursor2:
         try:
-            cursor2.execute(_GET_DRIVER_ID_SQL, (userID, ))
-            driverData = cursor2.fetchall()
-            driverID = driverData[0]
+            cursor2.execute(_GET_DRIVER_ID_SQL, (user_id, ))
+            driver_data = cursor2.fetchall()
+            driver_id = driver_data[0]
         except Exception as e:
             print('Error getting driver ID:', e)
         else:
-            jsObj = json.dumps({"status": "registered", "driverID": driverID})
-            return jsObj
+            js_obj = json.dumps({"status": "registered", "driverID": driver_id})
+            return js_obj
 
 
 # REQUESTS
 
 
-def process_request(liftID, passengerID):
-    driverID, requestID = 0, 0
+def process_request(lift_id, passenger_id):
+    driver_id, request_id = 0, 0
     _GETDRIVER_SQL = """SELECT DriverID FROM Lift
                         WHERE LiftID = %s"""
     _REQUEST_SQL = """INSERT INTO Request
@@ -423,27 +386,25 @@ def process_request(liftID, passengerID):
     try:
         with DBcm.UseDatabase(config)as cursor:
             try:
-                cursor.execute(_GETDRIVER_SQL, (liftID,))
+                cursor.execute(_GETDRIVER_SQL, (lift_id,))
                 data = cursor.fetchall()
-                print('driverID: ', data)
-                driverID = data[0][0]
-                print('processed id: ', driverID)
+                driver_id = data[0][0]
             except Exception as e:
                 print('error executing get driver SELECT query:', e)
         with DBcm.UseDatabase(config) as cursor:
             try:
-                cursor.execute(_REQUEST_SQL, (driverID, liftID, passengerID))
-                requestID = cursor.lastrowid
+                cursor.execute(_REQUEST_SQL, (driver_id, lift_id, passenger_id))
+                request_id = cursor.lastrowid
             except Exception as e:
                 print('error executing insert request:', e)
     except Exception as e:
         print('error executing process request queries:', e)
     else:
-        return json.dumps({"status": "request completed", "requestID": requestID})
+        return json.dumps({"status": "request completed", "requestID": request_id})
 
 
-def list_user_requests(userID):
-    driverID = 0
+def list_user_requests(user_id):
+    driver_id = 0
     _GETDRIVER_SQL = """SELECT DriverID FROM Driver WHERE UserID = %s"""
     _GETREQUESTS_SQL = """SELECT r.RequestID, r.DriverID, r.LiftID, r.PassengerID, r.Status, u.First_Name, u.Last_Name
                           FROM Request r, Passenger p, User u
@@ -452,19 +413,17 @@ def list_user_requests(userID):
                           AND r.DriverID = %s"""
     with DBcm.UseDatabase(config) as cursor:
         try:
-            cursor.execute(_GETDRIVER_SQL, (userID, ))
+            cursor.execute(_GETDRIVER_SQL, (user_id, ))
             data = cursor.fetchall()
-            driverID = data[0][0]
-            print('driverID', driverID)
+            driver_id = data[0][0]
         except Exception as e:
             print('Error with get driver select query:', e)
     with DBcm.UseDatabase(config) as cursor:
         try:
-            cursor.execute(_GETREQUESTS_SQL, (driverID, ))
-            requestData = cursor.fetchall()
-            print('request data', requestData)
+            cursor.execute(_GETREQUESTS_SQL, (driver_id, ))
+            request_data = cursor.fetchall()
             d = []
-            for item in requestData:
+            for item in request_data:
                 d.append({
                     'requestID': item[0],
                     'driverID': item[1],
@@ -473,18 +432,15 @@ def list_user_requests(userID):
                     'status': item[4],
                     'passengerName': item[5] + ' ' + item[6]
                 })
-            for i in d:
-                print(i)
-            jsObj = json.dumps(d)
-            print('js obj', jsObj, 'length', len(jsObj))
+            js_obj = json.dumps(d)
         except Exception as e:
             print('Error with get requests select query:', e)
         else:
-            return jsObj
+            return js_obj
 
 
-def getRequestDetails(requestID):
-    d, data, liftData = [], [], []
+def get_request_details(request_id):
+    d, data, lift_data = [], [], []
     _GETPASSENGERDETAILS_SQL ="""SELECT u.First_Name, u.Last_Name, u.Phone_Number, p.PassengerID, ur.Rating
                                   FROM User u, Passenger p, Request r, UserRating ur
                                   WHERE u.UserID = p.UserID
@@ -497,21 +453,19 @@ def getRequestDetails(requestID):
                               AND r.RequestID = %s"""
     with DBcm.UseDatabase(config) as cursor:
         try:
-            cursor.execute(_GETPASSENGERDETAILS_SQL, (requestID,))
+            cursor.execute(_GETPASSENGERDETAILS_SQL, (request_id,))
             data = cursor.fetchall()
-            print('passenger data:', data)
         except Exception as e:
             print('Error with get passenger details query: ', e)
     with DBcm.UseDatabase(config) as cursor:
         try:
-            cursor.execute(_GETLIFTDETAILS_SQL, (requestID,))
-            liftData = cursor.fetchall()
-            print('lift data:', liftData)
+            cursor.execute(_GETLIFTDETAILS_SQL, (request_id,))
+            lift_data = cursor.fetchall()
         except Exception as e:
             print('Error with get lift details query: ', e)
         else:
             for item in data:
-                for i in liftData:
+                for i in lift_data:
                     d.append({
                         'passengerID': item[3],
                         'name': item[0] + ' ' + item[1],
@@ -523,12 +477,12 @@ def getRequestDetails(requestID):
                         'destLat': i[3],
                         'destLng': i[4]
                     })
-                    jsObj = json.dumps(d, default=converter)
-                    return jsObj
+                    js_obj = json.dumps(d, default=converter)
+                    return js_obj
 
 
-def getMyRequests(userID):
-    passengerID = 0
+def get_my_requests(user_id):
+    passenger_id = 0
     _GETPASSENGER_SQL = """SELECT PassengerID FROM Passenger WHERE UserID = %s"""
     _GETREQUESTS_SQL = """SELECT r.RequestID, r.DriverID, r.LiftID, r.PassengerID, r.Status, u.First_Name, u.Last_Name
                           FROM Request r, Driver d, User u WHERE r.DriverID = d.DriverID
@@ -536,19 +490,17 @@ def getMyRequests(userID):
                           AND r.PassengerID = %s"""
     with DBcm.UseDatabase(config) as cursor:
         try:
-            cursor.execute(_GETPASSENGER_SQL, (userID,))
+            cursor.execute(_GETPASSENGER_SQL, (user_id,))
             data = cursor.fetchall()
-            passengerID = data[0][0]
-            print('passengerID', passengerID)
+            passenger_id = data[0][0]
         except Exception as e:
             print('Error with get passenger select query:', e)
     with DBcm.UseDatabase(config) as cursor:
         try:
-            cursor.execute(_GETREQUESTS_SQL, (passengerID, ))
-            requestData = cursor.fetchall()
-            print('request data', requestData)
+            cursor.execute(_GETREQUESTS_SQL, (passenger_id, ))
+            request_data = cursor.fetchall()
             d = []
-            for item in requestData:
+            for item in request_data:
                 d.append({
                     'requestID': item[0],
                     'driverID': item[1],
@@ -558,60 +510,59 @@ def getMyRequests(userID):
                     'driverFName': item[5],
                     'driverLName': item[6]
                 })
-            jsObj = json.dumps(d)
-            print('js obj', jsObj, 'length', len(jsObj))
+            js_obj = json.dumps(d)
         except Exception as e:
             print('Error with get requests select query:', e)
         else:
-            return jsObj
+            return js_obj
 
 
-def acceptRequest(requestID):
-    driverID, passengerID, liftID = 0, 0, 0
+def accept_request(request_id):
+    driver_id, passenger_id, lift_id = 0, 0, 0
     _GETDRIVERPASSENGER_SQL = """SELECT DriverID, PassengerID, LiftID FROM Request WHERE RequestID = %s"""
     _UPDATELIFT_SQL = """UPDATE Lift SET Available_Spaces = Available_Spaces - 1 WHERE LiftID = %s"""
     _ADDTOCARGROUP_SQL = """INSERT INTO CarGroup (LiftID, DriverID, PassengerID) VALUES ( %s, %s, %s)"""
     _UPDATEREQUESTSTATUS_SQL = """UPDATE Request SET Status = 'Accepted' WHERE RequestID = %s"""
     with DBcm.UseDatabase(config) as cursor:
         try:
-            cursor.execute(_GETDRIVERPASSENGER_SQL, (requestID,))
+            cursor.execute(_GETDRIVERPASSENGER_SQL, (request_id,))
             data = cursor.fetchall()
-            driverID = data[0][0]
-            passengerID = data[0][1]
-            liftID = data[0][2]
+            driver_id = data[0][0]
+            passenger_id = data[0][1]
+            lift_id = data[0][2]
         except Exception as e:
             print('Error with getting passengerID and liftID: ', e)
         try:
-            cursor.execute(_UPDATELIFT_SQL, (liftID,))
+            cursor.execute(_UPDATELIFT_SQL, (lift_id,))
         except Exception as e:
             print('Error updating lift with accepted passenger:', e)
         try:
-            cursor.execute(_ADDTOCARGROUP_SQL, (liftID, driverID, passengerID))
+            cursor.execute(_ADDTOCARGROUP_SQL, (lift_id, driver_id, passenger_id))
         except Exception as e:
             print('Error inserting into car group table:', e)
         try:
-            cursor.execute(_UPDATEREQUESTSTATUS_SQL, (requestID, ))
+            cursor.execute(_UPDATEREQUESTSTATUS_SQL, (request_id, ))
         except Exception as e:
             print('Error updating request status:', e)
-    jsObj = json.dumps({'status': 'complete'})
-    return jsObj
+    js_obj = json.dumps({'status': 'complete'})
+    return js_obj
 
 
-def denyRequest(requestID):
+def deny_request(request_id):
     _UPDATEREQUESTSTATUS_SQL = """UPDATE Request SET Status = 'Denied' WHERE RequestID = %s"""
     with DBcm.UseDatabase(config) as cursor:
         try:
-            cursor.execute(_UPDATEREQUESTSTATUS_SQL, (requestID,))
-            jsObj = json.dumps({"status": "complete"})
+            cursor.execute(_UPDATEREQUESTSTATUS_SQL, (request_id,))
+            js_obj = json.dumps({"status": "complete"})
         except Exception as e:
             print('Error with updating request status: ', e)
         else:
-            return jsObj
+            return js_obj
 
 
 # MY GROUPS
 
-def getMyGroups(userID):
+def get_my_groups(user_id):
     _GROUPDETAIL_SQL = """SELECT c.GroupID, u.First_Name, u.Last_Name, l.LiftID, l.Depart_Date
                           FROM CarGroup c, Driver d, User u, Lift l, Passenger p
                           WHERE c.DriverID = d.DriverID
@@ -623,7 +574,7 @@ def getMyGroups(userID):
                           (SELECT cl.LiftID FROM CompletedLifts cl, Lift l WHERE cl.LiftID = l.LiftID )"""
     with DBcm.UseDatabase(config) as cursor:
         try:
-            cursor.execute(_GROUPDETAIL_SQL, (userID,))
+            cursor.execute(_GROUPDETAIL_SQL, (user_id,))
             data = cursor.fetchall()
             d = []
             for item in data:
@@ -633,16 +584,15 @@ def getMyGroups(userID):
                     'liftID': item[3],
                     'departing': item[4],
                 })
-            jsObj = json.dumps(d, default=converter)
+            js_obj = json.dumps(d, default=converter)
         except Exception as e:
             print('Error getting group details:', e)
         else:
-            return jsObj
+            return js_obj
 
 
-def getGroupDetails(liftID, groupID):
-    data, driverData = [], []
-    print('lift', liftID, 'group', groupID)
+def get_group_details(lift_id, group_id):
+    data, driver_data = [], []
     _GETPASSENGERS_SQL = """SELECT u.First_Name, u.Last_Name, u.Phone_Number, r.Rating, p.PassengerID
                             FROM User u, Passenger p, CarGroup c, UserRating r
                             WHERE c.PassengerID = p.PassengerID
@@ -665,31 +615,27 @@ def getGroupDetails(liftID, groupID):
                                AND g.GroupID = %s"""
     with DBcm.UseDatabase(config) as cursor1:
         try:
-            cursor1.execute(_GETGROUPDETAILS_SQL, (groupID, ))
+            cursor1.execute(_GETGROUPDETAILS_SQL, (group_id, ))
             data = cursor1.fetchall()
-            print('data', data)
-
         except Exception as e:
             print('Error getting group details: ', e)
     with DBcm.UseDatabase(config) as cursor2:
         try:
-            cursor2.execute(_GETDRIVERDETAILS_SQL, (groupID,))
-            driverData = cursor2.fetchall()
-            print('driver data', driverData)
+            cursor2.execute(_GETDRIVERDETAILS_SQL, (group_id,))
+            driver_data = cursor2.fetchall()
         except Exception as e:
             print('Error getting driver details: ', e)
     with DBcm.UseDatabase(config) as cursor3:
         try:
-            cursor3.execute(_GETPASSENGERS_SQL, (liftID,))
-            passengerData = cursor3.fetchall()
-            print('passenger data', passengerData)
+            cursor3.execute(_GETPASSENGERS_SQL, (lift_id,))
+            passenger_data = cursor3.fetchall()
             d = []
             for item in data:
-                for i in driverData:
-                    for it in passengerData:
+                for i in driver_data:
+                    for it in passenger_data:
                         d.append({
-                            'groupID': groupID,
-                            'liftID': liftID,
+                            'groupID': group_id,
+                            'liftID': lift_id,
                             'driverName': i[0] + ' ' + i[1],
                             'driverPhone': i[2],
                             'driverRating': i[3],
@@ -708,15 +654,15 @@ def getGroupDetails(liftID, groupID):
                             'passengerRating': it[3],
                             'passengerID': it[4]
                         })
-            jsObj = json.dumps(d, default=converter)
+            js_obj = json.dumps(d, default=converter)
         except Exception as e:
             print('Error getting passenger details: ', e)
         else:
-            return jsObj
+            return js_obj
 
 
-def get_my_completed_groups(userID):
-    d, liftData = [], []
+def get_my_completed_groups(user_id):
+    d = []
     _MY_COMPLETED_GROUPS_LIST_SQL = """SELECT u.First_Name, u.Last_Name, l.LiftID, l.Depart_Date
                                       FROM CarGroup c, Driver d, User u, Lift l, Passenger p, CompletedLifts cl
                                       WHERE c.DriverID = d.DriverID
@@ -729,10 +675,9 @@ def get_my_completed_groups(userID):
                                  """
     with DBcm.UseDatabase(config) as cursor:
         try:
-            cursor.execute(_MY_COMPLETED_GROUPS_LIST_SQL, (userID,))
-            completedGroupData = cursor.fetchall()
-            print('completedGroupData', completedGroupData)
-            for item in completedGroupData:
+            cursor.execute(_MY_COMPLETED_GROUPS_LIST_SQL, (user_id,))
+            completed_group_data = cursor.fetchall()
+            for item in completed_group_data:
                 d.append({
                     'driverName': item[0] + ' ' + item[1],
                     'liftID': item[2],
@@ -747,8 +692,8 @@ def get_my_completed_groups(userID):
 # MY LIFTS
 
 
-def getMyCompletedLifts(userID):
-    d, liftData = [], []
+def get_my_completed_lifts(user_id):
+    d, lift_data = [], []
     _MY_COMPLETED_LIFT_LIST_SQL = """SELECT l.LiftID, l.Start_County, l.Destination_County, l.Depart_Date
                              FROM Lift l, Driver d, CompletedLifts c
                              WHERE c.DriverID = d.DriverID
@@ -757,13 +702,12 @@ def getMyCompletedLifts(userID):
                              """
     with DBcm.UseDatabase(config) as cursor:
         try:
-            cursor.execute(_MY_COMPLETED_LIFT_LIST_SQL, (userID, ))
-            liftData = cursor.fetchall()
-            print('lift data', liftData)
+            cursor.execute(_MY_COMPLETED_LIFT_LIST_SQL, (user_id, ))
+            lift_data = cursor.fetchall()
         except Exception as e:
             print('Error getting completed lifts:', e)
         else:
-            for item in liftData:
+            for item in lift_data:
                 d.append({
                     'liftID': item[0],
                     'route': item[1] + ' to ' + item[2],
@@ -772,11 +716,9 @@ def getMyCompletedLifts(userID):
             return json.dumps(d, default=converter)
 
 
-
-def getMyLifts(userID):
+def get_my_lifts(user_id):
     now = datetime.datetime.now()
     day = now.strftime("%Y-%m-%d")
-    time = now.strftime("%H:%M")
     _LIFTDETAIL_SQL = """SELECT l.LiftID, l.Start_County, l.Destination_County, l.Depart_Date
                              FROM Lift l, Driver d
                              WHERE l.DriverID = d.DriverID
@@ -786,27 +728,25 @@ def getMyLifts(userID):
                              (SELECT LiftID FROM CompletedLifts cl WHERE cl.LiftID = l.LiftID)"""
     with DBcm.UseDatabase(config) as cursor:
         try:
-            cursor.execute(_LIFTDETAIL_SQL, (day, userID,))
+            cursor.execute(_LIFTDETAIL_SQL, (day, user_id,))
             data = cursor.fetchall()
-            print('data', data)
             d = []
             for item in data:
                 d.append({
-                    'userID': userID,
+                    'userID': user_id,
                     'liftID': item[0],
                     'route': item[1] + ' to ' + item[2],
                     'departing': item[3],
                 })
-            jsObj = json.dumps(d, default=converter)
+            js_obj = json.dumps(d, default=converter)
         except Exception as e:
             print('Error getting lift list details:', e)
         else:
-            return jsObj
+            return js_obj
 
 
-def getMyLiftDetails(liftID):
-    d, passengerData, liftData = [], [], []
-    numOfPassengers = 0
+def get_my_lift_details(lift_id):
+    d, passenger_data, lift_data = [], [], []
     _GETPASSENGERS_SQL = """SELECT u.First_Name, u.Last_Name, u.Phone_Number, r.Rating, p.PassengerID
                             FROM User u, Passenger p, CarGroup c, UserRating r
                             WHERE c.PassengerID = p.PassengerID
@@ -823,25 +763,21 @@ def getMyLiftDetails(liftID):
                                 AND u.UserID = p.UserID"""
     with DBcm.UseDatabase(config) as cursor:
         try:
-            cursor.execute(_GETPASSENGERS_SQL, (liftID,))
-            passengerData = cursor.fetchall()
-            print('passenger data', passengerData)
+            cursor.execute(_GETPASSENGERS_SQL, (lift_id,))
+            passenger_data = cursor.fetchall()
             d = []
         except Exception as e:
             print('Error getting passenger details query: ', e)
     with DBcm.UseDatabase(config) as cursor:
         try:
-            cursor.execute(_GETMYLIFTDETAILS_SQL, (liftID, ))
-            liftData = cursor.fetchall()
-            print('data', liftData)
-            numOfPassengers = len(passengerData)
-            print('number of passengers: ', numOfPassengers)
-            if passengerData != []:
-                print('has passengers')
-                for item in liftData:
-                    for i in passengerData:
+            cursor.execute(_GETMYLIFTDETAILS_SQL, (lift_id, ))
+            lift_data = cursor.fetchall()
+            num_of_passengers = len(passenger_data)
+            if passenger_data != []:
+                for item in lift_data:
+                    for i in passenger_data:
                         d.append({
-                            'liftID': liftID,
+                            'liftID': lift_id,
                             'startLat': item[2],
                             'startLng': item[3],
                             'startCounty': item[4],
@@ -860,13 +796,12 @@ def getMyLiftDetails(liftID):
                             'passengerPhone': i[2],
                             'passengerRating': i[3],
                             'passengerID': i[4],
-                            'numOfPassengers': numOfPassengers
+                            'numOfPassengers': num_of_passengers
                         })
             else:
-                print('has no passengers')
-                for item in liftData:
+                for item in lift_data:
                     d.append({
-                        'liftID': liftID,
+                        'liftID': lift_id,
                         'startLat': item[2],
                         'startLng': item[3],
                         'startCounty': item[4],
@@ -884,21 +819,20 @@ def getMyLiftDetails(liftID):
                         'passengerName': 'None',
                         'passengerPhone': 'None'
                     })
-            jsObj = json.dumps(d, default=converter)
+            js_obj = json.dumps(d, default=converter)
         except Exception as e:
             print('Error getting my lift details:', e)
         else:
-            return jsObj
+            return js_obj
 
 
-def check_can_delete(liftID):
+def check_can_delete(lift_id):
     group_data = []
     _CHECK_IF_ACTIVE_SQL = """SELECT * FROM CarGroup WHERE LiftID = %s"""
     with DBcm.UseDatabase(config) as cursor:
         try:
-            cursor.execute(_CHECK_IF_ACTIVE_SQL, (liftID,))
+            cursor.execute(_CHECK_IF_ACTIVE_SQL, (lift_id,))
             group_data = cursor.fetchall()
-            print('group data', group_data)
         except Exception as e:
             print('Error checking if lift is active:', e)
         else:
@@ -908,21 +842,20 @@ def check_can_delete(liftID):
                 return json.dumps({'active': 'true'})
 
 
-def delete_lift(liftID):
+def delete_lift(lift_id):
     _DELETE_LIFT_SQL= """DELETE FROM Lift WHERE LiftID = %s"""
     with DBcm.UseDatabase(config) as cursor:
         try:
-            cursor.execute(_DELETE_LIFT_SQL, (liftID,))
+            cursor.execute(_DELETE_LIFT_SQL, (lift_id,))
         except Exception as e:
             print('Error deleting lift:', e)
         else:
             return json.dumps({'status': 'deleted'})
 
 
-def complete_lift(liftID):
-    print('COMPLETE LIFT FUNCTION')
-    d, passengerIDs, driverIdData, distance_data = [], [], [], []
-    driverID, driverIdForCompletedLift = 0, 0
+def complete_lift(lift_id):
+    d, passenger_ids, driver_id_data, distance_data = [], [], [], []
+    driver_id, driver_id_for_completed_lift = 0, 0
     distance = 0.0
     # query to get drivers id to insert into completed lifts
     _GET_DRIVER_ID_SQL = """SELECT DISTINCT c.DriverID
@@ -939,53 +872,46 @@ def complete_lift(liftID):
                                 VALUES (%s, %s, %s)"""
     _INSERT_COMPLETED_LIFT_PASSENGERS_SQL = """INSERT INTO CompletedLifts (LiftID, PassengerID, Distance_Kilometers)
                                                 VALUES (%s, %s, %s)"""
-
     with DBcm.UseDatabase(config) as cursor1:
         try:
-            cursor1.execute(_GET_DRIVER_ID_SQL, (liftID, ))
-            driverIdData = cursor1.fetchall()
-            print('driver ID data', driverIdData)
-            driverIdForCompletedLift = driverIdData[0][0]
-            print('driver id for complete lift', driverIdForCompletedLift)
+            cursor1.execute(_GET_DRIVER_ID_SQL, (lift_id, ))
+            driver_id_data = cursor1.fetchall()
+            driver_id_for_completed_lift = driver_id_data[0][0]
         except Exception as e:
             print('Error getting driver user ID for insert:', e)
     with DBcm.UseDatabase(config) as cursor2:
         try:
-            cursor2.execute(_GET_DISTANCE_SQL, (liftID, ))
+            cursor2.execute(_GET_DISTANCE_SQL, (lift_id, ))
             distance_data = cursor2.fetchall()
             distance = distance_data[0][0]
         except Exception as e:
             print('Error getting distance information:', e)
-    if driverIdData:
+    if driver_id_data:
         with DBcm.UseDatabase(config) as cursor3:
             try:
-                cursor3.execute(_INSERT_COMPLETED_LIFT_DRIVER_SQL, (liftID, driverIdForCompletedLift, distance))
+                cursor3.execute(_INSERT_COMPLETED_LIFT_DRIVER_SQL, (lift_id, driver_id_for_completed_lift, distance))
             except Exception as e:
                 print('Error inserting driver to completed Lifts:', e)
     with DBcm.UseDatabase(config) as cursor4:
         try:
-            cursor4.execute(_GET_PASSENGER_IDS_SQL, (liftID, ))
-            passengerIDsData = cursor4.fetchall()
-            print('passenger IDs:', passengerIDsData)
-            for item in passengerIDsData:
-                passengerIDs.append(item[0])
-            print('passenger IDs: ', passengerIDs)
+            cursor4.execute(_GET_PASSENGER_IDS_SQL, (lift_id, ))
+            passenger_ids_data = cursor4.fetchall()
+            for item in passenger_ids_data:
+                passenger_ids.append(item[0])
         except Exception as e:
             print('Error getting passenger IDs:', e)
     with DBcm.UseDatabase(config) as cursor5:
         try:
-            for item in passengerIDs:
-                print('item in passengerIDs ', item)
-                cursor5.execute(_INSERT_COMPLETED_LIFT_PASSENGERS_SQL, (liftID, item, distance))
+            for item in passenger_ids:
+                cursor5.execute(_INSERT_COMPLETED_LIFT_PASSENGERS_SQL, (lift_id, item, distance))
         except Exception as e:
             print('Error inserting passengers to completed Lifts:', e)
         else:
             return json.dumps({'completed lift registering': 'complete'})
 
 
-def pop_ratings_table(liftID, userID):
-    groupData, driverdata, d = [], [], []
-    driverID = 0
+def pop_ratings_table(lift_id, user_id):
+    group_data, driverdata, d = [], [], []
     _GET_CAR_GROUP_SQL = """SELECT DISTINCT c.PassengerID, u.First_Name, u.Last_Name
                         FROM User u, Passenger p, CarGroup c, Lift l
                           WHERE c.PassengerID = p.PassengerID
@@ -1015,20 +941,17 @@ def pop_ratings_table(liftID, userID):
                          AND c.LiftID = %s"""
     with DBcm.UseDatabase(config) as cursor:
         try:
-            cursor.execute(_GET_CAR_GROUP_SQL, (liftID, userID, liftID))
-            groupData = cursor.fetchall()
-            print('groupdata ', groupData)
+            cursor.execute(_GET_CAR_GROUP_SQL, (lift_id, user_id, lift_id))
+            group_data = cursor.fetchall()
         except Exception as e:
             print('Error getting car group details:', e)
     with DBcm.UseDatabase(config) as cursor2:
             try:
-                cursor2.execute(_GET_DRIVER_SQL, (liftID, userID, liftID ))
+                cursor2.execute(_GET_DRIVER_SQL, (lift_id, user_id, lift_id))
                 driverdata = cursor2.fetchall()
                 if driverdata != []:
-                    driverID = driverdata[0][0]
-                    print('driver data', driverdata, 'driverID', driverID)
-                    if groupData != []:
-                        for item in groupData:
+                    if group_data != []:
+                        for item in group_data:
                             for i in driverdata:
                                 d.append({
                                     'passengerID': item[0],
@@ -1045,7 +968,7 @@ def pop_ratings_table(liftID, userID):
                                 'driverName': i[1] + ' ' + i[2],
                             })
                 else:
-                    for item in groupData:
+                    for item in group_data:
                             d.append({
                                 'passengerID': item[0],
                                 'passengerName': item[1] + ' ' + item[2],
@@ -1058,105 +981,95 @@ def pop_ratings_table(liftID, userID):
 
 
 
-
-
-def rate_group(driverID, driverRating, passengerData):
+def rate_group(driver_id, driver_rating, passenger_data):
     # driverStar, passengerStar = '', ''
     star = ''
-    driverStarCount, passengerStarCount = 0, 0
-    driverUserID, passengerUserID, passengerRating = 0, 0, 0
-    driverStars = {}
-    if driverRating != 0:
-        star = str(driverRating)
-    passengerStar = str(3)
+    driver_star_count, passenger_star_count = 0, 0
+    driver_user_id, passenger_user_id, passenger_rating = 0, 0, 0
+    driver_stars = {}
+    if driver_rating != 0:
+        star = str(driver_rating)
+    passenger_star = str(3)
     _GET_DRIVER_USERID_SQL = """SELECT UserID FROM Driver WHERE DriverID = %s"""
     _UPDATE_DRIVER_STAR_COUNT_SQL = """UPDATE UserRating
                               SET """ + star + """_Star =  """ + star + """_Star + 1,
                               Number_of_Ratings = Number_of_Ratings +1
                               WHERE UserID = %s"""
     _GET_PASSENGERS_USERID_SQL = """SELECT UserID FROM Passenger WHERE PassengerID = %s"""
-
     _GET_STAR_COUNT_SQL = """SELECT 1_Star, 2_Star, 3_Star, 4_Star, 5_Star FROM UserRating WHERE UserID = %s"""
     _UPDATE_RATING_SQL = """UPDATE UserRating
                                     SET rating = %s
                                     WHERE UserID = %s"""
     try:
-        if driverID != 0:
+        if driver_id != 0:
             with DBcm.UseDatabase(config) as cursor:
                 try:
-                    cursor.execute(_GET_DRIVER_USERID_SQL, (driverID, ))
-                    driverData = cursor.fetchall()
-                    driverUserID = driverData[0][0]
+                    cursor.execute(_GET_DRIVER_USERID_SQL, (driver_id, ))
+                    driver_data = cursor.fetchall()
+                    driver_user_id = driver_data[0][0]
                 except Exception as e:
                     print('Error getting drivers UserID:', e)
             with DBcm.UseDatabase(config) as cursor:
                 try:
-                    cursor.execute(_UPDATE_DRIVER_STAR_COUNT_SQL, (driverUserID, ))
+                    cursor.execute(_UPDATE_DRIVER_STAR_COUNT_SQL, (driver_user_id, ))
                 except Exception as e:
                     print('Error updating driver star count:', e)
             with DBcm.UseDatabase(config) as cursor:
                 try:
-                    cursor.execute(_GET_STAR_COUNT_SQL, (driverUserID,))
-                    driverStarCountData = cursor.fetchall()
-                    for item in driverStarCountData:
-                        driverStars = {
+                    cursor.execute(_GET_STAR_COUNT_SQL, (driver_user_id,))
+                    driver_star_count_data = cursor.fetchall()
+                    for item in driver_star_count_data:
+                        driver_stars = {
                             '1': item[0],
                             '2': item[1],
                             '3': item[2],
                             '4': item[3],
                             '5': item[4]
                         }
-                    driverRating = data_utils.calculateRating(driverStars)
-                    print('driver rating: ', driverRating)
+                    driver_rating = data_utils.calculate_rating(driver_stars)
                 except Exception as e:
                     print('Error getting driver star count:', e)
             with DBcm.UseDatabase(config) as cursor:
                 try:
-                    cursor.execute(_UPDATE_RATING_SQL, (driverRating, driverUserID))
+                    cursor.execute(_UPDATE_RATING_SQL, (driver_rating, driver_user_id))
                 except Exception as e:
                     print('Error updating driver rating:', e)
-        for item in passengerData:
+        for item in passenger_data:
             star = str(item[1])
-            print('star', star, 'type', type(star))
             _UPDATE_PASSENGER_STAR_COUNT_SQL = """UPDATE UserRating
                                              SET """ + star + """_Star =  """ + star + """_Star + 1,
                                              Number_of_Ratings = Number_of_Ratings +1
                                              WHERE UserID = %s"""
             with DBcm.UseDatabase(config) as cursor:
                 try:
-                    print('passenger id', item[0])
                     cursor.execute(_GET_PASSENGERS_USERID_SQL, (item[0],))
-                    passengerData = cursor.fetchall()
-                    passengerUserID = passengerData[0][0]
-                    print('passenger userID', passengerUserID)
+                    passenger_data = cursor.fetchall()
+                    passenger_user_id = passenger_data[0][0]
                 except Exception as e:
                     print('Error getting passengers UserID:', e)
             with DBcm.UseDatabase(config) as cursor:
                 try:
-                    cursor.execute(_UPDATE_PASSENGER_STAR_COUNT_SQL, (passengerUserID, ))
+                    cursor.execute(_UPDATE_PASSENGER_STAR_COUNT_SQL, (passenger_user_id, ))
                 except Exception as e:
                     print('Error updating passenger star count:', e)
             with DBcm.UseDatabase(config) as cursor:
                 try:
-                    cursor.execute(_GET_STAR_COUNT_SQL, (passengerUserID,))
-                    passengerStarCountData = cursor.fetchall()
-                    print('passenger star count data', passengerStarCountData)
-                    for i in passengerStarCountData:
-                        passengerStars = {
+                    cursor.execute(_GET_STAR_COUNT_SQL, (passenger_user_id,))
+                    passenger_star_count_data = cursor.fetchall()
+                    for i in passenger_star_count_data:
+                        passenger_stars = {
                             '1': i[0],
                             '2': i[1],
                             '3': i[2],
                             '4': i[3],
                             '5': i[4]
                         }
-                    print('passenger star dict', passengerStars)
-                    passengerRating = data_utils.calculateRating(passengerStars)
-                    print('passenger rating: ', passengerRating)
+                    passenger_rating = data_utils.calculate_rating(passenger_stars)
                 except Exception as e:
                     print('Error getting passenger star count:', e)
             with DBcm.UseDatabase(config) as cursor:
                 try:
-                    cursor.execute(_UPDATE_RATING_SQL, (passengerRating, passengerUserID))
+                    cursor.execute(_UPDATE_RATING_SQL, (passenger_rating, passenger_user_id))
                 except Exception as e:
                     print('Error updating passenger rating:', e)
     except Exception as e:
@@ -1166,9 +1079,8 @@ def rate_group(driverID, driverRating, passengerData):
 
 
 
-
-def check_if_user_is_driver(liftID, driverID):
-    driverData, distanceData = [], []
+def check_if_user_is_driver(lift_id, driver_id):
+    driver_data, distance_data = [], []
     # see if user was the driver
     _SEE_IF_USER_IS_DRIVER_SQL = """SELECT DriverID FROM CarGroup
                                     WHERE LiftID = %s
@@ -1176,29 +1088,27 @@ def check_if_user_is_driver(liftID, driverID):
     _GET_DISTANCE_SQL = """SELECT Distance FROM Lift WHERE LiftID = %s"""
     with DBcm.UseDatabase(config) as cursor:
         try:
-            cursor.execute(_GET_DISTANCE_SQL, (liftID, ))
-            distanceData = cursor.fetchall()
-            print('driver data', driverData)
+            cursor.execute(_GET_DISTANCE_SQL, (lift_id, ))
+            distance_data = cursor.fetchall()
         except Exception as e:
             print('Error checking if user is the driver:', e)
     with DBcm.UseDatabase(config) as cursor1:
         try:
-            cursor1.execute(_SEE_IF_USER_IS_DRIVER_SQL, (liftID, driverID))
-            driverData = cursor1.fetchall()
-            print('driver data', driverData)
+            cursor1.execute(_SEE_IF_USER_IS_DRIVER_SQL, (lift_id, driver_id))
+            driver_data = cursor1.fetchall()
         except Exception as e:
             print('Error checking if user is the driver:', e)
         else:
-            if driverData != []:
-                for item in distanceData:
+            if driver_data != []:
+                for item in distance_data:
                     return json.dumps({'is driver': 'true', 'distance': str(item[0])})
             else:
-                for i in distanceData:
+                for i in distance_data:
                     return json.dumps({'is driver': 'false', 'distance': str(i[0])})
 
 
-def get_user_experience(userID, newExp, distance, numOfPassengers):
-    experienceData, d = [], []
+def get_user_experience(user_id, new_exp, distance, num_of_passengers):
+    experience_data, d = [], []
     _UPDATE_EXPERIENCE_SQL = """UPDATE Experience
                                 SET Experience = Experience + %s, Overall_Distance_kilo = Overall_Distance_kilo + %s, Overall_Passengers = Overall_Passengers + %s
                                 WHERE UserID = %s"""
@@ -1207,17 +1117,17 @@ def get_user_experience(userID, newExp, distance, numOfPassengers):
                                  WHERE UserID = %s"""
     with DBcm.UseDatabase(config) as cursor:
         try:
-            cursor.execute(_UPDATE_EXPERIENCE_SQL, (newExp, distance, numOfPassengers, userID))
+            cursor.execute(_UPDATE_EXPERIENCE_SQL, (new_exp, distance, num_of_passengers, user_id))
         except Exception as e:
             print('Error updating users experience:', e)
     with DBcm.UseDatabase(config) as cursor1:
         try:
-            cursor1.execute(_GET_NEW_EXPERIENCE_SQL, (userID, ))
-            experienceData = cursor1.fetchall()
+            cursor1.execute(_GET_NEW_EXPERIENCE_SQL, (user_id, ))
+            experience_data = cursor1.fetchall()
         except Exception as e:
             print('Error getting users experience: ', e)
         else:
-            for item in experienceData:
+            for item in experience_data:
                 d.append({
                     'overall distance': item[0],
                     'overallpassengers': item[1],
@@ -1229,11 +1139,11 @@ def get_user_experience(userID, newExp, distance, numOfPassengers):
 # ACTIVE LIFT
 
 
-def get_driver_id(liftID):
+def get_driver_id(lift_id):
     _GET_DRIVER_ID_SQL ="""SELECT DriverID FROM Lift WHERE LiftID = %s"""
     with DBcm.UseDatabase(config) as cursor:
         try:
-            cursor.execute(_GET_DRIVER_ID_SQL, (liftID,))
+            cursor.execute(_GET_DRIVER_ID_SQL, (lift_id,))
             data = cursor.fetchall()
         except Exception as e:
             print('Error getting driver ID for lift:', e)
@@ -1241,11 +1151,11 @@ def get_driver_id(liftID):
             return json.dumps({'driverID': data[0][0]})
 
 
-def check_if_lift_finished(liftID):
+def check_if_lift_finished(lift_id):
     _CHECK_IF_LIFTID_IN_COMPLETED_SQL = """SELECT  * FROM CompletedLifts WHERE LiftID = %s"""
     with DBcm.UseDatabase(config) as cursor:
         try:
-            cursor.execute(_CHECK_IF_LIFTID_IN_COMPLETED_SQL, (liftID,))
+            cursor.execute(_CHECK_IF_LIFTID_IN_COMPLETED_SQL, (lift_id,))
             data = cursor.fetchall()
         except Exception as e:
             print('Error checking if liftID in CompletedLifts table:', e)
@@ -1317,7 +1227,6 @@ def get_picture(user_id):
         try:
             cursor.execute(_GET_PICTURE_PATH_SQL, (user_id,))
             data = cursor.fetchall()
-            print('data', data)
         except Exception as e:
             print('Error getting users car information:', e)
         else:
@@ -1344,7 +1253,6 @@ def update_details(user_id, phone, car_make, car_model, car_reg):
     with DBcm.UseDatabase(config) as cursor:
         try:
             cursor.execute(_UPDATE_PHONE_SQL, (phone, user_id))
-            print('update done')
         except Exception as e:
             print('Error updating user information:', e)
     with DBcm.UseDatabase(config) as cursor1:
@@ -1354,7 +1262,6 @@ def update_details(user_id, phone, car_make, car_model, car_reg):
         except Exception as e:
             print('Error check if car exists:', e)
     if car_make != "" and car_data != []:
-        print('in car update')
         with DBcm.UseDatabase(config) as cursor2:
             try:
                 cursor2.execute(_UPDATE_CAR_SQL, (car_make, car_model, car_reg, user_id))
@@ -1370,8 +1277,6 @@ def delete_user_account(user_id):
     _DELETE_DRIVER_LIFT_SQL = """DELETE FROM Lift WHERE DriverID = %s"""
     _DELETE_DRIVER_CAR_SQL = """DELETE FROM CarDetails WHERE UserID = %s"""
     _DELETE_DRIVER_SQL = """DELETE FROM Driver WHERE UserID = %s"""
-
-
     _DELETE_USERRATING_SQL = """DELETE FROM UserRating WHERE UserID = %s"""
     _DELETE_Passenger_SQL = """DELETE FROM Passenger WHERE UserID = %s"""
     _DELETE_EXPERIENCE_SQL = """DELETE FROM Experience WHERE UserID = %s"""
@@ -1381,11 +1286,9 @@ def delete_user_account(user_id):
             cursor.execute(_CHECK_IF_DRIVER_SQL, (user_id, ))
             driver_data = cursor.fetchall()
             driver_id = driver_data[0][0]
-            print('driver id', driver_id)
         except Exception as e:
             print('Error checking if a driver:', e)
     if driver_data != []:
-        print('is a driver')
         with DBcm.UseDatabase(config) as cursor:
             try:
                 cursor.execute(_DELETE_DRIVER_LIFT_SQL, (driver_id,))
@@ -1422,7 +1325,6 @@ def delete_user_account(user_id):
             except Exception as e:
                 print('Error deleting user  data:', e)
     else:
-        print('is a passenger')
         with DBcm.UseDatabase(config) as cursor:
             try:
                 cursor.execute(_DELETE_USERRATING_SQL, (user_id,))
@@ -1447,7 +1349,7 @@ def delete_user_account(user_id):
 
 
 def get_leaderboard():
-    d =[]
+    d = []
     _GET_USERS_SQL_ = """SELECT u.First_Name, u.Last_Name, p.PassengerID, e.Experience
                          FROM User u, Passenger p, Experience e
                          WHERE u.UserID = p.UserID
@@ -1457,7 +1359,6 @@ def get_leaderboard():
         try:
             cursor.execute(_GET_USERS_SQL_)
             data = cursor.fetchall()
-            print(data)
             for item in data:
                 d.append({
                     'name': item[0] + ' ' + item[1],

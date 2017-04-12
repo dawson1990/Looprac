@@ -17,18 +17,14 @@
     <title>My Lift Details</title>
 </head>
 <body class="container" >
-
 <div id="myLift-map-canvas" class="col-xs-12" >  </div>
 <div id="beginLiftBtnDiv" class="col-xs-12"><input type="button" class="col-xs-12" id="startLiftBtn" value="Begin!" onclick="checkIfCanDepart()" />
     <input type="button" id="deleteLiftBtn" class="hidden col-xs-12 " value="Delete Lift" onclick="deleteLift()" />
-
 </div>
-
 <div id="myLiftDetailsDiv" class="col-xs-12 " >
     <div id="myLiftDetailsInnerDiv" class="col-xs-12">
         <h4 style="color: #ff8800;text-align: center;">Car</h4>
         <input type="number" id="hiddenLiftID" class="hidden" readonly/>
-
         <input type="number" id="hiddenDriverID" class="hidden" readonly/>
         <label class="col-xs-6 liftDetailsLabels" for="spacesAvailableRdOnly">Spaces Available </label>
         <label class="col-xs-6 liftDetailsLabels" for="carRegRdOnly">Car Registration</label>
@@ -48,13 +44,10 @@
                 <th>Phone</th>
             </tr>
         </table>
-
         <div id="liftDetailsBtnDiv" class="col-xs-12">
             <input type="button" id="myLiftDetailsCancelBtn" value="Go Back" class="btn btn-primary liftDetailsBtns  col-xs-12" onclick="window.location = 'myLifts.html'" />
         </div>
     </div>
-
 </div>
-
 </body>
 </html>

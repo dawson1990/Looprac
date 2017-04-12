@@ -2,7 +2,6 @@ from werkzeug.utils import secure_filename
 import os
 
 
-
 def delete_item(email):
     try:
         basedir = os.path.abspath(os.path.dirname(__file__))
@@ -13,10 +12,10 @@ def delete_item(email):
     return 'done'
 
 
-def calculateRating(starCountData):
+def calculate_rating(star_count_data):
     # weighted average
-    return (5*starCountData['5'] + 4 * starCountData['4'] + 3 * starCountData['3'] + 2 * starCountData['2'] + 1 *
-            starCountData['1']) / (starCountData['5'] + starCountData['4'] + starCountData['3'] + starCountData['2']
-                                   + starCountData['1'])
+    return (5*star_count_data['5'] + 4 * star_count_data['4'] + 3 * star_count_data['3'] + 2 * star_count_data['2'] +
+            1 * star_count_data['1']) / (star_count_data['5'] + star_count_data['4'] + star_count_data['3'] +
+                                         star_count_data['2']+ star_count_data['1'])
 
 

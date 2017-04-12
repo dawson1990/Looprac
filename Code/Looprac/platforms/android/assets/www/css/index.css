@@ -12,7 +12,6 @@
     /*unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;*/
 }
 
-
 body{
     background: #241023!important;
     font-family: Custom !important;
@@ -27,7 +26,6 @@ body{
 }
 
 .customInputs{
-    /*font-family: Custom !important;*/
     background-color: transparent;
     border-radius: 8px;
     border: none;
@@ -42,7 +40,6 @@ body{
 }
 
 .customLbls{
-    /*font-family: Custom !important;*/
     color: #eae8ff;
     position: relative;
     font-size: 160%;
@@ -112,7 +109,6 @@ body{
 .registerH1{
     color: #ff8800;
     font-size: 500%;
-    /*font-family: Custom !important;*/
 }
 
 #registerDiv{
@@ -166,7 +162,6 @@ body{
 }
 
 #liftTypeInput{
-    /*font-family: Custom !important;*/
     position: relative;
     left: 0;
     width: 37%;
@@ -176,29 +171,24 @@ body{
 }
 
 #liftTypeLbl{
-    /*font-family: Custom !important;*/
     position:relative;
     right:17px;
 }
 
 #seatsLbl{
-    /*font-family: Custom !important;*/
     position: relative;
     right:17px;
 }
 #seatsInput{
-    /*font-family: Custom !important;*/
     position: relative;
-
 }
 
 .departInputs{
-    /*font-family: Custom !important;*/
     background-color: transparent;
     color: #ff8800;
     height: 40px !important;
     margin: auto;
-    padding: 0px 0px 0px 0px;
+    padding: 0 0 0 0;
     text-align: center;
     border-radius: 6px;
     outline: none;
@@ -207,12 +197,10 @@ body{
 }
 
 .departInputs:focus{
-    /*font-family: Custom !important;*/
     outline: none;
 }
 
 .dropdownInputs{
-    /*font-family: Custom !important;*/
     position: relative;
     width: 49% !important;
     height: 40px !important;
@@ -223,12 +211,10 @@ body{
 }
 
 .dropdownInputs:focus{
-    /*font-family: Custom !important;*/
     outline: none;
 }
 
 .offerLiftBtns{
-    /*font-family: Custom !important;*/
     position: relative;
     top: 60px;
     width: 43%!important;
@@ -237,7 +223,6 @@ body{
 }
 
 #offerLiftBtn{
-    /*font-family: Custom !important;*/
     border-radius: 5px;
     border-color: #ff8800;
     color: #ff8800;
@@ -247,25 +232,21 @@ body{
 }
 
 .mapLinks{
-    /*font-family: Custom !important;*/
     color: #ccfbfe;
     text-align: right;
 }
 
 .mapLinks:focus{
-    /*font-family: Custom !important;*/
     opacity: .9;
     text-decoration: none;
 }
 
 #departDateLbl {
-    /*font-family: Custom !important;*/
     position: relative;
     right: 14px;
 }
 
 #departTimeLbl {
-    /*font-family: Custom !important;*/
     position: relative;
     right: 17px;
 }
@@ -285,27 +266,23 @@ body{
  */
 
 #listDiv{
-    /*font-family: Custom !important;*/
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 #availableLiftsTbl {
-    /*font-family: Custom !important;*/
     position: relative;
     justify-content: center;
     align-items: center;
     color: #ff8800;
 }
 
-
 /****************************
     REQUEST LIFT PAGE
  */
 
 #liftDetailsDiv{
-    /*font-family: Custom !important;*/
     color: #ffffff;
     display: flex;
     justify-content: center;
@@ -333,7 +310,6 @@ body{
     width:120px;
 }
 
-
 /*******************************
     MAIN PAGE
  ******************************/
@@ -355,7 +331,7 @@ body{
     color: #ff8800;
     background-color: transparent;
     padding: 5px 10px 5px 10px;
-    margin: 0px 3px 0px 0;
+    margin: 0 3px 0 0;
 }
 
 #searchLiftBtn{
@@ -364,7 +340,7 @@ body{
     color: #231024;
     background-color: #ff8800;
     padding: 5px 10px 5px 10px;
-    margin: 0px 3px 0px 0;
+    margin: 0 3px 0 0;
 }
 
 #map-canvas{
@@ -382,7 +358,6 @@ body{
     text-align: center;
     display: block;
 }
-
 
 /*
     OFFER LIFTS MAPS
@@ -431,11 +406,9 @@ body{
 
 .locationDivs{
     position: absolute;
-    /* display: flex; */
     bottom: 0;
     left: 0;
     right: 0;
-    /* font-size: 35px; */
     text-align: center;
 }
 
@@ -611,7 +584,6 @@ side nav bar: gotten from w3schools.com
     right: 0;
     left:0;
     position: absolute;
-
 }
 
 #groupDetailsDiv{
@@ -623,7 +595,6 @@ side nav bar: gotten from w3schools.com
     right: 0;
     color: #ff8800;
     overflow: visible;
-
 }
 
 #groupDetailsInnerDiv{
@@ -648,7 +619,6 @@ side nav bar: gotten from w3schools.com
     width: 100%;
     height: auto;
     font-size: 34px;
-
 }
 
 #beginLiftBtnDiv{
@@ -677,7 +647,6 @@ side nav bar: gotten from w3schools.com
     right: 0;
     color: #ff8800;
     overflow: visible;
-
 }
 
 #myLiftDetailsInnerDiv {
@@ -877,7 +846,6 @@ side nav bar: gotten from w3schools.com
     flex-wrap: wrap;
     align-items: center;
     text-align: center;
-
 }
 
 #profileBtnsDiv{
@@ -893,7 +861,6 @@ side nav bar: gotten from w3schools.com
     border: 1px solid #ff8800;
     border-radius: 5px;
     text-align: center;
-
 }
 
 #profileEditBtn{
@@ -902,7 +869,6 @@ side nav bar: gotten from w3schools.com
     border: 1px solid #231024;
     border-radius: 5px;
     text-align: center;
-
 }
 
 #saveChangesBtn{

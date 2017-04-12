@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <!--<script type="text/javascript" src="cordova.js"></script>-->
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-toggle.min.js"></script>
@@ -18,15 +17,10 @@
             document.getElementById('requestIDRdOnly').value = sessionStorage.getItem('requestID');
             getRequestDetails();
         };
-
         function profile(){
             getProfile(document.getElementById('hiddenPassengerID').value);
-
         }
     </script>
-    <style>
-
-    </style>
     <link rel="stylesheet" type="text/css"  href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-toggle.min.css">
@@ -34,8 +28,6 @@
 </head>
 <body class="container" >
 <h2 style="color: #ff8800;text-align: center;" class="col-xs-12">Lift Request</h2>
-
-<!--<div class="col-xs-12">-->
 <div id="myRequestMap-Canvas" class="col-xs-12"></div>
 <div id="liftDetailsForm" class="col-xs-12 " >
     <div class="col-xs-12">
@@ -57,9 +49,7 @@
         <input type="button" id="denyReqBtn" value="Deny" class="btn btn-primary liftDetailsBtns col-xs-4" onclick="denyRequest()" />
         <input type="button" id="cancelBtn" value="Go Back" class="btn btn-primary liftDetailsBtns  col-xs-4" onclick="window.location ='availableRequests.html'" />
         <input type="button" id="acceptReqBtn" value="Accept" class="btn btn-primary liftDetailsBtns col-xs-4" onclick="acceptRequest()" />
-
     </div>
 </div>
-
 </body>
 </html>

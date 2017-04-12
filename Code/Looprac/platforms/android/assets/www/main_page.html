@@ -7,11 +7,9 @@
     <script src="js/Looprac.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc" async defer type="text/javascript"></script>
     <link rel="stylesheet" href="css/font-awesome.min.css">
-
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-
     </style>
     <script>
         window.onload = function (){
@@ -32,7 +30,6 @@
         function openNav() {
             document.getElementById("mySidenav").style.width = "250px";
         }
-
         /* Set the width of the side navigation to 0 */
         function closeNav() {
             document.getElementById("mySidenav").style.width = "0";
@@ -52,21 +49,13 @@
     <a href="leaderboard.html">Leaderboard</a>
     <a href="#" onclick="logout()">Logout</a>
 </div>
-
 <div id="sessionDiv" class="col-xs-12">
     <i id="hamburgerMenuIcon" class="fa fa-bars col-xs-12" aria-hidden="true" onclick="openNav()"></i>
     <form method="post" id="hiddenMainPageForm">
         <input type="number" class="hidden" name="userID" readonly id="userID" />
-        <!--<i id="logoutIcon" class="fa fa-sign-out col-xs-5" style="color: #ffffff;" aria-hidden="true" onclick="logout()"></i>-->
     </form>
-
 </div>
 <div id="map-canvas"  class="col-xs-12"></div>
-<div id="mainPageFormDiv">
-    <!--<form id="hiddenMainPageForm">-->
-        <!--<input type="number" class="hidden" readonly id="userID" />-->
-    <!--</form>-->
-</div>
 <div id="choiceDiv" class="col-xs-12">
     <input type="button" id="mainPageOfferLiftBtn" class="btn btn-primary col-xs-6" value="Offer Lift" onclick="checkHasCarRegistered()" />
     <input type="button" id="searchLiftBtn" class="btn btn-primary col-xs-6" value="Search for Lift" onclick="window.location = 'availableLifts.html'" />

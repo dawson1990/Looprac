@@ -8,12 +8,13 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXN5xs4epnIsoBhsQnTHBKN5bGiPdbPUc&callback=initMap" type="text/javascript"></script>
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/Looprac.js"></script>
-
     <meta charset="UTF-8">
     <title>Title</title>
     <script>
-        window.onload = initDestinationMap();
-        window.onload = chooseDestination();
+        window.onload = function () {
+            initDestinationMap();
+            chooseDestination();
+        }
     </script>
 </head>
 <body class="container">
@@ -25,7 +26,6 @@
     <input type="text" id="destination" name="location" placeholder="Destination" class="col-xs-12" />
     <input type="button"  class="btn btn-primary cancelLocationBtns col-xs-6" value="Cancel" onclick="window.history.back()"/>
     <input type="button" id="choiceSubBtn" class="btn btn-primary locationBtns col-xs-6" value="Submit" onclick="destinationChoice()"/>
-
 </div>
 </body>
 </html>

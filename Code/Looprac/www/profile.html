@@ -24,7 +24,6 @@
 <body class="container">
 <form id="profileForm" method="post" action="http://looprac.pythonanywhere.com/registeruser"  enctype="multipart/form-data">
     <input type="button" id="deleteBtn" class="col-xs-12 hidden" value="Delete Account" onclick="deleteAccount()" />
-
     <div id="profilePicDiv" class="col-xs-12">
         <img id="profilePic" src="" class="col-xs-12"/>
     </div>
@@ -48,7 +47,6 @@
         <input type="text" class="col-xs-12 profileInputs" id="profileDistance" readonly />
         <label class="col-xs-12 profileLbs" for="profilePassengers" id="passengerLbl">Number of Passengers</label>
         <input type="text" class="col-xs-12 profileInputs" id="profilePassengers" readonly />
-
     </div>
     <div id="profileCarDetailsDiv">
         <h3 class="col-xs-12" style="text-align: center;color: #ff8800;" >Car Details</h3>
@@ -64,7 +62,6 @@
         <input type="button" id="profileBackBtn" class="col-xs-6" value="Back" onclick="history.back()"/>
         <input type="button" id="profileEditBtn" class="col-xs-6" value="Edit" onclick="edit()" />
     </div>
-
 </form>
 </body>
 </html>
